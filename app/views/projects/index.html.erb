@@ -1,0 +1,26 @@
+<h1>Projects#index</h1>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>project name</th>
+			<th>start date</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @projects.each do |project| %>
+		<tr>
+			<td><%= truncate(project.project_name, length: 60, separate: '') %></td>
+			<td><%= time_ago(project.created_at) %></td>
+			<td>
+				<%= link_to 'Edit', edit_project_path(project) %> |
+				<%= link_to 'Show', project_path(project) %> |
+				<%= link_to 'Delete', project_path(project), method: :delete, data: {confirm: 'Are you sure ?'} %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p><%= paginate @projects %></p>

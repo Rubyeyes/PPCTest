@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+project = Project.create(
+	project_name: "ECO Mod2")
+
+product = Product.create(
+	product_name: "ECO Mod2 Black",
+	item_number: "VECO434QRBM2",
+	status: "In prodcution")
+
+task = Task.create(
+	task: "Upload package design",
+	executor: "Alan Tian")

@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
-
+# Paginator
+gem 'kaminari', '~> 0.16.3'
+#Authorization
+gem 'cancancan', '~> 1.10'
+#Authentication
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
