@@ -12,7 +12,7 @@
 		<% @projects.each do |project| %>
 		<tr>
 			<td><%= truncate(project.project_name, length: 60, separate: '') %></td>
-			<td><%= time_ago(project.created_at) %></td>
+			<td><%= project.created_at.strftime("%Y-%m-%d") %></td>
 			<td>
 				<%= link_to 'Edit', edit_project_path(project) %> |
 				<%= link_to 'Show', project_path(project) %> |
