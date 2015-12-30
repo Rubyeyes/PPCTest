@@ -52,3 +52,6 @@ group :development do
   gem 'spring'
 end
 
+#declare a ruby version
+ruby '2.0.0'
+
