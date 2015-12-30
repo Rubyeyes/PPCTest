@@ -5,8 +5,8 @@ gem 'kaminari', '~> 0.16.3'
 gem 'cancancan', '~> 1.10'
 #Authentication
 gem 'devise'
-#Enable heroku platform features
-gem 'rails_12factor'
+#Puma web server
+gem 'puma'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
