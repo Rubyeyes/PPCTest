@@ -7,6 +7,8 @@ gem 'cancancan', '~> 1.10'
 gem 'devise'
 #Puma web server
 gem 'puma'
+#to enable all platform features
+gem 'rails_12factor'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
