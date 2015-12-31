@@ -14,6 +14,13 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    # @project = Project.find(params[:id])
+    # if @project.update(project_params)
+    #   redirect_to projects_url, notice: "Project was successfully updated"
+    # else
+    #   flash[:alert] = "There was a problem updating project"
+    #   render :new
+    # end
   end
 
   def view
@@ -21,4 +28,11 @@ class ProjectsController < ApplicationController
 
   def destroy
   end
+
+  # private
+
+  # def project_params
+  #   params.require(:project).permit(:id, :project_name)
+  # end
+
 end
