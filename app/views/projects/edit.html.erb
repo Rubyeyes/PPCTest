@@ -1,5 +1,7 @@
 <h1>Projects#edit</h1>
 
+<P><%= render "validation_errors", object:  @project%><P>
+
 <%= form_for @project do |f| %>
 	<p>
 		<%= f.label :project_name %><br>

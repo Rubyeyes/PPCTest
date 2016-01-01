@@ -4,9 +4,18 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    @project = Project.new
   end
 
   def create
+    @project = Project.new(project_params)
+    
+    if @project.save
+      redirect_to projects_url, notice: "Project was successfully created"
+    else
+      flash[:alert] = "There was a problem creating project"
+      render :new
+    end
   end
 
   def edit
@@ -14,25 +23,25 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    # @project = Project.find(params[:id])
-    # if @project.update(project_params)
-    #   redirect_to projects_url, notice: "Project was successfully updated"
-    # else
-    #   flash[:alert] = "There was a problem updating project"
-    #   render :new
-    # end
-  end
-
-  def view
+    @project = Project.find(params[:id])
+    if @project.update(project_params)
+      redirect_to projects_url, notice: "Project was successfully updated"
+    else
+      flash[:alert] = "There was a problem updating project"
+      render :edit
+    end
   end
 
   def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+    redirect_to :back, notice: "Project was successfully deleted"
   end
 
-  # private
+  private
 
-  # def project_params
-  #   params.require(:project).permit(:id, :project_name)
-  # end
+  def project_params
+    params.require(:project).permit(:id, :project_name)
+  end
 
 end
