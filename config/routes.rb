@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
   
+  get 'uers/index'
+
+  get 'uers/new'
+
+  get 'uers/create'
+
+  get 'uers/edit'
+
+  get 'uers/update'
+
+  get 'uers/show'
+
+  get 'uers/destroy'
+
   devise_for :users
   
   root 'projects#index'
