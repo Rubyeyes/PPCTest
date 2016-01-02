@@ -1,0 +1,26 @@
+<h1>Users#index</h1>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>email</th>
+			<th>role</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= user.email %></td>
+			<td><%= user.role %></td>
+			<td>
+				<%= link_to 'Edit', edit_users_admin_path(user) %> |
+				<%= link_to 'Show', users_admin_path(user) %> |
+				<%= link_to 'Delete', users_admin_path(user), method: :delete, data: {confirm: 'Are you sure ?'} %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p><%= paginate @users %></p>

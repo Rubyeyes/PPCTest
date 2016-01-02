@@ -1,24 +1,13 @@
 Rails.application.routes.draw do
-  
-  get 'uers/index'
-
-  get 'uers/new'
-
-  get 'uers/create'
-
-  get 'uers/edit'
-
-  get 'uers/update'
-
-  get 'uers/show'
-
-  get 'uers/destroy'
+  # Destroy action for devise
+  # match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
 
   devise_for :users
   
   root 'projects#index'
 
   resources :projects
+  resources :users_admin, :controller => 'users'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
