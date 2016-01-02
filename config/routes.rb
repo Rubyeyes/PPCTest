@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+
   # Destroy action for devise
-  # match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
+  # match 'users_admin/:id' => 'devise/registrations#destroy', :via => :delete, :as => :admin_destroy_user
 
   devise_for :users
   

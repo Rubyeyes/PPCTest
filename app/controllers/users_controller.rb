@@ -27,6 +27,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to :back, notice: "User was successfully deleted"
   end
 
   private
