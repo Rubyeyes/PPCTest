@@ -29,6 +29,14 @@
 	</div>
 <% end %>
 
+<p>
+  <% if current_user %>
+    <%= link_to 'My account', current_user_index_path %>
+    <%= link_to 'Projects', projects_path %>
+    <%= link_to 'Users', users_admin_index_path %>
+  <% end %>
+</p>
+
 <%= yield %>
 
 </body>

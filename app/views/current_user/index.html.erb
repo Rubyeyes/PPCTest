@@ -1,0 +1,21 @@
+<h1>CurrentUser#index</h1>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>fullname</th>
+			<th>email</th>
+			<th>created</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr>
+				<td><%= @user.fullname %></td>
+				<td><%= @user.email %></td>
+				<td><%= time_ago(@user.created_at) %></td>
+				<td>
+					<%= link_to 'Edit', edit_current_user_path(@user) %>
+				</td>
+			</tr>
+	</tbody>
