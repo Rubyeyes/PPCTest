@@ -1,0 +1,12 @@
+<h1>RoleOptions#edit</h1>
+
+<P><%= render "validation_errors", object:  @role_option %><P>
+
+<%= form_for @role_option do |f| %>
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	</p>
+
+	<P><%= f.submit %></P>
+<% end %>

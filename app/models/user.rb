@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable   
 
+  belongs_to :role_option
+
   # User::Roles
   # The available roles
   Roles = [ :admin , :default ]

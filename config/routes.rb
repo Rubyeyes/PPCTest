@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # Destroy action for devise
   # match 'users_admin/:id' => 'devise/registrations#destroy', :via => :delete, :as => :admin_destroy_user
 
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :users_admin, :controller => 'users'
   resources :current_user, only:[:index, :edit, :update]
+  resources :role_options
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

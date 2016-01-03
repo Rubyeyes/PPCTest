@@ -10,7 +10,7 @@
 
 	<p>
 		<%= f.label :role %><br>
-		<%= f.text_field :role %>
+		<%= f.select :role, RoleOption.all.collect {|r| [r.name]}, {prompt: "Select role"} %>
 	</p>
 
 	<P><%= f.submit %></P>
