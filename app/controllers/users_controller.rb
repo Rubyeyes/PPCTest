@@ -1,4 +1,7 @@
-class UsersController < ApplicationController
+class UsersController < SessionsController 
+
+  # load_and_authorize_resource
+  
   def index
     @users = User.all.order(id: :desc).page params[:page]
   end

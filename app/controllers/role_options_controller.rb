@@ -1,4 +1,7 @@
-class RoleOptionsController < ApplicationController
+class RoleOptionsController < SessionsController 
+
+  # load_and_authorize_resource
+  
   def index
     @role_options = RoleOption.all.order(id: :desc).page params[:page]
   end

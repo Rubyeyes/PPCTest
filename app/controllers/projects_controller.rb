@@ -1,4 +1,7 @@
-class ProjectsController < ApplicationController
+class ProjectsController < SessionsController 
+
+  # load_and_authorize_resource
+
   def index
     @projects = Project.all.order(id: :desc).page params[:page]
   end
