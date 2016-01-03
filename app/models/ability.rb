@@ -5,10 +5,10 @@ class Ability
     user ||= User.new
 
     # Define User abilities
-    if user.is? :admin
-      can :manage, Project
+    if user.role == :admin
+      can :manage, :all
     else
-      can :read, Project
+      can :read, :all
     end
   end
 end

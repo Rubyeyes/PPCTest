@@ -17,7 +17,6 @@
 			<td><%= project.created_at.strftime("%Y-%m-%d") %></td>
 			<td>
 				<%= link_to 'Edit', edit_project_path(project) %> |
-				<%= link_to 'Show', project_path(project) %> |
 				<%= link_to 'Delete', project_path(project), method: :delete, data: {confirm: 'Are you sure ?'} %>
 			</td>
 		</tr>
