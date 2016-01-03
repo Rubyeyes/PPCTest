@@ -3,6 +3,12 @@
 <P><%= render "validation_errors", object:  @user %><P>
 
 <%= form_for @user, :url => users_admin_path do |f| %>
+
+	<p>
+		<%= f.label :fullname %><br>
+		<%= f.text_field :fullname %>
+	</p>
+
 	<p>
 		<%= f.label :email %><br>
 		<%= f.text_field :email %>

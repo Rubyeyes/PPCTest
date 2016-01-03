@@ -11,11 +11,11 @@
 	</thead>
 	<tbody>
 			<tr>
-				<td><%= @user.fullname %></td>
-				<td><%= @user.email %></td>
-				<td><%= time_ago(@user.created_at) %></td>
+				<td><%= @current_user.fullname %></td>
+				<td><%= @current_user.email %></td>
+				<td><%= time_ago(@current_user.created_at) %></td>
 				<td>
-					<%= link_to 'Edit', edit_current_user_path(@user) %>
+					<%= link_to 'Edit', edit_current_user_path(@current_user) %>
 				</td>
 			</tr>
 	</tbody>
