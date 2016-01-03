@@ -1,4 +1,4 @@
-class CurrentUserController < ApplicationController
+class CurrentUserController < ApplicationController 
 
   def index
   	@current_user = current_user

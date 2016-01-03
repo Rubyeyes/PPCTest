@@ -33,8 +33,9 @@
   <% if current_user %>
     <%= link_to 'My account', current_user_index_path %>
     <%= link_to 'Projects', projects_path %>
-    <%= link_to 'Users', users_admin_index_path %>
-    <%= link_to 'Role Option', role_options_path %>
+    <% if current_user.role == "admin" %>
+      <%= link_to 'Admin setting', admin_setting_index_path %>
+    <% end %>   
   <% end %>
 </p>
 
