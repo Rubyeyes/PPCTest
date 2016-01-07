@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'home/index'
+
   # Destroy action for devise
   # match 'users_admin/:id' => 'devise/registrations#destroy', :via => :delete, :as => :admin_destroy_user
 
