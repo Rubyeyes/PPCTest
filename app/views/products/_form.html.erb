@@ -1,0 +1,24 @@
+<P><%= render "validation_errors", object: @product %><P>
+
+<%= form_for @product do |f| %>
+	<p>
+		<%= f.label :product_name %><br>
+		<%= f.text_field :product_name %>
+	</p>
+
+	<p>
+		<%= f.label :item_number %><br>
+		<%= f.text_field :item_number %>
+	</p>
+
+	<p>
+		<%= f.label :status %><br>
+		<%= f.text_field :status %>
+	</p>
+
+	<% unless @product.project_id? %>
+		<%= f.hidden_field :project_id, :value => @project.id %>
+	<% end %>
+
+	<P><%= f.submit %></P>
+<% end %>

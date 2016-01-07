@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   root 'projects#index'
 
   resources :projects
+  resources :products
+  resources :tasks
   resources :users_admin, :controller => 'users'
   resources :current_user, only:[:index, :edit, :update]
   resources :role_options

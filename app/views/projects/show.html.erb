@@ -1,0 +1,33 @@
+<h1>Projects#show</h1>
+
+<h2><%= @project.project_name %></h2>
+
+<p><%= link_to 'New Task', new_task_path(project_id_param: @project.id) %></p>
+
+<p><%= link_to 'New Product', new_product_path(project_id_param: @project.id) %></p>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>name</th>
+			<th>item name</th>
+			<th>status</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @products.each do |product| %>
+			<% if product.project_id == @project.id %>
+				<tr>
+					<td><%= product.product_name %></td>
+					<td><%= product.item_number %></td>
+					<td><%= product.status %></td>
+					<td>
+						<%= link_to 'Edit', edit_product_path(product) %> |
+						<%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %>
+					</td>
+				</tr>
+			<% end %>			
+		<% end %>			
+	</tbody>
+</table>

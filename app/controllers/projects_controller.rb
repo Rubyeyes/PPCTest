@@ -4,6 +4,7 @@ class ProjectsController < SessionsController
 
   def index
     @projects = Project.all.order(id: :desc).page params[:page]
+    @products = Product.all
   end
 
   def new
@@ -33,6 +34,11 @@ class ProjectsController < SessionsController
       flash[:alert] = "There was a problem updating project"
       render :edit
     end
+  end
+
+  def show
+    @project = Project.find(params[:id])
+    @products = Product.all
   end
 
   def destroy
