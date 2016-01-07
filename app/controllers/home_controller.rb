@@ -7,6 +7,6 @@ class HomeController < ApplicationController
   def show
   	@project = Project.find(params[:id])
     @products = Product.all
-    @task = Task.all
+    @tasks = Task.all
   end
 end

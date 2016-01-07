@@ -11,7 +11,9 @@
 		<%= f.text_area :task, size: "60x12" %>
 	</p>
 
-	<%= f.hidden_field :project_id, :value => @project._id %>
+	<% if @project.present? %>
+		<%= f.hidden_field :project_id, :value => @project.id %>
+	<% end %>
 			
 	<P><%= f.submit %></P>
 <% end %>

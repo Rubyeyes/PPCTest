@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @project = Project.find(params[:project_id_param])
+    @tasks = Task.all.order(created_at: :desc)
   end
 
   def new
@@ -12,7 +13,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
        
     if @task.save      
-      redirect_to controller: 'projects', action: 'show', id: task_params[:project_id].to_i, notice: "Product was successfully created"
+      redirect_to controller: 'home', action: 'show', id: task_params[:project_id].to_i, notice: "Product was successfully created"
     else
       flash[:alert] = "There was a problem creating task"
       render :new

@@ -16,7 +16,9 @@
 		<%= f.text_field :status %>
 	</p>
 
-	<%= f.hidden_field :project_id, :value => @project.id %>
+	<% if @project.present? %>
+		<%= f.hidden_field :project_id, :value => @project.id %>
+	<% end %>
 
 	<P><%= f.submit %></P>
 <% end %>

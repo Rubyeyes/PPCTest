@@ -6,13 +6,10 @@ class ProductsController < ApplicationController
   def new
     @project = Project.find(params[:project_id_param])
     @product = @project.products.new()
-    byebug
   end
 
   def create
-    byebug
     @product = Product.new(product_params)
-    byebug
    
     if @product.save      
       redirect_to controller: 'home', action: 'show', id: product_params[:project_id].to_i, notice: "Product was successfully created"
