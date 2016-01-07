@@ -30,12 +30,14 @@
 <% end %>
 
 <p>
-  <%= link_to 'Home', projects_path %>
+  <%= link_to 'Home', home_index_path %>
 </p>
 
 <p>
   <% if current_user %>
     <%= link_to 'My account', current_user_index_path %>
+    <%= link_to 'Task list', tasks_path %>
+    <%= link_to 'Product list', products_path %>
     <% if current_user.role == "admin" %>
       <%= link_to 'Admin setting', admin_setting_index_path %>
     <% end %>   

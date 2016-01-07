@@ -16,9 +16,7 @@
 		<%= f.text_field :status %>
 	</p>
 
-	<% unless @product.project_id? %>
-		<%= f.hidden_field :project_id, :value => @project.id %>
-	<% end %>
+	<%= f.hidden_field :project_id, :value => @project.id %>
 
 	<P><%= f.submit %></P>
 <% end %>

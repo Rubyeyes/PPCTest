@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
 
-  get 'home/index'
-
   # Destroy action for devise
   # match 'users_admin/:id' => 'devise/registrations#destroy', :via => :delete, :as => :admin_destroy_user
 
   devise_for :users
   
-  root 'projects#index'
+  root 'home#index'
 
   resources :projects
   resources :products
   resources :tasks
+  resources :home, only:[:index, :show]
   resources :users_admin, :controller => 'users'
   resources :current_user, only:[:index, :edit, :update]
   resources :role_options

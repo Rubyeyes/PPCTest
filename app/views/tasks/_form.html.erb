@@ -1,0 +1,17 @@
+<P><%= render "validation_errors", object:  @task%><P>
+
+<%= form_for @task do |f| %>
+	<p>
+		<%= f.label :executor %><br>
+		<%= f.text_field :executor %>
+	</p>
+
+	<p>
+		<%= f.label :task %><br>
+		<%= f.text_area :task, size: "60x12" %>
+	</p>
+
+	<%= f.hidden_field :project_id, :value => @project._id %>
+			
+	<P><%= f.submit %></P>
+<% end %>

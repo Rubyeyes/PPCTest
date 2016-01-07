@@ -2,27 +2,3 @@
 
 <p><%= link_to 'New Project', new_project_path %></p>
 
-<% @projects.each do |project| %>
-	<p>
-		<h3><%= truncate(project.project_name, length: 60, separate: '') %></h3><br>
-	</p>
-	<p>
-		<% @products.each do |product| %>
-			<% if product.project_id == project.id %>
-				<%= product.product_name %>
-				<%= product.item_number %>
-				<%= product.status %><br>
-			<% end %>
-		<% end %>
-	</p>
-	<p>
-		<%= link_to 'More detail', project_path(project), method: :get %> |
-		<% if current_user.role == "admin" %>
-			<%= link_to 'Delete', project_path(project), method: :delete, data: {confirm: 'Are you sure ?'} %>
-		<% end %>
-	</p>
-
-	<hr>
-<% end %>
-
-<p><%= paginate @projects %></p>

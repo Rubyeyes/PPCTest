@@ -1,17 +1,21 @@
 class ProductsController < ApplicationController
   def index
+    @products = Product.all
   end
 
   def new
     @project = Project.find(params[:project_id_param])
     @product = @project.products.new()
+    byebug
   end
 
   def create
+    byebug
     @product = Product.new(product_params)
+    byebug
    
     if @product.save      
-      redirect_to controller: 'projects', action: 'show', id: product_params[:project_id].to_i, notice: "Product was successfully created"
+      redirect_to controller: 'home', action: 'show', id: product_params[:project_id].to_i, notice: "Product was successfully created"
     else
       flash[:alert] = "There was a problem creating product"
       render :new

@@ -1,2 +1,23 @@
 <h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+
+<% @projects.each do |project| %>
+	<p>
+		<h3><%= truncate(project.project_name, length: 60, separate: '') %></h3><br>
+	</p>
+	<p>
+		<% @products.each do |product| %>
+			<% if product.project_id == project.id %>
+				<%= product.product_name %>
+				<%= product.item_number %>
+				<%= product.status %><br>
+			<% end %>
+		<% end %>
+	</p>
+	<p>
+		<%= link_to 'More detail', home_path(project), method: :get %>
+	</p>
+
+	<hr>
+<% end %>
+
+<p><%= paginate @projects %></p>
