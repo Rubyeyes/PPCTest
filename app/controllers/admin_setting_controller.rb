@@ -1,4 +1,4 @@
-class AdminSettingController < ApplicationController
+class AdminSettingController < SessionsController
   def index
   end
 end

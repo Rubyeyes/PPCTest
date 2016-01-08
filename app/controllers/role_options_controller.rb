@@ -1,4 +1,4 @@
-class RoleOptionsController < SessionsController 
+class RoleOptionsController < ApplicationController 
 
   # load_and_authorize_resource
   

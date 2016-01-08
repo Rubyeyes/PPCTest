@@ -3,11 +3,9 @@ class SessionsController < ApplicationController
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  
-  before_filter :authenticate_user!
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
-  rescue_from CanCan::AccessDenied do | exception |
-    redirect_to root_url, alert: exception.message
-  end
+  # rescue_from CanCan::AccessDenied do | exception |
+  #   redirect_to root_url, alert: exception.message
+  # end
 end

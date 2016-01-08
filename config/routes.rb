@@ -5,11 +5,12 @@ Rails.application.routes.draw do
 
   devise_for :users
   
-  root 'home#index'
+  root to:'home#index'
 
   resources :projects
   resources :products
   resources :tasks
+  resources :costs
   resources :home, only:[:index, :show]
   resources :users_admin, :controller => 'users'
   resources :current_user, only:[:index, :edit, :update]

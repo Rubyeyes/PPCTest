@@ -21,9 +21,17 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task = Task.find(params[:id])
   end
 
   def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to controller: 'home', action: 'show', id: @task.project_id, notice: "Project was successfully updated"
+    else
+      flash[:alert] = "There was a problem updating task"
+      render :edit
+    end
   end
 
   def show

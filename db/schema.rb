@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108051629) do
+ActiveRecord::Schema.define(version: 20160108055247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "costs", force: :cascade do |t|
+    t.float    "unitUSD"
+    t.float    "toolingUSD"
+    t.float    "unitRMB"
+    t.float    "toolingRMB"
+    t.text     "description"
+    t.float    "ratio"
+    t.integer  "project_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "costs", ["project_id"], name: "index_costs_on_project_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "product_name"
@@ -77,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160108051629) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "costs", "projects"
   add_foreign_key "products", "projects"
   add_foreign_key "tasks", "projects"
 end

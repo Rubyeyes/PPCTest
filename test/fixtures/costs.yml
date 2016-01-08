@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  unitUSD: 1.5
+  toolingUSD: 1.5
+  unitRMB: 1.5
+  toolingRMB: 1.5
+  description: MyText
+  ratio: 1.5
+  project_id: 
+
+two:
+  unitUSD: 1.5
+  toolingUSD: 1.5
+  unitRMB: 1.5
+  toolingRMB: 1.5
+  description: MyText
+  ratio: 1.5
+  project_id: 
