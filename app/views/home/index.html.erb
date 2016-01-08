@@ -4,15 +4,33 @@
 	<p>
 		<h3><%= truncate(project.project_name, length: 60, separate: '') %></h3><br>
 	</p>
+
 	<p>
-		<% @products.each do |product| %>
-			<% if product.project_id == project.id %>
-				<%= product.product_name %>
-				<%= product.item_number %>
-				<%= product.status %><br>
-			<% end %>
-		<% end %>
+		<b>Task : </b>
+		<% if project.tasks.present? %>			
+			<%= project.tasks.last.executor %> -
+			<%= project.tasks.last.task %>
+		<% end %>		
 	</p>
+
+	<% if  project.products.present? %>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th align="left">Products :</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% project.products.each do |product| %>
+					<tr>
+						<td><%= product.product_name %></td>
+						<td><%= product.item_number %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
+
 	<p>
 		<%= link_to 'More detail', home_path(project), method: :get %>
 	</p>

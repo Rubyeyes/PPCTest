@@ -24,6 +24,13 @@ class ProductsController < ApplicationController
   end
 
   def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to controller: 'home', action: 'show', id: @product.project_id, notice: "Prodcut was successfully updated"
+    else
+      flash[:alert] = "There was a problem updating product"
+      render :edit
+    end
   end
 
   def show

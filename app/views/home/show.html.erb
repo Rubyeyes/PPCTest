@@ -13,17 +13,20 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% task = @project.tasks.last %>
-		<tr>
-			<td><%= task.executor %></td>
-			<td><%= task.task %></td>
-			<td><%= task.created_at.strftime("%d %b. %Y") %></td>				
-		</tr>						
+		<% @project.tasks.last(3).each do |task| %>
+			<tr>
+				<td><%= task.executor %></td>
+				<td><%= task.task %></td>
+				<td><%= task.created_at.strftime("%d %b. %Y") %></td>				
+			</tr>
+		<% end %>						
 	</tbody>
 </table>
 
 <p>
-	<%= link_to 'All', tasks_path(project_id_param: @project.id) %>
+	<% if @project.tasks.count > 3 %>
+		<%= link_to 'All', tasks_path(project_id_param: @project.id) %>
+	<% end %>
 </p>
 
 <p><%= link_to 'New Product', new_product_path(project_id_param: @project.id) %></p>
@@ -31,10 +34,9 @@
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>
-			<th>name</th>
-			<th>item name</th>
-			<th>status</th>
-			<th>actions</th>
+			<th>Product name</th>
+			<th>Item number</th>
+			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -42,7 +44,6 @@
 			<tr>
 				<td><%= product.product_name %></td>
 				<td><%= product.item_number %></td>
-				<td><%= product.status %></td>
 				<td>
 					<%= link_to 'Edit', edit_product_path(product) %> |
 					<%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %>
