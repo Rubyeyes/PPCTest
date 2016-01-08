@@ -31,24 +31,16 @@
 
 <p><%= link_to 'New Product', new_product_path(project_id_param: @project.id) %></p>
 
-<table class="table table-bordered table-hover">
-	<thead>
-		<tr>
-			<th>Product name</th>
-			<th>Item number</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @project.products.each do |product| %>
-			<tr>
-				<td><%= product.product_name %></td>
-				<td><%= product.item_number %></td>
-				<td>
-					<%= link_to 'Edit', edit_product_path(product) %> |
-					<%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %>
-				</td>
-			</tr>			
-		<% end %>			
-	</tbody>
-</table>
+<p>
+	<% @project.products.each do |product| %>
+		<b>Product name: </b><%= product.product_name %><br>
+		<b>Item number: </b><%= product.item_number %><br>
+		<b>Package Requirement: </b><%= product.Package %><br>
+		<b>Mark Requirement: </b><%= product.Mark %><br>
+		<b>Instruction Requirement: </b><%= product.Instruction %><br>
+		<b>Reminder: </b><%= product.reminder %><br>
+		<%= link_to 'Edit', edit_product_path(product) %> |
+		<%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %><hr>		
+	<% end %>
+</p>			
+

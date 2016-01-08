@@ -12,8 +12,23 @@
 	</p>
 
 	<p>
-		<%= f.label :status %><br>
-		<%= f.text_field :status %>
+		<%= f.label :Package, "Package Requirement" %><br>
+		<%= f.text_area :Package, size: "40X20" %>
+	</p>
+
+	<p>
+		<%= f.label :Mark, "Mark Requirement" %><br>
+		<%= f.text_area :Mark, size: "40X20" %>
+	</p>
+
+	<p>
+		<%= f.label :Instruction, "Instruction Requirement" %><br>
+		<%= f.text_area :Instruction, size: "40X20" %>
+	</p>
+
+	<p>
+		<%= f.label :reminder %><br>
+		<%= f.text_area :reminder, size: "40X20" %>
 	</p>
 
 	<% if @project.present? %>
