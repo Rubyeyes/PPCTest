@@ -1,0 +1,31 @@
+<p><%= link_to 'New Task', new_task_path(project_id_param: object.id) %></p>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Executor</th>
+			<th>Task</th>
+			<th>Start at</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% object.tasks.last(3).each do |task| %>
+			<tr>
+				<td><%= task.executor %></td>
+				<td><%= task.task %></td>
+				<td><%= task.created_at.strftime("%d %b. %Y") %></td>	
+				<td>
+					<%= link_to 'Edit', edit_task_url(task) %>
+					<%= link_to 'Delete', task_url(task), method: :delete, data: {confirm: "Are you sure?"} %>
+				</td>			
+			</tr>
+		<% end %>						
+	</tbody>
+</table>
+
+<p>
+	<% if object.tasks.count > 3 %>
+		<%= link_to 'All', tasks_path(project_id_param: object.id) %>
+	<% end %>
+</p>

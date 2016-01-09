@@ -5,6 +5,10 @@
 		<%= f.label :project_name %><br>
 		<%= f.text_field :project_name %>
 	</p>
+
+	<p>
+		<%= f.select :user_id, User.where(:role => 'factory').collect {|u| [u.fullname]}, {prompt: "Select factory" } %>
+	</p>
 			
 	<P><%= f.submit %></P>
 <% end %>

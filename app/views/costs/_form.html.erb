@@ -1,0 +1,39 @@
+<P><%= render "validation_errors", object:  @cost%><P>
+
+<%= form_for @cost do |f| %>
+	<p>
+		<%= f.label :unitRMB, "Unit RMB" %><br>
+		<%= f.text_field :unitRMB %>
+	</p>
+
+	<p>
+		<%= f.label :toolingRMB, "Tooling RMB" %><br>
+		<%= f.text_field :toolingRMB %>
+	</p>
+
+	<p>
+		<%= f.label :unitUSD, "Unit USD" %><br>
+		<%= f.text_field :unitUSD %>
+	</p>
+
+	<p>
+		<%= f.label :toolingUSD, "Tooling USD" %><br>
+		<%= f.text_field :toolingUSD %>
+	</p>
+
+	<p>
+		<%= f.label :ratio, "Currency Ratio" %><br>
+		<%= f.text_field :ratio %>
+	</p>
+
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_area :description, size: "40X20" %>
+	</p>
+
+	<% if @project.present? %>
+		<%= f.hidden_field :project_id, :value => @project.id %>
+	<% end %>
+			
+	<P><%= f.submit %></P>
+<% end %>

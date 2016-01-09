@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update(project_params)
-      redirect_to projects_url, notice: "Project was successfully updated"
+      redirect_to :back, notice: "Project was successfully updated"
     else
       flash[:alert] = "There was a problem updating project"
       render :edit

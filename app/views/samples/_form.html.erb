@@ -1,0 +1,24 @@
+<P><%= render "validation_errors", object:  @sample%><P>
+
+<%= form_for @sample do |f| %>
+	<p>
+		<%= f.label :receive_date %><br>
+		<%= f.date_select :receive_date, order: [:month, :day, :year] %>
+	</p>
+
+	<p>
+		<%= f.label :quantity %><br>
+		<%= f.text_field :quantity %>
+	</p>
+
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_area :description, size: "40X20" %>
+	</p>
+
+	<% if @project.present? %>
+		<%= f.hidden_field :project_id, :value => @project.id %>
+	<% end %>
+			
+	<P><%= f.submit %></P>
+<% end %>

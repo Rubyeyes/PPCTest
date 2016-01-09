@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable   
 
   belongs_to :role_option
+  has_many :projects
 
   # User::Roles
   # The available roles

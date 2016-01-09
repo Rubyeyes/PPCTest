@@ -1,0 +1,33 @@
+<p><%= link_to 'New Product', new_product_path(project_id_param: object.id) %></p>
+
+<% object.products.each do |product| %>
+	<table class="table table-bordered table-hover" >
+		<tr>
+			<th>Product name: </th>
+			<td><%= product.product_name %></td>
+		</tr>
+		<tr>
+			<th>Item number: </th>
+			<td><%= product.item_number %></td>
+		</tr>
+		<tr>
+			<th>Package Requirement: </th>
+			<td><%= product.Package %></td>
+		</tr>
+		<tr>
+			<th>Mark Requirement: </th>
+			<td><%= product.Mark %></td>
+		</tr>
+		<tr>
+			<th>Instruction Requirement: </th>
+			<td><%= product.Instruction %></td>
+		</tr>
+		<tr>
+			<th>Reminder: </th>
+			<td><%= product.reminder %></td>
+		</tr>
+	</table>
+	<%= link_to 'Edit', edit_product_path(product) %> |
+	<%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %>
+	<hr>		
+<% end %>

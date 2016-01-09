@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :products
   resources :tasks
   resources :costs
+  resources :samples
   resources :home, only:[:index, :show]
   resources :users_admin, :controller => 'users'
   resources :current_user, only:[:index, :edit, :update]

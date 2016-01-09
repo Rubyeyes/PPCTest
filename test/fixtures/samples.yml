@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  receive_date: 2016-01-08 14:21:46
+  quantity: 1
+  description: MyText
+  project: 
+
+two:
+  receive_date: 2016-01-08 14:21:46
+  quantity: 1
+  description: MyText
+  project: 

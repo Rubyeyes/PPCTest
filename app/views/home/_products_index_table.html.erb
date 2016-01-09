@@ -1,0 +1,17 @@
+<% if object.products.present? %>
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th align="left">Products :</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% object.products.each do |product| %>
+				<tr>
+					<td><%= product.product_name %></td>
+					<td><%= product.item_number %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>

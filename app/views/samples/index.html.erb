@@ -1,0 +1,29 @@
+<h1>Samples#index</h1>
+
+<h2>
+	<%= @project.project_name %>
+</h2>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Received at</th>
+			<th>Quantity</th>
+			<th>Description</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @project.samples.each do |sample| %>
+			<tr>
+				<td><%= sample.receive_date.strftime("%b %d. %Y") %></td>
+				<td align = 'center'><%= sample.quantity %></td>
+				<td><%= sample.description %></td>	
+				<td>
+					<%= link_to 'Edit', edit_sample_url(sample) %>
+					<%= link_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"} %>
+				</td>			
+			</tr>
+		<% end %>		
+	</tbody>
+</table>

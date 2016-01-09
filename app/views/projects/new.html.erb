@@ -1,14 +1,5 @@
 <h1>Projects#new</h1>
 
-<%= form_for @project do |f| %>
-	<p>
-		<%= f.label :project_name %><br>
-		<%= f.text_field :project_name %>
-	</p>
-
-	<p><%= link_to 'New Product', new_product_path %></p>
-
-	<P><%= f.submit %></P>
-<% end %>
+<%= render 'form' %>
 
 

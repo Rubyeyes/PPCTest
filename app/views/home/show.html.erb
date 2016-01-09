@@ -1,46 +1,14 @@
-<h1>Home#show</h1>
-
 <h2><%= @project.project_name %></h2>
+<h3><%= @project.user.fullname%></h3>
+<%= link_to 'Edit', edit_project_path(@project) %>
 
-<p><%= link_to 'New Task', new_task_path(project_id_param: @project.id) %></p>
+<%= render "costs_table", object: @project, :number => 10 %>
 
-<table class="table table-bordered table-hover">
-	<thead>
-		<tr>
-			<th>Executor</th>
-			<th>Task</th>
-			<th>Start at</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @project.tasks.last(3).each do |task| %>
-			<tr>
-				<td><%= task.executor %></td>
-				<td><%= task.task %></td>
-				<td><%= task.created_at.strftime("%d %b. %Y") %></td>				
-			</tr>
-		<% end %>						
-	</tbody>
-</table>
+<%= render "samples_show_table", object: @project %>
 
-<p>
-	<% if @project.tasks.count > 3 %>
-		<%= link_to 'All', tasks_path(project_id_param: @project.id) %>
-	<% end %>
-</p>
+<%= render "tasks_show_table", object: @project %>
 
-<p><%= link_to 'New Product', new_product_path(project_id_param: @project.id) %></p>
+<%= render "products_show_table", object: @project %>
 
-<p>
-	<% @project.products.each do |product| %>
-		<b>Product name: </b><%= product.product_name %><br>
-		<b>Item number: </b><%= product.item_number %><br>
-		<b>Package Requirement: </b><%= product.Package %><br>
-		<b>Mark Requirement: </b><%= product.Mark %><br>
-		<b>Instruction Requirement: </b><%= product.Instruction %><br>
-		<b>Reminder: </b><%= product.reminder %><br>
-		<%= link_to 'Edit', edit_product_path(product) %> |
-		<%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %><hr>		
-	<% end %>
-</p>			
+			
 

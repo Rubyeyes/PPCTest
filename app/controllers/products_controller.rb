@@ -12,7 +12,8 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
    
     if @product.save      
-      redirect_to controller: 'home', action: 'show', id: product_params[:project_id].to_i, notice: "Product was successfully created"
+      redirect_to controller: 'home', action: 'show', id: product_params[:project_id].to_i
+      flash[:notice] = "Products was successfully created"
     else
       flash[:alert] = "There was a problem creating product"
       render :new
@@ -26,7 +27,8 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      redirect_to controller: 'home', action: 'show', id: @product.project_id, notice: "Prodcut was successfully updated"
+      redirect_to controller: 'home', action: 'show', id: @product.project_id
+      flash[:notice] = "Products was successfully updated"
     else
       flash[:alert] = "There was a problem updating product"
       render :edit

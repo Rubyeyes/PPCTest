@@ -13,7 +13,8 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
        
     if @task.save      
-      redirect_to controller: 'home', action: 'show', id: task_params[:project_id].to_i, notice: "Product was successfully created"
+      redirect_to controller: 'home', action: 'show', id: @task.project_id
+      flash[:notice] = "Task was successfully created"
     else
       flash[:alert] = "There was a problem creating task"
       render :new
@@ -27,7 +28,8 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to controller: 'home', action: 'show', id: @task.project_id, notice: "Project was successfully updated"
+      redirect_to controller: 'home', action: 'show', id: @task.project_id
+      flash[:notice] = "Task was successfully updated"
     else
       flash[:alert] = "There was a problem updating task"
       render :edit

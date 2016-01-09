@@ -1,9 +1,10 @@
-<h1>Home#index</h1>
-
 <% @projects.each do |project| %>
 	<p>
-		<h3><%= truncate(project.project_name, length: 60, separate: '') %></h3><br>
+		<h2><%= truncate(project.project_name, length: 60, separate: '') %></h2>
+		<h3><%= project.user.fullname%></h3>
 	</p>
+
+	<%= render "costs_table", object: project, :number => 3 %>
 
 	<p>
 		<b>Task : </b>
@@ -13,23 +14,14 @@
 		<% end %>		
 	</p>
 
-	<% if  project.products.present? %>
-		<table class="table table-bordered table-hover">
-			<thead>
-				<tr>
-					<th align="left">Products :</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% project.products.each do |product| %>
-					<tr>
-						<td><%= product.product_name %></td>
-						<td><%= product.item_number %></td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	<% end %>
+	<p>
+		Sample will be received at: 
+		<% if project.samples.present? %>			
+			<b><%= project.samples.last.receive_date.strftime("%b %d. %y") %></b>
+		<% end %>		
+	</p>
+
+	<%= render "products_index_table", object: project %>
 
 	<p>
 		<%= link_to 'More detail', home_path(project), method: :get %>

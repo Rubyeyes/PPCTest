@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   	@projects = Project.all.order(id: :desc).page params[:page]
     @products = Product.all
     @tasks = Task.all
+    @costs = Cost.all.order(crreated_at: :desc)
   end
 
   def show
@@ -10,4 +11,5 @@ class HomeController < ApplicationController
     @products = Product.all
     @tasks = Task.all.order(created_at: :desc)
   end
+
 end
