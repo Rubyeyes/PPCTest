@@ -1,5 +1,7 @@
 <% if request.fullpath.include? object.id.to_s %>
-	<p><%= link_to 'New Cost', new_cost_path(project_id_param: @project.id) %></p>
+	<% if current_user.role != 'user' %>
+		<p><%= link_to 'New Cost', new_cost_path(project_id_param: @project.id) %></p>
+	<% end %>
 <% end %>
 
 <% if object.costs.present? %>
@@ -12,8 +14,10 @@
 				<th>T RMB</th>
 				<th>Description</th>
 				<% if request.fullpath.include? object.id.to_s %>
-					<th>Created at</th>
-					<th>Actions</th>
+					<% if current_user.role != 'user' %>
+						<th>Created at</th>
+						<th>Actions</th>
+					<% end %>
 				<% end %>
 			</tr>
 		</thead>
@@ -26,11 +30,13 @@
 					<td><%= number_to_currency(cost.toolingRMB, unit: "￥") %></td>
 					<td><%= cost.description %></td>
 					<% if request.fullpath.include? object.id.to_s %>
-						<td><%= cost.created_at.strftime("%d %b. %y")%></td>
-						<td>
-						<%= link_to 'Edit', edit_cost_url(cost) %>
-						<%= link_to 'Delete', cost_url(cost), method: :delete, data: {confirm: "Are you sure?"} %>
-						</td>
+						<% if current_user.role != 'user' %>
+							<td><%= cost.created_at.strftime("%d %b. %y")%></td>
+							<td>
+							<%= link_to 'Edit', edit_cost_url(cost) %>
+							<%= link_to 'Delete', cost_url(cost), method: :delete, data: {confirm: "Are you sure?"} %>
+							</td>
+						<% end %>
 					<% end %>
 				</tr>
 			<% end %>

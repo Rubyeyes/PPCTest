@@ -1,22 +1,25 @@
+
+<p><%= link_to 'New Project', new_project_path %></p>
+
 <% @projects.each do |project| %>
 	<p>
 		<h2><%= truncate(project.project_name, length: 60, separate: '') %></h2>
-		<h3><%= project.user.fullname%></h3>
+		<p><%= project.user.fullname%></p>
 	</p>
 
-	<%= render "costs_table", object: project, :number => 3 %>
+	<%= render "costs_table", object: project, :number => 2 %>
 
 	<p>
-		<b>Task : </b>
-		<% if project.tasks.present? %>			
+		<% if project.tasks.present? %>
+			<b>Task : </b>			
 			<%= project.tasks.last.executor %> -
 			<%= project.tasks.last.task %>
 		<% end %>		
 	</p>
 
 	<p>
-		Sample will be received at: 
-		<% if project.samples.present? %>			
+		<% if project.samples.present? %>
+			Sample will be received around: 			
 			<b><%= project.samples.last.receive_date.strftime("%b %d. %y") %></b>
 		<% end %>		
 	</p>

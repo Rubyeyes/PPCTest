@@ -1,4 +1,6 @@
 class SamplesController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     @project = Project.find(params[:project_id_param])
     @sammples = Sample.all.order(created_at: :desc)

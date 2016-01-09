@@ -7,8 +7,11 @@ class Ability
     # Define User abilities
     if user.role == "admin"
       can :manage, :all
+    elsif user.role == "user"
+      can :read, :all
     else
-      can :read, Project
+      can :create, Sample, Cost
+      can :edit, Sample, Cost
     end
   end
 end

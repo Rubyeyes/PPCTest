@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController 
 
-  # load_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     @projects = Project.all.order(id: :desc).page params[:page]
@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     
     if @project.save
-      redirect_to projects_url, notice: "Project was successfully created"
+      redirect_to root_url, notice: "Project was successfully created"
     else
       flash[:alert] = "There was a problem creating project"
       render :new
@@ -29,7 +29,8 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update(project_params)
-      redirect_to :back, notice: "Project was successfully updated"
+      redirect_to controller: 'home', action: 'show', id: @project.id
+      flash[:notice] = "Project was successfully updated"
     else
       flash[:alert] = "There was a problem updating project"
       render :edit
@@ -50,7 +51,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:id, :project_name)
+    params.require(:project).permit(:id, :project_name, :user_id, :description)
   end
 
 end

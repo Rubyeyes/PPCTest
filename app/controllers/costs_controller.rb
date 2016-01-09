@@ -1,4 +1,6 @@
 class CostsController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     @costs = Cost.all
   end

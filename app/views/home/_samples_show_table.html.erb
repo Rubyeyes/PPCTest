@@ -1,28 +1,36 @@
-<p><%= link_to 'New Sample', new_sample_path(project_id_param: object.id) %></p>
+<% if current_user.role != 'user' %>
+	<p><%= link_to 'New Sample', new_sample_path(project_id_param: object.id) %></p>
+<% end %>
 
-<table class="table table-bordered table-hover">
-	<thead>
-		<tr>
-			<th>Received at</th>
-			<th>Quantity</th>
-			<th>Description</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% object.samples.last(3).each do |sample| %>
+<% if object.samples.present? %>
+	<table class="table table-bordered table-hover">
+		<thead>
 			<tr>
-				<td><%= sample.receive_date.strftime("%b %d. %Y") %></td>
-				<td align = 'center'><%= sample.quantity %></td>
-				<td><%= sample.description %></td>	
-				<td>
-					<%= link_to 'Edit', edit_sample_url(sample) %>
-					<%= link_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"} %>
-				</td>			
+				<th>Received at</th>
+				<th>Quantity</th>
+				<th>Description</th>
+				<% if current_user.role != 'user' %>
+					<th>Action</th>
+				<% end %>
 			</tr>
-		<% end %>						
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			<% object.samples.last(3).each do |sample| %>
+				<tr>
+					<td><%= sample.receive_date.strftime("%b %d. %Y") %></td>
+					<td align = 'center'><%= sample.quantity %></td>
+					<td><%= sample.description %></td>
+					<% if current_user.role != 'user' %>	
+						<td>
+							<%= link_to 'Edit', edit_sample_url(sample) %>
+							<%= link_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"} %>
+						</td>
+					<% end %>			
+				</tr>
+			<% end %>						
+		</tbody>
+	</table>
+<% end %>
 
 <p>
 	<% if object.samples.count > 3 %>

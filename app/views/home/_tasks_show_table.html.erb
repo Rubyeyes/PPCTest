@@ -1,28 +1,36 @@
-<p><%= link_to 'New Task', new_task_path(project_id_param: object.id) %></p>
+<% if current_user.role == 'admin' %>
+	<p><%= link_to 'New Task', new_task_path(project_id_param: object.id) %></p>
+<% end %>
 
-<table class="table table-bordered table-hover">
-	<thead>
-		<tr>
-			<th>Executor</th>
-			<th>Task</th>
-			<th>Start at</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% object.tasks.last(3).each do |task| %>
+<% if object.tasks.present? %>
+	<table class="table table-bordered table-hover">
+		<thead>
 			<tr>
-				<td><%= task.executor %></td>
-				<td><%= task.task %></td>
-				<td><%= task.created_at.strftime("%d %b. %Y") %></td>	
-				<td>
-					<%= link_to 'Edit', edit_task_url(task) %>
-					<%= link_to 'Delete', task_url(task), method: :delete, data: {confirm: "Are you sure?"} %>
-				</td>			
+				<th>Executor</th>
+				<th>Task</th>
+				<th>Start at</th>
+				<% if current_user.role == 'admin' %>
+					<th>Action</th>
+				<% end %>
 			</tr>
-		<% end %>						
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			<% object.tasks.last(3).each do |task| %>
+				<tr>
+					<td><%= task.executor %></td>
+					<td><%= task.task %></td>
+					<td><%= task.created_at.strftime("%d %b. %Y") %></td>
+					<% if current_user.role == 'admin' %>	
+						<td>
+							<%= link_to 'Edit', edit_task_url(task) %>
+							<%= link_to 'Delete', task_url(task), method: :delete, data: {confirm: "Are you sure?"} %>
+						</td>
+					<% end %>			
+				</tr>
+			<% end %>						
+		</tbody>
+	</table>
+<% end %>
 
 <p>
 	<% if object.tasks.count > 3 %>

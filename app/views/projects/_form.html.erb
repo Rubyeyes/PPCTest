@@ -7,7 +7,12 @@
 	</p>
 
 	<p>
-		<%= f.select :user_id, User.where(:role => 'factory').collect {|u| [u.fullname]}, {prompt: "Select factory" } %>
+		<%= f.select :user_id, User.where(:role => 'factory').collect {|u| [u.fullname, u.id]}, {prompt: "Select factory" } %>
+	</p>
+
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_area :description, size: "40x20" %>
 	</p>
 			
 	<P><%= f.submit %></P>

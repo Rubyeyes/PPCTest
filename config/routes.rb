@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'pos/index'
+
+  get 'pos/new'
+
+  get 'pos/create'
+
+  get 'pos/edit'
+
+  get 'pos/update'
+
+  get 'pos/show'
+
+  get 'pos/destroy'
+
   # Destroy action for devise
   # match 'users_admin/:id' => 'devise/registrations#destroy', :via => :delete, :as => :admin_destroy_user
 

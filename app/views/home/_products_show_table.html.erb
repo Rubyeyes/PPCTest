@@ -1,4 +1,6 @@
+<% if current_user.role == 'admin' %>
 <p><%= link_to 'New Product', new_product_path(project_id_param: object.id) %></p>
+<% end %>
 
 <% object.products.each do |product| %>
 	<table class="table table-bordered table-hover" >
@@ -27,7 +29,9 @@
 			<td><%= product.reminder %></td>
 		</tr>
 	</table>
-	<%= link_to 'Edit', edit_product_path(product) %> |
-	<%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %>
+	<% if current_user.role == 'admin' %>
+		<%= link_to 'Edit', edit_product_path(product) %> |
+		<%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %>
+	<% end %>
 	<hr>		
 <% end %>
