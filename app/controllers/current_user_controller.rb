@@ -2,6 +2,7 @@ class CurrentUserController < ApplicationController
 
   def index
   	@current_user = current_user
+    @pos = Po.all.order(date: :desc).limit(2)
   end
 
   def edit

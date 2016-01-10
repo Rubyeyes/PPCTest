@@ -1,0 +1,16 @@
+<P><%= render "validation_errors", object:  @po%><P>
+
+<%= form_for @po do |f| %>
+	<p>
+		<%= f.label :po_number %>: 
+		<%= f.text_field :po_number %>
+	</p>
+
+	<p>
+		<%= f.label :date %>: 
+		<%= f.date_select :date, order: [:month, :day, :year] %>
+	</p>
+			
+	<P><%= f.submit "Add Product to PO" %></P>
+
+<% end %>

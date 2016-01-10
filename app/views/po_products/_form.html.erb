@@ -1,0 +1,46 @@
+<P><%= render "validation_errors", object:  @po_product%><P>
+
+<h2><%= @po.po_number %></h2>
+<p><%= @po.date.strftime("%Y-%m-%d") %></p>
+
+<%= form_for @po_product do |f| %>
+
+	<p>
+		<%= f.select :product_id, Product.all.collect {|t| [t.item_number, t.id]}, {prompt: "Select Product"} %>
+	</p>
+
+	<p>
+		<%= f.label :quantity %>: 
+		<%= f.text_field :quantity %>
+	</p>
+
+	<%= f.hidden_field :po_id, :value => @po.id %>
+			
+	<P><%= f.submit "Add" %></P>
+
+<% end %>
+
+<table>
+	<thead>
+		<tr>
+			<th>Item Number</th>
+			<th>Quantity</th>
+			<th>Created at</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @po_products.each do |po_product| %>
+			<tr>
+				<td><%=po_product.product.item_number%></td>
+				<td><%=po_product.quantity%></td>
+				<td><%=po_product.created_at.strftime("%Y-%m-%d")%></td>
+				<td>
+					<%= link_to 'Delete', po_product_path(po_product), method: :delete, data: {confirm: "Are you sure?"} %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p><%= link_to 'Finish', current_user_index_path %></p>

@@ -5,6 +5,23 @@
 	<%= link_to "Change your password", edit_user_registration_path %>
 </P>
 
-<p>
-	<%= link_to "New PO",  %>
-</p>
+<p><%= link_to "New PO", new_po_path %></p>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>PO Number</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @pos.last(2).each do |po| %>
+			<tr>
+				<td><%= po.po_number %></td>
+				<td><%= po.date.strftime("%b %d. %y") %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p><%= link_to "All", pos_path %></p>

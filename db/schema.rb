@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109222124) do
+ActiveRecord::Schema.define(version: 20160110194229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,23 +30,23 @@ ActiveRecord::Schema.define(version: 20160109222124) do
 
   add_index "costs", ["project_id"], name: "index_costs_on_project_id", using: :btree
 
+  create_table "po_products", force: :cascade do |t|
+    t.integer  "po_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "quantity"
+  end
+
+  add_index "po_products", ["po_id"], name: "index_po_products_on_po_id", using: :btree
+  add_index "po_products", ["product_id"], name: "index_po_products_on_product_id", using: :btree
+
   create_table "pos", force: :cascade do |t|
     t.string   "po_number"
     t.datetime "date"
-    t.integer  "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "product_pos", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "po_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "product_pos", ["po_id"], name: "index_product_pos_on_po_id", using: :btree
-  add_index "product_pos", ["product_id"], name: "index_product_pos_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "product_name"
@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(version: 20160109222124) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "costs", "projects"
-  add_foreign_key "product_pos", "pos"
-  add_foreign_key "product_pos", "products"
+  add_foreign_key "po_products", "pos"
+  add_foreign_key "po_products", "products"
   add_foreign_key "products", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "samples", "projects"

@@ -1,2 +1,26 @@
 <h1>Pos#index</h1>
-<p>Find me in app/views/pos/index.html.erb</p>
+
+<p><%= link_to "New PO", new_po_path %></p>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>PO Number</th>
+			<th>Date</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @pos.each do |po| %>
+			<tr>
+				<td><%= po.po_number %></td>
+				<td><%= po.date.strftime("%b %d. %y") %></td>
+				<td>
+					<%= link_to 'View', edit_po_product_url(po) %>
+					<%= link_to 'Edit', edit_po_product_url(po) %>
+					<%= link_to 'Delete', po_url(po), method: :delete, data: {confirm: "Are you sure?"} %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
