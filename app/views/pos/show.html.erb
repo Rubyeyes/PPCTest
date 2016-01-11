@@ -1,2 +1,43 @@
 <h1>Pos#show</h1>
-<p>Find me in app/views/pos/show.html.erb</p>
+
+<h2><%= @po.po_number %></h2>
+<p><%= @po.date.strftime("%Y-%m-%d") %></p>
+
+<% @po_products.each do |po_product| %>
+	<table>
+		<tr>
+			<th>Item Number: </th>
+			<td><%=po_product.product.item_number%></td>
+		</tr>
+		<tr>
+			<th>Quantity: </th>
+			<td><%=po_product.quantity%></td>
+		</tr>
+		<tr>
+			<th>Final Unit Cost: </th>
+			<td><%= number_to_currency(po_product.product.cost.unitUSD) if po_product.product.cost.present? %></td>
+		</tr>
+		<tr>
+			<th>Final Tooling Fee: </th>
+			<td><%= number_to_currency(po_product.product.cost.toolingUSD) if po_product.product.cost.present? %></td>
+		</tr>
+		<tr>
+			<th>Instruction: </th>
+			<td><%=po_product.product.Instruction%></td>
+		</tr>
+		<tr>
+			<th>Package: </th>
+			<td><%=po_product.product.Package%></td>
+		</tr>
+		<tr>
+			<th>Mark: </th>
+			<td><%=po_product.product.Mark%></td>
+		</tr>
+		<tr>
+			<th>Reminder: </th>
+			<td><%=po_product.product.reminder%></td>
+		</tr>
+	</table>
+
+	<hr>
+<% end %>

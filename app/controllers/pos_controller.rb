@@ -36,6 +36,8 @@ class PosController < ApplicationController
   end
 
   def show
+    @po = Po.find(params[:id])
+    @po_products = PoProduct.where po_id: @po.id
   end
 
   def destroy

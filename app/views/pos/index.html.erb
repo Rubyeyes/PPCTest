@@ -16,7 +16,7 @@
 				<td><%= po.po_number %></td>
 				<td><%= po.date.strftime("%b %d. %y") %></td>
 				<td>
-					<%= link_to 'View', edit_po_product_url(po) %>
+					<%= link_to 'View', po_url(po) %>
 					<%= link_to 'Edit', edit_po_product_url(po) %>
 					<%= link_to 'Delete', po_url(po), method: :delete, data: {confirm: "Are you sure?"} %>
 				</td>

@@ -2,7 +2,7 @@
 <p><%= link_to 'New Product', new_product_path(project_id_param: object.id) %></p>
 <% end %>
 
-<% object.products.each do |product| %>
+<% object.products.order(product_name: :asc).each do |product| %>
 	<table class="table table-bordered table-hover" >
 		<tr>
 			<th>Product name: </th>
@@ -11,6 +11,14 @@
 		<tr>
 			<th>Item number: </th>
 			<td><%= product.item_number %></td>
+		</tr>
+		<tr>
+			<th>Final Unit Cost: </th>
+			<td><%= number_to_currency(product.cost.unitUSD) if product.cost.present? %></td>
+		</tr>
+		<tr>
+			<th>Final Tooling Fee: </th>
+			<td><%= number_to_currency(product.cost.toolingUSD) if product.cost.present? %></td>
 		</tr>
 		<tr>
 			<th>Package Requirement: </th>

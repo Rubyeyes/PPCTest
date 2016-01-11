@@ -31,6 +31,10 @@
 		<%= f.text_area :reminder, size: "40X20" %>
 	</p>
 
+	<p>
+		<%= f.select :cost_id, Cost.where(project_id: @product.project_id).collect {|t| [t.unitRMB, t.id]}, {prompt: "Select Product"} %>
+	</p>
+
 	<% if @project.present? %>
 		<%= f.hidden_field :project_id, :value => @project.id %>
 	<% end %>

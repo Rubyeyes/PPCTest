@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110194229) do
+ActiveRecord::Schema.define(version: 20160111000916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,8 +58,10 @@ ActiveRecord::Schema.define(version: 20160110194229) do
     t.text     "Mark"
     t.text     "Package"
     t.text     "reminder"
+    t.integer  "cost_id"
   end
 
+  add_index "products", ["cost_id"], name: "index_products_on_cost_id", using: :btree
   add_index "products", ["project_id"], name: "index_products_on_project_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
@@ -127,6 +129,7 @@ ActiveRecord::Schema.define(version: 20160110194229) do
   add_foreign_key "costs", "projects"
   add_foreign_key "po_products", "pos"
   add_foreign_key "po_products", "products"
+  add_foreign_key "products", "costs"
   add_foreign_key "products", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "samples", "projects"

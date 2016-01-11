@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   load_and_authorize_resource
-  
+
   def index
     @products = Product.all
   end
@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:id, :product_name, :item_number, :Package, :Mark, :Instruction, :reminder, :project_id)
+    params.require(:product).permit(:id, :product_name, :item_number, :Package, :Mark, :Instruction, :reminder, :project_id, :cost_id)
   end
 
 end
