@@ -1,6 +1,13 @@
 <P><%= render "validation_errors", object:  @cost%><P>
 
 <%= form_for @cost do |f| %>
+
+	<% if @project.present? %>
+		<%= f.hidden_field :project_id, :value => @project.id %>
+	<% else %>
+		<%= f.select :project_id, Project.where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"} %>
+	<% end %>
+	
 	<p>
 		<%= f.label :unitRMB, "Unit RMB" %><br>
 		<%= f.text_field :unitRMB %>
@@ -30,10 +37,6 @@
 		<%= f.label :description %><br>
 		<%= f.text_area :description, size: "40X20" %>
 	</p>
-
-	<% if @project.present? %>
-		<%= f.hidden_field :project_id, :value => @project.id %>
-	<% end %>
 			
 	<P><%= f.submit %></P>
 <% end %>

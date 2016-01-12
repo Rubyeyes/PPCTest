@@ -1,0 +1,7 @@
+<h1><%= @report.name %></h1>
+<p><b>Project: </b><%= @report.project.project_name %></p>
+<p><b>Factory: </b><%= @report.project.user.fullname %></p>
+
+<p><%= simple_format(@report.content) %></p>
+
+<p><%= @report.created_at.strftime("%d-%m-%y") %></p>

@@ -2,13 +2,17 @@ class SamplesController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @project = Project.find(params[:project_id_param])
-    @sammples = Sample.all.order(created_at: :desc)
+    if current_user != 'factory'
+      @project = Project.find(params[:project_id_param]) if params[:project_id_param].present?
+      @sammples = Sample.all.order(created_at: :desc)
+    else
+      @samples = Sample.match_current_user(current_user.id).order(created_at: :desc).page params[:page]
+    end
   end
 
   def new
-    @project = Project.find(params[:project_id_param])
-    @sample = @project.samples.new()
+    @project = Project.find(params[:project_id_param]) if params[:project_id_param].present?
+    @sample = Sample.new()
   end
 
   def create

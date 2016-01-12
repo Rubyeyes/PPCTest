@@ -1,0 +1,19 @@
+<P><%= render "validation_errors", object:  @report%><P>
+
+<%= form_for @report do |f| %>
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.label :content %><br>
+		<%= f.text_area :content, size: "40x20" %>
+	</p>
+
+	<p>
+		<%= f.select :project_id, Project.all.collect {|u| [u.project_name, u.id]}, {prompt: "Select project" } %>
+	</p>
+			
+	<P><%= f.submit %></P>
+<% end %>

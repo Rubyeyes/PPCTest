@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
 	has_many :tasks, dependent: :destroy
 	has_many :costs
 	has_many :samples
+	has_many :reports
 	belongs_to :user
 
 	validates :project_name, presence: true

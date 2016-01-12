@@ -1,5 +1,3 @@
-<h1>Costs#index</h1>
-
 <p><%= link_to "New cost", new_cost_path if current_user.role != 'user'%></p>
 
 <table class="table table-bordered table-hover">
@@ -14,7 +12,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @costs.each do |cost| %>
+		<% object.last(2).each do |cost| %>
 			<tr>
 				<td><%= cost.project.project_name %></td>
 				<td><%= number_to_currency(cost.unitRMB, unit: '￥') %></td>
@@ -26,3 +24,5 @@
 		<% end %>
 	</tbody>
 </table>
+
+<p><%= link_to "All", costs_path %></p>

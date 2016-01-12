@@ -1,27 +1,15 @@
 <P>
 	<h2><%= @current_user.fullname %></h2>
 	<%= @current_user.email %><br>
-	<%= link_to 'Edit Information', edit_current_user_path(@current_user) %> |
-	<%= link_to "Change your password", edit_user_registration_path %>
+	<%= link_to 'Edit Information', edit_user_registration_path(@current_user) %> 
 </P>
 
-<p><%= link_to "New PO", new_po_path %></p>
+<%= render "pos_index_table", object: @pos %>
 
-<table class="table table-bordered table-hover">
-	<thead>
-		<tr>
-			<th>PO Number</th>
-			<th>Date</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @pos.last(2).each do |po| %>
-			<tr>
-				<td><%= po.po_number %></td>
-				<td><%= po.date.strftime("%b %d. %y") %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<%= render "reports_index_table", object: @reports %>
 
-<p><%= link_to "All", pos_path %></p>
+<%= render "costs_index_table", object: @costs %>
+
+<%= render "samples_index_table", object: @samples %>
+
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>

@@ -8,41 +8,40 @@
 </head>
 <body>
 
+<% if flash[:notice] %>
+  <div id="notice_wrapper">
+    <p class="notice"><%= flash[:notice] %></p>
+  </div>
+<% elsif flash[:alert] %>
+  <div id="notice_wrapper">
+    <p class="alert"><%= flash[:alert] %></p>
+  </div>
+<% end %>
+
 <div id="account">
   <% if current_user %>
-    <span>Welcome, <%= current_user.email %></span>
-    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+    <div class="home" ><%= link_to 'Home', home_index_path %></div>
+    <span class="welcome">Welcome, <%= current_user.fullname if current_user.fullname.present? %></span>
+    <div class="my_account"><%= link_to 'My account', current_user_index_path %></div>
+    <% if current_user.role == "admin" %>
+      <div class="setting"><%= link_to 'Admin setting', admin_setting_index_path %></div>
+    <% end %>  
   <% else %>
     <%= link_to "Sign in", new_user_session_path %>
   <% end %>
 </div>
 
-<% if flash[:notice] %>
-	<div class="notice">
-		<%= flash[:notice] %>
-	</div>
-<% end %>
-
-<% if flash[:alert] %>
-	<div class="notice">
-		<%= flash[:alert] %>
-	</div>
-<% end %>
-
-<p>
-  <%= link_to 'Home', home_index_path %>
-</p>
-
-<p>
-  <% if current_user %>
-    <%= link_to 'My account', current_user_index_path %>
-    <% if current_user.role == "admin" %>
-      <%= link_to 'Admin setting', admin_setting_index_path %>
-    <% end %>   
-  <% end %>
-</p>
-
 <%= yield %>
+
+<script>
+  $(document).ready(function() {
+    setTimeout(function() {
+      $("#notice_wrapper").fadeOut('slow', function() {
+        $(this).remove();
+      })
+    }, 4500);
+  });
+</script>
 
 </body>
 </html>

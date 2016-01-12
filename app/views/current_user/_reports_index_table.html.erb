@@ -1,0 +1,20 @@
+<p><%= link_to "New Report", new_report_path if current_user.role == 'admin'%></p>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Report Name</th>
+			<th>Created at</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% object.last(2).each do |report| %>
+			<tr>
+				<td><%= report.name%></td>
+				<td><%= report.created_at.strftime("%b %d. %y") %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p><%= link_to "All", reports_path %></p>

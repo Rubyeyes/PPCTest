@@ -1,0 +1,24 @@
+<p><%= link_to "New sample", new_sample_path if current_user.role != 'user'%></p>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Project Name</th>
+			<th>Quantity</th>
+			<th>Arrive Date</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% object.last(2).each do |sample| %>
+			<tr>
+				<td><%= sample.project.project_name %></td>
+				<td><%= sample.quantity%></td>
+				<td><%= sample.receive_date.strftime("%m-%d-%y") %></td>
+				<td><%= sample.description%></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p><%= link_to "All", samples_path %></p>

@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+#notice_wrapper {
+	position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: rgba(20, 25, 37, 0.85);
+  .alert, .notice {
+  	padding: 1.5rem 0;
+    text-align: center;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: Arial;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+  }
+}
+
+#account {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(68, 80, 84, 1);
+  padding: 15px 0 15px 0;
+}

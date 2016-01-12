@@ -2,12 +2,16 @@ class CostsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @costs = Cost.all
+    if current_user.role != 'factory'
+      @costs = Cost.all
+    else
+      @costs = Cost.match_current_user(current_user.id).order(created_at: :desc).page params[:page]
+    end
   end
 
   def new
-    @project = Project.find(params[:project_id_param])
-    @cost = @project.costs.new()
+    @project = Project.find(params[:project_id_param]) if params[:project_id_param].present?
+    @cost = Cost.new
   end
 
   def create

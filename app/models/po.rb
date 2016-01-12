@@ -1,13 +1,10 @@
 class Po < ActiveRecord::Base
 	has_many :po_products
 	has_many :products, through: :po_products, dependent: :delete_all
+	has_many :projects, through: :products
 
-	# def product_name
-	# 	products.try(:product_name)
-	# end
-
-	# def product_name=(product_name)
-	# 	self.product = Product.find_by_product_name(product_name) if product_name.present?
-	# end
+	def self.match_current_user id
+		joins(:projects).where("user_id = ?", id).uniq
+	end
 
 end

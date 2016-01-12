@@ -1,7 +1,7 @@
 <h1>Costs#new</h1>
 
 <h2>
-	<%= @project.project_name %>
+	<%= @project.project_name if @project.present? %>
 </h2>
 
 <%= render 'form' %>

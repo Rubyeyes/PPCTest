@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :products
   resources :pos
   resources :po_products
+  resources :reports
   resources :tasks
   resources :costs
   resources :samples

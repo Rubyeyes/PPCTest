@@ -10,8 +10,8 @@ class Ability
     elsif user.role == "user"
       can :read, :all
     else
-      can :create, Sample, Cost
-      can :edit, Sample, Cost
+      can [:create, :edit, :read], Sample
+      can [:create, :edit, :read], Cost
     end
   end
 end
