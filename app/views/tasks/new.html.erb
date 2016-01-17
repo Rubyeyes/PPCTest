@@ -1,3 +1,7 @@
-<h1>Tasks#new</h1>
+<h1>New Task</h1>
+
+<h2>
+	<%= @task.project.project_name if @task.project.present? %>
+</h2>
 
 <%= render 'form' %>

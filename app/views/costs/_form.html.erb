@@ -4,8 +4,10 @@
 
 	<% if @project.present? %>
 		<%= f.hidden_field :project_id, :value => @project.id %>
-	<% else %>
+	<% elsif current_user.role == "factory" %>
 		<%= f.select :project_id, Project.where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"} %>
+	<% elsif current_user.role == "admin" %>
+		<%= f.select :project_id, Project.all.collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"} %>
 	<% end %>
 	
 	<p>

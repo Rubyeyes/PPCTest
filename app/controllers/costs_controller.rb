@@ -3,9 +3,9 @@ class CostsController < ApplicationController
   
   def index
     if current_user.role != 'factory'
-      @costs = Cost.all
+      @costs = Cost.all.order(updated_at: :desc).page params[:page]
     else
-      @costs = Cost.match_current_user(current_user.id).order(created_at: :desc).page params[:page]
+      @costs = Cost.match_current_user(current_user.id).order(updated_at: :desc).page params[:page]
     end
   end
 
@@ -16,8 +16,11 @@ class CostsController < ApplicationController
 
   def create
     @cost = Cost.new(cost_params)
-   
-    if @cost.save      
+    @users = User.notification_recipients(@cost, current_user, params[:controller])   
+    if @cost.save
+      @users.each do |user|
+        Notification.create_notification(@cost, "create cost of", current_user.id, user.id, params[:controller])
+      end
       redirect_to controller: 'home', action: 'show', id: @cost.project_id 
       flash[:notice] = "Cost was successfully created"
     else
@@ -32,7 +35,11 @@ class CostsController < ApplicationController
 
   def update
     @cost = Cost.find(params[:id])
+    @users = User.notification_recipients(@cost, current_user, params[:controller])  
     if @cost.update(cost_params)
+      @users.each do |user|
+        Notification.create_notification(@cost, "edit cost of", current_user.id, user.id, params[:controller])
+      end
       redirect_to controller: 'home', action: 'show', id: @cost.project_id
       flash[:notice] = "Cost was successfully updated"
     else
@@ -54,5 +61,9 @@ class CostsController < ApplicationController
 
   def cost_params
     params.require(:cost).permit(:id, :unitUSD, :toolingUSD, :unitRMB, :toolingRMB, :ratio, :description, :project_id)
+  end
+
+  def notification_params
+    params.require(:notification).permit(:id, :content, :item, :notifiable_id, :notifiable_type, :user_id)
   end
 end

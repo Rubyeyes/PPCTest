@@ -1,9 +1,9 @@
 <% if current_user.role == 'admin' %>
-	<p><%= link_to 'New Task', new_task_path(project_id_param: object.id) %></p>
+	<%= link_to 'New Task', new_task_path(project_id_param: object.id), class: "pull-xs-right" %>
 <% end %>
 
 <% if object.tasks.present? %>
-	<table class="table table-bordered table-hover">
+	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<th>Executor</th>

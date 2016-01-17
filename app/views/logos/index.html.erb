@@ -1,0 +1,30 @@
+<h1>Logos</h1>
+
+<p><%= link_to 'New Logo', new_logo_path %></p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Image</th>
+			<th>Created at</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @logos.each do |logo| %>
+			<tr>
+				<td><%= logo.name %></td>
+				<td><%= image_tag(logo.image.url(:logo).to_s) %></td>
+				<td><%= logo.created_at.strftime("%Y-%m-%d") %></td>
+				<td>
+					<%= link_to 'Edit', edit_logo_path(logo) %> |
+					<%= link_to 'Show', logo_path(logo) %> |
+					<%= button_to 'Delete', logo_path(logo), method: :delete, data: {confirm: 'Are you sure ?'} %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p><%= paginate @logos %></p>

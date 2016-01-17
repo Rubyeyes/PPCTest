@@ -29,7 +29,6 @@ class PosController < ApplicationController
 
   def update
     @po = Po.find(params[:id])
-    byebug
     if @po.update(po_params)
       redirect_to :back
       flash[:notice] = "PO was successfully updated"

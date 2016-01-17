@@ -1,15 +1,22 @@
-<P>
-	<h2><%= @current_user.fullname %></h2>
-	<%= @current_user.email %><br>
-	<%= link_to 'Edit Information', edit_user_registration_path(@current_user) %> 
-</P>
 
-<%= render "pos_index_table", object: @pos %>
 
-<%= render "reports_index_table", object: @reports %>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3">
+			<h2><%= @current_user.fullname %></h2>
+			<p><%= @current_user.email %><br>
+			<%= link_to 'Edit Information', edit_user_registration_path(@current_user) %> </p>
+			<ul class="list-inline">
+				<li class="list-item"><%= link_to 'New project', new_project_path %></li>
+				<li class="list-item"><%= link_to "New cost", new_cost_path if current_user.role != 'user'%></li>
+				<li class="list-item"><%= link_to "New PO", new_po_path if current_user.role == 'admin' %></li>
+				<li class="list-item"><%= link_to "New report", new_report_path if current_user.role == 'admin'%></li>
+				<li class="list-item"><%= link_to "New sample", new_sample_path if current_user.role != 'user'%></li>
+			</ul>
 
-<%= render "costs_index_table", object: @costs %>
-
-<%= render "samples_index_table", object: @samples %>
-
-<p><%= link_to "Sign out", destroy_user_session_url, method: :delete, class: "btn btn-secondary"%></p> 
+			<p><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-default" %></p>
+		</div>
+		<div class="col-md-9">
+			
+		</div>
+</div> 

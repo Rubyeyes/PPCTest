@@ -1,25 +1,25 @@
 Rails.application.routes.draw do
 
-  # Destroy action for devise
-  # match 'users_admin/:id' => 'devise/registrations#destroy', :via => :delete, :as => :admin_destroy_user
-
   devise_for :users
   
   root to:'home#index'
 
+  resources :admin_setting, only:[:index]
+  resources :costs
+  resources :current_user, only:[:index, :edit, :update]
+  resources :home, only:[:index, :show]
+  resources :logos
+  resources :notifications, only:[:index, :destroy]
   resources :projects
   resources :products
   resources :pos
   resources :po_products
   resources :reports
-  resources :tasks
-  resources :costs
-  resources :samples
-  resources :home, only:[:index, :show]
-  resources :users_admin, :controller => 'users'
-  resources :current_user, only:[:index, :edit, :update]
   resources :role_options
-  resources :admin_setting, only:[:index]
+  resources :samples
+  resources :status_options
+  resources :tasks
+  resources :users_admin, :controller => 'users'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -5,3 +5,5 @@
 <p><%= simple_format(@report.content) %></p>
 
 <p><%= @report.created_at.strftime("%d-%m-%y") %></p>
+
+<p><%= link_to 'Edit', edit_report_path(@report) if current_user.role == 'admin'%></p>

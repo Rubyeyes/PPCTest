@@ -13,8 +13,12 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @users = User.notification_recipients(@project, current_user, params[:controller])
     
     if @project.save
+      @users.each do |user|
+        Notification.create_notification(@project, "create project of", current_user.id, user.id, params[:controller])
+      end
       redirect_to root_url, notice: "Project was successfully created"
     else
       flash[:alert] = "There was a problem creating project"
@@ -28,7 +32,12 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
+    @users = User.notification_recipients(@project, current_user, params[:controller])
+    
     if @project.update(project_params)
+      @users.each do |user|
+        Notification.create_notification(@project, "updated project of", current_user.id, user.id, params[:controller])
+      end
       redirect_to controller: 'home', action: 'show', id: @project.id
       flash[:notice] = "Project was successfully updated"
     else
@@ -51,7 +60,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:id, :project_name, :user_id, :description)
+    params.require(:project).permit(:id, :project_name, :user_id, :description, :image, :remote_image_url, :status)
   end
 
 end

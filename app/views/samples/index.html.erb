@@ -1,10 +1,13 @@
-<h1>Samples#index</h1>
+
+<h1>Samples</h1>
 
 <h2>
 	<%= @project.project_name if @project.present? %> 
 </h2>
 
-<table class="table table-bordered table-hover">
+<p><%= link_to "New Sample", new_sample_path, class: "pull-xs-right" if current_user.role != 'user'%></p>
+
+<table class="table table-striped table-hover">
 	<thead>
 		<tr>
 			<th><%= "Project Name" if @project.nil? %></th>
@@ -23,7 +26,7 @@
 					<td><%= sample.description %></td>	
 					<td>
 						<%= link_to 'Edit', edit_sample_url(sample) %>
-						<%= link_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"} %>
+						<%= button_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default" %>
 					</td>			
 				</tr>
 			<% end %>	
@@ -36,7 +39,7 @@
 					<td><%= sample.description %></td>	
 					<td>
 						<%= link_to 'Edit', edit_sample_url(sample) %>
-						<%= link_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"} %>
+						<%= button_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default" %>
 					</td>			
 				</tr>
 			<% end %>

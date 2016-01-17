@@ -1,7 +1,7 @@
 <h1>Tasks#edit</h1>
 
 <h2>
-	<%= @task.project.project_name %>
+	<%= @task.project.project_name if @task.project.present? %>
 </h2>
 
 <%= render 'form' %>

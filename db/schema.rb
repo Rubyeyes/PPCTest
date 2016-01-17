@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111051223) do
+ActiveRecord::Schema.define(version: 20160117074659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,27 @@ ActiveRecord::Schema.define(version: 20160111051223) do
   end
 
   add_index "costs", ["project_id"], name: "index_costs_on_project_id", using: :btree
+
+  create_table "logos", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.text     "content"
+    t.string   "item"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.boolean  "read"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+  end
+
+  add_index "notifications", ["notifiable_id", "notifiable_type"], name: "index_notifications_on_notifiable_id_and_notifiable_type", using: :btree
 
   create_table "po_products", force: :cascade do |t|
     t.integer  "po_id"
@@ -70,6 +91,8 @@ ActiveRecord::Schema.define(version: 20160111051223) do
     t.datetime "updated_at",   null: false
     t.integer  "user_id"
     t.text     "description"
+    t.string   "image"
+    t.string   "status"
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
@@ -100,6 +123,12 @@ ActiveRecord::Schema.define(version: 20160111051223) do
   end
 
   add_index "samples", ["project_id"], name: "index_samples_on_project_id", using: :btree
+
+  create_table "status_options", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string   "executor"

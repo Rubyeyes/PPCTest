@@ -26,7 +26,14 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# File uploader
+gem 'rmagick'
+gem 'carrierwave'
 
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails', '~> 4.1.0'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -36,8 +43,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :assets do
+# PostgreSQL's full text search
+gem 'pg_search'
 
+group :assets do
 	# Provides Sprockets implementation for Rails 4.x (and beyond) Asset Pipeline
 	gem 'sprockets-rails', :require => 'sprockets/railtie'
 	# Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
@@ -45,10 +54,6 @@ group :assets do
 	  gem 'rails-assets-tether', '>= 1.1.0'
 	end
 	gem 'bootstrap', '~> 4.0.0.alpha3'
-	# Use CoffeeScript for .coffee assets and views
-	gem 'coffee-rails', '~> 4.1.0'
-	# Use SCSS for stylesheets
-	gem 'sass-rails', '~> 5.0'
 end
 
 group :development, :test do

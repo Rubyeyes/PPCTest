@@ -1,11 +1,11 @@
-<% if request.fullpath.include? object.id.to_s %>
+<% if action_name == "show" %>
 	<% if current_user.role != 'user' %>
-		<p><%= link_to 'New Cost', new_cost_path(project_id_param: @project.id) %></p>
+		<%= link_to 'New Cost', new_cost_path(project_id_param: @project.id), class: "pull-xs-right" %>
 	<% end %>
 <% end %>
 
 <% if object.costs.present? %>
-	<table class="table table-bordered table-hover">
+	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<th>U USD</th>
@@ -34,7 +34,7 @@
 							<td><%= cost.created_at.strftime("%d %b. %y")%></td>
 							<td>
 							<%= link_to 'Edit', edit_cost_url(cost) %>
-							<%= link_to 'Delete', cost_url(cost), method: :delete, data: {confirm: "Are you sure?"} %>
+							<%= button_to 'Delete', cost_url(cost), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default" %>
 							</td>
 						<% end %>
 					<% end %>

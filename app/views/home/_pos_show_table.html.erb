@@ -1,0 +1,4 @@
+<% if current_user.role == 'Admin' %>
+	<%= link_to 'New Purchase Order', new_po_path(project_id_param: object.id), class: "pull-xs-right" %>
+<% end %>
+

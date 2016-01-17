@@ -1,8 +1,8 @@
-<h1>Reports#index</h1>
+<h1>Reports</h1>
 
-<p><%= link_to "New Report", new_report_path if current_user.role == 'admin'%></p>
+<p><%= link_to "New Report", new_report_path, class: "pull-xs-right" if current_user.role == 'admin'%></p>
 
-<table class="table table-bordered table-hover">
+<table class="table table-striped table-hover">
 	<thead>
 		<tr>
 			<th>Name</th>
@@ -12,17 +12,19 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @reports.each do |report| %>
-			<tr>
-				<td><%= report.name%></td>
-				<td><%= report.project.user.fullname%></td>
-				<td><%= report.created_at.strftime("%b %d. %y") %></td>
-				<td>
-					<%= link_to 'View', report_path(report) %> 
-					<%= link_to 'Edit', edit_report_path(report) if current_user.role == 'admin'%> 
-					<%= link_to 'Delete', report_path(report), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin'%>
-				</td>
-			</tr>
+		<% if @reports.present? %>
+			<% @reports.each do |report| %>
+				<tr>
+					<td><%= report.name%></td>
+					<td><%= report.project.user.fullname%></td>
+					<td><%= report.created_at.strftime("%b %d. %y") %></td>
+					<td>
+						<%= link_to 'View', report_path(report) %> 
+						<%= link_to 'Edit', edit_report_path(report) if current_user.role == 'admin'%> 
+						<%= button_to 'Delete', report_path(report), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default" if current_user.role == 'admin'%>
+					</td>
+				</tr>
+			<% end %>
 		<% end %>
 	</tbody>
 </table>

@@ -1,19 +1,65 @@
 <P><%= render "validation_errors", object:  @project%><P>
 
-<%= form_for @project do |f| %>
-	<p>
-		<%= f.label :project_name %><br>
-		<%= f.text_field :project_name %>
-	</p>
+<%= form_for @project, class: "form-horizontal", :html => {:multipart => true} do |f| %>
 
-	<p>
-		<%= f.select :user_id, User.where(:role => 'factory').collect {|u| [u.fullname, u.id]}, {prompt: "Select factory" } %>
-	</p>
+	<div class="form-group">
+		<div class="col-sm-2">
+			<%= f.label :project_name, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :project_name, class: "form-control", placeholder: "Project Name" %>
+		</div>
+	</div>
 
-	<p>
-		<%= f.label :description %><br>
-		<%= f.text_area :description, size: "40x20" %>
-	</p>
-			
-	<P><%= f.submit %></P>
+	<div class="form-group">
+		<div class="col-sm-2">
+			<%= f.label :description, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_area :description, class: "form-control"%>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-2">
+			<%= f.label "Image", class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.file_field :image, class: "btn btn-default" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-2">
+			<%= f.label "Or image url",class: "control-label"   %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :remote_image_url, class: "form-control" %>
+		</div>
+	</div>	
+
+	<div class="form-group">
+		<div class="col-md-2">
+			<%= f.label "Factory", class: "control-label" %>
+		</div>
+		<div class="col-md-10">
+			<%= f.select :user_id, User.where("role LIKE ? or role LIKE ?", "factory", "admin").collect {|u| [u.fullname, u.id]}, {prompt: "Select factory" }, class: "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-2">
+			<%= f.label :status, "Status", class: "control-label" %>
+		</div>
+		<div class="col-md-10">
+			<%= f.select :status, StatusOption.all.collect {|r| [r.name]}, {prompt: "Select status" }, class: "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit :Submit, class: "btn btn-primary" %>
+		</div>
+	</div>
+
 <% end %>

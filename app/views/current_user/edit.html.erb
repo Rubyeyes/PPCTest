@@ -1,3 +1,7 @@
+ <% content_for :navbar do %>
+      <%= render 'nav_bar_current_user' %>
+ <% end %>
+
 <h1>CurrentUser#edit</h1>
 
 <P><%= render "validation_errors", object:  @current_user %><P>

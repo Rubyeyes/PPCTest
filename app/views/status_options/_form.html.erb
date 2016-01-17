@@ -1,0 +1,10 @@
+<P><%= render "validation_errors", object:  @status_option %><P>
+
+<%= form_for @status_option do |f| %>
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	</p>
+
+	<P><%= f.submit %></P>
+<% end %>

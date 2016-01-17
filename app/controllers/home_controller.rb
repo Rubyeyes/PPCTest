@@ -1,10 +1,8 @@
 class HomeController < ApplicationController
   def index
-    if current_user.role == "factory"
-      @projects = Project.where(user_id: current_user.id).order(created_at: :desc).page params[:page]
-    else
-      @projects = Project.all.order(created_at: :desc).page params[:page]
-    end
+    @filter = Project.text_filter(params[:filter].to_s)
+    @search = @filter.text_search(params[:query].to_s, current_user.role).text_sort.page params[:page]
+    @projects = @search.all
     @products = Product.all
     @tasks = Task.all
     @costs = Cost.all.order(crreated_at: :desc)

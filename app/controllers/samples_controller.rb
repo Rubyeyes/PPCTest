@@ -17,8 +17,12 @@ class SamplesController < ApplicationController
 
   def create
     @sample = Sample.new(sample_params)
+    @users = User.notification_recipients(@sample, current_user, params[:controller])    
    
-    if @sample.save      
+    if @sample.save
+      @users.each do |user|
+        Notification.create_notification(@sample, "created sample of", current_user.id, user.id, params[:controller])
+      end      
       redirect_to controller: 'home', action: 'show', id: @sample.project_id
       flash[:notice] = "Sample was successfully created"
     else
@@ -33,7 +37,12 @@ class SamplesController < ApplicationController
 
   def update
     @sample = Sample.find(params[:id])
+    @users = User.notification_recipients(@sample, current_user, params[:controller])    
+   
     if @sample.update(sample_params)
+      @users.each do |user|
+        Notification.create_notification(@sample, "updated sample of", current_user.id, user.id, params[:controller])
+      end
       redirect_to controller: 'home', action: 'show', id: @sample.project_id
       flash[:notice] = "Sample was successfully updated"
     else

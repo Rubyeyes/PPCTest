@@ -1,4 +1,4 @@
-<h1>RoleOptions#index</h1>
+<h1>Role Options</h1>
 
 <p><%= link_to 'New Role Option', new_role_option_path %></p>
 
@@ -18,7 +18,7 @@
 			<td>
 				<%= link_to 'Edit', edit_role_option_path(role_option) %> |
 				<%= link_to 'Show', role_option_path(role_option) %> |
-				<%= link_to 'Delete', role_option_path(role_option), method: :delete, data: {confirm: 'Are you sure ?'} %>
+				<%= button_to 'Delete', role_option_path(role_option), method: :delete, data: {confirm: 'Are you sure ?'} %>
 			</td>
 		</tr>
 		<% end %>

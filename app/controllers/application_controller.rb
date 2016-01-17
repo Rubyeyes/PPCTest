@@ -5,9 +5,15 @@ class ApplicationController < ActionController::Base
 
   
   before_filter :authenticate_user!
+  before_filter :pass_logo
 
   rescue_from CanCan::AccessDenied do | exception |
     redirect_to root_url, alert: exception.message
   end
-  
+ 
+ def pass_logo
+ 	@logo = Logo.find_by(name: "NcSTAR Image Logo")
+ 	# @logo = Logo.find_by(id: 1)
+ end
+
 end
