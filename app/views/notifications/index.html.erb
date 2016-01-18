@@ -14,9 +14,9 @@
 		<% end %>
 	</p>
 	<p>
-		<%= link_to 'View', controller: "pos", action: :show, id: notification.notifiable.po.id if notification.notifiable_type == "PoProduct" %>
-		<%= link_to 'View', polymorphic_path("#{notification.notifiable_type.downcase}s") if notification.notifiable_type != "PoProduct" %>
-		<%= button_to 'Delete', notification_path(notification), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default" %>
+		<%= link_to 'View |', controller: "pos", action: :show, id: notification.notifiable.po.id if notification.notifiable_type == "PoProduct" %>
+		<%= link_to 'View |', polymorphic_path("#{notification.notifiable_type.downcase}s") if notification.notifiable_type != "PoProduct" %>
+		<%= link_to 'Delete', notification_path(notification), method: :delete, data: {confirm: "Are you sure?"}%>
 	</p>
 	<hr>
 <% end %>

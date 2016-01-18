@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     @filter = Project.text_filter(params[:filter].to_s)
-    @search = @filter.text_search(params[:query].to_s, current_user.role).text_sort.page params[:page]
+    @search = @filter.text_search(params[:query].to_s, current_user_role: current_user.role).text_sort.page params[:page]
     @projects = @search.all
     @products = Product.all
     @tasks = Task.all

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="panel panel-default">
 	<div class="col-xs-12 col-md-8">
 		<%= image_tag @project.image.url(:detail).to_s, class: "img-responsive img-rounded" %>
 	</div>
@@ -14,16 +14,35 @@
 	</div>
 </div>
 
-<div>
-	<%= render "costs_table", object: @project, :number => 10 %><br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-info panel-home-show">
+			<%= render "costs_table", object: @project, :number => 10 %><br>			
+		</div>
+	</div>
 
-	<%= render "samples_show_table", object: @project %><br>
+	<div <div class="col-md-6">
+		<div class="panel panel-info panel-home-show">
+			<%= render "samples_show_table", object: @project %><br>			
+		</div>
+	</div>
+</div>
 
-	<%= render "pos_show_table", object: @project %><br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-info panel-home-show">
+			<%= render "tasks_show_table", object: @project %><br>	
+		</div>
+	</div>
 
-	<%= render "tasks_show_table", object: @project %><br>
+	<div class="col-md-6">
+		<div class="panel panel-info panel-home-show">
+			<%= render "reports_show_table", object: @project %><br>			
+		</div>
+	</div>
+</div>	
 
-	<%= render "reports_show_table", object: @project %><br>
+	
 
 	<%= render "products_show_table", object: @project %>
 </div>

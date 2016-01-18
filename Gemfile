@@ -46,15 +46,8 @@ gem 'sass-rails', '~> 5.0'
 # PostgreSQL's full text search
 gem 'pg_search'
 
-group :assets do
-	# Provides Sprockets implementation for Rails 4.x (and beyond) Asset Pipeline
-	gem 'sprockets-rails', :require => 'sprockets/railtie'
-	# Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
-	source 'https://rails-assets.org' do
-	  gem 'rails-assets-tether', '>= 1.1.0'
-	end
-	gem 'bootstrap', '~> 4.0.0.alpha3'
-end
+# Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
+gem 'bootstrap-sass', '~> 3.3.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

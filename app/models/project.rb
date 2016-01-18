@@ -28,7 +28,7 @@ class Project < ActiveRecord::Base
 		if query.present?
 			search(query)
 		elsif current_user_role == "factory"
-			where(user_id: current_user.id)
+			where(user_id: current_user_role)
 		else
 			all
 		end

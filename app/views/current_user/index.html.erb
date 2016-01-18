@@ -6,7 +6,7 @@
 			<h2><%= @current_user.fullname %></h2>
 			<p><%= @current_user.email %><br>
 			<%= link_to 'Edit Information', edit_user_registration_path(@current_user) %> </p>
-			<ul class="list-inline">
+			<ul class="list-unstyled">
 				<li class="list-item"><%= link_to 'New project', new_project_path %></li>
 				<li class="list-item"><%= link_to "New cost", new_cost_path if current_user.role != 'user'%></li>
 				<li class="list-item"><%= link_to "New PO", new_po_path if current_user.role == 'admin' %></li>
@@ -14,7 +14,7 @@
 				<li class="list-item"><%= link_to "New sample", new_sample_path if current_user.role != 'user'%></li>
 			</ul>
 
-			<p><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-default" %></p>
+			<p><%= link_to "Sign out", destroy_user_session_path, method: :delete %></p>
 		</div>
 		<div class="col-md-9">
 			

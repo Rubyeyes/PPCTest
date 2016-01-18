@@ -19,9 +19,9 @@
 					<td><%= report.project.user.fullname%></td>
 					<td><%= report.created_at.strftime("%b %d. %y") %></td>
 					<td>
-						<%= link_to 'View', report_path(report) %> 
-						<%= link_to 'Edit', edit_report_path(report) if current_user.role == 'admin'%> 
-						<%= button_to 'Delete', report_path(report), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default" if current_user.role == 'admin'%>
+						<%= link_to 'View', report_path(report) %> |
+						<%= link_to 'Edit', edit_report_path(report) if current_user.role == 'admin'%> |
+						<%= link_to 'Delete', report_path(report), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin'%>
 					</td>
 				</tr>
 			<% end %>

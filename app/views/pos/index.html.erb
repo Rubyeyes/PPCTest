@@ -18,9 +18,9 @@
 				<td><%= po.po_number %></td>
 				<td><%= po.date.strftime("%d-%m-%y") %></td>
 				<td>
-					<%= link_to 'View', po_url(po) %>
-					<%= link_to 'Edit', new_po_product_url(po_id: po.id) if current_user.role == 'admin'%>
-					<%= button_to 'Delete', po_url(po), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default" if current_user.role == 'admin'%>
+					<%= link_to 'View', po_url(po) %> |
+					<%= link_to 'Edit', new_po_product_url(po_id: po.id) if current_user.role == 'admin'%> |
+					<%= link_to 'Delete', po_url(po), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin'%>
 				</td>
 			</tr>
 		<% end %>
