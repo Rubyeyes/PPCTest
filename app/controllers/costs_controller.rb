@@ -2,11 +2,10 @@ class CostsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    if current_user.role != 'factory'
-      @costs = Cost.all.order(updated_at: :desc).page params[:page]
-    else
-      @costs = Cost.match_current_user(current_user.id).order(updated_at: :desc).page params[:page]
-    end
+    @user = current_user
+    @filter = Cost.text_filter(params[:filter].to_s)
+    @search = @filter.text_search(params[:query].to_s)
+    @costs = @search.user_filter(@user).text_sort(params[:sort], params[:direction]).page params[:page]
   end
 
   def new
@@ -21,7 +20,7 @@ class CostsController < ApplicationController
       @users.each do |user|
         Notification.create_notification(@cost, "create cost of", current_user.id, user.id, params[:controller])
       end
-      redirect_to controller: 'home', action: 'show', id: @cost.project_id 
+      redirect_to costs_path
       flash[:notice] = "Cost was successfully created"
     else
       flash[:alert] = "There was a problem creating cost"
@@ -40,7 +39,7 @@ class CostsController < ApplicationController
       @users.each do |user|
         Notification.create_notification(@cost, "edit cost of", current_user.id, user.id, params[:controller])
       end
-      redirect_to controller: 'home', action: 'show', id: @cost.project_id
+      redirect_to costs_path
       flash[:notice] = "Cost was successfully updated"
     else
       flash[:alert] = "There was a problem updating cost"

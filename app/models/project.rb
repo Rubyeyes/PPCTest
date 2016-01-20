@@ -13,26 +13,23 @@ class Project < ActiveRecord::Base
 	mount_uploader :image, ImageUploader
 
 	include PgSearch
-		pg_search_scope :search, against: [:project_name, :description],
+		pg_search_scope :search, against: [:project_name, :description, :user_id],
 		associated_against: {
-			user: :fullname,
 			products: [:product_name, :item_number, :reminder, :Mark, :Package, :Instruction],
 			tasks: [:executor, :task],
-			costs: :description,
-			samples: :description,
-			reports: [:name, :content]
+			costs: [:description],
+			samples: [:description],
+			reports: [:name, :content],
+			user: :fullname
 		},
-		:using => {:tsearch => {:dictionary => "english"}}
+		using: {
+			tsearch: {
+				:dictionary => "english",
+				any_word: true,
+				prefix: true
+				}
+			}
 
-	def self.text_search query, current_user_role
-		if query.present?
-			search(query)
-		elsif current_user_role == "factory"
-			where(user_id: current_user_role)
-		else
-			all
-		end
-	end
 
 	def self.text_filter filter
 		if filter.present?
@@ -41,8 +38,21 @@ class Project < ActiveRecord::Base
 			all
 		end
 	end
-
+	def self.text_search query
+		if query.present?
+			search(query)
+		else
+			all
+		end
+	end
+	def self.user_filter current_user
+		if current_user.role == "factory"
+			where(user_id: current_user.id)
+		else
+			all
+		end
+	end
 	def self.text_sort
-		joins(:user).order('status ASC, users.fullname ASC, project_name ASC')		
+		joins(:user).order('status ASC, fullname ASC, project_name ASC')		
 	end
 end

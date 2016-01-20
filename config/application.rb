@@ -22,5 +22,9 @@ module PPCTest2
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    # include a helper whose name matches that of the controller
+    config.action_controller.include_all_helpers = false
+    # Add fonts folder to the asset pipeline
+    config.assets.paths << Rails.root.join("vendor","assets", "fonts")
   end
 end

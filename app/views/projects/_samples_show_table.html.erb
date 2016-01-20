@@ -1,0 +1,38 @@
+<% if current_user.role != 'user' %>
+	<%= link_to 'New Sample', new_sample_path(project_id_param: object.id), class: "pull-xs-right" %>
+<% end %>
+
+<% if object.samples.present? %>
+	<table class="table table-striped table-condensed">
+		<thead>
+			<tr>
+				<th>Received at</th>
+				<th>Quantity</th>
+				<th>Description</th>
+				<% if current_user.role != 'user' %>
+					<th>Action</th>
+				<% end %>
+			</tr>
+		</thead>
+		<tbody>
+			<% object.samples.last(3).each do |sample| %>
+				<tr>
+					<td><%= sample.receive_date.strftime("%b %d. %Y") %></td>
+					<td align = 'center'><%= sample.quantity %></td>
+					<td><%= sample.description %></td>
+					<% if current_user.role != 'user' %>	
+						<td>
+							<%= link_to 'Edit |', edit_sample_url(sample) %>
+							<%= link_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"} %>
+						</td>
+					<% end %>			
+				</tr>
+			<% end %>						
+		</tbody>
+	</table>
+<% end %>
+
+
+<% if object.samples.count > 3 %>
+	<%= link_to 'All', samples_path(project_id_param: object.id), class: "pull-xs-right" %>
+<% end %>

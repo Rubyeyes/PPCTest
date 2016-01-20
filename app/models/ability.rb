@@ -12,6 +12,8 @@ class Ability
     else
       can [:create, :edit, :read], Sample
       can [:create, :edit, :read], Cost
+      can [:read], Project
+      can [:read, :edit], Product
     end
   end
 end

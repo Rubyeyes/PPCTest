@@ -1,9 +1,20 @@
-<h1><%= @report.name %></h1>
-<p><b>Project: </b><%= @report.project.project_name %></p>
-<p><b>Factory: </b><%= @report.project.user.fullname %></p>
 
-<p><%= simple_format(@report.content) %></p>
+<div class="panel panel-default panel-border-transparent">
+  <div class="panel-body text-right">
+	</div>
+</div>
 
-<p><%= @report.created_at.strftime("%d-%m-%y") %></p>
-
-<p><%= link_to 'Edit', edit_report_path(@report) if current_user.role == 'admin'%></p>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1><%= @report.name %></h1>
+	</div>
+	<div class="panel-body">
+		<p><b>Project: </b><%= @report.project.project_name %></p>
+		<em>Factory: </b><%= @report.project.user.fullname %></em>
+		<p><%= simple_format(@report.content) %></p>
+	</div>
+	<div class="panel-footer">
+		<p><%= @report.created_at.strftime("%d-%m-%y") %></p>
+		<p><%= link_to 'Edit', edit_report_path(@report) if current_user.role == 'admin'%></p>
+	</div>
+</div>

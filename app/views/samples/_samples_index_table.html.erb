@@ -3,8 +3,9 @@
 		<tr>
 			<th><%= "Project Name" if @project.nil? %></th>
 			<th class = 'text-center'>Quantity</th>
-			<th class = 'text-center'>Received at</th>
+			<th class = 'text-center'><%= sortable "receive_date", "Received at" %></th>
 			<th>Description</th>
+			<th><%= "Factory" if current_user.role != "factory" %></th>
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -27,7 +28,8 @@
 					<td><%= sample.project.project_name %></td>
 					<td align = 'center'><%= sample.quantity %></td>
 					<td align = 'center'><%= sample.receive_date.strftime("%b %d. %Y") %></td>
-					<td><%= sample.description %></td>	
+					<td><%= sample.description %></td>
+					<td><%= sample.project.user.fullname if current_user.role != "factory"%></td>	
 					<td>
 						<%= link_to 'Edit', edit_sample_url(sample) %> |
 						<%= link_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"} %>

@@ -1,10 +1,8 @@
 class PosController < ApplicationController
   def index
-    if current_user.role == 'admin' 
-      @pos = Po.all.order(date: :desc).page params[:page]
-    else
-      @pos = Po.match_current_user(current_user.id).order(date: :desc).page params[:page]
-    end
+    @user = current_user
+    @search = Po.text_search(params[:query].to_s)
+    @pos = @search.user_filter(@user).text_sort(params[:sort], params[:direction]).page params[:page]
   end
 
   def new

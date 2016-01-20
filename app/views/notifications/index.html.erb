@@ -1,23 +1,30 @@
-
-
 <h1>Notifications</h1>
 
+<div class="panel panel-default panel-border-transparent">
+  <div class="panel-body text-right">
+	</div>
+</div>
+
 <% @notifications.each do |notification| %>
-	<p>
-		<%= User.find(notification.sender_id).fullname%> <%= notification.content%>
-		<% if notification.notifiable_type == "Project"%>
-			<%= notification.notifiable.project_name %>
-		<% elsif notification.notifiable_type == "PoProduct"%>
-			<%= notification.notifiable.po.po_number %>
-		<% else %>
-			<%= notification.notifiable.project.project_name %>
-		<% end %>
-	</p>
-	<p>
-		<%= link_to 'View |', controller: "pos", action: :show, id: notification.notifiable.po.id if notification.notifiable_type == "PoProduct" %>
-		<%= link_to 'View |', polymorphic_path("#{notification.notifiable_type.downcase}s") if notification.notifiable_type != "PoProduct" %>
-		<%= link_to 'Delete', notification_path(notification), method: :delete, data: {confirm: "Are you sure?"}%>
-	</p>
-	<hr>
+	<div class="<%= "panel panel-warning" %>">
+		<div class="panel-heading">
+			<%= "#{notification.notifiable_type} Notification" %>
+		</div>
+		<div class="panel-body">
+			<%= User.find(notification.sender_id).fullname%> <%= notification.content%>
+			<% if notification.notifiable_type == "Project"%>
+				<%= notification.notifiable.project_name %>
+			<% elsif notification.notifiable_type == "PoProduct"%>
+				<%= notification.notifiable.po.po_number %>
+			<% else %>
+				<%= notification.notifiable.project.project_name %>
+			<% end %>
+		</div>
+		<div class="panel-footer text-right">
+			<%= link_to 'View |', controller: "pos", action: "show", id: notification.notifiable.po.id if notification.notifiable_type == "PoProduct" %>
+			<%= link_to 'View |', polymorphic_path("#{notification.notifiable_type.downcase}s") if notification.notifiable_type != "PoProduct" %>
+			<%= link_to 'Delete', notification_path(notification), method: :delete, data: {confirm: "Are you sure?"}%>
+		</div>
+	</div>
 <% end %>
 

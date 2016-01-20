@@ -1,2 +1,52 @@
-<h1>Projects#show</h1>
+<div class="panel panel-default">
+	<div class="col-xs-12 col-md-8">
+		<%= image_tag @project.image.url(:detail).to_s, class: "img-responsive img-rounded" %>
+	</div>
+	<div class="col-xs-12 col-md-4">
+		<h1><%= @project.project_name %></h1>
+		<em><%= @project.user.fullname%></em>
+		<p><%= @project.description %></p>
+		<p><%= @project.status %></p>
+
+		<% if current_user.role == 'admin' %>
+			<%= link_to 'Edit', edit_project_path(@project) %>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12 col-md-6">
+		<div class="panel panel-info panel-home-show">
+			<%= render "costs_table", object: @project, :number => 10 %><br>			
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-md-6">
+		<div class="panel panel-info panel-home-show">
+			<%= render "samples_show_table", object: @project %><br>			
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class=" col-xs-12 col-md-6">
+		<div class="panel panel-info panel-home-show">
+			<%= render "tasks_show_table", object: @project %><br>	
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-md-6">
+		<div class="panel panel-info panel-home-show">
+			<%= render "reports_show_table", object: @project %><br>			
+		</div>
+	</div>
+</div>	
+
+	
+
+	<%= render "products_show_table", object: @project %>
+</div>
+
+
+			
 

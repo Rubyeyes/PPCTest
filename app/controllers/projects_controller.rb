@@ -3,8 +3,13 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @projects = Project.all.order(id: :desc).page params[:page]
+    @user = current_user
+    @filter = Project.text_filter(params[:filter].to_s)
+    @search = @filter.text_search(params[:query].to_s)
+    @projects = @search.user_filter(@user).text_sort.page params[:page]
     @products = Product.all
+    @tasks = Task.all
+    @costs = Cost.all.order(crreated_at: :desc)
   end
 
   def new
@@ -19,7 +24,7 @@ class ProjectsController < ApplicationController
       @users.each do |user|
         Notification.create_notification(@project, "create project of", current_user.id, user.id, params[:controller])
       end
-      redirect_to root_url, notice: "Project was successfully created"
+      redirect_to projecs_path, notice: "Project was successfully created"
     else
       flash[:alert] = "There was a problem creating project"
       render :new
@@ -38,7 +43,7 @@ class ProjectsController < ApplicationController
       @users.each do |user|
         Notification.create_notification(@project, "updated project of", current_user.id, user.id, params[:controller])
       end
-      redirect_to controller: 'home', action: 'show', id: @project.id
+      redirect_to controller: 'projects', action: 'show', id: @project.id
       flash[:notice] = "Project was successfully updated"
     else
       flash[:alert] = "There was a problem updating project"
@@ -49,6 +54,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @products = Product.all
+    @tasks = Task.all.order(created_at: :desc)
   end
 
   def destroy

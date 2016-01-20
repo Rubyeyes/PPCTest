@@ -15,7 +15,7 @@
 		<% @logos.each do |logo| %>
 			<tr>
 				<td><%= logo.name %></td>
-				<td><%= image_tag(logo.image.url(:logo).to_s) %></td>
+				<td><%= image_tag(logo.image.url(:detail).to_s) %></td>
 				<td><%= logo.created_at.strftime("%Y-%m-%d") %></td>
 				<td>
 					<%= link_to 'Edit', edit_logo_path(logo) %> |

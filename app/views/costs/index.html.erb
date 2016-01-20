@@ -1,18 +1,39 @@
-
+<div class="panel panel-default panel-border-transparent">
+  <div class="panel-body">
+    <%= form_tag(costs_path, method: :get) do %>
+    	<%= hidden_field_tag :direction, params[:direction]%>
+    	<%= hidden_field_tag :sort, params[:sort]%>
+	    <div class="form-inline">
+	    <% if current_user == "factory"%>
+				<%= select_tag(:filter, options_for_select(Project.order(project_name: :asc).where("user_id = ?", current_user.id).map { |p| [p.project_name] }), prompt: "Select Project", class: "form-control") %>
+			<% else %>
+				<%= select_tag(:filter, options_for_select(Project.all.order(project_name: :asc).map { |p| [p.project_name] }), prompt: "Select Project", class: "form-control") %>
+			<% end %>
+				<%= submit_tag 'Submit', class: "btn btn-default"%>
+			</div>
+		<% end %>
+	</div>
+</div>
 
 <h1>Costs</h1>
 
-<p><%= link_to "New cost", new_cost_path, class: "pull-xs-right" if current_user.role != 'user'%></p>
+<div class="panel panel-default panel-border-transparent">
+  <div class="panel-body text-right">
+		<%= link_to "New cost", new_cost_path if current_user.role != 'user'%>
+	</div>
+</div>
+
 
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
-			<th>Project Name</th>
+			<th><%= sortable "project_name", "Project Name" %></th>
 			<th>U RMB</th>
 			<th>T RMB</th>
 			<th>U USD</th>
 			<th>T USD</th>
 			<th>Description</th>
+			<th><%= sortable "created_at", "Created At"%></th>
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -25,6 +46,7 @@
 				<td><%= number_to_currency(cost.unitUSD) %></td>
 				<td><%= number_to_currency(cost.toolingUSD) %></td>
 				<td><%= cost.description %></td>
+				<td><%= cost.created_at.strftime("%m-%d-%y") %></td>
 				<td>
 					<%= link_to 'Edit', edit_cost_url(cost)%> |
 					<%= link_to 'Delete', cost_url(cost), method: :delete, data: {confirm: "Are you sure?"}%>

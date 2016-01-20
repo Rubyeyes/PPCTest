@@ -2,12 +2,10 @@ class SamplesController < ApplicationController
   load_and_authorize_resource
   
   def index
-    if current_user != 'factory'
-      @project = Project.find(params[:project_id_param]) if params[:project_id_param].present?
-      @sammples = Sample.all.order(created_at: :desc)
-    else
-      @samples = Sample.match_current_user(current_user.id).order(created_at: :desc).page params[:page]
-    end
+    @user = current_user
+    @filter = Sample.text_filter(params[:filter].to_s)
+    @search = @filter.text_search(params[:query].to_s)
+    @samples = @search.user_filter(@user).text_sort(params[:sort], params[:direction]).page params[:page] 
   end
 
   def new

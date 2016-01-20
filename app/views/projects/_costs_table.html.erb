@@ -1,0 +1,45 @@
+<% if action_name == "show" %>
+	<% if current_user.role != 'user' %>
+		<%= link_to 'New Cost', new_cost_path(project_id_param: @project.id), class: "pull-xs-right" %>
+	<% end %>
+<% end %>
+
+<% if object.costs.present? %>
+	<table class="table table-striped table-condensed">
+		<thead>
+			<tr>
+				<th>U USD</th>
+				<th>T USD</th>
+				<th>U RMB</th>
+				<th>T RMB</th>
+				<th>Description</th>
+				<% if request.fullpath.include? object.id.to_s %>
+					<% if current_user.role != 'user' %>
+						<th>Created at</th>
+						<th>Actions</th>
+					<% end %>
+				<% end %>
+			</tr>
+		</thead>
+		<tbody>
+			<% object.costs.last(number).each do |cost| %>
+				<tr>
+					<td><%= number_to_currency(cost.unitUSD) %></td>
+					<td><%= number_to_currency(cost.toolingUSD) %></td>
+					<td><%= number_to_currency(cost.unitRMB, unit: "￥") %></td>
+					<td><%= number_to_currency(cost.toolingRMB, unit: "￥") %></td>
+					<td><%= cost.description %></td>
+					<% if request.fullpath.include? object.id.to_s %>
+						<% if current_user.role != 'user' %>
+							<td><%= cost.created_at.strftime("%d %b. %y")%></td>
+							<td>
+							<%= link_to 'Edit |', edit_cost_url(cost) %>
+							<%= link_to 'Delete', cost_url(cost), method: :delete, data: {confirm: "Are you sure?"}%>
+							</td>
+						<% end %>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>
