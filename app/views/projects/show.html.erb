@@ -3,14 +3,19 @@
 		<%= image_tag @project.image.url(:detail).to_s, class: "img-responsive img-rounded" %>
 	</div>
 	<div class="col-xs-12 col-md-4">
-		<h1><%= @project.project_name %></h1>
-		<em><%= @project.user.fullname%></em>
-		<p><%= @project.description %></p>
-		<p><%= @project.status %></p>
-
-		<% if current_user.role == 'admin' %>
-			<%= link_to 'Edit', edit_project_path(@project) %>
-		<% end %>
+		<div class="panel panel-default panel-project-title">
+			<div class="panel-heading">
+				<h1><%= @project.project_name %></h1>
+				<em><%= @project.user.fullname%></em>
+			</div>
+			<div class="panel-body">
+				<p><%= @project.description %></p>
+				<p class="<%= problem_word @project.status %>"><%= @project.problem %></p>
+			</div>
+			<div class="panel-footer">
+				<%= link_to 'Edit', edit_project_path(@project) if current_user.role == 'admin' %>
+			</div>
+		</div>
 	</div>
 </div>
 

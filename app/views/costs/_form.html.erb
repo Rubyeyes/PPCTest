@@ -9,36 +9,58 @@
 	<% elsif current_user.role == "admin" %>
 		<%= f.select :project_id, Project.all.collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"} %>
 	<% end %>
-	
-	<p>
-		<%= f.label :unitRMB, "Unit RMB" %><br>
-		<%= f.text_field :unitRMB %>
-	</p>
 
-	<p>
-		<%= f.label :toolingRMB, "Tooling RMB" %><br>
-		<%= f.text_field :toolingRMB %>
-	</p>
-
-	<p>
-		<%= f.label :unitUSD, "Unit USD" %><br>
-		<%= f.text_field :unitUSD %>
-	</p>
-
-	<p>
-		<%= f.label :toolingUSD, "Tooling USD" %><br>
-		<%= f.text_field :toolingUSD %>
-	</p>
-
-	<p>
-		<%= f.label :ratio, "Currency Ratio" %><br>
-		<%= f.text_field :ratio %>
-	</p>
-
-	<p>
-		<%= f.label :description %><br>
-		<%= f.text_area :description, size: "40X20" %>
-	</p>
-			
-	<P><%= f.submit %></P>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :unitRMB, "Unit RMB", class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :unitRMB, class: "form-control", placeholder: "￥0.00" %>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :toolingRMB, "Tooling RMB", class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :toolingRMB, class: "form-control", placeholder: "￥0.00" %>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :unitUSD, "Unit USD", class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :unitUSD, class: "form-control", placeholder: "$0.00" %>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :toolingUSD, "Tooling USD", class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :toolingUSD, class: "form-control", placeholder: "$0.00" %>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :ratio, "Currency Ratio", class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :ratio, class: "form-control"%>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :description, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_area :description, class: "form-control" %>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit :Submit, class: "btn btn-primary" %>
+		</div>
+	</div>
 <% end %>

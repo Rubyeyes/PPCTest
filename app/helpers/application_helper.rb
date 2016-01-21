@@ -4,4 +4,13 @@ module ApplicationHelper
 		"#{time_ago_in_words(time)} ago"
 	end
 
+	def smart_navbar_color controller
+		if controller == 'home'
+			"navbar-full navbar-inverse navbar-transparent"
+		else
+			"navbar-full navbar-inverse navbar-normal"
+		end
+	end
+	
+
 end

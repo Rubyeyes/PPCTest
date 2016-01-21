@@ -10,4 +10,12 @@ module ProjectsHelper
 			"panel panel-blue"
 		end
 	end
+
+	def problem_word status
+		if status == "0. Need to be fixed"
+			"red-word"
+		else
+			""
+		end
+	end
 end
