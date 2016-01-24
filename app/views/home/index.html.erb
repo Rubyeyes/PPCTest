@@ -1,16 +1,22 @@
-
-
-
 <div class="container-home">
-	<div class="section">
+	<div class="col-xs-12 col-no-padding">
 		<img class="img-responsive img-thumbnail project-image" src="/home_images/upper.jpg">
 		<div class="jumbotron jumbotron-home">
 		  <h1>WELCOME NcSTAR</h1>
 		  <h4>Manage Your Unique Products in NcSTAR</h4>
 		</div>
 	</div>
-	<img class="img-responsive img-thumbnail project-image" src="/home_images/scope.png">
-	<img class="img-responsive img-thumbnail project-image" src="/home_images/reflex_sight.png">
-	<img class="img-responsive img-thumbnail project-image" src="/home_images/mount.png">
-	<img class="img-responsive img-thumbnail project-image" src="/home_images/mid08.jpg">
+
+	<div class="row">
+		<%= render "home_image", src: "/home_images/concept.png", path: projects_path, name: "PROJECTS"%>
+		<%= render "home_image", src: "/home_images/reflex_sight.png", path: costs_path, name: "COSTS" %>
+	</div>
+	<div class="row">
+		<%= render "home_image", src: "/home_images/mount.png", path: pos_path, name: "PURCHASE ORDERS" %>
+		<%= render "home_image", src: "/home_images/mark.jpg", path: reports_path, name: "REPORTS" %>
+	</div>
+	<div class="row">
+		<%= render "home_image", src: "/home_images/scope.png", path: samples_path, name: "SAMPLES" %>
+		<%= render "home_image", src: "/home_images/projects.jpg", path: products_path, name: "PRODUCTS" %>
+	</div>
 </div>

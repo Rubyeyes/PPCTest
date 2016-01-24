@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
 	has_many :samples
 	has_many :reports
 	belongs_to :user
-	has_many :notifications, as: :notifiable
+	has_many :notifications, as: :notifiable, dependent: :delete_all
 	has_many :pos, through: :products
 
 	validates :project_name, presence: true

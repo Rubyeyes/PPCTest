@@ -2,7 +2,10 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @products = Product.all
+    @user = current_user
+    @filter = Product.text_filter(params[:filter].to_s)
+    @search = @filter.text_search(params[:query].to_s)
+    @products = @search.user_filter(@user).text_sort(params[:sort], params[:direction]).page params[:page]
   end
 
   def new
@@ -12,9 +15,13 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @users = User.notification_recipients(@product, current_user, params[:controller])
    
-    if @product.save      
-      redirect_to controller: 'projects', action: 'show', id: product_params[:project_id].to_i
+    if @product.save   
+      @users.each do |user|
+        Notification.create_notification(@product, "create a product of", current_user.id, user.id, params[:controller])
+      end   
+      redirect_to controller: 'products', action: 'show', id: product.id
       flash[:notice] = "Products was successfully created"
     else
       flash[:alert] = "There was a problem creating product"
@@ -24,12 +31,20 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    if (current_user.role == "factory") && (@product.project.user.fullname != current_user.fullname)
+      redirect_to root_path
+      flash[:alert] = "You have no authorization"
+    end
   end
 
   def update
     @product = Product.find(params[:id])
+    @users = User.notification_recipients(@product, current_user, params[:controller])
     if @product.update(product_params)
-      redirect_to controller: 'projects', action: 'show', id: @product.project_id
+      @users.each do |user|
+        Notification.create_notification(@product, "update the product of", current_user.id, user.id, params[:controller])
+      end
+      redirect_to controller: 'products', action: 'show', id: @product.id
       flash[:notice] = "Products was successfully updated"
     else
       flash[:alert] = "There was a problem updating product"
@@ -38,6 +53,11 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
+    if (current_user.role == "factory") && (@product.project.user.fullname != current_user.fullname)
+      redirect_to root_path
+      flash[:alert] = "You have no authorization"
+    end
   end
 
   def destroy
@@ -49,7 +69,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:id, :product_name, :item_number, :Package, :Mark, :Instruction, :reminder, :project_id, :cost_id)
+    params.require(:product).permit(:id, :product_name, :item_number, :Package, :Mark, :Instruction, :reminder, :project_id, :cost_id, :logo_image, :remote_logo_image_url, :patent_image, :remote_patent_image_url, :made_image, :remote_made_image_url)
   end
 
 end

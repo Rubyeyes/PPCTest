@@ -2,12 +2,54 @@
 
 <%= form_for @cost do |f| %>
 
-	<% if @project.present? %>
-		<%= f.hidden_field :project_id, :value => @project.id %>
-	<% elsif current_user.role == "factory" %>
-		<%= f.select :project_id, Project.where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"} %>
-	<% elsif current_user.role == "admin" %>
-		<%= f.select :project_id, Project.all.collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"} %>
+	<% if action_name == "new" %>
+		<% if @project.present? %>
+			<%= f.hidden_field :project_id, :value => @project.id %>
+		<% elsif current_user.role == "factory" %>
+			<div class="row row-form">
+				<div class="col-sm-2">
+					<%= f.label :project_id, "Project Name", class: "control-label" %>
+				</div>
+				<div class="col-sm-10">
+					<%= f.select :project_id, Project.where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"}, class: "form-control" %>
+				</div>
+			</div>
+		<% elsif current_user.role == "admin" %>
+			<div class="row row-form">
+				<div class="col-sm-2">
+					<%= f.label :project_id, "Project Name", class: "control-label" %>
+				</div>
+				<div class="col-sm-10">
+					<%= f.select :project_id, Project.all.collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"}, class: "form-control" %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+	<% if current_user.role == "admin" %>
+		<div class="row row-form">
+			<div class="col-sm-2">
+				<%= f.label :ratio, "Currency Ratio", class: "control-label" %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.number_field :ratio, class: "form-control", id: "ratio_input", value: 6.15%>
+			</div>
+		</div>
+		<div class="row row-form" >
+			<div class="col-sm-2">
+				<%= f.label :unitUSD, "Unit USD", class: "control-label" %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.number_field :unitUSD, class: "form-control", id: "unit_usd_output", placeholder: " $ 0.00" %>
+			</div>
+		</div>
+		<div class="row row-form">
+			<div class="col-sm-2">
+				<%= f.label :toolingUSD, "Tooling USD", class: "control-label" %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.number_field :toolingUSD, class: "form-control", id: "tooling_usd_output", placeholder: " $ 0.00" %>
+			</div>
+		</div>
 	<% end %>
 
 	<div class="row row-form">
@@ -15,7 +57,7 @@
 			<%= f.label :unitRMB, "Unit RMB", class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
-			<%= f.text_field :unitRMB, class: "form-control", placeholder: "￥0.00" %>
+			<%= f.number_field :unitRMB, class: "form-control", id: "unit_rmb_input", placeholder: "￥0.00" %>
 		</div>
 	</div>
 	<div class="row row-form">
@@ -23,33 +65,10 @@
 			<%= f.label :toolingRMB, "Tooling RMB", class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
-			<%= f.text_field :toolingRMB, class: "form-control", placeholder: "￥0.00" %>
+			<%= f.number_field :toolingRMB, class: "form-control", id: "tooling_rmb_input", placeholder: "￥0.00" %>
 		</div>
 	</div>
-	<div class="row row-form">
-		<div class="col-sm-2">
-			<%= f.label :unitUSD, "Unit USD", class: "control-label" %>
-		</div>
-		<div class="col-sm-10">
-			<%= f.text_field :unitUSD, class: "form-control", placeholder: "$0.00" %>
-		</div>
-	</div>
-	<div class="row row-form">
-		<div class="col-sm-2">
-			<%= f.label :toolingUSD, "Tooling USD", class: "control-label" %>
-		</div>
-		<div class="col-sm-10">
-			<%= f.text_field :toolingUSD, class: "form-control", placeholder: "$0.00" %>
-		</div>
-	</div>
-	<div class="row row-form">
-		<div class="col-sm-2">
-			<%= f.label :ratio, "Currency Ratio", class: "control-label" %>
-		</div>
-		<div class="col-sm-10">
-			<%= f.text_field :ratio, class: "form-control"%>
-		</div>
-	</div>
+	
 	<div class="row row-form">
 		<div class="col-sm-2">
 			<%= f.label :description, class: "control-label" %>
@@ -60,7 +79,20 @@
 	</div>
 	<div class="row row-form">
 		<div class="col-sm-offset-2 col-sm-10">
-			<%= f.submit :Submit, class: "btn btn-primary" %>
+			<%= f.submit :Submit, class: "btn btn-default" %>
 		</div>
 	</div>
 <% end %>
+
+<script>
+	$('#unit_rmb_input').on('change', function () {
+	  UNIT_RMB = $(this).val();
+	  UNIT_USD = UNIT_RMB*$('#ratio_input').val();
+	  $('#unit_usd_output').val(UNIT_USD);
+	});
+	$('#tooling_rmb_input').on('change', function () {
+	  TOOLING_RMB = $(this).val();
+	  TOOLING_USD = TOOLING_RMB*$('#ratio_input').val();
+	  $('#tooling_usd_output').val(TOOLING_USD);
+	});
+</script>

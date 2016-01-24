@@ -4,7 +4,7 @@
     	<%= hidden_field_tag :direction, params[:direction]%>
     	<%= hidden_field_tag :sort, params[:sort]%>
 	    <div class="form-inline">
-	    <% if current_user == "factory"%>
+	    <% if current_user.role == "factory"%>
 				<%= select_tag(:filter, options_for_select(Project.order(project_name: :asc).where("user_id = ?", current_user.id).map { |p| [p.project_name] }), prompt: "Select Project", class: "form-control") %>
 			<% else %>
 				<%= select_tag(:filter, options_for_select(Project.all.order(project_name: :asc).map { |p| [p.project_name] }), prompt: "Select Project", class: "form-control") %>
@@ -30,8 +30,8 @@
 			<th><%= sortable "project_name", "Project Name" %></th>
 			<th>U RMB</th>
 			<th>T RMB</th>
-			<th>U USD</th>
-			<th>T USD</th>
+			<th><%= "U USD" if current_user.role != 'factory'%></th>
+			<th><%= "T USD" if current_user.role != 'factory'%></th>
 			<th>Description</th>
 			<th><%= sortable "created_at", "Created At"%></th>
 			<th>Action</th>
@@ -40,15 +40,15 @@
 	<tbody>
 		<% @costs.each do |cost| %>
 			<tr>
-				<td><%= cost.project.project_name %></td>
+				<td><%= link_to cost.project.project_name, controller: "projects", action: "show", id: cost.project.id %></td>
 				<td><%= number_to_currency(cost.unitRMB, unit: '￥') %></td>
 				<td><%= number_to_currency(cost.toolingRMB, unit: '￥') %></td>
-				<td><%= number_to_currency(cost.unitUSD) %></td>
-				<td><%= number_to_currency(cost.toolingUSD) %></td>
+				<td><%= number_to_currency(cost.unitUSD) if current_user.role != 'factory'%></td>
+				<td><%= number_to_currency(cost.toolingUSD) if current_user.role != 'factory'%></td>
 				<td><%= cost.description %></td>
 				<td><%= cost.created_at.strftime("%m-%d-%y") %></td>
 				<td>
-					<%= link_to 'Edit', edit_cost_url(cost)%> |
+					<%= link_to 'Edit', edit_cost_url(cost)%>
 					<%= link_to 'Delete', cost_url(cost), method: :delete, data: {confirm: "Are you sure?"}%>
 				</td>	
 			</tr>

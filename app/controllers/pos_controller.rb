@@ -1,4 +1,5 @@
 class PosController < ApplicationController
+  load_and_authorize_resource
   def index
     @user = current_user
     @search = Po.text_search(params[:query].to_s)
@@ -23,6 +24,12 @@ class PosController < ApplicationController
 
   def edit
     @po = Po.find(params[:id])
+    @po_products = PoProduct.where po_id: @po.id
+    @user = current_user
+    if current_user.role == "factory" && @po.user_filter(@user).nil?
+      redirect_to root_path
+      flash[:alert] = "You have no authorization"
+    end
   end
 
   def update
@@ -39,6 +46,12 @@ class PosController < ApplicationController
   def show
     @po = Po.find(params[:id])
     @po_products = PoProduct.where po_id: @po.id
+    @user = current_user
+    if current_user.role == "factory" && @po.user_filter(@user).nil?
+      redirect_to root_path
+      flash[:alert] = "You have no authorization"
+    end
+    
   end
 
   def destroy

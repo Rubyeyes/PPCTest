@@ -1,3 +1,8 @@
-<h1>New Report</h1>
-
-<%= render 'form' %>
+<div class="panel panel-default panel-top-margin">
+	<div class="panel-heading">
+		<h2>New Report: <%= "#{@project.project_name if @project.present?} " %></h2>
+	</div>
+	<div class="panel-body">
+		<%= render 'form' %>
+	</div>
+</div>

@@ -1,16 +1,27 @@
 <P><%= render "validation_errors", object:  @po%><P>
 
 <%= form_for @po do |f| %>
-	<p>
-		<%= f.label :po_number %>: 
-		<%= f.text_field :po_number %>
-	</p>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :po_number, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :po_number, class: "form-control" %>
+		</div>
+	</div>
 
-	<p>
-		<%= f.label :date %>: 
-		<%= f.date_select :date, order: [:month, :day, :year] %>
-	</p>
-			
-	<P><%= f.submit "Add Product to PO" %></P>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :date, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.date_select :date, order: [:month, :day, :year], class: "form-control" %>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit "Add Product to PO", class: "btn btn-default" %>
+		</div>
+	</div>		
 
 <% end %>

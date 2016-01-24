@@ -1,7 +1,7 @@
 <% if object.products.present? %>
 		<table class="table table-condensed">
 			<tbody>
-				<% object.products.each do |product| %>
+				<% object.products.order(created_at: :desc).each do |product| %>
 					<tr>
 						<td><%= product.item_number %></td>
 						<td><%= number_to_currency(product.cost.unitUSD) if product.cost.present?%></td>

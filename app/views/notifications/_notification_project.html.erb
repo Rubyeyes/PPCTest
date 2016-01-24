@@ -1,0 +1,31 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h1>Project Notification</h1>
+
+		<p>
+			<%= User.find(object.sender_id).fullname%> 
+			<%= object.content%>
+			<%= object.notifiable.project_name if  object.notifiable.present? %>
+		</p>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Project Name</th>
+					<th><%= 'Factory' if current_user.role != 'factory'%></th>
+					<th>Description</th> 
+					<th>Problem</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr>
+						<td><%= link_to object.notifiable.project_name, controller: "projects", action: "show", id: object.notifiable.id %></td>
+						<td><%= object.notifiable.user.fullname if current_user.role != 'factory' %></td>
+						<td><%= object.notifiable.description %></td>
+						<td><%= object.notifiable.problem %></td>
+					</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

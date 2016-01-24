@@ -11,9 +11,12 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, alert: exception.message
   end
  
+	
+
  def pass_variable
  	@logo = Logo.find_by(name: "NcSTAR Image Logo")
  	@user = current_user
+ 	@notifications = Notification.where(recipient_id: current_user.id) if current_user.present?
  end
 
 end

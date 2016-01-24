@@ -9,11 +9,13 @@ class Ability
       can :manage, :all
     elsif user.role == "user"
       can :read, :all
-    else
-      can [:create, :edit, :read], Sample
-      can [:create, :edit, :read], Cost
+    elsif user.role == "factory"
+      can :manage, Sample
+      can :manage, Cost
       can [:read], Project
-      can [:read, :edit], Product
+      can [:read], Product
+    else
+      cannot [:mamage, :read], :all
     end
   end
 end

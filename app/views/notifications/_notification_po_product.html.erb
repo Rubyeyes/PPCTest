@@ -1,0 +1,26 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h1>PO Notification</h1>
+		<p>
+			<%= User.find(object.sender_id).fullname%> 
+			<%= object.content%>
+			<%= link_to object.notifiable.po.po_number, controller: "pos", action: "show", id: object.notifiable.po.id if  object.notifiable.present?%>
+		</p>
+	</div>
+	<div class="panel-body">
+		<table class="table table-stripped table-hover">
+			<thead>
+				<tr>
+					<th>Item Number</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%=object.notifiable.product.product_name%></td>
+					<td><%=object.notifiable.quantity%></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

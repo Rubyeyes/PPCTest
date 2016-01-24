@@ -13,57 +13,36 @@
   </div>
 </div>
 
-<% @projects.each_slice(3) do |group| %>
-	<div class="row">
-		<% group.each do |project| %>
-			<div class="col-xs-12 col-sm-6 col-md-4">
-				<div class="panel panel-info">
-					<div class="panel-body panel-body-cost">
-							<div class="<%= body_top_color project %>">
-								<%= link_to image_tag(project.image.url(:detail).to_s, class: "img-responsive img-thumbnail project-image"), project_path(project) %>
-								<div class="panel panel-project-heading">
-									<h3 class="h3-project-name"><%= link_to  truncate(project.project_name, length: 60, separate: ''), project_path(project), class: "project-heading-word" %></h3>
-									<em class="factory-name"><%= project.user.fullname%></em>
-								</div>
-								<% if project.costs.present? %>
-										<ul class="list-group list-group-cost-index">
-											<li class="list-group-item list-item-project-cost-index"><%= number_to_currency(project.costs.last.unitUSD)%></li>
-											<li class="list-group-item list-item-project-cost-index"><%= number_to_currency(project.costs.last.toolingUSD) %></li>
-										</ul>
-								<% end %>
-							</div>
-					</div> <!-- panel-body -->
+<ul id='projectTab' class="nav navbar-default nav-tabs">
+  <li id="0"><%= link_to "1. Need to be Fixed", '#' %></li>  
+  <li id="1"><%= link_to "2. Hold", '#' %></li> 
+  <li id="2"><%= link_to "3. Concept Design", '#' %></li>
+  <li id="3"><%= link_to "4. Samples Received", '#' %></li>
+  <li id="4"><%= link_to "5. Design Package", '#' %></li>
+  <li id="5"><%= link_to "6. In production", '#' %></li>
+  <li id="6"><%= link_to "7. Droped", '#' %></li>
+</ul>
 
-					<div class="panel-footer">
-						<div class="row">
-							<div class="col-xs-12">
-								
-								<% if project.problem.present? %>
-									<p class="<%= problem_word project.status %>">
-										<%= project.problem %>		
-									</p>
-								<% end %>
-								<p>
-									<% if project.tasks.present? %>			
-										<b><%= project.tasks.last.executor %></b> -
-										<%= project.tasks.last.task %>
-									<% end %>		
-								</p>
-								<p>
-									<% if project.samples.present? %>
-										Sample will be received around: 			
-										<b><%= project.samples.last.receive_date.strftime("%b %d. %y") %></b>
-									<% end %>		
-								</p>
-							</div>
-						</div>
-						<%= render "products_index_table", object: project %>
-					</div> <!-- panel-footer -->
-				</div> <!-- panel-group -->
-			</div> <!-- col-md-4 -->
-		<% end %> <!-- group iterate -->
-	</div> <!-- row div -->
-<% end %>
+<div id="project0"><%= render "projects_index", object: @projects.where(status: "0. Need to be fixed") %></div> <br/>
+<div id="project1"><%= render "projects_index", object: @projects.where(status: "1. Hold for some reason") %></div> <br/>
+<div id="project2"><%= render "projects_index", object: @projects.where(status: "2. Concept design") %></div> <br/>
+<div id="project3"><%= render "projects_index", object: @projects.where(status: "3. Received prototypes or samples") %></div> <br/>
+<div id="project4"><%= render "projects_index", object: @projects.where(status: "4. Design package and start producing") %></div> <br/>
+<div id="project5"><%= render "projects_index", object: @projects.where(status: "5. In production") %></div> <br/>
+<div id="project6"><%= render "projects_index", object: @projects.where(status: "6. Droped") %></div> <br/>
 
 
-<p><%= paginate @projects %></p>
+
+<script>
+$(document).ready(function(){
+	$("ul#projectTab li").click(function(){
+	event.preventDefault();
+    divID = 'div#project' + this.id;
+    $("div#project0, div#project1, div#project2, div#project3, div#project4, div#project5, div#project6").hide();
+    $(divID).show();
+    $("li#0, li#1, li#2, li#3, li#4, li#5, li#6").removeClass("active");
+    $(this).addClass("active");
+	});
+})
+	
+</script>

@@ -1,0 +1,39 @@
+<div class="container-home">
+  <div class="section">
+    <img class="img-responsive img-thumbnail project-image" src="/home_images/upper.jpg">
+    <div class="panel panel-default panel-body panel-body-login">
+      <h2>Sign up</h2>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="form-inline">
+            <%= f.label :fullname, "Username",class: "form-label"  %><br />
+            <%= f.text_field :fullname, autofocus: true, class: "form-control" %>
+          </div>
+
+          <div class="form-inline">
+            <%= f.label :email, class: "form-label" %><br />
+            <%= f.email_field :email, autofocus: true, class: "form-control"  %>
+          </div>
+
+          <div class="form-inline">
+            <%= f.label :password, class: "form-label" %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+          </div>
+
+          <div class="form-inline">
+            <%= f.label :password_confirmation, class: "form-label" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %><br />
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Sign up", class: "btn btn-default" %>
+          </div>
+        <% end %>
+        <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

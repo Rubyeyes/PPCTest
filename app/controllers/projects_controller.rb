@@ -33,6 +33,13 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+    @products = Product.all
+    @tasks = Task.all.order(created_at: :desc)
+    if current_user.role == "factory" && @project.user.fullname != current_user.fullname
+      redirect_to root_path
+      flash[:alert] = "You have no authorization"
+    end
+
   end
 
   def update
@@ -55,12 +62,16 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @products = Product.all
     @tasks = Task.all.order(created_at: :desc)
+    if current_user.role == "factory" && @project.user.fullname != current_user.fullname
+      redirect_to root_path
+      flash[:alert] = "You have no authorization"
+    end
   end
 
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    redirect_to :back, notice: "Project was successfully deleted"
+    redirect_to projects_path, notice: "Project was successfully deleted"
   end
 
   private

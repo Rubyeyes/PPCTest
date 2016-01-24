@@ -1,6 +1,6 @@
 class Sample < ActiveRecord::Base
 	belongs_to :project
-  	has_many :notifications, as: :notifiable
+  	has_many :notifications, as: :notifiable, dependent: :delete_all
   	has_one :user, through: :project
   	has_many :products, through: :project
 

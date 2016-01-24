@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  load_and_authorize_resource
   def index
     @user = current_user
     @filter = Report.text_filter(params[:filter].to_s)
@@ -30,6 +31,10 @@ class ReportsController < ApplicationController
   def edit
     @project = Project.find(params[:project_id_param]) if params[:project_id_param].present?
     @report = Report.find(params[:id])
+    if current_user.role == "factory" && @report.project.user.fullname != current_user.fullname
+      redirect_to root_path
+      flash[:alert] = "You have no authorization"
+    end
   end
 
   def update
@@ -49,6 +54,11 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
+    if current_user.role == "factory" && @report.project.user.fullname != current_user.fullname
+      redirect_to root_path
+      flash[:alert] = "You have no authorization"
+    end
+    
   end
 
   def destroy

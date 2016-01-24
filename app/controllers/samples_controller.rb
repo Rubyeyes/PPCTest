@@ -21,7 +21,7 @@ class SamplesController < ApplicationController
       @users.each do |user|
         Notification.create_notification(@sample, "created sample of", current_user.id, user.id, params[:controller])
       end      
-      redirect_to controller: 'home', action: 'show', id: @sample.project_id
+      redirect_to controller: 'projects', action: 'show', id: @sample.project_id
       flash[:notice] = "Sample was successfully created"
     else
       flash[:alert] = "There was a problem creating sample"
@@ -31,6 +31,10 @@ class SamplesController < ApplicationController
 
   def edit
     @sample = Sample.find(params[:id])
+    if current_user.role == "factory" && @sample.project.user.fullname != current_user.fullname
+      redirect_to root_path
+      flash[:alert] = "You have no authorization"
+    end
   end
 
   def update
@@ -41,7 +45,7 @@ class SamplesController < ApplicationController
       @users.each do |user|
         Notification.create_notification(@sample, "updated sample of", current_user.id, user.id, params[:controller])
       end
-      redirect_to controller: 'home', action: 'show', id: @sample.project_id
+      redirect_to controller: 'projects', action: 'show', id: @sample.project_id
       flash[:notice] = "Sample was successfully updated"
     else
       flash[:alert] = "There was a problem updating sample"

@@ -1,7 +1,7 @@
 class Cost < ActiveRecord::Base
   belongs_to :project
   has_many :products
-  has_many :notifications, as: :notifiable
+  has_many :notifications, as: :notifiable, dependent: :delete_all
   has_one :user, through: :project
 
   include PgSearch
@@ -45,7 +45,7 @@ class Cost < ActiveRecord::Base
 		if sort.present?
 			joins(:project).order("#{sort} #{direction}")
 		else
-			joins(:project).order('project_name ASC, created_at DESC')
+			joins(:project).order(' created_at DESC, project_name ASC')
 		end		
 	end
 

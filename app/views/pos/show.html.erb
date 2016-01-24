@@ -1,45 +1,83 @@
 
-
-<h1><%= @po.po_number %></h1>
-<p><%= @po.date.strftime("%Y-%m-%d") %></p>
+<div class="col-ex-12">
+	<h1><%= @po.po_number %></h1>
+	<em><%= @po.date.strftime("%m-%d-%Y") %></em>
+</div>
 
 <% @po_products.each do |po_product| %>
-	<div class="panel">
-		<dib class="panel-body">
-			<table>
-				<tr>
-					<th>Item Number: </th>
-					<td><%=po_product.product.item_number%></td>
-				</tr>
-				<tr>
-					<th>Quantity: </th>
-					<td><%=po_product.quantity%></td>
-				</tr>
-				<tr>
-					<th>Final Unit Cost: </th>
-					<td><%= number_to_currency(po_product.product.cost.unitUSD) if po_product.product.cost.present? %></td>
-				</tr>
-				<tr>
-					<th>Final Tooling Fee: </th>
-					<td><%= number_to_currency(po_product.product.cost.toolingUSD) if po_product.product.cost.present? %></td>
-				</tr>
-				<tr>
-					<th>Instruction: </th>
-					<td><%=po_product.product.Instruction%></td>
-				</tr>
-				<tr>
-					<th>Package: </th>
-					<td><%=po_product.product.Package%></td>
-				</tr>
-				<tr>
-					<th>Mark: </th>
-					<td><%=po_product.product.Mark%></td>
-				</tr>
-				<tr>
-					<th>Reminder: </th>
-					<td><%=po_product.product.reminder%></td>
-				</tr>
-			</table>
-		</dib>
-	</div>
+
+	<div class="col-ex-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<%=link_to po_product.product.item_number, controller: "products", action: "show", id: po_product.product.id %>
+			</div>
+			<div class="panel-body">
+
+				<div class="row">
+					<div class="col-ex-12 col-md-3">
+						<table class="table table-condensed">
+							<tr>
+								<th>Quantity: </th>
+								<td><%=po_product.quantity%></td>
+							</tr>
+							<tr>
+								<th>Unit Cost: </th>
+								<td><%= number_to_currency(po_product.product.cost.unitUSD) if po_product.product.cost.present? %></td>
+							</tr>
+							<tr>
+								<th>Tooling Fee: </th>
+								<td><%= number_to_currency(po_product.product.cost.toolingUSD) if po_product.product.cost.present? %></td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-ex-12 col-md-9">
+						<table class="table table-condensed">
+							<tr>
+								<th>Instruction: </th>
+								<td><%=po_product.product.Instruction%></td>
+							</tr>
+							<tr>
+								<th>Package: </th>
+								<td><%=po_product.product.Package%></td>
+							</tr>
+							<tr>
+								<th>Mark: </th>
+								<td><%=po_product.product.Mark%></td>
+							</tr>
+							<tr>
+								<th>Reminder: </th>
+								<td><%=po_product.product.reminder%></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-ex-12 col-md-4">
+						<div class="panel panel-info">
+							<div class="panel-body panel-body-cost">
+								<%= image_tag(po_product.product.logo_image.url(:detail).to_s, class: "img-responsive img-thumbnail project-image") %>
+							</div>
+						</div>
+					</div>
+					<div class="col-ex-12 col-md-4">
+						<div class="panel panel-info">
+							<div class="panel-body panel-body-cost">
+								<%= image_tag(po_product.product.patent_image.url(:detail).to_s, class: "img-responsive img-thumbnail project-image") %>
+							</div>
+						</div>
+					</div>
+					<div class="col-ex-12 col-md-4">
+						<div class="panel panel-info">
+							<div class="panel-body panel-body-cost">
+								<%= image_tag(po_product.product.made_image.url(:detail).to_s, class: "img-responsive img-thumbnail project-image") %>
+							</div>
+						</div>
+					</div>
+				</div><!-- row -->
+
+			</div><!-- panel-body -->
+		</div><!-- panel -->
+	</div><!-- col-ex-12 col-md-3 -->
+	
 <% end %>

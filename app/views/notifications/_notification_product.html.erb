@@ -1,0 +1,40 @@
+<div class="panel panel-warning">
+
+	<div class="panel-heading">	
+		<h1>Product Notification</h1>
+		<p>
+			<%= User.find(object.sender_id).fullname%> 
+			<%= object.content%>
+			<%= object.notifiable.project.project_name if  object.notifiable.present?%>
+		</p>
+	</div>	
+	<div class="panel-body">
+		<h3><%= link_to object.notifiable.item_number, controller: "products", action: "show", id: object.notifiable.id %></h3>
+		<p>Belong to Project: <b><%= link_to object.notifiable.project.project_name, controller: "projects", action: "show", id: object.notifiable.project_id %></b></p>
+		<table class="table table-striped table-condensed" >
+			<tr>
+				<th>Final Unit Cost: </th>
+				<td><%= number_to_currency(object.notifiable.cost.unitUSD) if object.notifiable.cost.present? %></td>
+			</tr>
+			<tr>
+				<th>Final Tooling Fee: </th>
+				<td><%= number_to_currency(object.notifiable.cost.toolingUSD) if object.notifiable.cost.present? %></td>
+			</tr>
+			<tr>
+				<th>Package Requirement: </th>
+				<td><%= object.notifiable.Package %></td>
+			</tr>
+			<tr>
+				<th>Mark Requirement: </th>
+				<td><%= object.notifiable.Mark %></td>
+			</tr>
+			<tr>
+				<th>Instruction Requirement: </th>
+				<td><%= object.notifiable.Instruction %></td>
+			</tr>
+			<tr>
+				<th>Reminder: </th>
+				<td><%= object.notifiable.reminder %></td>
+			</tr>
+		</table>
+	</div>	

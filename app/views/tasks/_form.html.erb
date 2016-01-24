@@ -6,19 +6,36 @@
 		<% if @project.present? %>
 			<%= f.hidden_field :project_id, :value => @project.id %>
 		<% else %>
-			<%= f.select :project_id, Project.where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"} %>
+			<div class="row row-form">
+				<div class="col-sm-2">
+					<%= f.label :project_id, "Project Name", class: "control-label" %>
+				</div>
+				<div class="col-sm-10">
+					<%= f.select :project_id, Project.where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"}, class: "form-control" %>
+				</div>
+			</div>
 		<% end %>
 	<% end %>
 
-	<p>
-		<%= f.label :executor %><br>
-		<%= f.text_field :executor %>
-	</p>
-
-	<p>
-		<%= f.label :task %><br>
-		<%= f.text_area :task, size: "60x12" %>
-	</p>
-			
-	<P><%= f.submit %></P>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :executor, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :executor, class: "form-control"%>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :task, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_area :task, class: "form-control"%>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit :Submit, class: "btn btn-default" %>
+		</div>
+	</div>
 <% end %>

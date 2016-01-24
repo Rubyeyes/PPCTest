@@ -8,6 +8,7 @@
   <title>NcSTAR Tactical</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -23,7 +24,7 @@
 <% end %>
 
 <!-- Navigation Bar -->
-<div class="navbar-static-top">
+<div class="navbar-fixed-top">
   <div class="<%= smart_navbar_color params[:controller]%>">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -56,7 +57,9 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="<%= 'active' if params[:controller] == 'notificatons'%>">
               <a class="nav-link" href="/notifications">
-              <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a>
+              <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+              <span class="badge badge-color"><%=@notifications.where(read: false).count if @notifications.where(read: false).count > 0 %></span>
+              </a>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle navbar-toggle-width" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= "Hello, #{@user.fullname}"%><span class="caret"></span></a>
@@ -89,11 +92,12 @@
           </div>
           <div  id="navbar-second" class="navbar-collapse collapse" aria-expanded="false">
             <ul class="nav navbar-default nav-tabs nav-justified nav-second">
-              <li class="<%= 'active' if params[:controller] == 'projects' %>"><%= link_to "Projects", projects_path, class: "nav-link" %></li>  
-              <li class="<%= 'active' if params[:controller] == 'costs' %>"><%= link_to "Costs", costs_path, class: "nav-link" %></li>
-              <li class="<%= 'active' if params[:controller] == 'pos'%>"><%= link_to "PO", pos_path, class: "nav-link" %></li>
-              <li class="<%= 'active' if params[:controller] == 'reports'%>"><%= link_to "Reports", reports_path, class: "nav-link" %></li>
-              <li class="<%= 'active' if params[:controller] == 'samples'%>"><%= link_to "Samples", samples_path, class: "nav-link" %></li>
+              <li class="<%= 'active' if params[:controller] == 'projects' %>"><%= link_to "Projects", projects_path, class: "nav-link nav-second-word" %></li>  
+              <li class="<%= 'active' if params[:controller] == 'products' %>"><%= link_to "Products", products_path, class: "nav-link nav-second-word" %></li> 
+              <li class="<%= 'active' if params[:controller] == 'costs' %>"><%= link_to "Costs", costs_path, class: "nav-link nav-second-word" %></li>
+              <li class="<%= 'active' if params[:controller] == 'pos'%>"><%= link_to "PO", pos_path, class: "nav-link  nav-second-word" %></li>
+              <li class="<%= 'active' if params[:controller] == 'reports'%>"><%= link_to "Reports", reports_path, class: "nav-link nav-second-word" %></li>
+              <li class="<%= 'active' if params[:controller] == 'samples'%>"><%= link_to "Samples", samples_path, class: "nav-link nav-second-word" %></li>
             </ul>
           </div>
         </div>
@@ -103,7 +107,7 @@
 </div>
   
   <!-- Main body -->
-  <div class="container">
+  <div class="container container-body">
     <%= yield %>
     <!-- Footer -->
     <footer class="footer">

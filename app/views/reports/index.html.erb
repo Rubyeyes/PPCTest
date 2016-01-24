@@ -27,6 +27,7 @@
 			<th>Name</th>
 			<th><%= "Factory" if current_user.role != "factory" %></th>
 			<th><%= sortable "created_at", "Created At" %></th>
+			<th>Project Name</th>
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -37,6 +38,7 @@
 					<td><%= report.name%></td>
 					<td><%= report.project.user.fullname if current_user.role != "factory"%></td>
 					<td><%= report.created_at.strftime("%b %d. %y") %></td>
+					<td><%= link_to report.project.project_name, controller: 'projects', action: 'show', id: report.project.id %></td>
 					<td>
 						<%= link_to 'View', report_path(report) %> 
 						<%= link_to '| Edit', edit_report_path(report) if current_user.role == 'admin'%> 

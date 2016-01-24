@@ -1,0 +1,38 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h1>Cost Notification</h1>
+		<p><%= User.find(object.sender_id).fullname%> <%= object.content%>
+		<%= object.notifiable.project.project_name if  object.notifiable.present?%></p>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Project Name</th>
+					<th>U RMB</th>
+					<th>T RMB</th>
+					<th><%= "U USD" if current_user.role != 'factory'%></th>
+					<th><%= "T USD" if current_user.role != 'factory'%></th>
+					<th>Description</th>
+					<th>Created At</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr>
+						<td><%= link_to object.notifiable.project.project_name, controller: "projects", action: "show", id: object.notifiable.project.id %></td>
+						<td><%= number_to_currency(object.notifiable.unitRMB, unit: '￥') %></td>
+						<td><%= number_to_currency(object.notifiable.toolingRMB, unit: '￥') %></td>
+						<td><%= number_to_currency(object.notifiable.unitUSD) if current_user.role != 'factory'%></td>
+						<td><%= number_to_currency(object.notifiable.toolingUSD) if current_user.role != 'factory'%></td>
+						<td><%= object.notifiable.description %></td>
+						<td><%= object.notifiable.created_at.strftime("%m-%d-%y") %></td>
+						<td>
+							<%= link_to 'Edit', edit_cost_url(object.notifiable)%>
+							<%= link_to 'Delete', cost_url(object.notifiable), method: :delete, data: {confirm: "Are you sure?"}%>
+						</td>	
+					</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

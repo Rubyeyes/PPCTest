@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => :registrations }
   
   root to:'home#index'
 
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :current_user, only:[:index, :edit, :update]
   resources :home, only:[:index, :show]
   resources :logos
-  resources :notifications, only:[:index, :destroy]
+  resources :notifications, only:[:index, :update, :show, :destroy]
   resources :projects
   resources :products
   resources :pos
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :samples
   resources :status_options
   resources :tasks
-  resources :users_admin, :controller => 'users'
+  resources :users_admin, :controller => 'users', only:[:index, :edit, :update, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,32 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h1>Sample Notification</h1>
+		<p>
+			<%= User.find(object.sender_id).fullname%> 
+			<%= object.content%>
+			<%= object.notifiable.project.project_name if  object.notifiable.present? %>
+		</p>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Project Name</th>
+					<th class = 'text-center'>Quantity</th>
+					<th class = 'text-center'>Received at</th>
+					<th>Description</th>
+					<th><%= "Factory" if current_user.role != "factory" %></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= link_to object.notifiable.project.project_name, controller: "projects", action: "show", id: object.notifiable.project.id %></td>
+					<td align = 'center'><%= object.notifiable.quantity %></td>
+					<td align = 'center'><%= object.notifiable.receive_date.strftime("%b %d. %Y") %></td>
+					<td><%= object.notifiable.description %></td>
+					<td><%= object.notifiable.project.user.fullname if current_user.role != "factory"%></td>		
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

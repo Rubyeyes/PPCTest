@@ -30,6 +30,10 @@ class CostsController < ApplicationController
 
   def edit
     @cost = Cost.find(params[:id])
+    if current_user.role == "factory" && @cost.project.user.fullname != current_user.fullname
+      redirect_to root_path
+      flash[:alert] = "You have no authorization"
+    end
   end
 
   def update
@@ -37,7 +41,7 @@ class CostsController < ApplicationController
     @users = User.notification_recipients(@cost, current_user, params[:controller])  
     if @cost.update(cost_params)
       @users.each do |user|
-        Notification.create_notification(@cost, "edit cost of", current_user.id, user.id, params[:controller])
+        Notification.create_notification(@cost, "update the cost of", current_user.id, user.id, params[:controller])
       end
       redirect_to costs_path
       flash[:notice] = "Cost was successfully updated"
@@ -52,6 +56,9 @@ class CostsController < ApplicationController
 
   def destroy
     @cost = Cost.find(params[:id])
+    Product.where(cost_id: @cost.id).each do |product|
+      product.update(cost_id: nil)
+    end
     @cost.destroy
     redirect_to :back, notice: "Cost was successfully deleted"
   end

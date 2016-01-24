@@ -15,7 +15,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
        
     if @task.save      
-      redirect_to controller: 'home', action: 'show', id: @task.project_id
+      redirect_to controller: 'projects', action: 'show', id: @task.project_id
       flash[:notice] = "Task was successfully created"
     else
       flash[:alert] = "There was a problem creating task"
@@ -25,12 +25,16 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+    if current_user.role == "factory" && @project.user.fullname != current_user.fullname
+      redirect_to root_path
+      flash[:alert] = "You have no authorization"
+    end
   end
 
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to controller: 'home', action: 'show', id: @task.project_id
+      redirect_to controller: 'projects', action: 'show', id: @task.project_id
       flash[:notice] = "Task was successfully updated"
     else
       flash[:alert] = "There was a problem updating task"
