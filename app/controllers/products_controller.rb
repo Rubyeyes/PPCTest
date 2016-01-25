@@ -18,10 +18,10 @@ class ProductsController < ApplicationController
     @users = User.notification_recipients(@product, current_user, params[:controller])
    
     if @product.save   
-      @users.each do |user|
-        Notification.create_notification(@product, "create a product of", current_user.id, user.id, params[:controller])
-      end   
-      redirect_to controller: 'products', action: 'show', id: product.id
+      # @users.each do |user|
+      #   Notification.create_notification(@product, "create a product of", current_user.id, user.id, params[:controller])
+      # end   
+      redirect_to controller: 'products', action: 'show', id: @product.id
       flash[:notice] = "Products was successfully created"
     else
       flash[:alert] = "There was a problem creating product"
@@ -41,9 +41,9 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @users = User.notification_recipients(@product, current_user, params[:controller])
     if @product.update(product_params)
-      @users.each do |user|
-        Notification.create_notification(@product, "update the product of", current_user.id, user.id, params[:controller])
-      end
+      # @users.each do |user|
+      #   Notification.create_notification(@product, "update the product of", current_user.id, user.id, params[:controller])
+      # end
       redirect_to controller: 'products', action: 'show', id: @product.id
       flash[:notice] = "Products was successfully updated"
     else

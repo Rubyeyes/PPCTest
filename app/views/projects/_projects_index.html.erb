@@ -1,3 +1,4 @@
+
 <% object.each_slice(3) do |group| %>
 	<div class="row">
 		<% group.each do |project| %>
@@ -36,8 +37,8 @@
 								<% end %>
 								<p>
 									<% if project.tasks.present? %>			
-										<b><%= project.tasks.last.executor %></b> -
-										<%= project.tasks.last.task %>
+										<b><%= project.tasks.order(created_at: :asc).last.executor %></b> -
+										<%= project.tasks.order(created_at: :asc).last.task %>
 									<% end %>		
 								</p>
 								<p>
@@ -55,5 +56,4 @@
 		<% end %> <!-- group iterate -->
 	</div> <!-- row div -->
 <% end %>
-
-<p><%= paginate object %></p>
+<!--<%= paginate object, window: 3, outer_window: 1%>-->

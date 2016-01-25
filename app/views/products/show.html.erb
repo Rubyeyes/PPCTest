@@ -47,11 +47,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<% @product.po_products.last(3).each do |po_product| %>
+						<% @product.po_products.joins(:po).order("date DESC").each do |po_product| %>
 							<tr>
 								<td><%= link_to po_product.po.po_number, controller: 'pos', action: 'show', id: po_product.po.id %></td>
 								<td><%= po_product.quantity %></td>
-								<td><%= po_product.created_at.strftime("%d-%m-%y") %></td>	
+								<td><%= po_product.po.date.strftime("%d-%m-%y") %></td>	
 							</tr>
 						<% end %>						
 					</tbody>

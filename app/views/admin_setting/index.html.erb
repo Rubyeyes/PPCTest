@@ -1,17 +1,22 @@
-<h1>AdminSetting#index</h1>
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h1>Admin Setting</h1>
+	</div>
+	<div class="panel-body">
+		<p>
+			<%= link_to 'Users', users_admin_index_path %>   
+		</p>
 
-<p>
-	<%= link_to 'Users', users_admin_index_path %>   
-</p>
+		<p>
+			<%= link_to 'Role Option', role_options_path %>
+		</p>
 
-<p>
-	<%= link_to 'Role Option', role_options_path %>
-</p>
+		<p>
+			<%= link_to 'Status Option', status_options_path %>
+		</p>
 
-<p>
-	<%= link_to 'Status Option', status_options_path %>
-</p>
-
-<p>
-	<%= link_to 'Logos', logos_path %>
-</p>
+		<p>
+			<%= link_to 'Logos', logos_path %>
+		</p>
+	</div>
+</div>

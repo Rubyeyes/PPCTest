@@ -10,7 +10,7 @@
 							<%if product.po_products.present?%>
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%="Pos"%><span class="caret"></span></a>
 		            <ul class="dropdown-menu">
-		            	<% product.po_products.each do |p| %>
+		            	<% product.po_products.joins(:po).order('date DESC').each do |p| %>
 		              	<li><%= "#{p.quantity} in #{p.po.po_number}" %></li>
 		              	<li role="separator" class="divider"></li>
 		              <% end %>

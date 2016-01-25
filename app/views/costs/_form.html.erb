@@ -39,7 +39,7 @@
 				<%= f.label :unitUSD, "Unit USD", class: "control-label" %>
 			</div>
 			<div class="col-sm-10">
-				<%= f.number_field :unitUSD, class: "form-control", id: "unit_usd_output", placeholder: " $ 0.00" %>
+				<%= f.number_field :unitUSD, :step => 0.01, class: "form-control", id: "unit_usd_output", placeholder: " $ 0.00" %>
 			</div>
 		</div>
 		<div class="row row-form">
@@ -47,7 +47,7 @@
 				<%= f.label :toolingUSD, "Tooling USD", class: "control-label" %>
 			</div>
 			<div class="col-sm-10">
-				<%= f.number_field :toolingUSD, class: "form-control", id: "tooling_usd_output", placeholder: " $ 0.00" %>
+				<%= f.number_field :toolingUSD, :step => 0.01, class: "form-control", id: "tooling_usd_output", placeholder: " $ 0.00" %>
 			</div>
 		</div>
 	<% end %>
@@ -57,7 +57,7 @@
 			<%= f.label :unitRMB, "Unit RMB", class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
-			<%= f.number_field :unitRMB, class: "form-control", id: "unit_rmb_input", placeholder: "￥0.00" %>
+			<%= f.number_field :unitRMB, :step => 0.01, class: "form-control", id: "unit_rmb_input", placeholder: "￥0.00" %>
 		</div>
 	</div>
 	<div class="row row-form">
@@ -65,7 +65,7 @@
 			<%= f.label :toolingRMB, "Tooling RMB", class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
-			<%= f.number_field :toolingRMB, class: "form-control", id: "tooling_rmb_input", placeholder: "￥0.00" %>
+			<%= f.number_field :toolingRMB, :step => 0.01, class: "form-control", id: "tooling_rmb_input", placeholder: "￥0.00" %>
 		</div>
 	</div>
 	
@@ -87,12 +87,12 @@
 <script>
 	$('#unit_rmb_input').on('change', function () {
 	  UNIT_RMB = $(this).val();
-	  UNIT_USD = UNIT_RMB*$('#ratio_input').val();
+	  UNIT_USD = Math.round(UNIT_RMB/$('#ratio_input').val()*100)/100;
 	  $('#unit_usd_output').val(UNIT_USD);
 	});
 	$('#tooling_rmb_input').on('change', function () {
 	  TOOLING_RMB = $(this).val();
-	  TOOLING_USD = TOOLING_RMB*$('#ratio_input').val();
+	  TOOLING_USD = Math.round(TOOLING_RMB/$('#ratio_input').val()*100)/100;
 	  $('#tooling_usd_output').val(TOOLING_USD);
 	});
 </script>

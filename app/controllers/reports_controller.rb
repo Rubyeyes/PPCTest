@@ -17,9 +17,9 @@ class ReportsController < ApplicationController
     @users = User.notification_recipients(@report, current_user, params[:controller])
        
     if @report.save      
-      @users.each do |user|
-        Notification.create_notification(@report, "created report of", current_user.id, user.id, params[:controller])
-      end     
+      # @users.each do |user|
+      #   Notification.create_notification(@report, "created report of", current_user.id, user.id, params[:controller])
+      # end     
       redirect_to reports_path
       flash[:notice] = "Report was successfully created"
     else
@@ -41,9 +41,9 @@ class ReportsController < ApplicationController
      @report = Report.find(params[:id])
      @users = User.notification_recipients(@report, current_user, params[:controller])
     if @report.update(report_params)      
-      @users.each do |user|
-        Notification.create_notification(@report, "updated report of", current_user.id, user.id, params[:controller])
-      end
+      # @users.each do |user|
+      #   Notification.create_notification(@report, "updated report of", current_user.id, user.id, params[:controller])
+      # end
       redirect_to reports_path
       flash[:notice] = "Report was successfully updated"
     else

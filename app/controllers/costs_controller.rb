@@ -15,11 +15,11 @@ class CostsController < ApplicationController
 
   def create
     @cost = Cost.new(cost_params)
-    @users = User.notification_recipients(@cost, current_user, params[:controller])   
+    # @users = User.notification_recipients(@cost, current_user, params[:controller])   
     if @cost.save
-      @users.each do |user|
-        Notification.create_notification(@cost, "create cost of", current_user.id, user.id, params[:controller])
-      end
+      # @users.each do |user|
+      #   Notification.create_notification(@cost, "create cost of", current_user.id, user.id, params[:controller])
+      # end
       redirect_to costs_path
       flash[:notice] = "Cost was successfully created"
     else
@@ -40,9 +40,9 @@ class CostsController < ApplicationController
     @cost = Cost.find(params[:id])
     @users = User.notification_recipients(@cost, current_user, params[:controller])  
     if @cost.update(cost_params)
-      @users.each do |user|
-        Notification.create_notification(@cost, "update the cost of", current_user.id, user.id, params[:controller])
-      end
+      # @users.each do |user|
+      #   Notification.create_notification(@cost, "update the cost of", current_user.id, user.id, params[:controller])
+      # end
       redirect_to costs_path
       flash[:notice] = "Cost was successfully updated"
     else

@@ -51,6 +51,7 @@
 
 .red-word {
 	color: red;
+  font-weight: bold;
 }
 
 .row-form {
@@ -90,7 +91,7 @@
 
 .list-group-cost-index {
 	position: absolute;
-  bottom: 15px;
+  top: 4px;
   left: 0px;
 	.list-item-project-cost-index {
 		border-radius: 0px;
@@ -163,7 +164,7 @@
 	background-color: rgba(0, 0, 0, 1);
 }
 .navbar-toggle-width {
-	width: 159px;
+	width: inherit;
 }
 .nav-second {
 	background-color: rgb(84, 84, 84);

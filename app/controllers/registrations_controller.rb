@@ -21,10 +21,11 @@ class RegistrationsController < Devise::RegistrationsController
 	end
 
 	protected
-
+ 	def sign_up_params
+ 		devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:fullname, :email, :password, :password_confirmation, :remember_me) }
+    devise_parameter_sanitizer.sanitize(:sign_up)
+  end
 	def account_update_params
-		devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:fullname, :email, :password, :password_confirmation, :remember_me) }
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :fullname, :email, :password, :remember_me) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:fullname, :email, :password, :password_confirmation, :current_password) }
 	  devise_parameter_sanitizer.sanitize(:account_update)
 	end

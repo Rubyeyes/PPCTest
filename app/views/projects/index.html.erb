@@ -14,17 +14,17 @@
 </div>
 
 <ul id='projectTab' class="nav navbar-default nav-tabs">
-  <li id="0"><%= link_to "1. Need to be Fixed", '#' %></li>  
-  <li id="1"><%= link_to "2. Hold", '#' %></li> 
-  <li id="2"><%= link_to "3. Concept Design", '#' %></li>
-  <li id="3"><%= link_to "4. Samples Received", '#' %></li>
-  <li id="4"><%= link_to "5. Design Package", '#' %></li>
-  <li id="5"><%= link_to "6. In production", '#' %></li>
-  <li id="6"><%= link_to "7. Droped", '#' %></li>
+  <li class="active", id="0"><%= link_to "0. Need to be Fixed", '#' %></li>  
+  <li id="1"><%= link_to "1. Hold", '#' %></li> 
+  <li id="2"><%= link_to "2. Concept Design", '#' %></li>
+  <li id="3"><%= link_to "3. Samples Received", '#' %></li>
+  <li id="4"><%= link_to "4. Design Package", '#' %></li>
+  <li id="5"><%= link_to "5. In production", '#' %></li>
+  <li id="6"><%= link_to "6. Droped", '#' %></li>
 </ul>
 
 <div id="project0"><%= render "projects_index", object: @projects.where(status: "0. Need to be fixed") %></div> <br/>
-<div id="project1"><%= render "projects_index", object: @projects.where(status: "1. Hold for some reason") %></div> <br/>
+<div hidden id="project1"><%= render "projects_index", object: @projects.where(status: "1. Hold for some reason") %></div> <br/>
 <div id="project2"><%= render "projects_index", object: @projects.where(status: "2. Concept design") %></div> <br/>
 <div id="project3"><%= render "projects_index", object: @projects.where(status: "3. Received prototypes or samples") %></div> <br/>
 <div id="project4"><%= render "projects_index", object: @projects.where(status: "4. Design package and start producing") %></div> <br/>
@@ -43,6 +43,13 @@ $(document).ready(function(){
     $("li#0, li#1, li#2, li#3, li#4, li#5, li#6").removeClass("active");
     $(this).addClass("active");
 	});
+
+  $("img").mouseover(function() {
+    $(this).css( "margin-bottom", "50px");
+  });
+  $("img").mouseleave(function() {
+    $(this).css( "margin-bottom", "r0px");
+  });
 })
 	
 </script>

@@ -1,9 +1,17 @@
 
 <div class="row row-project-show">
 	<div class="col-xs-12 col-md-8">
-		<%= image_tag @project.image.url(:detail).to_s, class: "img-responsive" %>
+			<%= image_tag @project.image.url(:detail).to_s, class: "img-responsive" %>
+		
 	</div>
 	<div class="col-xs-12 col-md-4">
+		<% if @project.status == "0. Need to be fixed" %>
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<%= @project.problem %></p>
+				</div>
+			</div>
+		<%end%>
 		<div class="panel panel-default panel-project-title">
 			<div class="panel-heading">
 				<h1><%= @project.project_name %></h1>
@@ -11,13 +19,17 @@
 			</div>
 			<div class="panel-body">
 				<p><%= @project.description %></p>
-				<p class="<%= problem_word @project.status %>"><%= @project.problem %></p>
+				
+				<% if @project.patent_number.present?%>
+						<p>Patent Number: <b><%= @project.patent_number %></b></p>
+				<%end%>
 			</div>
 			<div class="panel-footer text-right">
 				<%= link_to 'Edit', edit_project_path(@project) if current_user.role == 'admin' %>
 				<%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin' %>
 			</div>
 		</div>
+
 	</div>
 </div>
 

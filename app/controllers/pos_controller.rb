@@ -35,7 +35,7 @@ class PosController < ApplicationController
   def update
     @po = Po.find(params[:id])
     if @po.update(po_params)
-      redirect_to :back
+      redirect_to new_po_product_path(po_id: @po.id)
       flash[:notice] = "PO was successfully updated"
     else
       flash[:alert] = "There was a problem updating PO"

@@ -14,9 +14,9 @@ class PoProductsController < ApplicationController
     @users = User.notification_recipients(@po_product, current_user, params[:controller])  
     
     if @po_product.save
-      @users.each do |user|
-        Notification.create_notification(@po_product, "add a product to", current_user.id, user.id, params[:controller])
-      end
+      # @users.each do |user|
+      #   Notification.create_notification(@po_product, "add a product to", current_user.id, user.id, params[:controller])
+      # end
       redirect_to :back
       flash[:notice] = "Product was successfully added"
     else
