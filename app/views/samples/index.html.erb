@@ -1,25 +1,18 @@
 
-<div class="panel panel-default panel-border-transparent">
-  <div class="panel-body">
+
     <%= form_tag(samples_path, method: :get) do %>
     	<%= hidden_field_tag :direction, params[:direction]%>
     	<%= hidden_field_tag :sort, params[:sort]%>
 	    <div class="form-inline">
 		    <% if current_user.role != "factory"%>
-					<%= select_tag(:filter, options_for_select(User.all.order(fullname: :asc).map { |u| [u.fullname, u.id] }), prompt: "Select Factory", class: "form-control") %>
-					<%= submit_tag 'Submit', class: "btn btn-default"%>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
-</div>
-<h1>Samples</h1>
-<h2><%= @project.project_name if @project.present? %> </h2>
+				<%= select_tag(:filter, options_for_select(User.all.order(fullname: :asc).map { |u| [u.fullname, u.id] }), prompt: "Select Factory", class: "form-control") %>
+				<%= submit_tag 'Submit', class: "btn btn-default"%>
+			<% end %>
+		</div>
+	<% end %>
 
-<div class="panel panel-default panel-border-transparent" >
-  <div class="panel-body text-right">
-		<%= link_to "New Sample", new_sample_path if current_user.role != 'user'%>
-	</div>
-</div>
 
-<%= render "samples_index_table"%>	
+	<h1>Samples</h1>
+	<h2><%= @project.project_name if @project.present? %> </h2>
+	<div class="text-right"><%= link_to "New Sample", new_sample_path if current_user.role != 'user'%></div>
+	<%= render "samples_index_table"%>	

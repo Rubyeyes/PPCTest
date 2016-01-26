@@ -52,7 +52,7 @@
 			<%= f.label "Factory", class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
-			<%= f.select :user_id, User.where("role LIKE ? or role LIKE ?", "factory", "admin").collect {|u| [u.fullname, u.id]}, {prompt: "Select factory" }, class: "form-control" %>
+			<%= f.select :user_id, User.order(fullname: :asc).where("role LIKE ? or role LIKE ?", "factory", "admin").collect {|u| [u.fullname, u.id]}, {prompt: "Select factory" }, class: "form-control" %>
 		</div>
 	</div>
 

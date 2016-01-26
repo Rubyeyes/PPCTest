@@ -26,7 +26,7 @@
 				<tbody>
 					<% object.samples.order(receive_date: :desc).last(3).each do |sample| %>
 						<tr>
-							<td><%= sample.receive_date.strftime("%b %d. %Y") %></td>
+							<td><%= sample.receive_date.strftime("%d %b. %Y") %></td>
 							<td align = 'center'><%= sample.quantity %></td>
 							<td><%= truncate(sample.description, length: 45, seperate: '' ) %></td>
 							<% if current_user.role != 'user' %>	

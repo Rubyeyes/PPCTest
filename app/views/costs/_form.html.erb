@@ -11,7 +11,7 @@
 					<%= f.label :project_id, "Project Name", class: "control-label" %>
 				</div>
 				<div class="col-sm-10">
-					<%= f.select :project_id, Project.where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"}, class: "form-control" %>
+					<%= f.select :project_id, Project.order(project_name: :asc).where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"}, class: "form-control" %>
 				</div>
 			</div>
 		<% elsif current_user.role == "admin" %>
@@ -20,7 +20,7 @@
 					<%= f.label :project_id, "Project Name", class: "control-label" %>
 				</div>
 				<div class="col-sm-10">
-					<%= f.select :project_id, Project.all.collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"}, class: "form-control" %>
+					<%= f.select :project_id, Project.all.order(project_name: :asc).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"}, class: "form-control" %>
 				</div>
 			</div>
 		<% end %>

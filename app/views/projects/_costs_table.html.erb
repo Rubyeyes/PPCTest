@@ -29,7 +29,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% object.costs.order(created_at: :desc).last(number).each do |cost| %>
+					<% object.costs.order(created_at: :desc).first(number).each do |cost| %>
 						<tr>
 							<% if current_user.role != 'factory'%>
 								<td><%= number_to_currency(cost.unitUSD) %></td>

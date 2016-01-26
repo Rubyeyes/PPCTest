@@ -1,9 +1,10 @@
+
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
 			<th><%= "Project Name" if @project.nil? %></th>
 			<th class = 'text-center'>Quantity</th>
-			<th class = 'text-center'><%= sortable "receive_date", "Received at" %></th>
+			<th class = 'text-center'><%= sortable "receive_date", "ETA" %></th>
 			<th>Description</th>
 			<th><%= "Factory" if current_user.role != "factory" %></th>
 			<th>Action</th>
@@ -39,3 +40,4 @@
 		<% end %>
 	</tbody>
 </table>
+

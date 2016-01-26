@@ -2,6 +2,8 @@ class ProjectsController < ApplicationController
 
   load_and_authorize_resource
 
+  class Forbidden < StandardError; end
+
   def index
     @user = current_user
     @filter = Project.text_filter(params[:filter].to_s)
@@ -36,8 +38,9 @@ class ProjectsController < ApplicationController
     @products = Product.all
     @tasks = Task.all.order(created_at: :desc)
     if current_user.role == "factory" && @project.user.fullname != current_user.fullname
-      redirect_to root_path
-      flash[:alert] = "You have no authorization"
+      # redirect_to root_path
+      # flash[:alert] = "You have no authorization"
+      raise Forbidden, "You have no authorization to visit this page" 
     end
 
   end
@@ -63,8 +66,9 @@ class ProjectsController < ApplicationController
     @products = Product.all
     @tasks = Task.all.order(created_at: :desc)
     if current_user.role == "factory" && @project.user.fullname != current_user.fullname
-      redirect_to root_path
-      flash[:alert] = "You have no authorization"
+      # redirect_to root_path
+      # flash[:alert] = "You have no authorization"
+      raise Forbidden, "You have no authorization to visit this page" 
     end
   end
 

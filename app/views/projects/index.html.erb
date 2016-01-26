@@ -7,29 +7,33 @@
 		    <div class="form-inline">
 					<%= select_tag(:filter, options_for_select(User.where("role LIKE ? or role LIKE ?", "factory", "admin").map { |user| [user.fullname] }), prompt: "Select Facotory", class: "form-control") %>
 					<%= submit_tag 'Submit', class: "btn btn-default"%>
+          <div class="text-right"><%= link_to 'New Project', new_project_path if current_user.role == 'admin'%></div>
 				</div>
 			<% end %>
 		<% end %>
   </div>
 </div>
 
-<ul id='projectTab' class="nav navbar-default nav-tabs">
-  <li class="active", id="0"><%= link_to "0. Need to be Fixed", '#' %></li>  
+<p role="separator" class="devider"></p>
+
+<ul id='projectTab' class="nav navbar-default nav-pills">
+  <li id="0"><%= link_to "0. Need to be Fixed", '#' %></li>  
   <li id="1"><%= link_to "1. Hold", '#' %></li> 
   <li id="2"><%= link_to "2. Concept Design", '#' %></li>
   <li id="3"><%= link_to "3. Samples Received", '#' %></li>
   <li id="4"><%= link_to "4. Design Package", '#' %></li>
   <li id="5"><%= link_to "5. In production", '#' %></li>
   <li id="6"><%= link_to "6. Droped", '#' %></li>
+  <li class="active", id="7"><%= link_to "All", '#' %></li>  
 </ul>
 
-<div id="project0"><%= render "projects_index", object: @projects.where(status: "0. Need to be fixed") %></div> <br/>
-<div hidden id="project1"><%= render "projects_index", object: @projects.where(status: "1. Hold for some reason") %></div> <br/>
-<div id="project2"><%= render "projects_index", object: @projects.where(status: "2. Concept design") %></div> <br/>
-<div id="project3"><%= render "projects_index", object: @projects.where(status: "3. Received prototypes or samples") %></div> <br/>
-<div id="project4"><%= render "projects_index", object: @projects.where(status: "4. Design package and start producing") %></div> <br/>
-<div id="project5"><%= render "projects_index", object: @projects.where(status: "5. In production") %></div> <br/>
-<div id="project6"><%= render "projects_index", object: @projects.where(status: "6. Droped") %></div> <br/>
+<div id="project0"><%= render "projects_index", object: @projects.where(status: "0. Need to be fixed") %></div>
+<div id="project1"><%= render "projects_index", object: @projects.where(status: "1. Hold for some reason") %></div>
+<div id="project2"><%= render "projects_index", object: @projects.where(status: "2. Concept design") %></div>
+<div id="project3"><%= render "projects_index", object: @projects.where(status: "3. Received prototypes or samples") %></div>
+<div id="project4"><%= render "projects_index", object: @projects.where(status: "4. Design package and start producing") %></div>
+<div id="project5"><%= render "projects_index", object: @projects.where(status: "5. In production") %></div>
+<div id="project6"><%= render "projects_index", object: @projects.where(status: "6. Droped") %></div>
 
 
 
@@ -40,15 +44,18 @@ $(document).ready(function(){
     divID = 'div#project' + this.id;
     $("div#project0, div#project1, div#project2, div#project3, div#project4, div#project5, div#project6").hide();
     $(divID).show();
-    $("li#0, li#1, li#2, li#3, li#4, li#5, li#6").removeClass("active");
+    if(this.id == 7){
+      $("div#project0, div#project1, div#project2, div#project3, div#project4, div#project5, div#project6").show();
+    }
+    $("li#0, li#1, li#2, li#3, li#4, li#5, li#6, li#7").removeClass("active");
     $(this).addClass("active");
 	});
 
   $("img").mouseover(function() {
-    $(this).css( "margin-bottom", "50px");
+    $(this).css({"margin-bottom":"50px", "border-top-right-radius":"50px"});
   });
   $("img").mouseleave(function() {
-    $(this).css( "margin-bottom", "r0px");
+    $(this).css( {"margin-bottom":"0px", "border-top-right-radius":"00px"});
   });
 })
 	
