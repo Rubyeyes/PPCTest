@@ -14,6 +14,7 @@ class Ability
       can :manage, Cost
       can [:read], Project
       can [:read], Product
+      can [:read, :edit, :mamage, :update], Notification
     else
       cannot [:mamage, :read], :all
     end
