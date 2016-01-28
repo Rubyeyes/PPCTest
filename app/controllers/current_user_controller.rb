@@ -2,10 +2,11 @@ class CurrentUserController < ApplicationController
 
   def index
   	@current_user = current_user
-    @pos = Po.all.order(date: :desc).limit(2)
-    @reports = Report.all.order(created_at: :desc).limit(2)
-    @costs = Cost.all.order(created_at: :desc).limit(2)
-    @samples = Sample.all.order(created_at: :desc).limit(2)
+    if current_user.role == 'admin'
+      @missions = Task.all.where(finish: false).order(deadline: :asc)
+    else
+      @missions = current_user.missions.where(finish: false).order(deadline: :asc)
+    end
   end
 
   def edit

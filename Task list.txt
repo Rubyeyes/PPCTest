@@ -1,2 +1,6 @@
 1. search bar
 2. sort bar
+
+heroku pg:push PPCTest2_development DATABASE_URL --app limitless-wildwood-4680
+
+heroku pg:reset DATABASE

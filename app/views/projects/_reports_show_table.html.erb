@@ -16,7 +16,7 @@
 				<thead>
 					<tr>
 						<th>Date</th>
-						<th>Content</th>
+						<th>Title</th>
 						<th><%= "#{"Action" if current_user.role == 'admin'}" %></th>
 					</tr>
 				</thead>
@@ -24,7 +24,7 @@
 					<% object.reports.order(created_at: :desc).last(3).each do |report| %>
 						<tr>
 							<td><%= report.created_at.strftime("%d %b. %y") %></td>
-							<td><%= truncate(report.content, length: 60, separate: '') %></td>
+							<td><%= truncate(report.name, length: 60, separate: '') %></td>
 							<% if current_user.role == 'admin' %>	
 								<td>
 									<%= link_to 'Edit |', edit_report_url(report) %>

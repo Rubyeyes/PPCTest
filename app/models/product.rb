@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
 		pg_search_scope :search, against: [:product_name, :item_number, :reminder, :Mark, :Package, :Instruction],
 		associated_against: {
 			project: [:project_name],
-			user: :fullname
+			users: :fullname
 		},
 		using: {
 			tsearch: {

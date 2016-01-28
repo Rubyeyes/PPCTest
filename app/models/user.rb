@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :sent_notifications, class_name: 'Notification', foreign_key: "sender_id"
   has_many :received_notifications, class_name: 'Notification', foreign_key: "recipient_id"
+  has_many :missions, class_name: 'Task', foreign_key: 'executor_id'
 
   # User::Roles
   # The available roles

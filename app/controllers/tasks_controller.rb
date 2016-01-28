@@ -33,7 +33,11 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    if @task.update(task_params)
+    if params[:finish_value].present?
+      @task.update(finish: mission_params[:finish_value])
+      redirect_to :back
+      flash[:notice] = "Good Job"
+    elsif @task.update(task_params)
       redirect_to controller: 'projects', action: 'show', id: @task.project_id
       flash[:notice] = "Task was successfully updated"
     else
@@ -54,7 +58,10 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:id, :executor, :task, :project_id)
+    params.require(:task).permit(:id, :executor, :task, :project_id, :deadline, :executor_id, :finish)
+  end
+  def mission_params
+    params.permit(:finish_value)
   end
 
 end

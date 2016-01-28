@@ -24,7 +24,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% object.samples.order(receive_date: :desc).last(3).each do |sample| %>
+					<% object.samples.order(receive_date: :desc).first(3).each do |sample| %>
 						<tr>
 							<td><%= sample.receive_date.strftime("%d %b. %Y") %></td>
 							<td align = 'center'><%= sample.quantity %></td>

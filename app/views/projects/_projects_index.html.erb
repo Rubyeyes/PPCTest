@@ -2,7 +2,7 @@
 <% object.each_slice(3) do |group| %>
 	<div class="row">
 		<% group.each do |project| %>
-			<div class="col-xs-12 col-sm-6 col-md-4">
+			<div class="col-xs-12 col-md-4">
 				<div class="panel panel-info">
 					<div class="panel-body panel-body-cost">
 							<div class="<%= body_top_color project %>">
@@ -37,7 +37,7 @@
 								<% end %>
 								<p>
 									<% if project.tasks.present? %>			
-										<b><%= project.tasks.order(created_at: :asc).last.executor %></b> -
+										<b><%= project.tasks.order(created_at: :asc).last.executor.fullname if project.tasks.order(created_at: :asc).last.executor.present? %></b>
 										<%= project.tasks.order(created_at: :asc).last.task %>
 									<% end %>		
 								</p>
