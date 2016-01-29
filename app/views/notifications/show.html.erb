@@ -11,4 +11,6 @@
 	<%= render "notification_report", object: @notification%>
 <% elsif @notification.notifiable_type == 'Sample'%>
 	<%= render "notification_sample", object: @notification%>
+<% elsif @notification.notifiable_type == 'Task'%>
+	<%= render "notification_task", object: @notification%>
 <% end %>

@@ -1,0 +1,18 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h1>Task Notification</h1>
+		<em><%= object.notifiable.project.user.fullname if current_user.role != 'factory' %></em>
+	</div>
+	<div class="panel-body">
+		<p>
+			<%= User.find(object.sender_id).fullname%> 
+			<%= object.content%>
+			<%= link_to object.notifiable.project.project_name, controller: "reports", action: "show", id: object.notifiable.id   if  object.notifiable.present?%>
+		</p>
+		<p><%= simple_format(object.notifiable.task) %></p>
+	</div>
+	<div class="panel-footer text-right">
+		<%= link_to 'Back', :back %>
+		<%= link_to 'Delete', notification_path(object), method: :delete, data: {confirm: "Are you sure?"}%>
+	</div>
+</div>

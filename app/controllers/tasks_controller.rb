@@ -33,8 +33,12 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
+    @users = User.notification_recipients(@task, current_user, params[:controller])  
     if params[:finish_value].present?
       @task.update(finish: mission_params[:finish_value])
+      @users.each do |user|
+        Notification.create_notification(@task, "finish the task of", current_user.id, user.id, params[:controller])
+      end
       redirect_to :back
       flash[:notice] = "Good Job"
     elsif @task.update(task_params)
