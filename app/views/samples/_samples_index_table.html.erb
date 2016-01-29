@@ -1,43 +1,36 @@
-
-<table class="table table-striped table-hover">
-	<thead>
-		<tr>
-			<th><%= "Project Name" if @project.nil? %></th>
-			<th class = 'text-center'>Quantity</th>
-			<th class = 'text-center'><%= sortable "receive_date", "ETA" %></th>
-			<th>Description</th>
-			<th><%= "Factory" if current_user.role != "factory" %></th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% if @project.present? %>	
-			<% @project.samples.each do |sample| %>
-				<tr>
-					<td align = 'center'><%= sample.quantity %></td>
-					<td><%= sample.receive_date.strftime("%b %d. %Y") %></td>
-					<td><%= sample.description %></td>	
-					<td>
-						<%= link_to 'Edit', edit_sample_url(sample) %>
-						<%= button_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default" %>
-					</td>			
-				</tr>
-			<% end %>	
-		<% else %> 
+<div class="table-responsive">
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<% if @project.nil? %>
+					<th><%= "Project Name"%></th>
+				<% end %>
+				<th class = 'text-center'>Quantity</th>
+				<th class = 'text-center'><%= sortable "receive_date", "ETA" %></th>
+				<th>Description</th>
+				<th><%= "Factory" if current_user.role != "factory" %></th>
+				<th><%= "Action" if current_user.role == "admin"%></th>
+			</tr>
+		</thead>
+		<tbody>
 			<% @samples.each do |sample| %>	
 				<tr>
-					<td><%= sample.project.project_name %></td>
+					<%if @project.nil?%>
+						<td><%= sample.project.project_name %></td>
+					<%end%>
 					<td align = 'center'><%= sample.quantity %></td>
 					<td align = 'center'><%= sample.receive_date.strftime("%b %d. %Y") %></td>
 					<td><%= sample.description %></td>
 					<td><%= sample.project.user.fullname if current_user.role != "factory"%></td>	
 					<td>
-						<%= link_to 'Edit', edit_sample_url(sample) %> |
-						<%= link_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"} %>
+						<% if current_user.role == "admin"%>
+							<%= link_to 'Edit', edit_sample_url(sample) %> |
+							<%= link_to 'Delete', sample_url(sample), method: :delete, data: {confirm: "Are you sure?"} %>
+						<% end %>
 					</td>			
 				</tr>
 			<% end %>
-		<% end %>
-	</tbody>
-</table>
+		</tbody>
+	</table>
+</div>
 

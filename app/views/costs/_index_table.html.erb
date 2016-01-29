@@ -1,0 +1,39 @@
+<div class="table-responsive">
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<%if @project.nil?%>
+					<th><%= sortable "project_name", "Project Name" %></th>
+				<%end%>
+				<th>U RMB</th>
+				<th>T RMB</th>
+				<th><%= "U USD" if current_user.role != 'factory'%></th>
+				<th><%= "T USD" if current_user.role != 'factory'%></th>
+				<th>Description</th>
+				<th><%= sortable "created_at", "Created At"%></th>
+				<th><%- "Action" if current_user.role == 'admin'%></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @costs.each do |cost| %>
+				<tr>
+					<%if @project.nil?%>
+						<td><%= link_to cost.project.project_name, project_path(cost.project.id) %></td>
+					<%end%>
+					<td><%= number_to_currency(cost.unitRMB, unit: '￥') %></td>
+					<td><%= number_to_currency(cost.toolingRMB, unit: '￥') %></td>
+					<td><%= number_to_currency(cost.unitUSD) if current_user.role != 'factory'%></td>
+					<td><%= number_to_currency(cost.toolingUSD) if current_user.role != 'factory'%></td>
+					<td><%= cost.description %></td>
+					<td><%= cost.created_at.strftime("%m-%d-%y") %></td>
+					<td>
+						<% if current_user.role == 'admin'%>
+							<%= link_to 'Edit', edit_cost_url(cost)%>
+							<%= link_to 'Delete', cost_url(cost), method: :delete, data: {confirm: "Are you sure?"}%>
+						<%end%>
+					</td>	
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

@@ -8,7 +8,8 @@ class Ability
     if user.role == "admin"
       can :manage, :all
     elsif user.role == "user"
-      can :manage, :all
+      can :read, :all
+      can :manage, Po
     elsif user.role == "factory"
       can :manage, Sample
       can :manage, Cost

@@ -7,11 +7,11 @@
 
 <div class="panel panel-default panel-border-transparent">
 	<div class="panel-body text-right">
-		<%= link_to "New PO", new_po_path if current_user.role == 'admin' %>
+		<%= link_to "New PO", new_po_path if current_user.role == 'admin' || 'user' %>
 	</div>
 </div>
 
-
+<div class="table-responsive">
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
@@ -34,3 +34,4 @@
 		<% end %>
 	</tbody>
 </table>
+</div>

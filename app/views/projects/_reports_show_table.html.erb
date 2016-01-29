@@ -24,13 +24,14 @@
 					<% object.reports.order(created_at: :desc).last(3).each do |report| %>
 						<tr>
 							<td><%= report.created_at.strftime("%d %b. %y") %></td>
-							<td><%= truncate(report.name, length: 60, separate: '') %></td>
-							<% if current_user.role == 'admin' %>	
-								<td>
-									<%= link_to 'Edit |', edit_report_url(report) %>
-									<%= link_to 'Delete', report_url(report), method: :delete, data: {confirm: "Are you sure?"} %>
-								</td>
-							<% end %>			
+							<td><%= truncate(report.name, length: 60, separate: '') %></td>	
+							<td>
+								<%= link_to 'View ', report_url(report), method: :get %>
+								<% if current_user.role == 'admin' %>
+									<%= link_to 'Edit ', edit_report_url(report) %>
+									<%= link_to 'Delete ', report_url(report), method: :delete, data: {confirm: "Are you sure?"} %>
+								<% end %>	
+							</td>			
 						</tr>
 					<% end %>						
 				</tbody>

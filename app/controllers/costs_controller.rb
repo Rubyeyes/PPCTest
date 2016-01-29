@@ -6,6 +6,10 @@ class CostsController < ApplicationController
     @filter = Cost.text_filter(params[:filter].to_s)
     @search = @filter.text_search(params[:query].to_s)
     @costs = @search.user_filter(@user).text_sort(params[:sort], params[:direction]).page params[:page]
+    if params[:project_id_param].present?
+      @project = Project.find(params[:project_id_param])
+      @costs = @project.costs 
+    end
   end
 
   def new
