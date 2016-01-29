@@ -1,6 +1,6 @@
 <div class="panel panel-default ">
 
-	<%= render "show_table_heading", name: 'Samples',path:  new_sample_path(project_id_param: object.id), role: current_user.role == 'admin' && 'factory' %>
+	<%= render "show_table_heading", name: 'Samples',path:  new_sample_path(project_id_param: object.id), role: current_user.role == ('admin' && 'factory') %>
 
 	<div class="panel-body panel-home-show">
 		<% if object.samples.present? %>

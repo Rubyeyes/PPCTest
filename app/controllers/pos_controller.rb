@@ -47,7 +47,7 @@ class PosController < ApplicationController
     @po = Po.find(params[:id])
     @po_products = PoProduct.where po_id: @po.id
     @user = current_user
-    if current_user.role == "factory" && @po.user_filter(@user).nil?
+    if current_user.role == "factory" && @po.products.user_filter(@user).nil?
       redirect_to root_path
       flash[:alert] = "You have no authorization"
     end

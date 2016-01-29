@@ -1,17 +1,11 @@
-<h1>Notifications</h1>
-
-<div class="panel panel-default panel-border-transparent">
-  <div class="panel-body text-right">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h2>Notifications</h2>
 	</div>
 </div>
 
 <% @notifications.each do |notification| %>
-		<div class="panel panel-warning">
-			<div class="panel-heading">
-				<div style=<%= notification_weight notification %> >
-					<%= "#{notification.notifiable_type} Notification" %>
-				</div>
-			</div>
+		<div class="panel panel-default">
 			<div class="panel-body">
 				<div style=<%= notification_weight(notification)%> >
 					<%= User.find(notification.sender_id).fullname%> <%= notification.content%>

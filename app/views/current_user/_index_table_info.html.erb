@@ -9,7 +9,7 @@
 			<li class="list-item"><%= link_to 'New project', new_project_path if current_user.role == "admin" %></li>
 			<li class="list-item"><%= link_to 'New product', new_product_path if current_user.role == "admin" %></li>
 			<li class="list-item"><%= link_to "New cost", new_cost_path if current_user.role != 'user'%></li>
-			<li class="list-item"><%= link_to "New PO", new_po_path if current_user.role == 'admin' || 'user'%></li>
+			<li class="list-item"><%= link_to "New PO", new_po_path if current_user.role == ('admin' || 'user')%></li>
 			<li class="list-item"><%= link_to "New report", new_report_path if current_user.role == 'admin'%></li>
 			<li class="list-item"><%= link_to "New sample", new_sample_path if current_user.role != 'user'%></li>
 		</ul>

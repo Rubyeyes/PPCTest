@@ -24,14 +24,16 @@
 <% end %>
 
 <%= render 'layouts/nav_bar' %>
-  
+<div class="container-fluid  container-banner">
+  <% if action_name != 'show'%>
+    <%= image_tag "/home_images/topbanner.jpg", class: "img-responsive" %>
+  <% end %>
+</div> 
   <!-- Main body -->
-  <div class="container container-body">
-
-    <%= yield %>
-    <!-- Footer -->
-
-  </div> 
+<div class="container"> 
+  <%= yield %>
+  <!-- Footer -->
+</div> 
 
 
 <script>
