@@ -28,6 +28,22 @@
 #projectCollapse {
   padding:0px;
 }
+
+.container-project-show {
+  margin-top: 50px;
+}
+
+.image-project-frame {
+  text-align: -webkit-center;
+  overflow: hidden;
+}
+
+.image-project-frame > .img-responsive {
+  position: relative;
+  margin-top: -15%;
+  margin-bottom: -15%
+}
+
 .nav-search-input{
   background: rgba(255,255,255,1);
   border-color: transparent;
