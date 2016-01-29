@@ -45,10 +45,16 @@
         $(this).remove();
       })
     }, 2000);
+
+    $("#login-link").click(function () {
+      $("#login-panel").show()
+    });
+
     $("#nav-search-icon").click(function (){
       $(this).hide();
       $("#nav-search").show(); 
-    })
+    });
+
     $('body').click(function(e) {
       if (e.target.id == "nav-search-icon" || e.target.id == "nav-search-input" || e.target.id == "nav-search-button"){
         } else {

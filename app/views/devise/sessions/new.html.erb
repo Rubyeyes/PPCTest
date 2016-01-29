@@ -7,7 +7,7 @@
     <img class="img-responsive img-thumbnail project-image" src="/home_images/projects.jpg">
     <img class="img-responsive img-thumbnail project-image" src="/home_images/reflex sight.jpg">
     <img class="img-responsive img-thumbnail project-image" src="/home_images/scope.jpg">
-    <div class="panel panel-default panel-body panel-body-login">
+    <div hidden id="login-panel" class="panel panel-default panel-body panel-body-login">
         <h2>Sign in</h2>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-inline">

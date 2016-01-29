@@ -13,7 +13,7 @@
         <%end%>
           <%= link_to image_tag(@logo.image.url(:detail).to_s, class: "logo"), home_index_path, class: "navbar-brand" if @logo.present? %>
           <%= link_to "NcSTAR", home_index_path, class: "navbar-brand" if @logo.nil? %>
-          <%= link_to "Sign in", new_user_session_path, class: "navbar-login" if current_user.nil? %>
+          <div id="login-link"><%= link_to "Sign in", "#", class: "navbar-login" if current_user.nil? %></div>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
