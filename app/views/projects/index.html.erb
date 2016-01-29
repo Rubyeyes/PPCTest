@@ -14,16 +14,26 @@
   </div>
 <% end %>
 
-<ul id='projectTab' class="nav navbar-default nav-pills">
-  <li id="0"><%= link_to "0. Need to be Fixed", '#' %></li>  
-  <li id="1"><%= link_to "1. Hold", '#' %></li> 
-  <li id="2"><%= link_to "2. Concept Design", '#' %></li>
-  <li id="3"><%= link_to "3. Samples Received", '#' %></li>
-  <li id="4"><%= link_to "4. Design Package", '#' %></li>
-  <li id="5"><%= link_to "5. In production", '#' %></li>
-  <li id="6"><%= link_to "6. Droped", '#' %></li>
-  <li class="active", id="7"><%= link_to "All", '#' %></li>  
-</ul>
+<div class="navbar-nav">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#projectCollapse" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <div class="btn btn-default">All</div>
+    </button>
+  </div>
+  <div id="projectCollapse" class="navbar-collapse collapse" aria-expanded="false">
+    <ul id='projectTab' class="nav navbar-default nav-tabs nav-justified">
+      <li id="0"><%= link_to "Fix Required", '#' %></li>  
+      <li id="1"><%= link_to "Hold Now", '#' %></li> 
+      <li id="2"><%= link_to "Concept Design", '#' %></li>
+      <li id="3"><%= link_to "Samples Received", '#' %></li>
+      <li id="4"><%= link_to "Design Package", '#' %></li>
+      <li id="5"><%= link_to "In Production", '#' %></li>
+      <li id="6"><%= link_to "Droped Project", '#' %></li>
+      <li class="active", id="7"><%= link_to "All Projects", '#' %></li>  
+    </ul>
+  </div>
+</div>
 
 <div id="project0"><%= render "index_projects", object: @projects.where(status: "0. Need to be fixed") %></div>
 <div id="project1"><%= render "index_projects", object: @projects.where(status: "1. Hold for some reason") %></div>
@@ -50,10 +60,10 @@ $(document).ready(function(){
 	});
 
   $(".panel img").mouseover(function() {
-    $(this).css({"margin-bottom":"50px", "border-top-right-radius":"50px"});
+    $(this).css({"margin-bottom":"50px"});
   });
   $(".panel img").mouseleave(function() {
-    $(this).css( {"margin-bottom":"0px", "border-top-right-radius":"00px"});
+    $(this).css({"margin-bottom":"0px"});
   });
 })
 	

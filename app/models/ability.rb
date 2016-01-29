@@ -17,6 +17,7 @@ class Ability
       can [:read], Product
       can [:read, :edit, :mamage, :update], Notification
       can [:read], Po
+      can [:read], Report
     else
       cannot [:mamage, :read], :all
     end
