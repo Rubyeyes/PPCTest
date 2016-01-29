@@ -1,14 +1,6 @@
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<div class="row">
-			<div class="col-sm-11"><div class="project-show-table-head">Products</div></div>
-			<div class="col-sm-1">
-				<% if current_user.role == 'admin' %>
-					<%= link_to '', new_product_path(project_id_param: object.id), class: "glyphicon glyphicon-plus" %>
-				<% end %>
-			</div>
-		</div>
-	</div>
+
+	<%= render "show_table_heading", name: 'Products', path: new_product_path(project_id_param: object.id), role: current_user.role == 'admin'%>
 
 	<div class="panel-body panel-home-show">
 		<% object.products.order(product_name: :asc).each_slice(2) do |group| %>

@@ -10,7 +10,8 @@
 		<em><%= @report.project.user.fullname if current_user.role != 'factory'%></em>
 	</div>
 	<div class="panel-body">
-		<p><b>Project: </b><%=link_to @report.project.project_name, project_path(@report.project.id) %></p>
+		<p><b>Project: </b><%=link_to @report.project.project_name, project_path(@report.project.id
+		) %></p>
 		<p><%= simple_format(@report.content) %></p>
 	</div>
 	<div class="panel-footer">

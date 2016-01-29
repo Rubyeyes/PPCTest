@@ -1,16 +1,7 @@
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<div class="row">
-			<div class="col-xs-11"><div class="project-show-table-head">Cost</div></div>
-			<div class="col-xs-1">
-			<% if action_name == "show" %>
-				<% if current_user.role != 'user' %>
-					<%= link_to "", new_cost_path(project_id_param: @project.id), class: "glyphicon glyphicon-plus"%>
-				<% end %>
-			<% end %>
-			</div>
-		</div>
-	</div>
+
+
+	<%= render "show_table_heading", name: 'Costs', path: new_cost_path(project_id_param: @project.id), role: current_user.role == 'admin' || 'factory' && action_name == 'show'%>
 
 	<div class="panel-body panel-home-show">
 		<% if object.costs.present? %>

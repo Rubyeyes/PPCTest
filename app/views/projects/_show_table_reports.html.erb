@@ -1,14 +1,6 @@
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<div class="row">
-			<div class="col-sm-11"><div class="project-show-table-head">Reports</div></div>
-			<div class="col-sm-1">
-				<% if current_user.role == 'admin' %>
-					<%= link_to "", new_report_path(project_id_param: @project.id), class: "glyphicon glyphicon-plus"%>
-				<% end %>
-			</div>
-		</div>
-	</div>
+
+	<%= render "show_table_heading", name: 'Reports', path: new_report_path(project_id_param: @project.id), role: current_user.role == 'admin'%>
 
 	<div class="panel-body panel-home-show">
 		<% if object.reports.present? %>
