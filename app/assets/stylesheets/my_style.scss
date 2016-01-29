@@ -104,7 +104,8 @@
 }
 
 .logo {
-	max-height: 40px;
+	max-height: 40px; 
+  width:40px;
 }
 
 .list-group-cost-index {
@@ -170,10 +171,19 @@
 
 .navbar-brand {
     height: 50px;
-    padding-top: 5px;
+    padding-top: 10px;
     padding-bottom: 5px;
     padding-right: 15px;
     padding-left: 5px;
+}
+
+.navbar-login {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: medium;
+  color: white;
+  text-decoration: none;
 }
 
 .panel-top-margin {

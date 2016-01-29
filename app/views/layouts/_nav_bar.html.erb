@@ -4,18 +4,21 @@
   <div class="<%= smart_navbar_color params[:controller]%>">
     <div class="<%= smart_container params[:controller]%>">
       <div class="navbar-header">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="glyphicon glyphicon-align-justify glyphicon-white"></span>
-        </button>
+        <% if current_user %>
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-align-justify glyphicon-white"></span>
+          </button>
+        <%end%>
           <%= link_to image_tag(@logo.image.url(:detail).to_s, class: "logo"), home_index_path, class: "navbar-brand" if @logo.present? %>
           <%= link_to "NcSTAR", home_index_path, class: "navbar-brand" if @logo.nil? %>
+          <%= link_to "Sign in", new_user_session_path, class: "navbar-login" if current_user.nil? %>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div  id="navbar" class="navbar-collapse collapse" aria-expanded="false">
-        <% if current_user %>
+      <% if current_user %>
+        <div  id="navbar" class="navbar-collapse collapse" aria-expanded="false">
           <ul class="nav navbar-nav navbar-right" >
             <% if params[:controller] != "home"%>
               <li class="<%= 'active' if params[:controller] == 'projects' %>"><%= link_to "Projects", projects_path, class: "nav-link nav-second-word" %></li>  
@@ -57,12 +60,8 @@
               </ul> 
             </li>
           </ul>
-        <% else %>
-          <ul class="nav navbar-nav navbar-right"> 
-            <li><%= link_to "Sign in", new_user_session_path, class: "nav-link" %></li>
-          </ul>
-        <% end %>
-      </div><!-- /.navbar-collapse -->
+        </div><!-- /.navbar-collapse -->
+      <% end %>
     </div><!-- /.container-fluid -->
   </div>
  </div> 
