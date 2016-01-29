@@ -8,16 +8,9 @@
 
 	<div class="row">
 		<div class="col-xs-12 col-md-4">
-			<% if @project.status == "0. Need to be fixed" %>
-				<div class="panel panel-danger">
-					<div class="panel-heading">
-						<%= @project.problem %></p>
-					</div>
-				</div>
-			<%end%>
 			<div class="panel panel-default panel-project-title">
 				<div class="panel-heading">
-					<h1><%= @project.project_name %></h1>
+					<h3><%= @project.project_name %></h3>
 					<em><%= @project.user.fullname%></em>
 				</div>
 				<div class="panel-body">
@@ -32,6 +25,13 @@
 					<%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin' %>
 				</div>
 			</div>
+			<% if @project.status == "0. Need to be fixed" %>
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<%= @project.problem %></p>
+					</div>
+				</div>
+			<%end%>
 
 		</div>
 		<div class="col-xs-12 col-md-8">

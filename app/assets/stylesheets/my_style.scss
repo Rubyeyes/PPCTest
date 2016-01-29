@@ -181,8 +181,35 @@
 }
 
 .panel-project-title {
-  border-color: rgb(221, 221, 221);
-  margin-top:1px;
+  border-color: transparent;
+  margin-top:-77px;
+  background-color: transparent;
+
+}
+
+.panel-show {
+  border-color: transparent;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.panel-show .panel-heading {
+  background-color: transparent;
+  border-bottom-width: 1px;
+  border-color: black;
+}
+
+.panel-show .panel-footer {
+  background-color: transparent;
+}
+
+.panel-project-title .panel-heading {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+}
+
+.panel-project-title .panel-heading h3 {
+  margin-top: 0px; 
 }
 
 .panel-top-margin {
