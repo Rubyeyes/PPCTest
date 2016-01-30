@@ -5,7 +5,7 @@ module ApplicationHelper
 	end
 
 	def smart_navbar_color controller
-		if controller == 'home' || (controller == 'devise/sessions' && action_name == 'new')
+		if ['home', 'devise/sessions', 'registrations'].include?(controller)
 			"navbar-full navbar-inverse navbar-transparent"
 		else
 			"navbar-full navbar-inverse navbar-normal"
@@ -13,7 +13,7 @@ module ApplicationHelper
 	end
 
 	def smart_navbar_position controller
-		if controller == 'home' || (controller == 'devise/sessions' && action_name == 'new')
+		if ['home', 'devise/sessions', 'registrations'].include?(controller)
 			"navbar-static-top"
 		else
 			"navbar-fixed-top"
@@ -21,12 +21,19 @@ module ApplicationHelper
 	end
 
 	def smart_container controller
-		if controller == 'home' || (controller == 'devise/sessions' && action_name == 'new')
+		if ['home', 'devise/sessions', 'registrations'].include?(controller)
 			"container-fluid"
 		else
 			"container"
 		end
 	end
 	
+	def login_link_select
+		if params[:controller] == 'devise/sessions' 
+			'#'
+		else
+			new_user_session_path
+		end
+	end
 
 end
