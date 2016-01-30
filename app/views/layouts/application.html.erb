@@ -11,8 +11,10 @@
   
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
+<!-- notification flash -->
 <% if flash[:notice] %>
   <div id="notice_wrapper">
     <div  class = "alert alert-success"><%= flash[:notice] %></div>
@@ -25,11 +27,6 @@
 
 <%= render 'layouts/nav_bar' %>
 
-<% if action_name != 'show' && ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller])%>
-  <div class="container-fluid  container-banner">
-      <%= image_tag "/home_images/topbanner.jpg", class: "img-responsive" %>
-  </div> 
-<% end %>
   <!-- Main body -->
 <div class="container"> 
   <%= yield %>

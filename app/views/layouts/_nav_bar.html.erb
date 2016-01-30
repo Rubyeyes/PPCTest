@@ -1,8 +1,7 @@
 <!-- Navigation Bar -->
-
-<div class="<%= smart_navbar_position params[:controller]%>">
-  <div class="<%= smart_navbar_color params[:controller]%>">
-    <div class="<%= smart_container params[:controller]%>">
+<div class="<%= smart_navbar_position params[:controller]%>"> <!-- navbar fix to the top after login -->
+  <div class="<%= smart_navbar_color params[:controller]%>"> <!-- navbar change to black after login -->
+    <div class="<%= smart_container params[:controller]%>"> <!-- fix container after login -->
       <div class="navbar-header">
         <% if current_user %>
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,3 +64,10 @@
     </div><!-- /.container-fluid -->
   </div>
  </div> 
+
+<!-- top banner -->
+<% if action_name != 'show' && ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller])%>
+  <div class="container-fluid  container-banner">
+      <%= image_tag "/home_images/topbanner.jpg", class: "img-responsive" %>
+  </div> 
+<% end %>
