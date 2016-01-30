@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :admin_setting, only:[:index]
   resources :costs, except:[:show]
   resources :current_user, only:[:index, :edit, :update]
-  resources :home, only:[:index, :show]
+  resources :home, only:[:index]
   resources :logos
   resources :notifications, only:[:index, :update, :show, :destroy]
   resources :projects
