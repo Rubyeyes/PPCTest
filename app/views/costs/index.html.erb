@@ -4,11 +4,7 @@
     	<%= hidden_field_tag :direction, params[:direction]%>
     	<%= hidden_field_tag :sort, params[:sort]%>
 	    <div class="form-inline">
-	    	<% if current_user.role == "factory"%>
-				<%= select_tag(:filter, options_for_select(Project.order(project_name: :asc).where("user_id = ?", current_user.id).map { |p| [p.project_name] }), prompt: "Select Project", class: "form-control") %>
-			<% else %>
-				<%= select_tag(:filter, options_for_select(Project.all.order(project_name: :asc).map { |p| [p.project_name] }), prompt: "Select Project", class: "form-control") %>
-			<% end %>
+				<%= select_tag(:filter, options_for_select(project_select(current_user)), prompt: "Select Project", class: "form-control") %>
 				<%= submit_tag 'Submit', class: "btn btn-default"%>
 			</div>
 		<% end %>
@@ -16,10 +12,9 @@
 </div>
 
 <h1>Costs</h1>
-<h3><%= link_to @project.project_name, project_path(@project.id) if @project.present?%></h3>
-
-<div class="text-right">
-	<%= link_to "New cost", new_cost_path if current_user.role != 'user'%>
-</div>
-
+<!-- Check if link from project -->
+<em><%= link_to @project.project_name, project_path(@project.id) if @project.present?%></em> 
+<!-- Only allow factory and admin create cost -->
+<div class="text-right"><%= link_to "New cost", new_cost_path if current_user.role == 'factory' || 'admin' %></div>
+<!-- Cost list -->
 <%= render "index_table"%>

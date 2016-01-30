@@ -1,51 +1,51 @@
 
 <div class="container-project-show ">
-	<div class="row row-project-show">
-		<div class="col-xs-12 col-md-12">
-			<div class="image-project-frame"><%= image_tag @project.image.url(:detail).to_s, class: "img-responsive" %></p>
-		</div>
+	<div class="col-xs-12 col-md-12">
+		<div class="image-project-frame"><%= image_tag @project.image.url(:detail).to_s, class: "img-responsive" %></p>
 	</div>
 
-	<div class="row">
-		<div class="col-xs-12 col-md-4">
-			<div class="panel panel-default panel-project-title">
-				<div class="panel-heading">
-					<h3><%= @project.project_name %></h3>
-					<em><%= @project.user.fullname%></em>
-				</div>
-				<div class="panel-body">
-					<p><%= @project.description %></p>
-					
-					<% if @project.patent_number.present?%>
-							<p>Patent Number: <b><%= @project.patent_number %></b></p>
-					<%end%>
-				</div>
-				<div class="panel-footer text-right">
-					<%= link_to 'Edit', edit_project_path(@project) if current_user.role == 'admin' %>
-					<%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin' %>
-				</div>
-			</div>
-			<% if @project.status == "0. Need to be fixed" %>
-				<div class="panel panel-danger">
+	<div class="container-content">
+		<div class="row">
+			<div class="col-xs-12 col-md-4">
+				<div class="panel panel-default panel-project-title">
 					<div class="panel-heading">
-						<%= @project.problem %></p>
+						<h3><%= @project.project_name %></h3>
+						<em><%= @project.user.fullname%></em>
+					</div>
+					<div class="panel-body">
+						<p><%= @project.description %></p>
+						
+						<% if @project.patent_number.present?%>
+								<p>Patent Number: <b><%= @project.patent_number %></b></p>
+						<%end%>
+					</div>
+					<div class="panel-footer text-right">
+						<%= link_to 'Edit', edit_project_path(@project) if current_user.role == 'admin' %>
+						<%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin' %>
 					</div>
 				</div>
-			<%end%>
+				<% if @project.status == "0. Need to be fixed" %>
+					<div class="panel panel-danger">
+						<div class="panel-heading">
+							<%= @project.problem %></p>
+						</div>
+					</div>
+				<%end%>
 
+			</div>
+			<div class="col-xs-12 col-md-8">
+				<%= render "costs_table", object: @project, :number => 3 %>
+				<%= render "show_table_samples", object: @project %>
+				<%= render "show_table_tasks", object: @project %><br>
+				<%= render "show_table_reports", object: @project %><br>
+			</div>
 		</div>
-		<div class="col-xs-12 col-md-8">
-			<%= render "costs_table", object: @project, :number => 3 %>
-			<%= render "show_table_samples", object: @project %>
-			<%= render "show_table_tasks", object: @project %><br>
-			<%= render "show_table_reports", object: @project %><br>
-		</div>
-	</div>
 
-		
-	<div class="row">
-		<div class="col-xs-12">
-			<%= render "show_table_products", object: @project %>
+			
+		<div class="row">
+			<div class="col-xs-12">
+				<%= render "show_table_products", object: @project %>
+			</div>
 		</div>
 	</div>
 

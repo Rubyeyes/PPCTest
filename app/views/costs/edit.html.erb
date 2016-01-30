@@ -1,6 +1,7 @@
-<div class="panel panel-default  panel-top-margin">
+<div class="panel panel-default panel-top-margin">
 	<div class="panel-heading">
-		<h1>Edit Cost <%= "of #{@cost.project.project_name}" %></h1>
+		<h2>Edit Cost</h2>
+		<em> <%= "#{@cost.project.project_name}" %></em>
 	</div>
 	<div class="panel-body">
 		<%= render 'form' %>

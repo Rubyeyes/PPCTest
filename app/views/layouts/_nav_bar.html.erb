@@ -23,9 +23,9 @@
             <% if params[:controller] != "home"%>
               <li class="<%= 'active' if params[:controller] == 'projects' %>"><%= link_to "Projects", projects_path, class: "nav-link nav-second-word" %></li>  
               <li class="<%= 'active' if params[:controller] == 'products' %>"><%= link_to "Products", products_path, class: "nav-link nav-second-word" %></li> 
-              <li class="<%= 'active' if params[:controller] == 'costs' %>"><%= link_to "Costs", costs_path, class: "nav-link nav-second-word" %></li>
-              <li class="<%= 'active' if params[:controller] == 'pos'%>"><%= link_to "PO", pos_path, class: "nav-link  nav-second-word" %></li>
-              <li class="<%= 'active' if params[:controller] == 'reports'%>"><%= link_to "Reports", reports_path, class: "nav-link nav-second-word" %></li>
+              <li class="<%= 'active' if params[:controller] == 'costs' %>"><%= link_to "Costs", costs_path, class: "nav-link nav-second-word" if current_user.role != 'designer'%></li>
+              <li class="<%= 'active' if params[:controller] == 'pos'%>"><%= link_to "PO", pos_path, class: "nav-link  nav-second-word" if current_user.role != 'designer'%></li>
+              <li class="<%= 'active' if params[:controller] == 'reports'%>"><%= link_to "Reports", reports_path, class: "nav-link nav-second-word" if current_user.role != 'designer'%></li>
               <li class="<%= 'active' if params[:controller] == 'samples'%>"><%= link_to "Samples", samples_path, class: "nav-link nav-second-word" %></li>
               <li >
                 <form hidden id="nav-search" class="navbar-form " role="search">

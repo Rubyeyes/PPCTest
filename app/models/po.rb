@@ -22,7 +22,7 @@ class Po < ActiveRecord::Base
 
 	def self.text_search query
 		if query.present?
-			search(query)
+			search(query.to_s)
 		else
 			all
 		end

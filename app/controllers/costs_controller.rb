@@ -55,9 +55,6 @@ class CostsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def destroy
     @cost = Cost.find(params[:id])
     Product.where(cost_id: @cost.id).each do |product|
@@ -67,6 +64,7 @@ class CostsController < ApplicationController
     redirect_to :back, notice: "Cost was successfully deleted"
   end
 
+# Private parameters
   private
 
   def cost_params

@@ -1,31 +1,25 @@
 <P><%= render "validation_errors", object:  @cost%><P>
 
 <%= form_for @cost do |f| %>
-
+	
+	<!-- Check if requiring to offer project select -->
 	<% if action_name == "new" %>
 		<% if @project.present? %>
 			<%= f.hidden_field :project_id, :value => @project.id %>
-		<% elsif current_user.role == "factory" %>
+		<% else %>
 			<div class="row row-form">
 				<div class="col-sm-2">
 					<%= f.label :project_id, "Project Name", class: "control-label" %>
 				</div>
 				<div class="col-sm-10">
-					<%= f.select :project_id, Project.order(project_name: :asc).where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"}, class: "form-control" %>
-				</div>
-			</div>
-		<% elsif current_user.role == "admin" %>
-			<div class="row row-form">
-				<div class="col-sm-2">
-					<%= f.label :project_id, "Project Name", class: "control-label" %>
-				</div>
-				<div class="col-sm-10">
-					<%= f.select :project_id, Project.all.order(project_name: :asc).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"}, class: "form-control" %>
+					<%= f.select :project_id, project_select(current_user), {prompt: "Select Project"}, class: "form-control" %>
 				</div>
 			</div>
 		<% end %>
 	<% end %>
-	<% if current_user.role == "admin" %>
+
+	<!-- Only show US Dollars to Admin and Users -->
+	<% if current_user.role == "admin" || "user" %>
 		<div class="row row-form">
 			<div class="col-sm-2">
 				<%= f.label :ratio, "Currency Ratio", class: "control-label" %>
@@ -52,6 +46,7 @@
 		</div>
 	<% end %>
 
+	<!-- Show RMB cost -->
 	<div class="row row-form">
 		<div class="col-sm-2">
 			<%= f.label :unitRMB, "Unit RMB", class: "control-label" %>
@@ -67,8 +62,7 @@
 		<div class="col-sm-10">
 			<%= f.number_field :toolingRMB, :step => 0.01, class: "form-control", id: "tooling_rmb_input", placeholder: "￥0.00" %>
 		</div>
-	</div>
-	
+	</div>	
 	<div class="row row-form">
 		<div class="col-sm-2">
 			<%= f.label :description, class: "control-label" %>

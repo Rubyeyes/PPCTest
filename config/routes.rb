@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to:'home#index'
 
   resources :admin_setting, only:[:index]
-  resources :costs
+  resources :costs, except:[:show]
   resources :current_user, only:[:index, :edit, :update]
   resources :home, only:[:index, :show]
   resources :logos
