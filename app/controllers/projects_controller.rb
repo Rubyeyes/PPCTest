@@ -6,9 +6,9 @@ class ProjectsController < ApplicationController
 
   def index
     @user = current_user
-    @filter = Project.text_filter(params[:filter].to_s)
-    @search = @filter.text_search(params[:query].to_s)
-    @projects = @search.user_filter(@user).text_sort.page(params[:page]) 
+    # advance search filter
+    filter(Project)
+    @projects = @data.text_sort.page(params[:page])
     @products = Product.all
     @tasks = Task.all
     @costs = Cost.all.order(crreated_at: :desc)

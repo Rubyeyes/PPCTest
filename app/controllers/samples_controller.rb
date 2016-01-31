@@ -3,9 +3,9 @@ class SamplesController < ApplicationController
   
   def index
     @user = current_user
-    @filter = Sample.text_filter(params[:filter].to_s)
-    @search = @filter.text_search(params[:query].to_s)
-    @samples = @search.user_filter(@user).text_sort(params[:sort], params[:direction]).page params[:page] 
+    # advance search filter
+    filter(Sample)
+    @samples = @data.text_sort(params[:sort], params[:direction]).page params[:page] 
     if params[:project_id_param].present?
       @project = Project.find(params[:project_id_param])
       @samples = @project.samples 

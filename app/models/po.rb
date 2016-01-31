@@ -19,21 +19,6 @@ class Po < ActiveRecord::Base
 				}
 			}
 
-
-	def self.text_search query
-		if query.present?
-			search(query.to_s)
-		else
-			all
-		end
-	end
-	def self.user_filter current_user
-		if current_user.role == "factory"
-			joins(:projects).where("user_id = ?", current_user.id).uniq
-		else
-			all
-		end
-	end
 	def self.text_sort sort, direction
 		if sort.present? && direction.present?
 			order("#{sort} #{direction}")

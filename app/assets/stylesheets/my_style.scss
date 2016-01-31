@@ -25,6 +25,16 @@
 	}
 }
 
+.filter-bar {
+  height: 165px;
+  background: rgba(255,255,255,0.8);
+  position: relative;
+}
+
+.filter-bar .filter-bar-form {
+  padding: 8px;
+}
+
 .hr-table {
   margin-top: 0px;
 }

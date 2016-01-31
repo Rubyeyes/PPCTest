@@ -2,8 +2,9 @@ class PosController < ApplicationController
   load_and_authorize_resource
   def index
     @user = current_user
-    @search = Po.text_search(params[:query].to_s)
-    @pos = @search.user_filter(@user).text_sort(params[:sort], params[:direction]).page params[:page]
+    # advance search filter
+    filter(Po)
+    @pos = @data.text_sort(params[:sort], params[:direction]).page params[:page]
   end
 
   def new

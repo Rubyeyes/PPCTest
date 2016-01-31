@@ -30,28 +30,6 @@ class Project < ActiveRecord::Base
 				}
 			}
 
-
-	def self.text_filter filter
-		if filter.present?
-			joins(:user).where("fullname LIKE ?", "#{filter}")
-		else
-			all
-		end
-	end
-	def self.text_search query
-		if query.present?
-			search(query)
-		else
-			all
-		end
-	end
-	def self.user_filter current_user
-		if current_user.role == "factory"
-			where(user_id: current_user.id)
-		else
-			all
-		end
-	end
 	def self.text_sort
 		joins(:user).order('status ASC, fullname ASC, project_name ASC')		
 	end

@@ -1,19 +1,4 @@
 
-
-<% if current_user.role != "factory" %>
-  <div class="panel panel-default panel-border-transparent">
-    <div class="panel-body">
-      <%= form_tag(projects_path, method: :get) do %>
-  	    <div class="form-inline">
-  				<%= select_tag(:filter, options_for_select(User.where("role LIKE ? or role LIKE ?", "factory", "admin").order(fullname: :asc).map { |user| [user.fullname] }), prompt: "Select Facotory", class: "form-control") %>
-  				<%= submit_tag 'Submit', class: "btn btn-default"%>
-          <div class="text-right"><%= link_to 'New Project', new_project_path if current_user.role == 'admin'%></div>
-  			</div>
-  		<% end %>
-    </div>
-  </div>
-<% end %>
-
 <div class="navbar-nav">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#projectCollapse" aria-expanded="false">

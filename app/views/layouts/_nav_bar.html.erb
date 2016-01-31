@@ -27,7 +27,7 @@
               <li class="<%= 'active' if params[:controller] == 'reports'%>"><%= link_to "Reports", reports_path, class: "nav-link nav-second-word" if current_user.role != 'designer'%></li>
               <li class="<%= 'active' if params[:controller] == 'samples'%>"><%= link_to "Samples", samples_path, class: "nav-link nav-second-word" %></li>
               <li >
-                <form hidden id="nav-search" class="navbar-form " role="search">
+                <form hidden id="nav-search" action="/projects" class="navbar-form " role="search">
                   <div class="input-group">
                       <input id="nav-search-input" type="text" class="form-control nav-search-input" name="query" id="query" placeholder="Search" >
                       <span class="input-group-addon nav-search-addon">
@@ -63,7 +63,25 @@
       <% end %>
     </div><!-- /.container-fluid -->
   </div>
- </div> 
+  <!-- Fiter bar -->
+  <% if current_user && params[:controller] != "home"%>
+    <div class="col-xs-12 col-md-4" style="padding:0px; float:right">
+      <div class="filter-bar">
+            <div class="filter-bar-form">
+              <%= form_tag('#', method: :get) do%>
+                <%= hidden_field_tag :direction, params[:direction]%>
+                <%= hidden_field_tag :sort, params[:sort]%>
+                <% if current_user.role != "factory" %>
+                  <%= select_tag(:factory, options_for_select(User.where("role LIKE ? or role LIKE ?", "factory", "admin").order(fullname: :asc).map { |user| [user.fullname, user.id] }), prompt: "Select Factory", class: "form-control") %>
+                <% end %>
+                <%= select_tag(:project, options_for_select(project_select(current_user)), prompt: "Select Project", class: "form-control") %>
+                <%= submit_tag 'Submit', class: "btn btn-default"%>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div> 
 
 <!-- top banner -->
 <% if (params[:controller] != 'projects' || action_name != 'show') && ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller])%>
@@ -71,3 +89,4 @@
         <%= image_tag "/home_images/topbanner.jpg", class: "img-responsive" %>
     </div>
 <% end %>
+

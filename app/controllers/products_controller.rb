@@ -3,14 +3,14 @@ class ProductsController < ApplicationController
 
   def index
     @user = current_user
-    @filter = Product.text_filter(params[:filter].to_s)
-    @search = @filter.text_search(params[:query].to_s)
-    @products = @search.user_filter(@user).text_sort(params[:sort], params[:direction]).page params[:page]
+    # advance search filter
+    filter(Product)
+    @products = @data.text_sort(params[:sort], params[:direction]).page params[:page]
   end
 
   def new
-    @project = Project.find(params[:project_id_param])
-    @product = @project.products.new()
+    @project = Project.find(params[:project_id_param]) if params[:project_id_param].present?
+    @product = Product.new()
   end
 
   def create
