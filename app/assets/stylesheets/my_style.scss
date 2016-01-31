@@ -26,13 +26,27 @@
 }
 
 .filter-bar {
-  height: 165px;
+  height: 120px;
   background: rgba(255,255,255,0.8);
   position: relative;
 }
 
+.arrow {
+  position: relative;
+  float: right;
+  background: rgba(255,255,255,0.8);
+  padding-top: 53px;
+  padding-bottom: 53px;
+  top: 0px;
+  width: 30px;
+}
+
 .filter-bar .filter-bar-form {
   padding: 8px;
+}
+
+.filter-bar .filter-bar-form .form-control {
+  width: 96%
 }
 
 .hr-table {

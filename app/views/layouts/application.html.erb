@@ -61,7 +61,21 @@
         $("#nav-search").hide();
         $("#nav-search-icon").show(); 
       }
-    })
+    });
+
+    // filter bar toggle
+    $('#left-arrow').click(function (e) {
+      e.stopPropagation();
+      $('#filter-bar').show(1000);
+      $(this).hide();
+      $('#right-arrow').show();
+    });
+    $('#right-arrow').click(function (e) {
+      e.stopPropagation();
+      $('#filter-bar').hide(1000);
+      $(this).hide();
+      $('#left-arrow').show();
+    });
   });
 </script>
 

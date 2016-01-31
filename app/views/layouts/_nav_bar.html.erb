@@ -65,19 +65,27 @@
   </div>
   <!-- Fiter bar -->
   <% if current_user && params[:controller] != "home"%>
-    <div class="col-xs-12 col-md-4" style="padding:0px; float:right">
-      <div class="filter-bar">
-            <div class="filter-bar-form">
-              <%= form_tag('#', method: :get) do%>
-                <%= hidden_field_tag :direction, params[:direction]%>
-                <%= hidden_field_tag :sort, params[:sort]%>
-                <% if current_user.role != "factory" %>
-                  <%= select_tag(:factory, options_for_select(User.where("role LIKE ? or role LIKE ?", "factory", "admin").order(fullname: :asc).map { |user| [user.fullname, user.id] }), prompt: "Select Factory", class: "form-control") %>
-                <% end %>
-                <%= select_tag(:project, options_for_select(project_select(current_user)), prompt: "Select Project", class: "form-control") %>
-                <%= submit_tag 'Submit', class: "btn btn-default"%>
-            </div>
-        <% end %>
+    <div class="row">
+      <div hidden id="filter-bar" class="col-xs-11 col-md-4" style="padding:0px; float:right">
+        <div class="filter-bar">
+          <div class="filter-bar-form">      
+            <%= form_tag('#', method: :get) do%>
+              <%= hidden_field_tag :direction, params[:direction]%>
+              <%= hidden_field_tag :sort, params[:sort]%>
+              <% if current_user.role != "factory" %>
+                <%= select_tag(:factory, options_for_select(User.where("role LIKE ? or role LIKE ?", "factory", "admin").order(fullname: :asc).map { |user| [user.fullname, user.id] }), prompt: "Select Factory", class: "form-control") %>
+              <% end %>
+              <%= select_tag(:project, options_for_select(project_select(current_user)), prompt: "Select Project", class: "form-control") %>
+              <%= submit_tag 'Submit', class: "btn btn-default"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div id="left-arrow" class="col-xs-1 col-md-1" style="padding:0px; float:right">
+        <a style="color:black"><span class="glyphicon glyphicon-chevron-left arrow"></span></a>
+      </div>
+      <div hidden id="right-arrow" class="col-xs-1 col-md-1" style="padding:0px; float:right">
+        <a style="color:black"><span class="glyphicon glyphicon-chevron-right arrow"></span></a>
       </div>
     </div>
   <% end %>

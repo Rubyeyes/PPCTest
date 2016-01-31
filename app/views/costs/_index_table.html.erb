@@ -6,10 +6,10 @@
 				<%if @project.nil?%> <!-- Check if table is accessed from project -->
 					<th><%= sortable "project_name", "Project Name" %></th>
 				<%end%>
-				<th>U RMB</th>
-				<th>T RMB</th>
-				<th><%= "U USD" if current_user.role != 'factory'%></th> <!-- Don't show USD to factory -->
-				<th><%= "T USD" if current_user.role != 'factory'%></th> <!-- Don't show USD to factory -->
+				<th>Unit RMB</th>
+				<th>Tooling RMB</th>
+				<th><%= "Unit USD" if current_user.role != 'factory'%></th> <!-- Don't show USD to factory -->
+				<th><%= "Tooling USD" if current_user.role != 'factory'%></th> <!-- Don't show USD to factory -->
 				<th>Description</th>
 				<th><%= sortable "created_at", "Created At"%></th>
 				<th><%- "Action" if current_user.role == 'admin'%></th> <!-- Only admin can edit and delete the cost -->
