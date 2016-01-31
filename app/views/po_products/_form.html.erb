@@ -3,8 +3,8 @@
 <div class="panel panel-default panel-top-margin">
 	<div class="panel-heading">
 		<h2><%= @po.po_number %></h2>
-			<p><%= link_to 'Edit Po Number', edit_po_path(@po)%></p>
-		<p><%= @po.date.strftime("%Y-%m-%d") %></p>
+		<p style="float:left"><%= link_to 'Edit Po Number', edit_po_path(@po)%></p>
+		<p><%= @po.date.strftime("%m-%d-%y") %></p>
 
 		<%= form_for @po_product do |f| %>
 			<%= f.hidden_field :po_id, value: @po.id %>

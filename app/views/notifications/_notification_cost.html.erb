@@ -15,7 +15,9 @@
 					<th><%= "T USD" if current_user.role != 'factory'%></th>
 					<th>Description</th>
 					<th>Created At</th>
-					<th>Action</th>
+					<% if current_user.role == 'factory' || 'admin'%>
+						<th>Action</th>
+					<% end %>
 				</tr>
 			</thead>
 			<tbody>
@@ -27,10 +29,12 @@
 						<td><%= number_to_currency(object.notifiable.toolingUSD) if current_user.role != 'factory'%></td>
 						<td><%= object.notifiable.description %></td>
 						<td><%= object.notifiable.created_at.strftime("%m-%d-%y") %></td>
-						<td>
-							<%= link_to 'Edit', edit_cost_url(object.notifiable)%>
-							<%= link_to 'Delete', cost_url(object.notifiable), method: :delete, data: {confirm: "Are you sure?"}%>
-						</td>	
+						<% if current_user.role == 'factory' || 'admin'%>
+							<td>
+								<%= link_to 'Edit', edit_cost_url(object.notifiable)%>
+								<%= link_to 'Delete', cost_url(object.notifiable), method: :delete, data: {confirm: "Are you sure?"}%>
+							</td>
+						<% end %>
 					</tr>
 			</tbody>
 		</table>

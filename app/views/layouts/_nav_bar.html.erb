@@ -66,8 +66,8 @@
  </div> 
 
 <!-- top banner -->
-<% if action_name != 'show' && ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller])%>
-  <div class="container-fluid  container-banner">
-      <%= image_tag "/home_images/topbanner.jpg", class: "img-responsive" %>
-  </div> 
+<% if (params[:controller] != 'projects' || action_name != 'show') && ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller])%>
+    <div class="container-fluid  container-banner">
+        <%= image_tag "/home_images/topbanner.jpg", class: "img-responsive" %>
+    </div>
 <% end %>

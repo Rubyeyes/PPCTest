@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :products
   resources :pos
-  resources :po_products
+  resources :po_products, only:[:new, :edit]
   resources :reports
   resources :role_options
   resources :samples
