@@ -11,6 +11,7 @@ class Project < ActiveRecord::Base
 	validates :project_name, presence: true
 
 	mount_uploader :image, ImageUploader
+	mount_uploaders :instructions, InstructionUploader
 
 	include PgSearch
 		pg_search_scope :search, against: [:project_name, :description, :user_id],

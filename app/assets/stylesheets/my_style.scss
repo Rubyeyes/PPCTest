@@ -31,6 +31,11 @@
   position: relative;
 }
 
+.badge-black {
+  background: rgba(0,0,0,0.8);
+  border-radius: 4px;
+}
+
 .arrow {
   position: relative;
   float: right;
@@ -58,7 +63,7 @@
 }
 
 .container-content {
-  background-color: rgba(245,245,245,0.6);
+  background-color: rgba(245,245,245,0.8);
 }
 
 #projectCollapse {
@@ -218,9 +223,20 @@
 }
 
 .panel-project-title {
-  border-color: transparent;
+  border-color: rgb(204, 204, 204);
+  border-width: 1px;
   margin-top:-77px;
   background-color: transparent;
+}
+
+.panel-project-title .panel-heading {
+  border-radius: 0px;
+}
+.panel-project-title .panel-body {
+  background-color: white;
+}
+.panel-project-title .panel-footer {
+  background-color: white;
 
 }
 
@@ -425,6 +441,7 @@ background-color:rgba(0, 0, 0, 1);
 .project-image {
 	border: transparent;
 	padding: 0px;
+  max-height: 300px;
 }
 
 .table-condensed {

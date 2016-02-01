@@ -27,7 +27,16 @@
 				<% if @project.status == "0. Need to be fixed" %>
 					<div class="panel panel-danger">
 						<div class="panel-heading">
-							<%= @project.problem %></p>
+							<%= @project.problem %>
+						</div>
+					</div>
+				<%end%>
+				<% if @project.status == "0. Need to be fixed" %>
+					<div class="panel">
+						<div class="panel-heading">
+							<% @project.instructions.each do |instruction| %>
+								<%= link_to "Instruction documents", "https://docs.google.com/gview?url={#{instruction.url}}&embedded=true"%>
+							<% end %>
 						</div>
 					</div>
 				<%end%>
