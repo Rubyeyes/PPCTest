@@ -439,6 +439,11 @@ background-color:rgba(0, 0, 0, 1);
 }
 
 .project-image {
+  border: transparent;
+  padding: 0px;
+}
+
+.panel-body-cost .project-image {
 	border: transparent;
 	padding: 0px;
   max-height: 300px;
