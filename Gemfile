@@ -29,6 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # File uploader
 gem 'rmagick'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'fog'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'

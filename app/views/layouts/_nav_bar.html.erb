@@ -65,7 +65,6 @@
   </div>
   <!-- Fiter bar -->
   <% if current_user && params[:controller] != "home"%>
-    <div class="row">
       <div hidden id="filter-bar" class="col-xs-11 col-md-4" style="padding:0px; float:right">
         <div class="filter-bar">
           <div class="filter-bar-form">      
@@ -87,7 +86,6 @@
       <div hidden id="right-arrow" class="col-xs-1 col-md-1" style="padding:0px; float:right">
         <a style="color:black"><span class="glyphicon glyphicon-chevron-right arrow"></span></a>
       </div>
-    </div>
   <% end %>
 </div> 
 
