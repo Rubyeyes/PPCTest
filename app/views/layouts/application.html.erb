@@ -76,6 +76,23 @@
       $(this).hide();
       $('#left-arrow').show();
     });
+
+    // Change navbar when scroll down
+    $(window).scroll(function () {
+      var top = $(this).scrollTop();
+      if(top>400) {
+        $("#top-navbar-white").removeClass("navbar-full navbar-default navbar-normal");
+        $("#top-navbar-white").addClass("navbar-full navbar-inverse");
+        $("#black-logo").hide();
+        $("#white-logo").show();
+      }
+      if(top<=400) {
+        $("#top-navbar-white").addClass("navbar-full navbar-default navbar-normal");
+        $("#top-navbar-white").removeClass("navbar-full navbar-inverse");
+        $("#black-logo").show();
+        $("#white-logo").hide();
+      }
+    })
   });
 </script>
 

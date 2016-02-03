@@ -1,13 +1,13 @@
 
-<div class="navbar-nav">
+<div class="navbar-nav" style="margin:0px">
   <div class="navbar-header">
-    <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#projectCollapse" aria-expanded="false">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#projectCollapse" aria-expanded="false" style="margin: 0px;padding-right: 0px;">
       <span class="sr-only">Toggle navigation</span>
       <div class="btn btn-default">All</div>
     </button>
   </div>
   <div id="projectCollapse" class="navbar-collapse collapse" aria-expanded="false">
-    <ul id='projectTab' class="nav navbar-default nav-tabs nav-justified">
+    <ul id='projectTab' class="nav navbar-default nav-tabs nav-justified nav-project-tab">
       <li id="0">
         <a href='#'><span class="badge badge-black"><%= @data.where(status: "0. Need to be fixed").count if @data.where(status: "0. Need to be fixed").count > 0 %></span> Problems</a>
       </li>

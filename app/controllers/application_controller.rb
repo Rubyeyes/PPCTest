@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
   end
 
  def pass_variable
- 	@logo = Logo.find_by(name: "NcSTAR Image Logo")
+ 	@logo_white = Logo.find_by(name: "NcSTAR Image Logo")
+ 	@logo_black = Logo.find_by(name: "NcSTAR Image Logo Black")
  	@user = current_user
  	@notifications = Notification.where(recipient_id: current_user.id) if current_user.present?
  end

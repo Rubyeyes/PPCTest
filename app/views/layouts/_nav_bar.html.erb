@@ -1,17 +1,18 @@
 <!-- Navigation Bar -->
 <div class="<%= smart_navbar_position params[:controller]%>"> <!-- navbar fix to the top after login -->
-  <div class="<%= smart_navbar_color params[:controller]%>"> <!-- navbar change to black after login -->
+  <div id="top-navbar-white" class="<%= smart_navbar_color params[:controller]%>"> <!-- navbar change to black after login -->
     <div class="<%= smart_container params[:controller]%>"> <!-- fix container after login -->
       <div class="navbar-header">
         <% if current_user %>
           <!-- Brand and toggle get grouped for better mobile display -->
-          <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+          <button type="button" class="navbar-toggle navbar-toggle-black" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="glyphicon glyphicon-align-justify glyphicon-white"></span>
           </button>
         <%end%>
-          <%= link_to image_tag(@logo.image.url(:detail).to_s, class: "logo"), home_index_path, class: "navbar-brand" if @logo.present? %>
-          <%= link_to "NcSTAR", home_index_path, class: "navbar-brand" if @logo.nil? %>
+          <div id="black-logo"><%=  smart_logo_color(params[:controller]) %></div>      
+          <div hidden id="white-logo"><%= link_to image_tag(@logo_white.image.url(:detail).to_s, class: "logo"), home_index_path, class: "navbar-brand" if @logo_black.present? %></div>
+          <%= link_to "NcSTAR", home_index_path, class: "navbar-brand" if @logo_white.nil? && @logo_black.nil? %>
           <div id="login-link"><%= link_to "Sign in", login_link_select, class: "navbar-login" if current_user.nil?%></div>
       </div>
 
@@ -39,7 +40,7 @@
                 </form>
               </li>
               <li >
-                <a id="nav-search-icon" class="nav-link" href="#">
+                <a id="nav-search-icon" class="nav-link" >
                 <span id="nav-search-button" class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
               </li>
             <%end%>
@@ -63,32 +64,36 @@
       <% end %>
     </div><!-- /.container-fluid -->
   </div>
-  <!-- Fiter bar -->
-  <% if current_user && params[:controller] != "home"%>
-      <div hidden id="filter-bar" class="col-xs-11 col-md-4" style="padding:0px; float:right">
-        <div class="filter-bar">
-          <div class="filter-bar-form">      
-            <%= form_tag('#', method: :get) do%>
-              <%= hidden_field_tag :direction, params[:direction]%>
-              <%= hidden_field_tag :sort, params[:sort]%>
-              <% if current_user.role != "factory" %>
-                <%= select_tag(:factory, options_for_select(User.where("role LIKE ? or role LIKE ?", "factory", "admin").order(fullname: :asc).map { |user| [user.fullname, user.id] }), prompt: "Select Factory", class: "form-control") %>
-              <% end %>
-              <%= select_tag(:project, options_for_select(project_select(current_user)), prompt: "Select Project", class: "form-control") %>
-              <%= submit_tag 'Submit', class: "btn btn-default"%>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div id="left-arrow" class="col-xs-1 col-md-1" style="padding:0px; float:right">
-        <a style="color:black"><span class="glyphicon glyphicon-chevron-left arrow"></span></a>
-      </div>
-      <div hidden id="right-arrow" class="col-xs-1 col-md-1" style="padding:0px; float:right">
-        <a style="color:black"><span class="glyphicon glyphicon-chevron-right arrow"></span></a>
-      </div>
-  <% end %>
 </div> 
 
+
+  <!-- Fiter bar -->
+<!-- <div class="filter-bar-all">
+  <% if current_user && params[:controller] != "home"%>
+    <div hidden id="filter-bar" class="col-xs-11 col-md-4" style="padding:0px; float:right">
+      <div class="filter-bar">
+        <div class="filter-bar-form">      
+          <%= form_tag('#', method: :get) do%>
+            <%= hidden_field_tag :direction, params[:direction]%>
+            <%= hidden_field_tag :sort, params[:sort]%>
+            <% if current_user.role != "factory" %>
+              <%= select_tag(:factory, options_for_select(User.where("role LIKE ? or role LIKE ?", "factory", "admin").order(fullname: :asc).map { |user| [user.fullname, user.id] }), prompt: "Select Factory", class: "form-control") %>
+            <% end %>
+            <%= select_tag(:project, options_for_select(project_select(current_user)), prompt: "Select Project", class: "form-control") %>
+            <%= submit_tag 'Submit', class: "btn btn-default"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div id="left-arrow" style="padding:0px;">
+      <a style="color:black"><span class="glyphicon glyphicon-chevron-left arrow"></span></a>
+    </div>
+    <div hidden id="right-arrow" style="padding:0px;">
+      <a style="color:black"><span class="glyphicon glyphicon-chevron-right arrow"></span></a>
+    </div>
+  <% end %>
+</div> -->
+  
 <!-- top banner -->
 <% if (params[:controller] != 'projects' || action_name != 'show') && ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller])%>
     <div class="container-fluid  container-banner">
