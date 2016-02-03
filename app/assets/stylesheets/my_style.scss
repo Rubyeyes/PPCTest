@@ -25,6 +25,18 @@
 	}
 }
 
+.square-icon {
+  width:50px;
+}
+
+.divider-vertical {
+  height: 50px;
+  width: 1px;
+  background-color: rgba(221, 221, 221, 1);
+}
+
+
+
 .navbar-toggle-black {
   background-color: black;
 }
@@ -83,7 +95,7 @@
 }
 
 .container-project-show {
-  margin-top: 50px;
+  margin-top: 0px;
 }
 
 .image-project-frame {
@@ -166,7 +178,7 @@
 
 .container-banner {
   padding: 0px;
-  margin-top: 50px;
+  margin-top: 0px;
 }
 
 .container-home {
@@ -280,7 +292,7 @@
 }
 
 .panel-top-margin {
-	margin-top: 20px;
+	margin-top: 80px;
 }
 
 .navbar-toggle {
@@ -293,7 +305,7 @@
     padding-top: 6px;
     padding-bottom: 5px;
     padding-right: 15px;
-    padding-left: 5px;
+    padding-left: 15px;
 }
 
 .navbar-login {
@@ -305,10 +317,6 @@
   text-decoration: none;
 }
 
-.panel-top-margin {
-	margin-top: 20px;
-}
-
 .navbar-transparent {
 	background-color: rgba(0, 0, 0, 0);
 }
@@ -317,6 +325,7 @@
 }
 .navbar-toggle-width {
 	width: inherit;
+  margin-right: 15px;
 }
 .nav-second {
 	background-color: rgb(84, 84, 84);
@@ -438,7 +447,7 @@ background-color:rgba(0, 0, 0, 1);
   bottom: -5px;
   right: 0px;
   border-color: transparent;
-  border-radius: 3px;
+  border-radius: 0px;
 	padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 2px;

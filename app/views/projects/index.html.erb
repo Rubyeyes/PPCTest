@@ -1,5 +1,5 @@
 
-<div class="navbar-nav" style="margin:0px">
+<div id="project-navbar" class="navbar-nav navbar-static-top" style="margin:0px">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#projectCollapse" aria-expanded="false" style="margin: 0px;padding-right: 0px;">
       <span class="sr-only">Toggle navigation</span>
@@ -68,6 +68,18 @@ $(document).ready(function(){
     $(this).css({"max-height":"300px"});
     $(this).next('#project-index-panel').css({'border-color':'transparent'});
   });
+  // Change navbar when scroll down
+  $(window).scroll(function () {
+    var top = $(this).scrollTop();
+    if(top>400) {
+      $("#project-navbar").removeClass("navbar-nav navbar-static-top");
+      $("#project-navbar").addClass("navbar-nav navbar-fixed-top");
+    }
+    if(top<=400) {
+      $("#project-navbar").addClass("navbar-nav navbar-static-top");
+      $("#project-navbar").removeClass("navbar-nav navbar-fixed-top");
+    }
+  })
 })
 	
 </script>

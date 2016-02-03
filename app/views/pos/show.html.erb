@@ -1,7 +1,12 @@
 
-<div class="col-ex-12">
-	<h1><%= @po.po_number %></h1>
-	<em><%= @po.date.strftime("%m-%d-%y") %></em>
+
+<div class="panel panel-default panel-top-margin">
+	<div class="panel-heading">
+		<div class="col-ex-12">
+			<h1><%= @po.po_number %></h1>
+			<em><%= @po.date.strftime("%m-%d-%y") %></em>
+		</div>
+	</div>
 </div>
 
 <% @po_products.each do |po_product| %>

@@ -1,10 +1,6 @@
 
-<div class="panel panel-default panel-border-transparent">
-  <div class="panel-body text-right">
-	</div>
-</div>
 
-<div class="panel panel-default">
+<div class="panel panel-default panel-top-margin">
 	<div class="panel-heading">
 		<h1><%= simple_format(@report.name) %></h1>
 		<em><%= @report.project.user.fullname if current_user.role != 'factory'%></em>

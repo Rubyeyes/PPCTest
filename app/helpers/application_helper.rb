@@ -16,24 +16,18 @@ module ApplicationHelper
 	def smart_navbar_color controller
 		if ['home', 'devise/sessions', 'registrations'].include?(controller)
 			"navbar-full navbar-default navbar-transparent"
+		elsif action_name == 'show'
+			"navbar-full navbar-inverse"	
 		else
 			"navbar-full navbar-default navbar-normal"
 		end
 	end
 
 	def smart_logo_color controller
-		if ['home', 'devise/sessions', 'registrations'].include?(controller)
+		if ['home', 'devise/sessions', 'registrations'].include?(controller) || action_name == 'show'
 			link_to image_tag(@logo_white.image.url(:detail).to_s, class: "logo"), home_index_path, class: "navbar-brand" if @logo_white.present?
 		else
 			link_to image_tag(@logo_black.image.url(:detail).to_s, class: "logo"), home_index_path, class: "navbar-brand" if @logo_black.present?
-		end
-	end
-
-	def smart_navbar_position controller
-		if ['home', 'devise/sessions', 'registrations'].include?(controller)
-			"navbar-static-top"
-		else
-			"navbar-fixed-top"
 		end
 	end
 
@@ -41,7 +35,7 @@ module ApplicationHelper
 		if ['home', 'devise/sessions', 'registrations'].include?(controller)
 			"container-fluid"
 		else
-			"container"
+			"container-fuild"
 		end
 	end
 	

@@ -1,8 +1,8 @@
 
-<% object.each_slice(2) do |group| %>
+<% object.each_slice(3) do |group| %>
 	<div class="row">
 		<% group.each do |project| %>
-			<div class="col-xs-12 col-md-6">
+			<div class="col-xs-12 col-md-4">
 				<div id="project-index-panel" class="panel panel-info">
 					<div class="panel-body panel-body-cost">
 							<%= link_to image_tag(project.image.url(:detail).to_s, class: "img-responsive img-thumbnail project-image"), project_path(project) %>
@@ -57,5 +57,5 @@
 	<br />
 <% end %>
 
-
-<!--<%= paginate object, window: 3, outer_window: 1%>-->
+<!-- 
+<%= paginate object, window: 3, outer_window: 1%> -->

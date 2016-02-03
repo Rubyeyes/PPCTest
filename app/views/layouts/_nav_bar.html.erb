@@ -1,6 +1,6 @@
 <!-- Navigation Bar -->
-<div class="<%= smart_navbar_position params[:controller]%>"> <!-- navbar fix to the top after login -->
-  <div id="top-navbar-white" class="<%= smart_navbar_color params[:controller]%>"> <!-- navbar change to black after login -->
+<div class="navbar-static-top"> <!-- navbar fix to the top after login -->
+  <div class="<%= smart_navbar_color params[:controller]%>"> <!-- navbar change to black after login -->
     <div class="<%= smart_container params[:controller]%>"> <!-- fix container after login -->
       <div class="navbar-header">
         <% if current_user %>
@@ -27,6 +27,7 @@
               <li class="<%= 'active' if params[:controller] == 'pos'%>"><%= link_to "PO", pos_path, class: "nav-link  nav-second-word" if current_user.role != 'designer'%></li>
               <li class="<%= 'active' if params[:controller] == 'reports'%>"><%= link_to "Reports", reports_path, class: "nav-link nav-second-word" if current_user.role != 'designer'%></li>
               <li class="<%= 'active' if params[:controller] == 'samples'%>"><%= link_to "Samples", samples_path, class: "nav-link nav-second-word" %></li>
+              <li role="separator" class="divider-vertical"></li>
               <li >
                 <form hidden id="nav-search" action="/projects" class="navbar-form " role="search">
                   <div class="input-group">
@@ -39,17 +40,19 @@
                   </div>
                 </form>
               </li>
-              <li >
-                <a id="nav-search-icon" class="nav-link" >
+              <li class="square-icon">
+                <a id="nav-search-icon" class="nav-link" style="text-align:center">
                 <span id="nav-search-button" class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
               </li>
             <%end%>
-            <li class="<%= 'active' if params[:controller] == 'notificatons'%>">
-              <a class="nav-link" href="/notifications">
+            <li role="separator" class="<%= 'divider-vertical' if ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller]) %>"></li>
+            <li class="<%= 'active' if params[:controller] == 'notificatons'%>" style="width:50px">
+              <a class="nav-link " href="/notifications" style="text-align:center">
               <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
               <span class="badge badge-color"><%=@notifications.where(read: false).count if @notifications.where(read: false).count > 0 %></span>
               </a>
             </li>
+            <li role="separator" class="<%= 'divider-vertical' if ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller]) %>"></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle navbar-toggle-width" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= "Hello, #{@user.fullname}"%><span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-inverse">
@@ -95,7 +98,7 @@
 </div> -->
   
 <!-- top banner -->
-<% if (params[:controller] != 'projects' || action_name != 'show') && ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller])%>
+<% if  action_name != 'show' && ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller])%>
     <div class="container-fluid  container-banner">
         <%= image_tag "/home_images/topbanner.jpg", class: "img-responsive" %>
     </div>
