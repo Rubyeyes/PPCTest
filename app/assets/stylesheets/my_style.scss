@@ -25,6 +25,23 @@
 	}
 }
 
+.show-project-background {
+  background-color: rgba(245, 245, 245, 1);
+}
+
+.navbar-back {
+  margin: 0px;
+  position: absolute;
+  height: 41px;
+  width: 100%;
+  background: gray;
+  z-index: 0;
+}
+
+.container-main {
+  padding:0px;
+}
+
 .square-icon {
   width:50px;
 }
@@ -292,7 +309,7 @@
 }
 
 .panel-top-margin {
-	margin-top: 80px;
+	margin-top: 20px;
 }
 
 .navbar-toggle {

@@ -1,61 +1,66 @@
 
 <div class="container-project-show ">
-	<div class="col-xs-12 col-md-12">
+	<div class="col-xs-12 col-md-12" style="padding:0px">
 		<div class="image-project-frame"><%= image_tag @project.image.url(:detail).to_s, class: "img-responsive" %></p>
 	</div>
 
-	<div class="container-content">
-		<div class="row">
-			<div class="col-xs-12 col-md-4">
-				<div class="panel panel-default panel-project-title">
-					<div class="panel-heading">
-						<h3><%= @project.project_name %></h3>
-						<em><%= @project.user.fullname%></em>
+	<div class="show-project-background">
+	<div class="container">
+		<div class="container-content">
+			<div class="row">
+				<div class="col-xs-12 col-md-4">
+					<div class="panel panel-default panel-project-title">
+						<div class="panel-heading">
+							<h3><%= @project.project_name %></h3>
+							<em><%= @project.user.fullname%></em>
+						</div>
+						<div class="panel-body">
+							<p><%= @project.description %></p>
+							
+							<% if @project.patent_number.present?%>
+									<p>Patent Number: <b><%= @project.patent_number %></b></p>
+							<%end%>
+						</div>
+						<div class="panel-footer text-right">
+							<%= link_to 'Edit', edit_project_path(@project) if current_user.role == 'admin' %>
+							<%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin' %>
+						</div>
 					</div>
-					<div class="panel-body">
-						<p><%= @project.description %></p>
-						
-						<% if @project.patent_number.present?%>
-								<p>Patent Number: <b><%= @project.patent_number %></b></p>
-						<%end%>
-					</div>
-					<div class="panel-footer text-right">
-						<%= link_to 'Edit', edit_project_path(@project) if current_user.role == 'admin' %>
-						<%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin' %>
-					</div>
+					<% if @project.status == "0. Need to be fixed" %>
+						<div class="panel panel-danger">
+							<div class="panel-heading">
+								<%= @project.problem %>
+							</div>
+						</div>
+					<%end%>
+					<% if @project.status == "0. Need to be fixed" %>
+						<div class="panel" style="height:50px">
+							<div class="panel-heading">
+								<% @project.instructions.each do |instruction| %>
+									<%= link_to "Instruction documents", "http://docs.google.com/gview?url=#{instruction.url}"%>
+									<div style="float:right"><%= link_to "Download", "#{instruction.url}", class: "btn btn-default btn-sm"%></div>
+								<% end %>
+							</div>
+						</div>
+					<%end%>
+
 				</div>
-				<% if @project.status == "0. Need to be fixed" %>
-					<div class="panel panel-danger">
-						<div class="panel-heading">
-							<%= @project.problem %>
-						</div>
-					</div>
-				<%end%>
-				<% if @project.status == "0. Need to be fixed" %>
-					<div class="panel">
-						<div class="panel-heading">
-							<% @project.instructions.each do |instruction| %>
-								<%= link_to "Instruction documents", "https://docs.google.com/gview?url={#{instruction.url}}&embedded=true"%>
-							<% end %>
-						</div>
-					</div>
-				<%end%>
-
+				<div class="col-xs-12 col-md-8">
+					<%= render "costs_table", object: @project, :number => 3 %>
+					<%= render "show_table_samples", object: @project %>
+					<%= render "show_table_tasks", object: @project %><br>
+					<%= render "show_table_reports", object: @project %><br>
+				</div>
 			</div>
-			<div class="col-xs-12 col-md-8">
-				<%= render "costs_table", object: @project, :number => 3 %>
-				<%= render "show_table_samples", object: @project %>
-				<%= render "show_table_tasks", object: @project %><br>
-				<%= render "show_table_reports", object: @project %><br>
+
+				
+			<div class="row">
+				<div class="col-xs-12">
+					<%= render "show_table_products", object: @project %>
+				</div>
 			</div>
 		</div>
-
-			
-		<div class="row">
-			<div class="col-xs-12">
-				<%= render "show_table_products", object: @project %>
-			</div>
-		</div>
+	</div>
 	</div>
 
 </div>

@@ -1,3 +1,5 @@
+<div class="container">
+
 <h1>Products</h1><br/>
 <div class="text-right">
 	<%= link_to "New Product", new_product_path if current_user.role != 'user'%>
@@ -33,4 +35,6 @@
 			<% end %>			
 		</tbody>
 	</table>
+</div>
+
 </div>

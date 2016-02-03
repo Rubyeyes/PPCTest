@@ -16,7 +16,7 @@ module ApplicationHelper
 	def smart_navbar_color controller
 		if ['home', 'devise/sessions', 'registrations'].include?(controller)
 			"navbar-full navbar-default navbar-transparent"
-		elsif action_name == 'show'
+		elsif ['show', 'new', 'edit'].include?(action_name)
 			"navbar-full navbar-inverse"	
 		else
 			"navbar-full navbar-default navbar-normal"
@@ -24,7 +24,7 @@ module ApplicationHelper
 	end
 
 	def smart_logo_color controller
-		if ['home', 'devise/sessions', 'registrations'].include?(controller) || action_name == 'show'
+		if ['home', 'devise/sessions', 'registrations'].include?(controller) || ['show', 'new', 'edit'].include?(action_name)
 			link_to image_tag(@logo_white.image.url(:detail).to_s, class: "logo"), home_index_path, class: "navbar-brand" if @logo_white.present?
 		else
 			link_to image_tag(@logo_black.image.url(:detail).to_s, class: "logo"), home_index_path, class: "navbar-brand" if @logo_black.present?

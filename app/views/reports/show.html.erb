@@ -1,4 +1,4 @@
-
+<div class="container">
 
 <div class="panel panel-default panel-top-margin">
 	<div class="panel-heading">
@@ -14,4 +14,6 @@
 		<p><%= @report.created_at.strftime("%d-%m-%y") %></p>
 		<p><%= link_to 'Edit', edit_report_path(@report) if current_user.role == 'admin'%></p>
 	</div>
+</div>
+
 </div>
