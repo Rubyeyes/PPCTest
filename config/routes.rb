@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :costs, except:[:show]
   resources :current_user, only:[:index, :edit, :update]
   resources :home, only:[:index]
+  resources :instructions
   resources :logos
   resources :notifications, only:[:index, :update, :show, :destroy]
   resources :projects
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   resources :status_options
   resources :tasks
   resources :users_admin, :controller => 'users', only:[:index, :edit, :update, :destroy]
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

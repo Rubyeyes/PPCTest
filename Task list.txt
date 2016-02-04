@@ -1,5 +1,5 @@
-1. Clean til products
-2. 
+1. Instructions and templates
+2. Input all data
 
 heroku pg:push PPCTest2_development DATABASE_URL --app limitless-wildwood-4680
 
