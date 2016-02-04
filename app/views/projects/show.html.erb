@@ -33,16 +33,6 @@
 							</div>
 						</div>
 					<%end%>
-					<% if @project.status == "0. Need to be fixed" %>
-						<div class="panel" style="height:50px">
-							<div class="panel-heading">
-								<% @project.instructions.each do |instruction| %>
-									<%= link_to "Instruction documents", "http://docs.google.com/gview?url=#{instruction.url}"%>
-									<div style="float:right"><%= link_to "Download", "#{instruction.url}", class: "btn btn-default btn-sm"%></div>
-								<% end %>
-							</div>
-						</div>
-					<%end%>
 
 				</div>
 				<div class="col-xs-12 col-md-8">

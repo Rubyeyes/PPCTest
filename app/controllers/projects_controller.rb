@@ -78,10 +78,11 @@ class ProjectsController < ApplicationController
     redirect_to projects_path, notice: "Project was successfully deleted"
   end
 
+  
   private
 
   def project_params
-    params.require(:project).permit(:id, :project_name, :user_id, :description, :image, :remote_image_url, :status, :problem, :patent_number, {instructions: []})
+    params.require(:project).permit(:id, :project_name, :user_id, :description, :image, :remote_image_url, :status, :problem, :patent_number, {instructions: []}, {templates: []})
   end
 
 end
