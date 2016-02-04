@@ -34,15 +34,14 @@
 						</div>
 					<%end%>
 					<div class="panel panel-default">
-						<div class="panel-heading">
-							<%= link_to "Upload New Instruction", new_instruction_path(project_id_param: @project.id) %>
-						</div>
-						<% if @project.instructions.present? %>
-							<ul class="list-group">
+						<ul class="list-group">
+							<li class="list-group-item" style="text-align:right"><%= link_to "Upload Instruction", new_instruction_path(project_id_param: @project.id)%></li>
+							<% if @project.instructions.present? %>
 								<% @project.instructions.each do |i|%>
 									<li class="list-group-item">
-										<%= link_to i.description, "https://docs.google.com/viewer?url=#{i.instruction.url}" %>
+										<b><%= link_to i.description, "https://docs.google.com/viewer?url=#{i.instruction.url}" %></b>
 										<%= link_to 'Delete', instruction_url(i), method: :delete, data: {confirm: "Are you sure?"}, style: "float:right"%>
+										<%= link_to 'Edit', edit_instruction_url(i), style: "float:right;padding-right:5px;"%>
 										<%= link_to 'Edit', edit_instruction_url(i), style: "float:right;padding-right:5px;"%>
 									</li>
 								<% end %>

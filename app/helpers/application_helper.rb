@@ -15,7 +15,11 @@ module ApplicationHelper
 
 	def smart_navbar_color controller
 		if ['home', 'devise/sessions', 'registrations'].include?(controller)
-			"navbar-full navbar-default navbar-transparent"
+			if action_name == "edit"
+				"navbar-full navbar-inverse"	
+			else
+				"navbar-full navbar-default navbar-transparent"
+			end
 		elsif ['show', 'new', 'edit'].include?(action_name)
 			"navbar-full navbar-inverse"	
 		else
