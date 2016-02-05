@@ -11,57 +11,61 @@
     </div>
     <div id="projectCollapse" class="navbar-collapse collapse" aria-expanded="false">
       <ul id='projectTab' class="nav navbar-default nav-tabs nav-justified nav-project-tab">
-        <li id="0">
-          <a href='#'><span class="badge badge-black"><%= @data.where(status: "0. Need to be fixed").count if @data.where(status: "0. Need to be fixed").count > 0 %></span> Problems</a>
+        <li class="<%='active' if @projects_0.present? %>", id="0">
+          <a href="<%= projects_path(params.merge(stage: 'stage_0', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "0. Need to be fixed").count if @data.where(status: "0. Need to be fixed").count > 0 %></span> Problems</a>
         </li>
-        <li id="1">
-          <a href='#'><span class="badge badge-black"><%= @data.where(status: "1. Hold for some reason").count if @data.where(status: "1. Hold for some reason").count > 0 %></span> Hold</a>
+        <li class="<%='active' if @projects_1.present? %>", id="1">
+          <a href="<%= projects_path(params.merge(stage: 'stage_1', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "1. Hold for some reason").count if @data.where(status: "1. Hold for some reason").count > 0 %></span> Hold</a>
         </li> 
-        <li id="2">
-          <a href='#'><span class="badge badge-black"><%= @data.where(status: "2. Concept design").count if @data.where(status: "2. Concept design").count > 0 %></span> Concept</a>
+        <li class="<%='active' if @projects_2.present? %>", id="2">
+          <a href="<%= projects_path(params.merge(stage: 'stage_2', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "2. Concept design").count if @data.where(status: "2. Concept design").count > 0 %></span> Concept</a>
         </li> 
-        <li id="3">
-          <a href='#'><span class="badge badge-black"><%= @data.where(status: "3. Received prototypes or samples").count if @data.where(status: "3. Received prototypes or samples").count > 0 %></span> Samples</a>
+        <li class="<%='active' if @projects_3.present? %>", id="3">
+          <a href="<%= projects_path(params.merge(stage: 'stage_3', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "3. Received prototypes or samples").count if @data.where(status: "3. Received prototypes or samples").count > 0 %></span> Samples</a>
         </li> 
-        <li id="4">
-          <a href='#'><span class="badge badge-black"><%= @data.where(status: "4. Design package and start producing").count if @data.where(status: "4. Design package and start producing").count > 0 %></span> Package</a>
+        <li class="<%='active' if @projects_4.present? %>", id="4">
+          <a href="<%= projects_path(params.merge(stage: 'stage_4', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "4. Design package and start producing").count if @data.where(status: "4. Design package and start producing").count > 0 %></span> Package</a>
         </li> 
-        <li id="5">
-          <a href='#'><span class="badge badge-black"><%= @data.where(status: "5. In production").count if @data.where(status: "5. In production").count > 0 %></span> Production</a>
+        <li class="<%='active' if @projects_5.present? %>",id="5">
+          <a href="<%= projects_path(params.merge(stage: 'stage_5', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "5. In production").count if @data.where(status: "5. In production").count > 0 %></span> Production</a>
         </li> 
-        <li id="6">
-          <a href='#'><span class="badge badge-black"><%= @data.where(status: "6. Droped").count if @data.where(status: "6. Droped").count > 0 %></span> Droped</a>
+        <li class="<%='active' if @projects_6.present? %>",id="6">
+          <a href="<%= projects_path(params.merge(stage: 'stage_6', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "6. Droped").count if @data.where(status: "6. Droped").count > 0 %></span> Droped</a>
         </li>   
-         <li class="active", id="7">
-          <a href='#'><span class="badge badge-black"><%= @data.count%></span> All</a>
+         <li class="<%='active' if @projects_all.present? %>", id="7">
+          <a href="<%= projects_path(params.merge(stage: 'stage_all')) %>"><span class="badge badge-black"><%= @data.count%></span> All</a>
         </li>  
       </ul>
     </div>
   </div>
 
-  <div id="project0"><%= render "index_projects", object: @projects.where(status: "0. Need to be fixed") %><hr></div>
-  <div id="project1"><%= render "index_projects", object: @projects.where(status: "1. Hold for some reason") %><hr></div>
-  <div id="project2"><%= render "index_projects", object: @projects.where(status: "2. Concept design") %><hr></div>
-  <div id="project3"><%= render "index_projects", object: @projects.where(status: "3. Received prototypes or samples") %><hr></div>
-  <div id="project4"><%= render "index_projects", object: @projects.where(status: "4. Design package and start producing") %><hr></div>
-  <div id="project5"><%= render "index_projects", object: @projects.where(status: "5. In production") %><hr></div>
-  <div id="project6"><%= render "index_projects", object: @projects.where(status: "6. Droped") %><hr></div>
+  <div id="project0"><%= render "index_projects", object: @projects_0 if @projects_0.present?%></div>
+  <div id="project1"><%= render "index_projects", object: @projects_1 if @projects_1.present?%></div>
+  <div id="project2"><%= render "index_projects", object: @projects_2 if @projects_2.present?%></div>
+  <div id="project3"><%= render "index_projects", object: @projects_3 if @projects_3.present?%></div>
+  <div id="project4"><%= render "index_projects", object: @projects_4 if @projects_4.present?%></div>
+  <div id="project5"><%= render "index_projects", object: @projects_5 if @projects_5.present?%></div>
+  <div id="project6"><%= render "index_projects", object: @projects_6 if @projects_6.present?%></div>
+  <div id="project7"><%= render "index_projects", object: @projects_all if @projects_all.present?%></div>
+
+
 </div>
+
 
 
 <script>
 $(document).ready(function(){
-	$("ul#projectTab li").click(function(){
-	event.preventDefault();
-    divID = 'div#project' + this.id;
-    $("div#project0, div#project1, div#project2, div#project3, div#project4, div#project5, div#project6").hide();
-    $(divID).show();
-    if(this.id == 7){
-      $("div#project0, div#project1, div#project2, div#project3, div#project4, div#project5, div#project6").show();
-    }
-    $("li#0, li#1, li#2, li#3, li#4, li#5, li#6, li#7").removeClass("active");
-    $(this).addClass("active");
-	});
+	// $("ul#projectTab li").click(function(){
+	// event.preventDefault();
+ //    divID = 'div#project' + this.id;
+ //    $("div#project0, div#project1, div#project2, div#project3, div#project4, div#project5, div#project6").hide();
+ //    $(divID).show();
+ //    if(this.id == 7){
+ //      $("div#project0, div#project1, div#project2, div#project3, div#project4, div#project5, div#project6").show();
+ //    }
+ //    $("li#0, li#1, li#2, li#3, li#4, li#5, li#6, li#7").removeClass("active");
+ //    $(this).addClass("active");
+	// });
 
   $(".panel img").mouseover(function() {
     $(this).css({"max-height":"400px"});

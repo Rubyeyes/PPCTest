@@ -1,6 +1,6 @@
 
 <% object.each_slice(3) do |group| %>
-	<div class="row">
+	<div class="row row-project">
 		<% group.each do |project| %>
 			<div class="col-xs-12 col-md-4">
 				<div id="project-index-panel" class="panel panel-info">
@@ -57,5 +57,4 @@
 	<br />
 <% end %>
 
-<!-- 
-<%= paginate object, window: 3, outer_window: 1%> -->
+<%= paginate object, window: 3, outer_window: 1%>

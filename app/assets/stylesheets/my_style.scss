@@ -25,6 +25,11 @@
 	}
 }
 
+.row-project {
+  margin-top: 50px;
+  margin-bottom: 20p
+}
+
 .home-video { 
   z-index: -100;
   position: fixed;
@@ -354,7 +359,7 @@
     padding-top: 6px;
     padding-bottom: 5px;
     padding-right: 15px;
-    padding-left: 15px;
+    padding-left: 0px;
 }
 
 .navbar-login {

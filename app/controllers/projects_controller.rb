@@ -8,7 +8,14 @@ class ProjectsController < ApplicationController
     @user = current_user
     # advance search filter
     filter(Project)
-    @projects = @data.text_sort.page(params[:page])
+    @projects_all = @data.text_sort.page(params[:page]).per(6) if params[:stage] == 'stage_all'
+    @projects_0 = @data.where(status: "0. Need to be fixed").text_sort.page(params[:page]).per(6) if params[:stage] == 'stage_0'
+    @projects_1 = @data.where(status: "1. Hold for some reason").text_sort.page(params[:page]).per(6) if params[:stage] == 'stage_1'
+    @projects_2 = @data.where(status: "2. Concept design").text_sort.page(params[:page]).per(6) if params[:stage] == 'stage_2'
+    @projects_3 = @data.where(status: "3. Received prototypes or samples").text_sort.page(params[:page]).per(6) if params[:stage] == 'stage_3'
+    @projects_4 = @data.where(status: "4. Design package and start producing").text_sort.page(params[:page]).per(6) if params[:stage] == 'stage_4'
+    @projects_5 = @data.where(status: "5. In production").text_sort.page(params[:page]).per(6) if params[:stage] == 'stage_5'
+    @projects_6 = @data.where(status: "6. Droped").text_sort.page(params[:page]).per(6) if params[:stage] == 'stage_6'
     @products = Product.all
     @tasks = Task.all
     @costs = Cost.all.order(crreated_at: :desc)
