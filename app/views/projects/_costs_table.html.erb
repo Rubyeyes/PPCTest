@@ -1,7 +1,7 @@
 <div class="panel panel-default panel-show">
 
 
-	<%= render "show_table_heading", name: 'Costs', path: new_cost_path(project_id_param: @project.id), role: current_user.role == 'admin' || 'factory' && action_name == 'show'%>
+	<%= render "show_table_heading", name: 'Costs', path: new_cost_path(project_id_param: @project.id), role: (current_user.role == ('admin' || 'factory')) && action_name == 'show'%>
 
 	<div class="panel-body panel-home-show">
 		<% if object.costs.present? %>

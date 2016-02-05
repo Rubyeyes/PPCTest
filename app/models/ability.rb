@@ -9,12 +9,14 @@ class Ability
       can :manage, :all
     elsif user.role == "user"
       can :read, :all
-      can :manage, Po
       can :manage, Task
+      can :manage, Instruction
+      can [:read, :edit, :mamage, :update], Notification
     elsif user.role == "factory"
       can :manage, Sample
       can :manage, Cost
       can :manage, Task
+      can :manage, Instruction
       can [:read], Project
       can [:read], Product
       can [:read], Po

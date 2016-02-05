@@ -21,10 +21,12 @@
 									<p>Patent Number: <b><%= @project.patent_number %></b></p>
 							<%end%>
 						</div>
+						<% if current_user.role == 'admin' %>
 						<div class="panel-footer text-right">
-							<%= link_to 'Edit', edit_project_path(@project) if current_user.role == 'admin' %>
+							<%= link_to 'Edit', edit_project_path(@project) %>
 							<%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin' %>
 						</div>
+						<% end %>
 					</div>
 					<% if @project.status == "0. Need to be fixed" %>
 						<div class="panel panel-danger">
@@ -42,7 +44,7 @@
 										<b><%= link_to i.description, "https://docs.google.com/viewer?url=#{i.instruction.url}" %></b>
 										<%= link_to 'Delete', instruction_url(i), method: :delete, data: {confirm: "Are you sure?"}, style: "float:right"%>
 										<%= link_to 'Edit', edit_instruction_url(i), style: "float:right;padding-right:5px;"%>
-										<%= link_to 'Edit', edit_instruction_url(i), style: "float:right;padding-right:5px;"%>
+										<%= link_to 'Download', i.instruction.url, style: "float:right;padding-right:5px;"%>
 									</li>
 								<% end %>
 							</ul>
