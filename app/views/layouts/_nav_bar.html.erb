@@ -27,7 +27,6 @@
               <li class="<%= 'active' if params[:controller] == 'pos'%>"><%= link_to "PO", pos_path, class: "nav-link  nav-second-word" if current_user.role != 'designer'%></li>
               <li class="<%= 'active' if params[:controller] == 'reports'%>"><%= link_to "Reports", reports_path, class: "nav-link nav-second-word" if current_user.role != 'designer'%></li>
               <li class="<%= 'active' if params[:controller] == 'samples'%>"><%= link_to "Samples", samples_path, class: "nav-link nav-second-word" %></li>
-              <li role="separator" class="divider-vertical"></li>
               <li >
                 <form hidden id="nav-search" action="/projects" class="navbar-form " role="search">
                   <div class="input-group">
@@ -45,7 +44,6 @@
                 <span id="nav-search-button" class="glyphicon glyphicon-search" aria-hidden="true" style="color:rgba(51,122,183,1);"></span></a>
               </li>
             <%end%>
-            <li role="separator" class="<%= 'divider-vertical' if ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller]) %>"></li>
             <li class="<%= 'active' if params[:controller] == 'notificatons'%>" style="width:70px">
               <a class="nav-link " href="/notifications" style="text-align:center">
               <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>

@@ -68,7 +68,7 @@
 
 
 .navbar-toggle-black {
-  background-color: black;
+  background-color: rgb(51, 122, 183);
 }
 
 .nav-project-tab{
@@ -239,6 +239,14 @@
   	color: white;
   	text-align: left;
 	}
+}
+
+.project-navbar-button {
+  margin-top: 0px;
+  padding-right: 0px;
+  padding-top: 3px;
+  padding-bottom: 4px;
+  padding-left: 0px;
 }
 
 .alert-success {
