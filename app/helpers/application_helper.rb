@@ -34,14 +34,6 @@ module ApplicationHelper
 			link_to image_tag(@logo_black.image.url(:detail).to_s, class: "logo"), home_index_path, class: "navbar-brand" if @logo_black.present?
 		end
 	end
-
-	def smart_container controller
-		if ['home', 'devise/sessions', 'registrations'].include?(controller)
-			"container-fluid"
-		else
-			"container-fuild"
-		end
-	end
 	
 	def login_link_select
 		if params[:controller] == 'devise/sessions' 
