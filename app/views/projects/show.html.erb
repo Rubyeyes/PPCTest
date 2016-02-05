@@ -42,9 +42,9 @@
 								<% @project.instructions.each do |i|%>
 									<li class="list-group-item">
 										<b><%= link_to i.description, "https://docs.google.com/viewer?url=#{i.instruction.url}" %></b>
-										<%= link_to 'Delete', instruction_url(i), method: :delete, data: {confirm: "Are you sure?"}, style: "float:right"%>
-										<%= link_to 'Edit', edit_instruction_url(i), style: "float:right;padding-right:5px;"%>
-										<%= link_to 'Download', i.instruction.url, style: "float:right;padding-right:5px;"%>
+										<%= link_to 'Delete', instruction_url(i), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default btn-xs", style: "float:right"%>
+										<%= link_to 'Edit', edit_instruction_url(i), class: "btn btn-default btn-xs", style: "float:right;padding-right:5px;"%>
+										<%= link_to 'Download', i.instruction.url, class: "btn btn-default btn-xs", style: "float:right;padding-right:5px;"%>
 									</li>
 								<% end %>
 							</ul>
