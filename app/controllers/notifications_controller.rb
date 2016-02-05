@@ -18,6 +18,6 @@ class NotificationsController < ApplicationController
   def destroy
   	@nontification = Notification.find(params[:id])
     @nontification.destroy
-    redirect_to :back, notice: "Notification was successfully deleted"
+    redirect_to notifications_path, notice: "Notification was successfully deleted"
   end
 end

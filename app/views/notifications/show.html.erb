@@ -1,16 +1,18 @@
-
-<% if @notification.notifiable_type == 'Project'%>
-	<%= render "notification_project", object: @notification %>
-<% elsif @notification.notifiable_type == 'Product'%>
-	<%= render "notification_product", object: @notification%>
-<% elsif @notification.notifiable_type == 'Cost'%>
-	<%= render "notification_cost" ,object: @notification%>
-<% elsif @notification.notifiable_type == 'PoProduct'%>
-	<%= render "notification_po_product", object: @notification%>
-<% elsif @notification.notifiable_type == 'Report'%>
-	<%= render "notification_report", object: @notification%>
-<% elsif @notification.notifiable_type == 'Sample'%>
-	<%= render "notification_sample", object: @notification%>
-<% elsif @notification.notifiable_type == 'Task'%>
-	<%= render "notification_task", object: @notification%>
-<% end %>
+<div class="container">
+	<div class="panel panel-default panel-top-margin"></div>
+	<% if @notification.notifiable_type == 'Project'%>
+		<%= render "notification_project", object: @notification %>
+	<% elsif @notification.notifiable_type == 'Product'%>
+		<%= render "notification_product", object: @notification%>
+	<% elsif @notification.notifiable_type == 'Cost'%>
+		<%= render "notification_cost" ,object: @notification%>
+	<% elsif @notification.notifiable_type == 'PoProduct'%>
+		<%= render "notification_po_product", object: @notification%>
+	<% elsif @notification.notifiable_type == 'Report'%>
+		<%= render "notification_report", object: @notification%>
+	<% elsif @notification.notifiable_type == 'Sample'%>
+		<%= render "notification_sample", object: @notification%>
+	<% elsif @notification.notifiable_type == 'Task'%>
+		<%= render "notification_task", object: @notification%>
+	<% end %>
+</div>

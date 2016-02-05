@@ -64,13 +64,12 @@
 									<p class="text-center"><b> No PO yet ~!</b></p>
 								<%end%>
 							</div>
-							<div class="panel-footer text-right">
-								<% if current_user.role != 'user' %>
-									<%= link_to 'View', product_path(product), method: :get %> |
+							<% if current_user.role == 'admin' %>
+								<div class="panel-footer text-right">
 									<%= link_to 'Edit', edit_product_path(product) %> |
 									<%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %>
-								<% end %>
-							</div>	<!-- panel-heading -->
+								</div>	<!-- panel-heading -->
+							<% end %>
 						</div>		<!-- panle panel-default -->
 					</div>		<!-- col-ex-12 col-md-6 -->
 				<% end %>

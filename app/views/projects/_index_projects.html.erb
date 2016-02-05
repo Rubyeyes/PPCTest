@@ -10,7 +10,7 @@
 								<h3 class="h3-project-name"><%= link_to  truncate(project.project_name, length: 60, separate: ''), project_path(project), class: "project-heading-word" %></h3>
 								<em class="factory-name"><%= project.user.fullname%></em>
 							</div>
-							<% if project.costs.present? %>
+							<% if project.costs.present? && current_user.role != 'designer'%>
 								<ul class="list-group list-group-cost-index">
 									<li class="list-group-item list-item-project-cost-index">
 										<%= number_to_currency(project.costs.last.unitUSD) if current_user.role != 'factory'%>

@@ -12,8 +12,10 @@
 		<thead>
 			<tr>
 				<th><%= sortable "item_number", "Item Number" %></th>
-				<th>Unit Cost</th>
-				<th>Tolling Cost</th>
+				<% if current_user.role != 'designer'%>
+					<th>Unit Cost</th>
+					<th>Tolling Cost</th>
+				<% end %>
 				<th>Description</th>
 				<th>Project</th>
 				<th><%= sortable "created_at", "Created at" %></th>
@@ -24,8 +26,10 @@
 			<% @products.each do |product| %>
 				<tr>
 					<td><%= link_to product.item_number,  product_path(product), method: :get%></td>
-					<td><%= number_to_currency(product.cost.unitUSD) if product.cost.present? %></td>
-					<td><%= number_to_currency(product.cost.toolingUSD)  if product.cost.present? %></td>
+					<% if product.cost.present? && current_user.role != 'designer' %>
+						<td><%= number_to_currency(product.cost.unitUSD) %></td>
+						<td><%= number_to_currency(product.cost.toolingUSD) %></td>
+					<% end %>
 					<td><%= product.product_name %></td>
 					<td><%= link_to product.project.project_name, controller: "projects", action: "show", id: product.project_id %></td>
 					<td><%= product.created_at.strftime("%b %d. %y") %></td>

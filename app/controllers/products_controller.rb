@@ -55,8 +55,9 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     if (current_user.role == "factory") && (@product.project.user.fullname != current_user.fullname)
-      redirect_to root_path
-      flash[:alert] = "You have no authorization"
+      # redirect_to root_path
+      # flash[:alert] = "You have no authorization"
+      raise Forbidden, "You have no authorization to visit this page" 
     end
   end
 

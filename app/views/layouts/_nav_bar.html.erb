@@ -46,13 +46,12 @@
               </li>
             <%end%>
             <li role="separator" class="<%= 'divider-vertical' if ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller]) %>"></li>
-            <li class="<%= 'active' if params[:controller] == 'notificatons'%>" style="width:50px">
+            <li class="<%= 'active' if params[:controller] == 'notificatons'%>" style="width:70px">
               <a class="nav-link " href="/notifications" style="text-align:center">
               <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-              <span class="badge badge-color"><%=@notifications.where(read: false).count if @notifications.where(read: false).count > 0 %></span>
+              <span class="badge badge-color" style="margin-top:-5px"><%=@notifications.where(read: false).count if @notifications.where(read: false).count > 0 %></span>
               </a>
             </li>
-            <li role="separator" class="<%= 'divider-vertical' if ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller]) %>"></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle navbar-toggle-width" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= "Hello, #{@user.fullname}"%><span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-inverse">
