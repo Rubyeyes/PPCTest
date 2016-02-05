@@ -67,9 +67,17 @@ $(document).ready(function(){
  //    $(this).addClass("active");
 	// });
 
-  $(".row-project .panel-project-heading").click(function() {
-    $(this).toggleClass("show-project-detail", 1000)
+  $(".show-project-detail .up-arrow").click(function() {
+    $(this).parent("div").removeClass("show-project-detail", 1000);
+    $(this).hide();
+    $(this).next("div").show();
   });
+    $(".show-project-detail .down-arrow").click(function() {
+    $(this).parent("div").addClass("show-project-detail", 1000);
+    $(this).hide();
+    $(this).prev("div").show();
+  });
+
   // Change navbar when scroll down
   $(window).scroll(function () {
     var top = $(this).scrollTop();
