@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :status_options
   resources :tasks
   resources :users_admin, :controller => 'users', only:[:index, :edit, :update, :destroy]
+  resources :videos
 
 
 

@@ -1,0 +1,42 @@
+<div class="container">
+<div class="panel panel-default panel-top-margin">
+	<div class="panel-heading">
+	<h1>Videos</h1>
+	<div class="text-right"><%= link_to 'New Video', new_video_path %></div>
+	</div>
+
+	<div class='panel-body'>
+	
+
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Video</th>
+				<th>Description</th>
+				<th>Created at</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @videos.each do |video| %>
+				<tr>
+					<td>
+						<video height="100" controls>
+							<source src="<%= video.video%>" type="video/mp4">
+							<source src="<%= video.video%>" type="video/webm">
+						</video>
+					</td>
+					<td ><%= video.description%></td>
+					<td><%= video.created_at.strftime("%Y-%m-%d") %></td>
+					<td>
+						<%= link_to 'Edit', edit_video_path(video) %>
+						<%= link_to 'Delete', video_path(video), method: :delete, data: {confirm: 'Are you sure ?'}%>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	</div>
+</div>
+</div>
