@@ -12,19 +12,12 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<%= render "home_image", src: "/home_images/concept.jpg", path: projects_path, name: "PROJECTS"%>
-		<%= render "home_image", src: "/home_images/mark.jpg", path: reports_path, name: "REPORTS" %>
-	</div>
-	<div class="row">
-		<%= render "home_image", src: "/home_images/scope.jpg", path: samples_path, name: "SAMPLES" %>
-		<%= render "home_image", src: "/home_images/projects.jpg", path: products_path, name: "PRODUCTS" %>
-	</div>
-	<div class="row">
-		<%= render "home_image", src: "/home_images/mount.jpg", path: pos_path, name: "PO" if current_user.role != 'designer'%>
-		<%= render "home_image", src: "/home_images/reflex sight.jpg", path: costs_path, name: "COSTS" if current_user.role != 'designer'%>
-	</div>
-</div>
+	<%= render "home_image", src: "/home_images/concept.jpg", path: projects_path, name: "PROJECTS"%>
+	<%= render "home_image", src: "/home_images/mark.jpg", path: reports_path, name: "REPORTS" %>
+	<%= render "home_image", src: "/home_images/scope.jpg", path: samples_path, name: "SAMPLES" %>
+	<%= render "home_image", src: "/home_images/projects.jpg", path: products_path, name: "PRODUCTS" %>
+	<%= render "home_image", src: "/home_images/mount.jpg", path: pos_path, name: "PO" if current_user.role != 'designer'%>
+	<%= render "home_image", src: "/home_images/reflex sight.jpg", path: costs_path, name: "COSTS" if current_user.role != 'designer'%>
 
 <script>
 	var player;
