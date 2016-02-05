@@ -1,9 +1,10 @@
 <div class="container">
 
-<h1>Purchase Orders</h1>
+<h1>Purchase Orders</h1><br/>
+<%= render "search"%><br/>
 
 <div class="text-right">
-	<%= link_to "New PO", new_po_path if current_user.role == 'admin' || 'user' %>
+	<%= link_to "New PO", new_po_path if current_user.role == 'admin' %>
 </div>
 <hr class="hr-table">
 

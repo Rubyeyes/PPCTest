@@ -1,10 +1,11 @@
 <div class="container">
 
-<h1>Costs</h1>
+<h1>Costs</h1><br/>
+<%= render "search"%>
 <!-- Check if link from project -->
 <em><%= link_to @project.project_name, project_path(@project.id) if @project.present?%></em> 
 <!-- Only allow factory and admin create cost -->
-<div class="text-right"><%= link_to "New cost", new_cost_path if current_user.role == 'factory' || 'admin' %></div>
+<div class="text-right"><%= link_to "New cost", new_cost_path if current_user.role == ('factory' || 'admin') %></div>
 <hr class="hr-table">
 <!-- Cost list -->
 <%= render "index_table"%>

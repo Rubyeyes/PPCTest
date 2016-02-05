@@ -1,6 +1,7 @@
 <div class="container">
 <h1>Samples</h1>
-<h3><%= link_to @project.project_name, project_path(@project) if @project.present? %> </h3>
+<h3><%= link_to @project.project_name, project_path(@project) if @project.present? %> </h3><br/>
+<%= render "search"%><br/>
 <div class="text-right">
 	<%= link_to "New Sample", new_sample_path if current_user.role != 'user'%>
 </div>

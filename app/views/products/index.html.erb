@@ -1,20 +1,7 @@
 <div class="container">
 
 <h1>Products</h1><br/>
-<div class="row">
-	<div class="col-xs-12 col-md-4">
-		<form class="products" id="products" action="/products">
-			<div class="input-group">
-			  <input id="nav-search-input" type="text" class="form-control nav-search-input" name="query" id="query" placeholder="Item Number" >
-			  <span class="input-group-addon nav-search-addon btn-default">
-			      <button type="submit" class="home-search-button ">
-			          <span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
-			      </button>  
-			  </span>
-			</div>
-		</form>
-	</div>
-</div><br/>
+<%= render "search"%>
 
 <div class="text-right">
 	<%= link_to "New Product", new_product_path if current_user.role != 'user'%>
