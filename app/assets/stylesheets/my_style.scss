@@ -25,6 +25,11 @@
 	}
 }
 
+.show-project-detail {
+  height: 50px;
+  overflow: hidden;
+}
+
 .row-project {
   margin-top: 50px;
   margin-bottom: 20p
@@ -230,8 +235,8 @@
 
 .list-group-cost-index {
 	position: absolute;
-  top: 4px;
-  left: 0px;
+  top: 0px;
+  right: 0px;
 	.list-item-project-cost-index {
 		border-radius: 0px;
 		padding-left: 15px;
@@ -495,18 +500,17 @@ background-color:rgba(0, 0, 0, 1);
 }
 
 .panel-project-heading {
-	margin-top: 0px;
-  margin-bottom: 0px;
+  width:100%;
+  text-align: left;
+	margin: 0px;
 	position: absolute;
-  bottom: -5px;
+  bottom: 0px;
   right: 0px;
   border-color: transparent;
   border-radius: 0px;
-	padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 2px;
-  padding-top: 2px;
-	background: rgb(245, 245, 245);
+  padding-left: 5px;
+	padding-right: 5px;
+	background: rgba(245, 245, 245, 0.8);
 	box-shadow: none;
   .project-heading-word {
 		color: black;
@@ -522,7 +526,7 @@ background-color:rgba(0, 0, 0, 1);
 .panel-body-cost .project-image {
 	border: transparent;
 	padding: 0px;
-  max-height: 300px;
+  max-height: 400px;
 }
 
 .table-condensed {

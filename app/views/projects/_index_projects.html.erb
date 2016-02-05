@@ -3,12 +3,37 @@
 	<div class="row row-project">
 		<% group.each do |project| %>
 			<div class="col-xs-12 col-md-4">
-				<div id="project-index-panel" class="panel panel-info">
+				<div class="panel panel-info">
+					<div class="<%= body_top_color project %>"></div>
 					<div class="panel-body panel-body-cost">
 							<%= link_to image_tag(project.image.url(:detail).to_s, class: "img-responsive img-thumbnail project-image"), project_path(project) %>
-							<div class="panel panel-project-heading">
+
+							<div class="panel panel-project-heading show-project-detail">
 								<h3 class="h3-project-name"><%= link_to  truncate(project.project_name, length: 60, separate: ''), project_path(project), class: "project-heading-word" %></h3>
 								<em class="factory-name"><%= project.user.fullname%></em>
+								<div class="row">
+									<div class="col-xs-12">
+										
+										<% if project.problem.present? %>
+											<p class="<%= problem_word project.status %>">
+												<%= project.problem %>		
+											</p>
+										<% end %>
+										<p>
+											<% if project.tasks.present? %>			
+												<b><%= project.tasks.order(created_at: :asc).last.executor.fullname if project.tasks.order(created_at: :asc).last.executor.present? %></b>
+												<%= project.tasks.order(created_at: :asc).last.task %>
+											<% end %>		
+										</p>
+										<p>
+											<% if project.samples.present? %>
+												Sample will be received around: 			
+												<b><%= project.samples.last.receive_date.strftime("%b %d. %y") %></b>
+											<% end %>		
+										</p>
+									</div>
+								</div>
+								<%= render "index_table_products", object: project %>
 							</div>
 							<% if project.costs.present? && current_user.role != 'designer'%>
 								<ul class="list-group list-group-cost-index">
@@ -23,33 +48,6 @@
 								</ul>
 							<% end %>
 					</div> <!-- panel-body -->
-
-					<div class="<%= body_top_color project %>"></div>
-					<div class="panel-footer">
-						<div class="row">
-							<div class="col-xs-12">
-								
-								<% if project.problem.present? %>
-									<p class="<%= problem_word project.status %>">
-										<%= project.problem %>		
-									</p>
-								<% end %>
-								<p>
-									<% if project.tasks.present? %>			
-										<b><%= project.tasks.order(created_at: :asc).last.executor.fullname if project.tasks.order(created_at: :asc).last.executor.present? %></b>
-										<%= project.tasks.order(created_at: :asc).last.task %>
-									<% end %>		
-								</p>
-								<p>
-									<% if project.samples.present? %>
-										Sample will be received around: 			
-										<b><%= project.samples.last.receive_date.strftime("%b %d. %y") %></b>
-									<% end %>		
-								</p>
-							</div>
-						</div>
-						<%= render "index_table_products", object: project %>
-					</div> <!-- panel-footer -->
 				</div> <!-- panel-group -->
 			</div> <!-- col-md-4 -->
 		<% end %> <!-- group iterate -->

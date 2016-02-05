@@ -67,13 +67,8 @@ $(document).ready(function(){
  //    $(this).addClass("active");
 	// });
 
-  $(".panel img").mouseover(function() {
-    $(this).css({"max-height":"400px"});
-    $(this).next('#project-index-panel').css({'border-color':'black'});
-  });
-  $(".panel img").mouseleave(function() {
-    $(this).css({"max-height":"300px"});
-    $(this).next('#project-index-panel').css({'border-color':'transparent'});
+  $(".row-project .panel-project-heading").click(function() {
+    $(this).toggleClass("show-project-detail", 1000)
   });
   // Change navbar when scroll down
   $(window).scroll(function () {
