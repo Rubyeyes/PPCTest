@@ -26,9 +26,15 @@
 			<% @products.each do |product| %>
 				<tr>
 					<td><%= link_to product.item_number,  product_path(product), method: :get%></td>
-					<% if product.cost.present? && current_user.role != 'designer' %>
-						<td><%= number_to_currency(product.cost.unitUSD) %></td>
-						<td><%= number_to_currency(product.cost.toolingUSD) %></td>
+					<% if product.cost.nil? %>
+						<td></td>
+						<td></td>
+					<% elsif current_user.role == ('admin' || 'user') %>
+						<td><%= number_to_currency(product.cost.unitUSD)%></td>
+						<td><%= number_to_currency(product.cost.toolingUSD)%></td>
+					<% elsif current_user.role == 'factory' %>
+						<td><%= number_to_currency(product.cost.unitRMB)%></td>
+						<td><%= number_to_currency(product.cost.toolingRMB)%></td>
 					<% end %>
 					<td><%= product.product_name %></td>
 					<td><%= link_to product.project.project_name, controller: "projects", action: "show", id: product.project_id %></td>
