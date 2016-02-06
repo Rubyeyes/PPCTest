@@ -1,36 +1,50 @@
 <div class="container-home">
-	<div class="col-xs-12 col-md-12 col-no-padding">
-<!-- 
-		<video autoplay muted loop class="home-video">
-			<source src="<%= @video.video.url %>" type="video/mp4">
-			<source src="<%= @video.video.url %>" type="video/webm">
-		</video> -->
-		<img class="img-responsive img-thumbnail project-image" src="/home_images/upper.jpg">
-		<div class="jumbotron jumbotron-home" style="position:absolute;height:710px">
-		  <h1>WELCOME NcSTAR</h1>
-		  <h4>Manage Our Unique Projects Here</h4>
+
+	<div class="row">
+		<div class="col-xs-12 col-md-12 col-no-padding">
+	<!-- 
+			<video autoplay muted loop class="home-video">
+				<source src="<%= @video.video.url %>" type="video/mp4">
+				<source src="<%= @video.video.url %>" type="video/webm">
+			</video> -->
+			<img class="img-responsive img-thumbnail project-image" src="/home_images/upper.jpg">
+			<div class="jumbotron jumbotron-home" style="position:absolute;height:710px">
+			  <h1>WELCOME NcSTAR</h1>
+			  <h4>Manage Our Unique Projects Here</h4>
+			  <button id="btn_scroll" class="btn btn-default">
+			  	<span class="glyphicon glyphicon-menu-down"></span>
+			  </button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-md-4 col-no-padding">
+			<%= render "home_image", src: "/home_images/Project.jpg", path: projects_path(stage: 'stage_all'), name: "PROJECTS"%>
+		</div>
+		<div class="col-xs-12 col-md-4 col-no-padding">
+		<%= render "home_image", src: "/home_images/Sample.jpg", path: samples_path, name: "SAMPLES" %>
+		</div>
+		<div class="col-xs-12 col-md-4 col-no-padding">
+		<%= render "home_image", src: "/home_images/Product.jpg", path: products_path, name: "PRODUCTS" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-md-4 col-no-padding">
+		<%= render "home_image", src: "/home_images/Report.jpg", path: reports_path, name: "REPORTS" if current_user.role != 'designer' %>
+		</div>
+		<div class="col-xs-12 col-md-4 col-no-padding">
+		<%= render "home_image", src: "/home_images/Po.jpg", path: pos_path, name: "PO" if current_user.role != 'designer'%>
+		</div>
+		<div class="col-xs-12 col-md-4 col-no-padding">
+		<%= render "home_image", src: "/home_images/Cost.jpg", path: costs_path, name: "COSTS" if current_user.role != 'designer'%>
 		</div>
 	</div>
 
-	<%= render "home_image", src: "/home_images/Project.jpg", path: projects_path(stage: 'stage_all'), name: "PROJECTS"%>
-	<%= render "home_image", src: "/home_images/Report.jpg", path: reports_path, name: "REPORTS" %>
-	<%= render "home_image", src: "/home_images/Sample.jpg", path: samples_path, name: "SAMPLES" %>
-	<%= render "home_image", src: "/home_images/Product.jpg", path: products_path, name: "PRODUCTS" %>
-	<%= render "home_image", src: "/home_images/Po.jpg", path: pos_path, name: "PO" if current_user.role != 'designer'%>
-	<%= render "home_image", src: "/home_images/Cost.jpg", path: costs_path, name: "COSTS" if current_user.role != 'designer'%>
-
 <script>
-	var player;
-
-	function onYouTubeIframeAPIReady() {
-	    player = new YT.Player('ytplayer', {
-	        events: {
-	            'onReady': onPlayerReady
-	        }
-	    });
-	}
-
-	function onPlayerReady(event) {
-	    player.mute();
-	}
+	$(document).ready(function(){
+		$("#btn_scroll").click(function() {
+		    $("body").animate({"scrollTop": window.scrollY-300}, 1000);
+        	return false;
+		});
+	})
 </script>

@@ -25,6 +25,23 @@
 	}
 }
 
+.footer-list-item {
+  color:white;
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0px;
+}
+
+.footerbar-list {
+  float:left;
+}
+
+.footerbar {
+  height: 50px;
+  background: #777777;
+  padding: 10px
+}
+
 .show-project-detail {
   height: 50px;
   overflow: hidden;
