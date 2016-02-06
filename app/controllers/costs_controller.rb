@@ -5,7 +5,7 @@ class CostsController < ApplicationController
     @user = current_user
     # advance search filter
     filter(Cost)
-    @costs = @data.text_sort(params[:sort], params[:direction]).page params[:page]
+    @costs = @data.text_sort(params[:sort], params[:direction]).page(params[:page]).per(20)
     if params[:project_id_param].present?
       @project = Project.find(params[:project_id_param])
       @costs = @project.costs 

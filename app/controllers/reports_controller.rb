@@ -4,7 +4,7 @@ class ReportsController < ApplicationController
     @user = current_user
     # advance search filter
     filter(Report)
-    @reports = @data.text_sort(params[:sort], params[:direction]).page params[:page] 
+    @reports = @data.text_sort(params[:sort], params[:direction]).page(params[:page]).per(20)
   end
 
   def new

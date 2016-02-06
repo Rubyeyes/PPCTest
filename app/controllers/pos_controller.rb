@@ -4,7 +4,7 @@ class PosController < ApplicationController
     @user = current_user
     # advance search filter
     filter(Po)
-    @pos = @data.text_sort(params[:sort], params[:direction]).page params[:page]
+    @pos = @data.text_sort(params[:sort], params[:direction]).page(params[:page]).per(20)
   end
 
   def new

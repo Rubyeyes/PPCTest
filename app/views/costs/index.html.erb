@@ -10,4 +10,6 @@
 <!-- Cost list -->
 <%= render "index_table"%>
 
+<%= paginate @costs, window: 3, outer_window: 1%>
+
 </div>
