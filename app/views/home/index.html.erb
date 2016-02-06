@@ -8,7 +8,7 @@
 				<source src="<%= @video.video.url %>" type="video/webm">
 			</video> -->
 			<img class="img-responsive img-thumbnail project-image" src="/home_images/upper.jpg">
-			<div class="jumbotron jumbotron-home" style="position:absolute;height:710px">
+			<div class="jumbotron jumbotron-home" style="position:absolute">
 			  <h1>WELCOME NcSTAR</h1>
 			  <h4>Manage Our Unique Projects Here</h4>
 			  <button id="btn_scroll" class="btn-home-scroll">
@@ -28,17 +28,19 @@
 		<%= render "home_image", src: "/home_images/Product.jpg", path: products_path, name: "PRODUCTS" %>
 		</div>
 	</div>
-	<div  class="row">
-		<div class="col-xs-12 col-md-4 col-no-padding">
-		<%= render "home_image", src: "/home_images/Report.jpg", path: reports_path, name: "REPORTS" if current_user.role != 'designer' %>
+	<% if current_user.role != 'designer'  %>
+		<div  class="row">
+			<div class="col-xs-12 col-md-4 col-no-padding">
+			<%= render "home_image", src: "/home_images/Report.jpg", path: reports_path, name: "REPORTS"  %>
+			</div>
+			<div class="col-xs-12 col-md-4 col-no-padding">
+			<%= render "home_image", src: "/home_images/Po.jpg", path: pos_path, name: "PO" %>
+			</div>
+			<div class="col-xs-12 col-md-4 col-no-padding">
+			<%= render "home_image", src: "/home_images/Cost.jpg", path: costs_path, name: "COSTS" %>
+			</div>
 		</div>
-		<div class="col-xs-12 col-md-4 col-no-padding">
-		<%= render "home_image", src: "/home_images/Po.jpg", path: pos_path, name: "PO" if current_user.role != 'designer'%>
-		</div>
-		<div class="col-xs-12 col-md-4 col-no-padding">
-		<%= render "home_image", src: "/home_images/Cost.jpg", path: costs_path, name: "COSTS" if current_user.role != 'designer'%>
-		</div>
-	</div>
+	<% end %>
 
 <script>
 	$(document).ready(function(){

@@ -4,7 +4,7 @@
 <%= render "search"%>
 
 <div class="text-right">
-	<%= link_to "New Product", new_product_path if current_user.role != 'user'%>
+	<%= link_to "New Product", new_product_path if current_user.role == 'admin'%>
 </div>
 <hr class="hr-table">
 <div class="table-responsive">
@@ -26,10 +26,10 @@
 			<% @products.each do |product| %>
 				<tr>
 					<td><%= link_to product.item_number,  product_path(product), method: :get%></td>
-					<% if product.cost.nil? %>
+					<% if product.cost.nil? && current_user.role != 'designer' %>
 						<td></td>
 						<td></td>
-					<% elsif current_user.role == ('admin' || 'user') %>
+					<% elsif current_user.role == ('admin' || 'user') &&  %>
 						<td><%= number_to_currency(product.cost.unitUSD)%></td>
 						<td><%= number_to_currency(product.cost.toolingUSD)%></td>
 					<% elsif current_user.role == 'factory' %>

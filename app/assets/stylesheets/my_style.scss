@@ -34,10 +34,11 @@
 
 .footerbar-list {
   float:left;
+  margin-bottom: 0px;
 }
 
 .footerbar {
-  height: 50px;
+  height: 40px;
   background: #777777;
   padding: 10px
 }
@@ -82,9 +83,6 @@
   padding:0px;
 }
 
-.container {
-  margin-bottom: 40px;
-}
 
 .container-footer {
   margin:0px;

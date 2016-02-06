@@ -1,6 +1,6 @@
 
 <div class="container-project-show ">
-	<div class="col-xs-12 col-md-12" style="padding:0px"> 
+	<div style="padding:0px"> 
 		<div class="image-project-frame"><%= image_tag @project.image.url(:detail).to_s, class: "img-responsive" %></p>
 	</div>
 
@@ -37,7 +37,9 @@
 					<%end%>
 					<div class="panel panel-default">
 						<ul class="list-group">
-							<li class="list-group-item" style="text-align:right"><%= link_to "Upload Instruction", new_instruction_path(project_id_param: @project.id)%></li>
+							<% if current_user.role != "designer" %>
+								<li class="list-group-item" style="text-align:right"><%= link_to "Upload Instruction", new_instruction_path(project_id_param: @project.id)%></li>
+							<% end %>
 							<% if @project.instructions.present? %>
 								<% @project.instructions.each do |i|%>
 									<li class="list-group-item">

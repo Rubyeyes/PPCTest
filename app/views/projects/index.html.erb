@@ -12,10 +12,10 @@
     <div id="projectCollapse" class="navbar-collapse collapse" aria-expanded="false">
       <ul id='projectTab' class="nav navbar-default nav-tabs nav-justified nav-project-tab">
         <li class="<%='active' if @projects_0.present? %>", id="0">
-          <a href="<%= projects_path(params.merge(stage: 'stage_0', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "0. Need to be fixed").count if @data.where(status: "0. Need to be fixed").count > 0 %></span> Problems</a>
+          <a href="<%= projects_path(params.merge(stage: 'stage_0', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "0. Need to be fixed").count if @data.where(status: "0. Need to be fixed").count > 0 %></span> Issues</a>
         </li>
         <li class="<%='active' if @projects_1.present? %>", id="1">
-          <a href="<%= projects_path(params.merge(stage: 'stage_1', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "1. Hold for some reason").count if @data.where(status: "1. Hold for some reason").count > 0 %></span> Hold</a>
+          <a href="<%= projects_path(params.merge(stage: 'stage_1', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "1. Hold for some reason").count if @data.where(status: "1. Hold for some reason").count > 0 %></span>Standby</a>
         </li> 
         <li class="<%='active' if @projects_2.present? %>", id="2">
           <a href="<%= projects_path(params.merge(stage: 'stage_2', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "2. Concept design").count if @data.where(status: "2. Concept design").count > 0 %></span> Concept</a>

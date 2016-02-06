@@ -41,27 +41,29 @@
 								</table><br />
 								</div>
 
-								<% if product.po_products.present? %>
-									<table class="table table-hover">
-										<thead>
-											<tr>
-												<th>PO number</th>
-												<th>Quantity</th>
-												<th>Created at</th>
-											</tr>
-										</thead>
-										<tbody>
-											<% product.po_products.joins(:po).order("date DESC").first(3).each do |po_product| %>
+								<% if current_user.role != 'designer' %>
+									<% if product.po_products.present?%>
+										<table class="table table-hover">
+											<thead>
 												<tr>
-													<td><%=link_to po_product.po.po_number, po_path(po_product.po.id) %></td>
-													<td><%= po_product.quantity %></td>
-													<td><%= po_product.po.date.strftime("%d-%m-%y") %></td>	
+													<th>PO number</th>
+													<th>Quantity</th>
+													<th>Created at</th>
 												</tr>
-											<% end %>						
-										</tbody>
-									</table>
-								<% else %>
-									<p class="text-center"><b> No PO yet ~!</b></p>
+											</thead>
+											<tbody>
+												<% product.po_products.joins(:po).order("date DESC").first(3).each do |po_product| %>
+													<tr>
+														<td><%=link_to po_product.po.po_number, po_path(po_product.po.id) %></td>
+														<td><%= po_product.quantity %></td>
+														<td><%= po_product.po.date.strftime("%d-%m-%y") %></td>	
+													</tr>
+												<% end %>						
+											</tbody>
+										</table>
+									<% else %>
+										<p class="text-center"><b> No PO yet ~!</b></p>
+									<%end%>
 								<%end%>
 							</div>
 							<% if current_user.role == 'admin' %>

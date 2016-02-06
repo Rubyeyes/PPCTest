@@ -38,26 +38,28 @@
 					</tr>
 				</table>
 			</div>
-			<div class="col-ex-12 col-md-4">
-				<table class="table table-striped table-hover">
-					<thead>
-						<tr>
-							<th>PO number</th>
-							<th>Quantity</th>
-							<th>Created at</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% @product.po_products.joins(:po).order("date DESC").each do |po_product| %>
+			<% if current_user.role != 'designer' %>
+				<div class="col-ex-12 col-md-4">
+					<table class="table table-striped table-hover">
+						<thead>
 							<tr>
-								<td><%= link_to po_product.po.po_number, controller: 'pos', action: 'show', id: po_product.po.id %></td>
-								<td><%= po_product.quantity %></td>
-								<td><%= po_product.po.date.strftime("%d-%m-%y") %></td>	
+								<th>PO number</th>
+								<th>Quantity</th>
+								<th>Created at</th>
 							</tr>
-						<% end %>						
-					</tbody>
-				</table>
-			</div>
+						</thead>
+						<tbody>
+							<% @product.po_products.joins(:po).order("date DESC").each do |po_product| %>
+								<tr>
+									<td><%= link_to po_product.po.po_number, controller: 'pos', action: 'show', id: po_product.po.id %></td>
+									<td><%= po_product.quantity %></td>
+									<td><%= po_product.po.date.strftime("%d-%m-%y") %></td>	
+								</tr>
+							<% end %>						
+						</tbody>
+					</table>
+				</div>
+			<% end %>
 		</div>
 	</div>
 
