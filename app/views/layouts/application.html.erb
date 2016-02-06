@@ -32,13 +32,18 @@
 <div class="container-fluid container-main"> 
   <%= yield %>
   <!-- Footer -->
+  <% if ['home', 'devise/sessions', 'registrations'].exclude?(params[:controller])%>
   <footer>
     <div class="footerbar">
-      <ul class="list-group footerbar-list" >
-        <li class="list-group-item footer-list-item">NcSTAR<sup>&reg;</sup> 2016</li> 
-      </ul>
+      <div class="container container-footer">
+        <ul class="list-group footerbar-list" >
+          <li class="list-group-item footer-list-item">NcSTAR<sup>&reg;</sup> 2016</li> 
+        </ul>
+      </div>
     </div>
   </footer>
+  <% end %>
+
 </div> 
 
 
