@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     @user = current_user
     # advance search filter
     filter(Product)
-    @products = @data.text_sort(params[:sort], params[:direction]).page params[:page]
+    @products = @data.text_sort(params[:sort], params[:direction]).page(params[:page]).per(20)
   end
 
   def new
