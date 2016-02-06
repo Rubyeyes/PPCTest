@@ -11,13 +11,13 @@
 			<div class="jumbotron jumbotron-home" style="position:absolute;height:710px">
 			  <h1>WELCOME NcSTAR</h1>
 			  <h4>Manage Our Unique Projects Here</h4>
-			  <button id="btn_scroll" class="btn btn-default">
-			  	<span class="glyphicon glyphicon-menu-down"></span>
+			  <button id="btn_scroll" class="btn-home-scroll">
+			  	<span class="glyphicon glyphicon-menu-down" style="color:rgba(51,122,183,1)"></span>
 			  </button>
 			</div>
 		</div>
 	</div>
-	<div class="row">
+	<div  class="row">
 		<div class="col-xs-12 col-md-4 col-no-padding">
 			<%= render "home_image", src: "/home_images/Project.jpg", path: projects_path(stage: 'stage_all'), name: "PROJECTS"%>
 		</div>
@@ -28,7 +28,7 @@
 		<%= render "home_image", src: "/home_images/Product.jpg", path: products_path, name: "PRODUCTS" %>
 		</div>
 	</div>
-	<div class="row">
+	<div  class="row">
 		<div class="col-xs-12 col-md-4 col-no-padding">
 		<%= render "home_image", src: "/home_images/Report.jpg", path: reports_path, name: "REPORTS" if current_user.role != 'designer' %>
 		</div>
@@ -42,9 +42,10 @@
 
 <script>
 	$(document).ready(function(){
-		$("#btn_scroll").click(function() {
-		    $("body").animate({"scrollTop": window.scrollY-300}, 1000);
-        	return false;
+		$("#btn_scroll").click(function () {
+		  $('html,body').animate({
+		      scrollTop: $(document).height()/2,
+		  }, 1000);
 		});
 	})
 </script>
