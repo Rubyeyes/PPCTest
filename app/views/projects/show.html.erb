@@ -5,10 +5,11 @@
 	</div>
 
 	<div class="show-project-background">
-	<div class="container">
+	<div id="info_top"  class="container">
 		<div class="container-content">
 			<div class="row">
 				<div class="col-xs-12 col-md-4">
+					<div id="project_info_panel">
 					<div class="panel panel-default panel-project-title">
 						<div class="panel-heading">
 							<h3><%= @project.project_name %></h3>
@@ -54,24 +55,39 @@
 					</div>
 
 				</div>
+				</div>
+
 				<div class="col-xs-12 col-md-8">
 					<%= render "costs_table", object: @project, :number => 3 if current_user.role != 'designer'%>
 					<%= render "show_table_samples", object: @project %>
 					<%= render "show_table_tasks", object: @project %><br>
 					<%= render "show_table_reports", object: @project if current_user.role != 'designer' %><br>
-				</div>
-			</div>
-
-				
-			<div class="row">
-				<div class="col-xs-12">
 					<%= render "show_table_products", object: @project %>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	</div>
 
 </div>
+
+<script>
+	$(document).ready(function() {
+		// Change navbar when scroll down
+	  	$(window).scroll(function () {
+				var infoTop = document.getElementById("info_top").offsetTop;
+		    var top = $(this).scrollTop();
+		    if ($(window).width() > 960) {
+		  		if(top>infoTop) {
+			      $("#project_info_panel").addClass("panel-fixed-top col-xs-11 col-sm-3");
+			    } else {
+			      $("#project_info_panel").removeClass("panel-fixed-top col-xs-11 col-sm-3");
+			    }
+  			}
+	  	})
+		    
+	})	
+</script>
 			
 

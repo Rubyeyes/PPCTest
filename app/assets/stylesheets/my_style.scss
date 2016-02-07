@@ -25,6 +25,12 @@
 	}
 }
 
+.panel-fixed-top {
+  position: fixed;
+  top: 76px;
+  padding: 0px;
+}
+
 .footer-list-item {
   color:white;
   background-color: transparent;
@@ -335,10 +341,11 @@
 }
 
 .panel-project-title {
-  border-color: rgb(204, 204, 204);
+  border-color: transparent;
   border-width: 1px;
   margin-top:-77px;
   background-color: transparent;
+  z-index: 999;
 }
 
 .panel-project-title .panel-heading {
