@@ -1,6 +1,6 @@
 <P><%= render "validation_errors", object:  @cost%><P>
 
-<%= form_for @cost do |f| %>
+<%= smart_form(@cost, params[:controller]) do |f| %>
 	
 	<!-- Check if requiring to offer project select -->
 	<% if action_name == "new" %>

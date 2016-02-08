@@ -1,28 +1,34 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => { :registrations => :registrations }
-  
-  root to:'home#index'
+  scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
 
-  resources :admin_setting, only:[:index]
-  resources :costs, except:[:show]
-  resources :current_user, only:[:index, :edit, :update]
-  resources :home, only:[:index]
-  resources :instructions
-  resources :logos
-  resources :notifications, only:[:index, :update, :show, :destroy]
-  resources :projects
-  resources :products
-  resources :pos
-  resources :po_products
-  resources :reports
-  resources :role_options
-  resources :samples
-  resources :status_options
-  resources :tasks
-  resources :users_admin, :controller => 'users', only:[:index, :edit, :update, :destroy]
-  resources :videos
+    devise_for :users, :controllers => { :registrations => :registrations }
+    
+    root to:'home#index'
 
+    resources :admin_setting, only:[:index]
+    resources :costs, except:[:show]
+    resources :current_user, only:[:index, :edit, :update]
+    resources :home, only:[:index]
+    resources :instructions
+    resources :logos
+    resources :notifications, only:[:index, :update, :show, :destroy]
+    resources :projects
+    resources :products
+    resources :pos
+    resources :po_products
+    resources :reports
+    resources :role_options
+    resources :samples
+    resources :status_options
+    resources :tasks
+    resources :users_admin, :controller => 'users', only:[:index, :edit, :update, :destroy]
+    resources :videos
+
+  end
+
+  get '*path', to: redirect("/#{I18n.default_locale}/%{path}")
+  get '', to: redirect("/#{I18n.default_locale}")
 
 
   # The priority is based upon order of creation: first created -> highest priority.

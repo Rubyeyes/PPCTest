@@ -20,8 +20,8 @@
 							<td><%= task.created_at.strftime("%d %b. %Y") %></td>
 							<% if current_user.role == 'admin' %>	
 								<td>
-									<%= link_to 'Edit |', edit_task_url(task) %>
-									<%= link_to 'Delete', task_url(task), method: :delete, data: {confirm: "Are you sure?"} %>
+									<%= link_to 'Edit |', edit_task_url(id: task.id) %>
+									<%= link_to 'Delete', task_url(id: task.id), method: :delete, data: {confirm: "Are you sure?"} %>
 								</td>
 							<% end %>			
 						</tr>

@@ -43,4 +43,21 @@ module ApplicationHelper
 		end
 	end
 
+	def smart_form object, controller, &block
+		if controller == 'projects'
+			
+			if object.id.present?
+			 	form_for object, url: url_for(controller: controller,action: 'edit', id: object.id), class: "form-horizontal", :html => {:multipart => true}, &block
+			else
+			 	form_for object, class: "form-horizontal", :html => {:multipart => true},  &block
+			end
+		else
+			if object.id.present?
+			 	form_for object, url: url_for(controller: controller,action: 'edit', id: object.id), &block
+			else
+			 	form_for object, &block
+			end
+		end
+	end
+
 end

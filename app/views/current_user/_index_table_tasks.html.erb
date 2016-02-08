@@ -15,10 +15,10 @@
 				<tr>
 					<td><%= task.executor.fullname if current_user.role == 'admin' && task.executor.present? %></td>
 					<td><%= task.task %></td>
-					<td><%= link_to task.project.project_name, project_path(task.project.id) %></td>
+					<td><%= link_to task.project.project_name, project_path(id: task.project.id) %></td>
 					<td><%= task.deadline.strftime("%m-%d-%y") if task.deadline.present?%></td>
 					<td>
-						<%= button_to 'Finish', task_path(task), method: :put, params: {finish_value: true}, class: "btn btn-default btn-xs" %>
+						<%= button_to 'Finish', task_path(id: task.id), method: :put, params: {finish_value: true}, class: "btn btn-default btn-xs" %>
 					</td>
 				</tr>
 			<% end %>

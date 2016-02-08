@@ -2,7 +2,7 @@
 	<div class="panel-heading">
 		<h2><%= @current_user.fullname %></h2>
 		<p><%= @current_user.email %><br>
-		<%= link_to 'Edit Information', edit_user_registration_path(@current_user) %> </p>
+		<%= link_to 'Edit Information', edit_user_registration_path(id: @current_user.id) %> </p>
 	</div>
 	<div class="panel-body">
 		<ul class="list-unstyled">

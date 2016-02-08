@@ -19,7 +19,7 @@
 			<% @costs.each do |cost| %>
 				<tr>
 					<%if @project.nil?%> <!-- Check if table is accessed from project -->
-						<td><%= link_to cost.project.project_name, project_path(cost.project.id) %></td>
+						<td><%= link_to cost.project.project_name, project_path(id: cost.project.id) %></td>
 					<%end%>
 					<td><%= number_to_currency(cost.unitRMB, unit: '￥') %></td>
 					<td><%= number_to_currency(cost.toolingRMB, unit: '￥') %></td>
@@ -29,8 +29,8 @@
 					<td><%= cost.created_at.strftime("%m-%d-%y") %></td>
 					<td>
 						<% if current_user.role == 'admin'%> <!-- Only admin can edit and delete cost -->
-							<%= link_to 'Edit', edit_cost_url(cost)%>
-							<%= link_to 'Delete', cost_url(cost), method: :delete, data: {confirm: "Are you sure?"}%>
+							<%= link_to 'Edit', edit_cost_url(id: cost.id)%>
+							<%= link_to 'Delete', cost_url(id: cost.id), method: :delete, data: {confirm: "Are you sure?"}%>
 						<%end%>
 					</td>	
 				</tr>

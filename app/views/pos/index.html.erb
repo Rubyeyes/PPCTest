@@ -22,11 +22,11 @@
 	<tbody>
 		<% @pos.each do |po| %>
 			<tr>
-				<td><%= link_to po.po_number,  po_url(po) %></td>
+				<td><%= link_to po.po_number,  po_url(id: po.id) %></td>
 				<td><%= po.date.strftime("%d-%m-%y") %></td>
 				<td>
 					<%= link_to 'Edit', new_po_product_url(po_id: po.id) if current_user.role == 'admin'%>
-					<%= link_to 'Delete', po_url(po), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin'%>
+					<%= link_to 'Delete', po_url(id: po.id), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin'%>
 				</td>
 			</tr>
 		<% end %>

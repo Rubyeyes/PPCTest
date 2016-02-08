@@ -6,7 +6,7 @@
 		<% object.products.order(product_name: :asc).each do |product| %>
 			<div class="panel panel-default panel-default-product">
 				<div class="panel-heading">
-					<div class="lead display-1"><%= link_to product.item_number, product_path(product) %></div>
+					<div class="lead display-1"><%= link_to product.item_number, product_path(id: product.id) %></div>
 				</div>
 				<div class="panel-body panel-home-show">
 				<div class="table-responsive">
@@ -51,7 +51,7 @@
 								<tbody>
 									<% product.po_products.joins(:po).order("date DESC").first(3).each do |po_product| %>
 										<tr>
-											<td><%=link_to po_product.po.po_number, po_path(po_product.po.id) %></td>
+											<td><%=link_to po_product.po.po_number, po_path(id: po_product.po.id) %></td>
 											<td><%= po_product.quantity %></td>
 											<td><%= po_product.po.date.strftime("%d-%m-%y") %></td>	
 										</tr>
@@ -65,8 +65,8 @@
 				</div>
 				<% if current_user.role == 'admin' %>
 					<div class="panel-footer text-right">
-						<%= link_to 'Edit', edit_product_path(product) %> |
-						<%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %>
+						<%= link_to 'Edit', edit_product_path(id: product.id) %> |
+						<%= link_to 'Delete', product_path(id: product.id), method: :delete, data: {confirm: "Are you sure?"} %>
 					</div>	<!-- panel-heading -->
 				<% end %>
 			</div>		<!-- panle panel-default -->	<!-- col-ex-12 col-md-6 -->

@@ -11,7 +11,7 @@
 					            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%="Pos"%><span class="caret"></span></a>
 					            <ul class="dropdown-menu">
 					            	<% product.po_products.joins(:po).order('date DESC').each do |p| %>
-					              	<li><%=link_to "#{p.quantity} in #{p.po.po_number}", po_path(p.po) %></li>
+					              	<li><%=link_to "#{p.quantity} in #{p.po.po_number}", po_path(id: p.po.id) %></li>
 					              <% end %>
 					            </ul>
 				            <%end%> 

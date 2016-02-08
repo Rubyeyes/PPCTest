@@ -1,6 +1,6 @@
 <P><%= render "validation_errors", object: @product %><P>
 
-<%= form_for @product do |f| %>
+<%= smart_form(@product, params[:controller]) do |f| %>
 	<!-- Check if requiring to offer project select -->
 	<% if action_name == "new" %>
 		<% if @project.present? %>

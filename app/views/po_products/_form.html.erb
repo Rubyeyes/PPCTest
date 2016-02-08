@@ -3,10 +3,10 @@
 <div class="panel panel-default panel-top-margin">
 	<div class="panel-heading">
 		<h2><%= @po.po_number %></h2>
-		<p style="float:left"><%= link_to 'Edit Po Number', edit_po_path(@po)%></p>
+		<p style="float:left"><%= link_to 'Edit Po Number', edit_po_path(id: @po.id)%></p>
 		<p><%= @po.date.strftime("%m-%d-%y") %></p>
 
-		<%= form_for @po_product do |f| %>
+		<%= smart_form(@po_product, params[:controller]) do |f| %>
 			<%= f.hidden_field :po_id, value: @po.id %>
 
 			<div class="row row-form">
@@ -50,7 +50,7 @@
 						<td><%=po_product.quantity%></td>
 						<td><%=po_product.created_at.strftime("%Y-%m-%d")%></td>
 						<td>
-							<%= link_to 'Delete', po_product_path(po_product), method: :delete, data: {confirm: "Are you sure?"} %>
+							<%= link_to 'Delete', po_product_path(id: po_product.id), method: :delete, data: {confirm: "Are you sure?"} %>
 						</td>
 					</tr>
 				<% end %>
@@ -59,6 +59,6 @@
 	</div>
 
 	<div class="panel-footer text-right">
-		<p><%= link_to 'Finish', po_path(@po), method: :get, class: "btn btn-default"%></p>
+		<p><%= link_to 'Finish', po_path(id: @po.id), method: :get, class: "btn btn-default"%></p>
 	</div>
 </div>

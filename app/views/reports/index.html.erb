@@ -23,13 +23,13 @@
 			<% if @reports.present? %>
 				<% @reports.each do |report| %>
 					<tr>
-						<td><%= link_to report.name, report_path(report), method: :get%></td>
+						<td><%= link_to report.name, report_path(id: report.id), method: :get%></td>
 						<td><%= report.project.user.fullname if current_user.role != "factory"%></td>
 						<td><%= report.created_at.strftime("%b %d. %y") %></td>
 						<td><%= link_to report.project.project_name, controller: 'projects', action: 'show', id: report.project.id %></td>
 						<td>
-							<%= link_to '| Edit', edit_report_path(report) if current_user.role == 'admin'%> 
-							<%= link_to '| Delete', report_path(report), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin'%>
+							<%= link_to '| Edit', edit_report_path(id: report.id) if current_user.role == 'admin'%> 
+							<%= link_to '| Delete', report_path(id: report.id), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin'%>
 						</td>
 					</tr>
 				<% end %>

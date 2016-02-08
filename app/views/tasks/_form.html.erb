@@ -1,6 +1,6 @@
 <P><%= render "validation_errors", object:  @task%><P>
 
-<%= form_for @task do |f| %>
+<%= smart_form(@task, params[:controller]) do |f| %>
 
 	<% if action_name == "new"%>
 		<% if @project.present? %>

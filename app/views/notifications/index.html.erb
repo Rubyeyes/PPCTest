@@ -21,8 +21,8 @@
 				</div>
 			</div>
 			<div class="panel-footer text-right">
-				<%= link_to 'View |', notification_path(notification), method: :put %>
-				<%= link_to 'Delete', notification_path(notification), method: :delete, data: {confirm: "Are you sure?"}%>
+				<%= link_to 'View |', notification_path(id: notification.id), method: :put %>
+				<%= link_to 'Delete', notification_path(id: notification.id), method: :delete, data: {confirm: "Are you sure?"}%>
 			</div>
 		</div>
 <% end %>

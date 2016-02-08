@@ -35,8 +35,8 @@
 								<% if current_user.role != 'user' %>
 									<td><%= cost.created_at.strftime("%d %b. %y")%></td>
 									<td>
-									<%= link_to 'Edit |', edit_cost_url(cost) %>
-									<%= link_to 'Delete', cost_url(cost), method: :delete, data: {confirm: "Are you sure?"}%>
+									<%= link_to 'Edit |', edit_cost_url(id: cost.id) %>
+									<%= link_to 'Delete', cost_url(id: cost.id), method: :delete, data: {confirm: "Are you sure?"}%>
 									</td>
 								<% end %>
 							<% end %>

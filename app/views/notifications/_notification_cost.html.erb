@@ -31,8 +31,8 @@
 						<td><%= object.notifiable.created_at.strftime("%m-%d-%y") %></td>
 						<% if current_user.role == 'factory' || 'admin'%>
 							<td>
-								<%= link_to 'Edit', edit_cost_url(object.notifiable)%>
-								<%= link_to 'Delete', cost_url(object.notifiable), method: :delete, data: {confirm: "Are you sure?"}%>
+								<%= link_to 'Edit', edit_cost_url(id: object.notifiable.id)%>
+								<%= link_to 'Delete', cost_url(id: object.notifiable.id), method: :delete, data: {confirm: "Are you sure?"}%>
 							</td>
 						<% end %>
 					</tr>

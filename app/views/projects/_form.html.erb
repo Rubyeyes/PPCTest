@@ -1,6 +1,6 @@
 <P><%= render "validation_errors", object:  @project%><P>
 
-<%= form_for @project, class: "form-horizontal", :html => {:multipart => true} do |f| %>
+<%= smart_form(@project, params[:controller]) do |f| %>
 
 	<div class="row row-form">
 		<div class="col-sm-2">
