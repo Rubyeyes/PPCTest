@@ -3,9 +3,10 @@
 		<div class="image-project-frame" style="padding:0px"><%= image_tag @project.image.url(:detail).to_s, class: "img-responsive" %></div>
 
 	<div class="show-project-background">
-		<div class="container container-content">
-					<div class="col-xs-12 col-md-4 col-lg-4">
-						<div class="left-info-col" data-spy="affix" data-offset-top="550" >
+		<div id="info_top"  class="container container-content">
+				<div class="row">
+					<div class="col-xs-12 col-md-4">
+						<div id="project_info_panel">
 							<div class="panel panel-default panel-project-title">
 								<div class="panel-heading">
 									<h3><%= @project.project_name %></h3>
@@ -19,13 +20,12 @@
 									<%end%>
 								</div>
 								<% if current_user.role == 'admin' %>
-									<div class="panel-footer text-right">
-										<%= link_to t('edit_label'), edit_project_path(id: @project.id) %>
-										<%= link_to t('delete_label'), project_path(id: @project.id), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin' %>
-									</div>
+								<div class="panel-footer text-right">
+									<%= link_to t('edit_label'), edit_project_path(id: @project.id) %>
+									<%= link_to t('delete_label'), project_path(id: @project.id), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin' %>
+								</div>
 								<% end %>
 							</div>
-
 							<% if @project.status == "0. Need to be fixed" %>
 								<div class="panel panel-danger">
 									<div class="panel-heading">
@@ -33,7 +33,6 @@
 									</div>
 								</div>
 							<%end%>
-
 							<div class="panel panel-default">
 								<ul class="list-group">
 									<% if current_user.role != "designer" %>
@@ -52,21 +51,34 @@
 								<%end%>
 							</div>
 						</div>
-					</div> <!-- col -->
+					</div>
 
-					<div class="col-xs-12 col-md-8 col-lg-8">
+					<div class="col-xs-12 col-md-8">
 						<%= render "costs_table", object: @project, :number => 3 if current_user.role != 'designer'%>
 						<%= render "show_table_samples", object: @project %>
 						<%= render "show_table_tasks", object: @project %><br>
 						<%= render "show_table_reports", object: @project if current_user.role != 'designer' %><br>
 						<%= render "show_table_products", object: @project %>
 					</div>
+				</div><!-- row -->
 			</div><!-- container -->
 	</div><!-- background -->
 </div>
 
 <script>
 	$(document).ready(function() {
+		// Change navbar when scroll down
+	  	$(window).scroll(function () {
+				var infoTop = document.getElementById("info_top").offsetTop;
+		    var top = $(this).scrollTop();
+		    if ($(window).width() > 960) {
+		  		if(top>infoTop) {
+			      $("#project_info_panel").addClass("panel-fixed-top col-xs-12");
+			    } else {
+			      $("#project_info_panel").removeClass("panel-fixed-top col-xs-12");
+			    }
+  			}
+	  	})
 		    
 	})	
 </script>
