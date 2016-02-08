@@ -26,9 +26,26 @@ class PoProductsController < ApplicationController
   end
 
   def edit
+    @po = Po.find(params[:po_id])
+    @po_product = PoProduct.find(params[:id])
+    @po_products = PoProduct.where po_id: @po.id
+    if current_user.role == "factory" && @po_products.joins(:project).where("user_id = ?", @user.id).empty?
+      # redirect_to root_path
+      # flash[:alert] = "You have no authorization"
+      raise Forbidden, "You have no authorization to visit this page" 
+    end
   end
 
   def update
+    @po = Po.find(po_product_params[:po_id])
+    @po_product = PoProduct.find(params[:id])
+    if @po_product.update(po_product_params)
+      redirect_to new_po_product_path(po_id: @po.id)
+      flash[:notice] = "PO was successfully updated"
+    else
+      flash[:alert] = "There was a problem updating PO"
+      render :edit
+    end
   end
 
   def show
@@ -43,6 +60,6 @@ class PoProductsController < ApplicationController
   private
 
   def po_product_params
-    params.require(:po_product).permit(:id, :product_id, :po_id, :quantity)
+    params.require(:po_product).permit(:id, :product_id, :po_id, :quantity, :finish_date)
   end
 end

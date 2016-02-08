@@ -47,13 +47,13 @@ module ApplicationHelper
 		if controller == 'projects'
 			
 			if object.id.present?
-			 	form_for object, url: url_for(controller: controller,action: 'edit', id: object.id), class: "form-horizontal", :html => {:multipart => true}, &block
+			 	form_for object, url: url_for(controller: controller, action: 'update', id: object.id), class: "form-horizontal", :html => {:multipart => true}, &block
 			else
 			 	form_for object, class: "form-horizontal", :html => {:multipart => true},  &block
 			end
 		else
 			if object.id.present?
-			 	form_for object, url: url_for(controller: controller,action: 'edit', id: object.id), &block
+			 	form_for object, url: url_for(controller: controller,action: 'update', id: object.id), &block
 			else
 			 	form_for object, &block
 			end

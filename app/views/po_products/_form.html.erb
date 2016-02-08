@@ -24,10 +24,18 @@
 				<div class="col-sm-10">
 					<%= f.text_field :quantity, class: "form-control" %>
 				</div>
+			</div>			
+			<div class="row row-form">
+				<div class="col-sm-2">
+					<%= f.label :finish_date, class: "control-label" %>
+				</div>
+				<div class="col-sm-10">
+					<%= f.date_select :finish_date, {:include_blank => true, :default => nil} %>
+				</div>
 			</div>
 			<div class="row row-form">
 				<div class="col-sm-offset-2 col-sm-10">
-					<%= f.submit "Add", class: "btn btn-default" %>
+					<%= f.submit "Submit", class: "btn btn-default" %>
 				</div>
 			</div>
 
@@ -40,6 +48,7 @@
 					<th>Item Number</th>
 					<th>Quantity</th>
 					<th>Created at</th>
+					<th>Finish around</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -49,7 +58,9 @@
 						<td><%=po_product.product.item_number%></td>
 						<td><%=po_product.quantity%></td>
 						<td><%=po_product.created_at.strftime("%Y-%m-%d")%></td>
+						<td><%=po_product.finish_date.strftime("%Y-%m-%d") if po_product.finish_date.present? %></td>
 						<td>
+							<%= link_to 'Edit', edit_po_product_path(id: po_product.id, po_id: @po.id) %>
 							<%= link_to 'Delete', po_product_path(id: po_product.id), method: :delete, data: {confirm: "Are you sure?"} %>
 						</td>
 					</tr>
