@@ -24,6 +24,12 @@ zh-CN:
     index:
       mainTitle: "欢迎来到 NcSTAR"
       subtitle: "在这里管理我们独一无二的项目"
+      projects: "项目"
+      samples: "样品"
+      products: "产品"
+      reports: "报告"
+      po: "订单"
+      costs: "报价"
 
   activerecord:
     errors:
@@ -32,6 +38,7 @@ zh-CN:
         restrict_dependent_destroy:
           has_one: 由于 %{record} 需要此记录，所以无法移除记录
           has_many: 由于 %{record} 需要此记录，所以无法移除记录
+
   date:
     abbr_day_names:
     - 周日

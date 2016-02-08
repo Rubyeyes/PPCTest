@@ -24,3 +24,9 @@ en:
     index:
       mainTitle: "WELCOME NcSTAR"
       subtitle: "Manage Our Unique Projects Here"
+      projects: "PROJECTS"
+      samples: "SAMPLES"
+      products: "PRODUCTS"
+      reports: "REPORTS"
+      po: "PO"
+      costs: "COSTS"
