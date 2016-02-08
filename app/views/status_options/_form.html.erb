@@ -1,6 +1,6 @@
 <P><%= render "validation_errors", object:  @status_option %><P>
 
-<%= form_for @status_option do |f| %>
+<%= smart_form(@status_option, params[:controller]) do |f| %>
 
 	<div class="row row-form">
 		<div class="col-sm-2">

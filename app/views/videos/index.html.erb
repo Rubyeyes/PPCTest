@@ -29,8 +29,8 @@
 					<td ><%= video.description%></td>
 					<td><%= video.created_at.strftime("%Y-%m-%d") %></td>
 					<td>
-						<%= link_to 'Edit', edit_video_path(video) %>
-						<%= link_to 'Delete', video_path(video), method: :delete, data: {confirm: 'Are you sure ?'}%>
+						<%= link_to 'Edit', edit_video_path(id: video.id) %>
+						<%= link_to 'Delete', video_path(id: video.id), method: :delete, data: {confirm: 'Are you sure ?'}%>
 					</td>
 				</tr>
 			<% end %>

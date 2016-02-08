@@ -1,6 +1,6 @@
 <P><%= render "validation_errors", object:  @video %><P>
 
-<%= form_for @video do |f| %>
+<%= smart_form(@video, params[:controller]) do |f| %>
 
 	<div class="row">
 		<div class="col-sm-2">

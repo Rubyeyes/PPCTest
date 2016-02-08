@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container container-user">
 <div class="panel panel-info">
 	<div class="panel-heading">
 		<h1>Role Options</h1>
@@ -19,9 +19,8 @@
 					<td><%= role_option.name %></td>
 					<td><%= role_option.created_at.strftime("%Y-%m-%d") %></td>
 					<td>
-						<%= link_to 'Edit', edit_role_option_path(role_option) %> 
-						<%= link_to 'Show', role_option_path(role_option) %> 
-						<%= link_to 'Delete', role_option_path(role_option), method: :delete, data: {confirm: 'Are you sure ?'} %>
+						<%= link_to 'Edit', edit_role_option_path(id: role_option.id) %> 
+						<%= link_to 'Delete', role_option_path(id: role_option.id), method: :delete, data: {confirm: 'Are you sure ?'} %>
 					</td>
 				</tr>
 				<% end %>

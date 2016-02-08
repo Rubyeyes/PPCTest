@@ -1,18 +1,18 @@
-<div class="container">
+<div class="container container-user ">
 
-<div class="panel panel-default panel-top-margin">
+<div class="panel panel-default ">
 	<div class="panel-heading">
 		<h1><%= simple_format(@report.name) %></h1>
 		<em><%= @report.project.user.fullname if current_user.role != 'factory'%></em>
 	</div>
 	<div class="panel-body">
-		<p><b>Project: </b><%=link_to @report.project.project_name, project_path(@report.project.id
+		<p><b>Project: </b><%=link_to @report.project.project_name, project_path(id: @report.project.id
 		) %></p>
 		<p><%= simple_format(@report.content) %></p>
 	</div>
 	<div class="panel-footer">
 		<p><%= @report.created_at.strftime("%d-%m-%y") %></p>
-		<p><%= link_to 'Edit', edit_report_path(@report) if current_user.role == 'admin'%></p>
+		<p><%= link_to 'Edit', edit_report_path(id: @report.id) if current_user.role == 'admin'%></p>
 	</div>
 </div>
 

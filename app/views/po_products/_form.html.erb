@@ -3,7 +3,7 @@
 <div class="panel panel-default panel-top-margin">
 	<div class="panel-heading">
 		<h2><%= @po.po_number %></h2>
-		<p style="float:left"><%= link_to 'Edit Po Number', edit_po_path(id: @po.id)%></p>
+		<p style="float:left"><%= link_to 'Edit Po Number ', edit_po_path(id: @po.id)%></p>
 		<p><%= @po.date.strftime("%m-%d-%y") %></p>
 
 		<%= smart_form(@po_product, params[:controller]) do |f| %>
