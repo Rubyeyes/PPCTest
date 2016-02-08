@@ -25,6 +25,11 @@
 	}
 }
 
+.left-info-col {
+  max-width: 370px;
+}
+
+
 .affix {
   top:75px;
   width:28%;
@@ -356,7 +361,6 @@
   margin-top:-77px;
   background-color: transparent;
   z-index: 999;
-  max-width: 390px;
 }
 
 .panel-project-title .panel-heading {
