@@ -11,7 +11,7 @@
 						<th>QTY</th>
 						<th>Description</th>
 						<% if current_user.role != 'user' %>
-							<th>Action</th>
+							<th class="text-right"></th>
 						<% end %>
 					</tr>
 				</thead>
@@ -22,7 +22,7 @@
 							<td align = 'center'><%= sample.quantity %></td>
 							<td><%= truncate(sample.description, length: 45, seperate: '' ) %></td>
 							<% if current_user.role != 'user' %>	
-								<td>
+								<td class="text-right">
 									<%= link_to t('edit_label'), edit_sample_url(id: sample.id) %>
 									<%= link_to t('delete_label'), sample_url(id: sample.id), method: :delete, data: {confirm: "Are you sure?"} %>
 								</td>

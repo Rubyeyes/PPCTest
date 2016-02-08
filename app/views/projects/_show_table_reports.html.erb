@@ -10,7 +10,7 @@
 						<th>Date</th>
 						<th>Title</th>
 						<th></th>
-						<th><%= "#{"Action" if current_user.role == 'admin'}" %></th>
+						<th class="text-right"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -18,8 +18,8 @@
 						<tr>
 							<td><%= report.created_at.strftime("%d %b. %y") %></td>
 							<td><%= truncate(report.name, length: 60, separate: '') %></td>	
-							<td><%= link_to 'Attachment', "https://docs.google.com/viewer?url=#{report.report.url}" %></b> <%= link_to '', report.report.url, class: "glyphicon glyphicon-download-alt"%></td>	
-							<td>
+							<td><%= link_to 'Attachment', "https://docs.google.com/viewer?url=#{report.report.url}" if @report.present?%></b> <%= link_to '', report.report.url, class: "glyphicon glyphicon-download-alt" if @report.present?%></td>	
+							<td class="text-right">
 								<%= link_to 'View ', report_url(id: report.id), method: :get %>
 								<% if current_user.role == 'admin' %>
 									<%= link_to t('edit_label'), edit_report_url(id: report.id) %>

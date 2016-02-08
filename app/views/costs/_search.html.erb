@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-xs-12 col-md-4">
-		<form class="costs" id="costs" action="/costs">
+		<form class="costs" id="costs" action="<%= costs_path(params.merge(stage: 'stage_all')) %>">
 			<div class="input-group">
 			  <input id="nav-search-input" type="text" class="form-control nav-search-input" name="query" id="query" placeholder="Search" >
 			  <span class="input-group-addon nav-search-addon btn-default">

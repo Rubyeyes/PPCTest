@@ -9,7 +9,7 @@
 						<th>Executor</th>
 						<th>Task</th>
 						<th>Start at</th>
-						<th><%= "#{"Action" if current_user.role == 'admin'}" %></th>
+						<th class="text-right"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -19,7 +19,7 @@
 							<td><%= truncate(task.task, length: 45, seperate: '') %></td>
 							<td><%= task.created_at.strftime("%d %b. %Y") %></td>
 							<% if current_user.role == 'admin' %>	
-								<td>
+								<td class="text-right">
 									<%= link_to t('edit_label'), edit_task_url(id: task.id) %>
 									<%= link_to t('delete_label'), task_url(id: task.id), method: :delete, data: {confirm: "Are you sure?"} %>
 								</td>

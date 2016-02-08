@@ -20,7 +20,7 @@
 						<% if request.fullpath.include? object.id.to_s %>
 							<% if current_user.role != 'user' %>
 								<th><%= Cost.human_attribute_name(:date) %></th>
-								<th><%= Cost.human_attribute_name(:action) %></th>
+								<th class="text-right"></th>
 							<% end %>
 						<% end %>
 					</tr>
@@ -40,7 +40,7 @@
 							<% if request.fullpath.include? object.id.to_s %>
 								<% if current_user.role != 'user' %>
 									<td><%= cost.created_at.strftime("%d %b. %y")%></td>
-									<td>
+									<td class="text-right">
 									<%= link_to t('edit_label'), edit_cost_url(id: cost.id) %>
 									<%= link_to t('delete_label'), cost_url(id: cost.id), method: :delete, data: {confirm: "Are you sure?"}%>
 									</td>

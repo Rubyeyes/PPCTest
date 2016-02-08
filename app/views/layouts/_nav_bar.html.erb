@@ -28,9 +28,10 @@
               <li class="<%= 'active' if params[:controller] == 'reports'%>"><%= link_to Report.model_name.human, reports_path, class: "nav-link nav-second-word" if current_user.role != 'designer'%></li>
               <li class="<%= 'active' if params[:controller] == 'samples'%>"><%= link_to Sample.model_name.human, samples_path, class: "nav-link nav-second-word" %></li>
               <li >
-                <form hidden id="nav-search" action="/projects" class="navbar-form " role="search">
+                <form hidden id="nav-search" action="<%= projects_path(params.merge(stage: 'stage_all')) %>" class="navbar-form " role="search">
                   <div class="input-group">
                       <input id="nav-search-input" type="text" class="form-control nav-search-input" name="query" id="query" placeholder="Search" >
+                      <input type="hidden" name="stage" value="stage_all">
                       <span class="input-group-addon nav-search-addon btn-default">
                           <button type="submit" class="home-search-button">
                               <span class="glyphicon glyphicon-search" aria-hidden="true" ></span>

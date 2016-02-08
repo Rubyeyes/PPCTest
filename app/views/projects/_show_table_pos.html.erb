@@ -7,7 +7,7 @@
 		<tr>
 			<th>PO Number</th>
 			<th>Date</th>
-			<th>Action</th>
+			<th class="text-right"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -16,7 +16,7 @@
 				<tr>
 					<td><%= po.po_number %></td>
 					<td><%= po.date.strftime("%d-%m-%y") %></td>
-					<td>
+					<td class="text-right">
 						<%= link_to t('view_label'), po_url(id: po.id) %> |
 						<%= link_to t('edit_label'), new_po_product_url(po_id: po.id) if current_user.role == 'admin'%> |
 						<%= link_to t('delete_label'), po_url(id: po.id), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin'%>
