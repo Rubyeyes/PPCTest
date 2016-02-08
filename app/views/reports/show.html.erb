@@ -2,17 +2,20 @@
 
 <div class="panel panel-default ">
 	<div class="panel-heading">
-		<h1><%= simple_format(@report.name) %></h1>
+		<h2><%= simple_format(@report.name) %></h2>
 		<em><%= @report.project.user.fullname if current_user.role != 'factory'%></em>
+		<p><%= @report.created_at.strftime("%d-%m-%y") %></p>
 	</div>
 	<div class="panel-body">
-		<p><b>Project: </b><%=link_to @report.project.project_name, project_path(id: @report.project.id
-		) %></p>
+		<p>Project: <b><%=link_to @report.project.project_name, project_path(id: @report.project.id
+		) %></b></p>
 		<p><%= simple_format(@report.content) %></p>
 	</div>
 	<div class="panel-footer">
-		<p><%= @report.created_at.strftime("%d-%m-%y") %></p>
-		<p><%= link_to 'Edit', edit_report_path(id: @report.id) if current_user.role == 'admin'%></p>
+		<% if @report.report.present? %>
+			<p><b><%= link_to 'Attachment', "https://docs.google.com/viewer?url=#{@report.report.url}" %></b> <%= link_to '', @report.report.url, class: "glyphicon glyphicon-download-alt"%></p>
+		<% end %>
+		<p class="text-right"><%= link_to 'Edit', edit_report_path(id: @report.id) if current_user.role == 'admin'%></p>
 	</div>
 </div>
 

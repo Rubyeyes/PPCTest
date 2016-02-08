@@ -4,6 +4,9 @@ class Report < ActiveRecord::Base
   	has_many :products, through: :project
   	has_one :user, through: :project
 
+
+  	mount_uploader :report, ReportUploader
+
 	include PgSearch
 		pg_search_scope :search, against: [:name,:content,:created_at],
 		associated_against: {

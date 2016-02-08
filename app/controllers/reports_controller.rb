@@ -70,7 +70,7 @@ class ReportsController < ApplicationController
   private
 
   def report_params
-    params.require(:report).permit(:id, :name, :content, :project_id)
+    params.require(:report).permit(:id, :name, :content, :project_id, :report)
   end
 
 end

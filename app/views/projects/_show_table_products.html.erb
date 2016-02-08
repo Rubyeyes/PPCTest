@@ -46,6 +46,7 @@
 										<th>PO number</th>
 										<th>Quantity</th>
 										<th>Created at</th>
+										<th>Finish around</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -54,6 +55,7 @@
 											<td><%=link_to po_product.po.po_number, po_path(id: po_product.po.id) %></td>
 											<td><%= po_product.quantity %></td>
 											<td><%= po_product.po.date.strftime("%d-%m-%y") %></td>	
+											<td><%= po_product.finish_date.strftime("%d-%m-%y") if po_product.finish_date.present? %></td>	
 										</tr>
 									<% end %>						
 								</tbody>
