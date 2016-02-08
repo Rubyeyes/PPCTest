@@ -8,7 +8,7 @@
 	<div id="info_top"  class="container container-content">
 			<div class="row">
 				<div class="col-xs-12 col-md-4">
-					<div id="project_info_panel">
+					<div data-spy="affix" data-offset-top="550">
 						<div class="panel panel-default panel-project-title">
 							<div class="panel-heading">
 								<h3><%= @project.project_name %></h3>
@@ -72,18 +72,18 @@
 
 <script>
 	$(document).ready(function() {
-		// Change navbar when scroll down
-	  	$(window).scroll(function () {
-				var infoTop = document.getElementById("info_top").offsetTop;
-		    var top = $(this).scrollTop();
-		    if ($(window).width() > 960) {
-		  		if(top>infoTop) {
-			      $("#project_info_panel").addClass("panel-fixed-top col-md-4");
-			    } else {
-			      $("#project_info_panel").removeClass("panel-fixed-top col-md-4");
-			    }
-  			}
-	  	})
+		// // Change navbar when scroll down
+	 //  	$(window).scroll(function () {
+		// 		var infoTop = document.getElementById("info_top").offsetTop;
+		//     var top = $(this).scrollTop();
+		//     if ($(window).width() > 960) {
+		//   		if(top>infoTop) {
+		// 	      $("#project_info_panel").addClass("panel-fixed-top col-md-4");
+		// 	    } else {
+		// 	      $("#project_info_panel").removeClass("panel-fixed-top col-md-4");
+		// 	    }
+  // 			}
+	 //  	})
 		    
 	})	
 </script>
