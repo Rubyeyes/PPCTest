@@ -19,25 +19,25 @@
 	</div>
 	<div  class="row">
 		<div class="col-xs-12 col-md-4 col-no-padding">
-			<%= render "home_image", src: "/home_images/Project.jpg", path: projects_path(stage: 'stage_all'), name: t('.projects')%>
+			<%= render "home_image", src: "/home_images/Project.jpg", path: projects_path(stage: 'stage_all'), name: Project.model_name.human %>
 		</div>
 		<div class="col-xs-12 col-md-4 col-no-padding">
-		<%= render "home_image", src: "/home_images/Sample.jpg", path: samples_path, name: t(".samples") %>
+		<%= render "home_image", src: "/home_images/Sample.jpg", path: samples_path, name: Sample.model_name.human %>
 		</div>
 		<div class="col-xs-12 col-md-4 col-no-padding">
-		<%= render "home_image", src: "/home_images/Product.jpg", path: products_path, name: t(".products") %>
+		<%= render "home_image", src: "/home_images/Product.jpg", path: products_path, name: Product.model_name.human %>
 		</div>
 	</div>
 	<% if current_user.role != 'designer'  %>
 		<div  class="row">
 			<div class="col-xs-12 col-md-4 col-no-padding">
-			<%= render "home_image", src: "/home_images/Report.jpg", path: reports_path, name: t(".reports")  %>
+			<%= render "home_image", src: "/home_images/Report.jpg", path: reports_path, name: Report.model_name.human %>
 			</div>
 			<div class="col-xs-12 col-md-4 col-no-padding">
-			<%= render "home_image", src: "/home_images/Po.jpg", path: pos_path, name: t(".po") %>
+			<%= render "home_image", src: "/home_images/Po.jpg", path: pos_path, name: Po.model_name.human %>
 			</div>
 			<div class="col-xs-12 col-md-4 col-no-padding">
-			<%= render "home_image", src: "/home_images/Cost.jpg", path: costs_path, name: t(".costs") %>
+			<%= render "home_image", src: "/home_images/Cost.jpg", path: costs_path, name: Cost.model_name.human  %>
 			</div>
 		</div>
 	<% end %>

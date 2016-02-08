@@ -22,11 +22,33 @@
 en:
   home:
     index:
-      mainTitle: "WELCOME NcSTAR"
-      subtitle: "Manage Our Unique Projects Here"
-      projects: "PROJECTS"
-      samples: "SAMPLES"
-      products: "PRODUCTS"
-      reports: "REPORTS"
-      po: "PO"
-      costs: "COSTS"
+      mainTitle: 'WELCOME NcSTAR'
+      subtitle: 'Manage Our Unique Projects Here'
+
+  layouts:
+    nav_bar:
+      login: 'Login'
+      log_out: 'Log out'
+      hello: 'Hello'
+      my_account: 'My Account'
+      admin_setting: 'Admin Setting'
+
+  projects:
+    index:
+      issue: 'Issues'
+      standby: 'Standby'
+      concept: 'Concept'
+      sample: 'Samples'
+      package: 'Package'
+      production: 'Production'
+      droped: 'Droped'
+      all: 'All'
+
+  activerecord:
+    models:
+      project: 'PROJECTS'
+      sample: 'SAMPLES'
+      product: 'PRODUCTS'
+      report: 'REPORTS'
+      po: 'PO'
+      cost: 'COSTS'

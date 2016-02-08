@@ -22,14 +22,27 @@
 zh-CN:
   home:
     index:
-      mainTitle: "欢迎来到 NcSTAR"
-      subtitle: "在这里管理我们独一无二的项目"
-      projects: "项目"
-      samples: "样品"
-      products: "产品"
-      reports: "报告"
-      po: "订单"
-      costs: "报价"
+      mainTitle: '欢迎来到 NcSTAR'
+      subtitle: '在这里管理我们独一无二的项目'
+
+  layouts:
+    nav_bar:
+      login: '登陆'
+      log_out: '注销'
+      hello: '你好'
+      my_account: '我的账户'
+      admin_setting: '管理员设置'
+
+  projects:
+    index:
+      issue: '问题项目'
+      standby: '暂停项目'
+      concept: '概念项目'
+      sample: '收到样品'
+      package: '设计包装'
+      production: '正在生产'
+      droped: '停止项目'
+      all: '所有项目'
 
   activerecord:
     errors:
@@ -38,6 +51,14 @@ zh-CN:
         restrict_dependent_destroy:
           has_one: 由于 %{record} 需要此记录，所以无法移除记录
           has_many: 由于 %{record} 需要此记录，所以无法移除记录
+
+    models:
+      project: '项目'
+      sample: '样品'
+      product: '产品'
+      report: '报告'
+      po: '订单'
+      cost: '报价'
 
   date:
     abbr_day_names:
