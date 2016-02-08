@@ -20,6 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 zh-CN:
+  edit_label: '编辑'
+  view_label: '查看'
+  delete_label: '删除'
+  new_label: '添加'
+
   home:
     index:
       mainTitle: '欢迎来到 NcSTAR'
@@ -43,6 +48,8 @@ zh-CN:
       production: '正在生产'
       droped: '停止项目'
       all: '所有项目'
+    show:
+      upload_instruction: '上传说明书'
 
   activerecord:
     errors:
@@ -59,6 +66,16 @@ zh-CN:
       report: '报告'
       po: '订单'
       cost: '报价'
+      task: '任务'
+    attributes:
+      cost:
+        unitUSD: '美金单价'
+        toolingUSD: '美金模具费'
+        unitRMB: '人民币单价'
+        toolingRMB: '人民币模具费'
+        description: '描述'
+        date: '日期'
+        action: '操作'
 
   date:
     abbr_day_names:

@@ -1,6 +1,6 @@
 <div class="panel panel-default panel-show">
 
-	<%= render "show_table_heading", name: 'Reports', path: new_report_path(project_id_param: @project.id), role: current_user.role == 'admin'%>
+	<%= render "show_table_heading", name: Report.model_name.human, path: new_report_path(project_id_param: @project.id), role: current_user.role == 'admin'%>
 
 	<div class="panel-body panel-home-show">
 		<% if object.reports.present? %>
@@ -20,8 +20,8 @@
 							<td>
 								<%= link_to 'View ', report_url(report), method: :get %>
 								<% if current_user.role == 'admin' %>
-									<%= link_to 'Edit ', edit_report_url(report) %>
-									<%= link_to 'Delete ', report_url(report), method: :delete, data: {confirm: "Are you sure?"} %>
+									<%= link_to t('edit_label'), edit_report_url(report) %>
+									<%= link_to t('delete_label'), report_url(report), method: :delete, data: {confirm: "Are you sure?"} %>
 								<% end %>	
 							</td>			
 						</tr>

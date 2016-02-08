@@ -24,8 +24,8 @@
 						</div>
 						<% if current_user.role == 'admin' %>
 						<div class="panel-footer text-right">
-							<%= link_to 'Edit', edit_project_path(id: @project.id) %>
-							<%= link_to 'Delete', project_path(id: @project.id), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin' %>
+							<%= link_to t('edit_label'), edit_project_path(id: @project.id) %>
+							<%= link_to t('delete_label'), project_path(id: @project.id), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin' %>
 						</div>
 						<% end %>
 					</div>
@@ -39,7 +39,7 @@
 					<div class="panel panel-default">
 						<ul class="list-group">
 							<% if current_user.role != "designer" %>
-								<li class="list-group-item" style="text-align:right"><%= link_to "Upload Instruction", new_instruction_path(project_id_param: @project.id)%></li>
+								<li class="list-group-item" style="text-align:right"><%= link_to t('.upload_instruction') , new_instruction_path(project_id_param: @project.id)%></li>
 							<% end %>
 							<% if @project.instructions.present? %>
 								<% @project.instructions.each do |i|%>

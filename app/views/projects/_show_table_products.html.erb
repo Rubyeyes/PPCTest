@@ -1,6 +1,6 @@
 <div class="panel panel-default panel-show">
 
-	<%= render "show_table_heading", name: 'Products', path: new_product_path(project_id_param: object.id), role: current_user.role == 'admin'%>
+	<%= render "show_table_heading", name: Product.model_name.human, path: new_product_path(project_id_param: object.id), role: current_user.role == 'admin'%>
 
 	<div class="panel-body panel-home-show">
 		<% object.products.order(product_name: :asc).each do |product| %>
@@ -65,8 +65,8 @@
 				</div>
 				<% if current_user.role == 'admin' %>
 					<div class="panel-footer text-right">
-						<%= link_to 'Edit', edit_product_path(id: product.id) %> |
-						<%= link_to 'Delete', product_path(id: product.id), method: :delete, data: {confirm: "Are you sure?"} %>
+						<%= link_to t('edit_label'), edit_product_path(id: product.id) %> |
+						<%= link_to t('delete_label'), product_path(id: product.id), method: :delete, data: {confirm: "Are you sure?"} %>
 					</div>	<!-- panel-heading -->
 				<% end %>
 			</div>		<!-- panle panel-default -->	<!-- col-ex-12 col-md-6 -->

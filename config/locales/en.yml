@@ -20,6 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  edit_label: 'Edit'
+  delete_label: 'Delete'
+  new_label: 'Add'
+
   home:
     index:
       mainTitle: 'WELCOME NcSTAR'
@@ -43,6 +47,8 @@ en:
       production: 'Production'
       droped: 'Droped'
       all: 'All'
+    show:
+      upload_instruction: 'Upload Instruction'
 
   activerecord:
     models:
@@ -52,3 +58,13 @@ en:
       report: 'REPORTS'
       po: 'PO'
       cost: 'COSTS'
+      task: 'TASKS'
+    attributes:
+      cost:
+        unitUSD: 'U USD'
+        toolingUSD: 'T USD'
+        unitRMB: 'U RMB'
+        toolingRMB: 'T RMB'
+        description: 'Description'
+        date: 'Date'
+        action: 'Action'

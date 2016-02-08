@@ -1,20 +1,26 @@
 <div class="panel panel-default panel-show">
 
 
-	<%= render "show_table_heading", name: 'Costs', path: new_cost_path(project_id_param: @project.id), role: (current_user.role == ('admin' || 'factory')) && action_name == 'show'%>
+	<%= render "show_table_heading", name: Cost.model_name.human, path: new_cost_path(project_id_param: @project.id), role: (current_user.role == ('admin' || 'factory')) && action_name == 'show'%>
 
 	<div class="panel-body panel-home-show">
 		<% if object.costs.present? %>
 			<table class="table table-condensed">
 				<thead>
 					<tr>
-						<th>Unit</th>
-						<th>Tooling</th>
-						<th>Description</th>
+						<% if current_user.role != 'factory'%>
+							<th><%= Cost.human_attribute_name(:unitUSD) %></th>
+							<th><%= Cost.human_attribute_name(:toolingUSD) %></th>
+						<% end %>
+						<% if current_user.role == 'factory'%>
+							<th><%= Cost.human_attribute_name(:unitRMB) %></th>
+							<th><%= Cost.human_attribute_name(:toolingRMB) %></th>
+						<% end %>
+						<th><%= Cost.human_attribute_name(:description) %></th>
 						<% if request.fullpath.include? object.id.to_s %>
 							<% if current_user.role != 'user' %>
-								<th>Date</th>
-								<th>Actions</th>
+								<th><%= Cost.human_attribute_name(:date) %></th>
+								<th><%= Cost.human_attribute_name(:action) %></th>
 							<% end %>
 						<% end %>
 					</tr>
@@ -35,8 +41,8 @@
 								<% if current_user.role != 'user' %>
 									<td><%= cost.created_at.strftime("%d %b. %y")%></td>
 									<td>
-									<%= link_to 'Edit |', edit_cost_url(id: cost.id) %>
-									<%= link_to 'Delete', cost_url(id: cost.id), method: :delete, data: {confirm: "Are you sure?"}%>
+									<%= link_to t('edit_label'), edit_cost_url(id: cost.id) %>
+									<%= link_to t('delete_label'), cost_url(id: cost.id), method: :delete, data: {confirm: "Are you sure?"}%>
 									</td>
 								<% end %>
 							<% end %>

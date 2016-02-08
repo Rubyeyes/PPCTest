@@ -1,9 +1,9 @@
 
 <div class="panel-heading">
 	<div class="row">
-		<div class="col-xs-9"><div class="project-show-table-head"><%= name%></div></div>
+		<div class="col-xs-9" style="padding:0px"><div class="project-show-table-head"><%= name%></div></div>
 		<div class="col-xs-3 text-right">
-			<%= link_to "Add", path , class: "glyphicon glyphicon-plus" if role%>
+			<%= link_to t('new_label') , path , class: "glyphicon glyphicon-plus" if role%>
 		</div>
 	</div>
 </div>

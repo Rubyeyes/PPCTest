@@ -1,5 +1,5 @@
 <div class="panel panel-default panel-show">
-	<%= render "show_table_heading", name: 'Tasks', path: new_task_path(project_id_param: object.id), role: current_user.role == 'admin'%>
+	<%= render "show_table_heading", name: Task.model_name.human, path: new_task_path(project_id_param: object.id), role: current_user.role == 'admin'%>
 
 	<div class="panel-body panel-home-show">
 		<% if object.tasks.present? %>
@@ -20,8 +20,8 @@
 							<td><%= task.created_at.strftime("%d %b. %Y") %></td>
 							<% if current_user.role == 'admin' %>	
 								<td>
-									<%= link_to 'Edit |', edit_task_url(id: task.id) %>
-									<%= link_to 'Delete', task_url(id: task.id), method: :delete, data: {confirm: "Are you sure?"} %>
+									<%= link_to t('edit_label'), edit_task_url(id: task.id) %>
+									<%= link_to t('delete_label'), task_url(id: task.id), method: :delete, data: {confirm: "Are you sure?"} %>
 								</td>
 							<% end %>			
 						</tr>

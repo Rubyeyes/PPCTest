@@ -1,6 +1,6 @@
 <div class="panel panel-default panel-show">
 
-	<%= render "show_table_heading", name: 'Samples',path:  new_sample_path(project_id_param: object.id), role: current_user.role == ('admin' || 'factory') %>
+	<%= render "show_table_heading", name: Sample.model_name.human ,path:  new_sample_path(project_id_param: object.id), role: current_user.role == ('admin' || 'factory') %>
 
 	<div class="panel-body panel-home-show">
 		<% if object.samples.present? %>
@@ -23,8 +23,8 @@
 							<td><%= truncate(sample.description, length: 45, seperate: '' ) %></td>
 							<% if current_user.role != 'user' %>	
 								<td>
-									<%= link_to 'Edit |', edit_sample_url(id: sample.id) %>
-									<%= link_to 'Delete', sample_url(id: sample.id), method: :delete, data: {confirm: "Are you sure?"} %>
+									<%= link_to t('edit_label'), edit_sample_url(id: sample.id) %>
+									<%= link_to t('delete_label'), sample_url(id: sample.id), method: :delete, data: {confirm: "Are you sure?"} %>
 								</td>
 							<% end %>			
 						</tr>
