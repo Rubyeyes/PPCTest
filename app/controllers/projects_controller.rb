@@ -20,9 +20,9 @@ class ProjectsController < ApplicationController
     else 
       @projects_all = @data.text_sort.page(params[:page]).per(6)
     end
-    @products = Product.all
-    @tasks = Task.all
-    @costs = Cost.all.order(crreated_at: :desc)
+    @products = Product.all.order(item_number: :asc)
+    @tasks = Task.all.order(deadline: :desc)
+    @costs = Cost.all.order(date: :desc)
   end
 
   def new
