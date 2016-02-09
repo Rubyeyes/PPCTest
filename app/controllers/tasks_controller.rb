@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   
   def index
     @project = Project.find(params[:project_id_param])
-    @tasks = Task.all.order(created_at: :desc)
+    @tasks = Task.all.order(date: :desc).page(params[:page]).per(20)
   end
 
   def new

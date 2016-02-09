@@ -1,0 +1,25 @@
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Executor</th>
+			<th>Task</th>
+			<th>Start at</th>
+			<th>Deadline</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @project.tasks.each do |task| %>
+			<tr>
+				<td><%= task.executor.fullname %></td>
+				<td><%= task.task %></td>
+				<td><%= task.start_date.strftime("%m-%d-%y") if task.start_date.present? %></td>
+				<td><%= task.deadline.strftime("%m-%d-%y") %></td>
+				<td>
+					<%= link_to 'Edit', edit_task_path(id: task.id) %> |
+					<%= link_to 'Delete', task_path(id: task.id), method: :delete, data: {confirm: 'Are you sure ?'}  %>
+				</td>
+			</tr>			
+		<% end %>			
+	</tbody>
+</table>
