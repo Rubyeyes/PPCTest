@@ -16,7 +16,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @costs.each do |cost| %>
+			<% @costs.order(date: :desc).each do |cost| %>
 				<tr>
 					<%if @project.nil?%> <!-- Check if table is accessed from project -->
 						<td><%= link_to cost.project.project_name, project_path(id: cost.project.id) %></td>
@@ -26,7 +26,7 @@
 					<td><%= number_to_currency(cost.unitUSD) if current_user.role != 'factory'%></td> <!-- Don't show USD to factory -->
 					<td><%= number_to_currency(cost.toolingUSD) if current_user.role != 'factory'%></td> <!-- Don't show USD to factory -->
 					<td><%= cost.description %></td>
-					<td><%= cost.created_at.strftime("%m-%d-%y") %></td>
+					<td><%= cost.date.strftime("%m-%d-%y") if cost.date.present? %></td>
 					<td>
 						<% if current_user.role == 'admin'%> <!-- Only admin can edit and delete cost -->
 							<%= link_to 'Edit', edit_cost_url(id: cost.id)%>

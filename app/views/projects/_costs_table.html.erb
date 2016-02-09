@@ -26,7 +26,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% object.costs.order(created_at: :desc).first(number).each do |cost| %>
+					<% object.costs.order(date: :desc).first(number).each do |cost| %>
 						<tr>
 							<% if current_user.role != 'factory'%>
 								<td><%= number_to_currency(cost.unitUSD) %></td>
@@ -39,7 +39,7 @@
 							<td><%= truncate(cost.description, length: 40, seperate: '') %></td>
 							<% if request.fullpath.include? object.id.to_s %>
 								<% if current_user.role != 'user' %>
-									<td><%= cost.created_at.strftime("%m-%d-%y")%></td>
+									<td><%= cost.date.strftime("%m-%d-%y") if cost.date.present?%></td>
 									<td class="text-right">
 									<%= link_to t('edit_label'), edit_cost_url(id: cost.id) %>
 									<%= link_to t('delete_label'), cost_url(id: cost.id), method: :delete, data: {confirm: "Are you sure?"}%>

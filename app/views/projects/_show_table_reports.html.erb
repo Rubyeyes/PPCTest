@@ -14,9 +14,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% object.reports.order(created_at: :desc).last(3).each do |report| %>
+					<% object.reports.order(date: :desc).last(3).each do |report| %>
 						<tr>
-							<td><%= report.created_at.strftime("%m-%d-%y") %></td>
+							<td><%= report.date.strftime("%m-%d-%y") if report.date.present?%></td>
 							<td><%= truncate(report.name, length: 60, separate: '') %></td>	
 							<td><%= link_to 'Attachment', "https://docs.google.com/viewer?url=#{report.report.url}" if @report.present?%></b> <%= link_to '', report.report.url, class: "glyphicon glyphicon-download-alt" if @report.present?%></td>	
 							<td class="text-right">

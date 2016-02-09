@@ -69,7 +69,7 @@ class CostsController < ApplicationController
   private
 
   def cost_params
-    params.require(:cost).permit(:id, :unitUSD, :toolingUSD, :unitRMB, :toolingRMB, :ratio, :description, :project_id)
+    params.require(:cost).permit(:id, :unitUSD, :toolingUSD, :unitRMB, :toolingRMB, :ratio, :description, :project_id, :date)
   end
 
   def notification_params

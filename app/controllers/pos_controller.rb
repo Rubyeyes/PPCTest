@@ -66,7 +66,7 @@ class PosController < ApplicationController
   private
 
   def po_params
-    params.require(:po).permit(:id, :po_number, :date, :quantity)
+    params.require(:po).permit(:id, :po_number, :date, :quantity, :date)
   end
 
 end
