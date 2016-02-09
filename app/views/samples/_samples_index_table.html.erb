@@ -24,7 +24,7 @@
 					<td><%= sample.project.user.fullname if current_user.role != "factory"%></td>	
 					<td>
 						<% if current_user.role == "admin"%>
-							<%= link_to 'Edit', edit_sample_url(id: sample.id) %> |
+							<%= link_to 'Edit', edit_sample_url(id: sample.id) %>
 							<%= link_to 'Delete', sample_url(id: sample.id), method: :delete, data: {confirm: "Are you sure?"} %>
 						<% end %>
 					</td>			

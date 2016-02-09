@@ -13,22 +13,22 @@
           <a href="<%= projects_path(params.merge(stage: 'stage_0', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "0. Need to be fixed").count if @data.where(status: "0. Need to be fixed").count > 0 %></span> <%= t('.issue')%></a>
         </li>
         <li class="<%='active' if @projects_1.present? %>", id="1">
-          <a href="<%= projects_path(params.merge(stage: 'stage_1', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "1. Hold for some reason").count if @data.where(status: "1. Hold for some reason").count > 0 %></span><%= t('.standby')%></a>
+          <a href="<%= projects_path(params.merge(stage: 'stage_1', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "1. Hold for some reason").count %></span><%= t('.standby')%></a>
         </li> 
         <li class="<%='active' if @projects_2.present? %>", id="2">
-          <a href="<%= projects_path(params.merge(stage: 'stage_2', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "2. Concept design").count if @data.where(status: "2. Concept design").count > 0 %></span> <%= t('.concept')%></a>
+          <a href="<%= projects_path(params.merge(stage: 'stage_2', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "2. Concept design").count %></span> <%= t('.concept')%></a>
         </li> 
         <li class="<%='active' if @projects_3.present? %>", id="3">
-          <a href="<%= projects_path(params.merge(stage: 'stage_3', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "3. Received prototypes or samples").count if @data.where(status: "3. Received prototypes or samples").count > 0 %></span> <%= t('.sample')%></a>
+          <a href="<%= projects_path(params.merge(stage: 'stage_3', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "3. Received prototypes or samples").count %></span> <%= t('.sample')%></a>
         </li> 
         <li class="<%='active' if @projects_4.present? %>", id="4">
-          <a href="<%= projects_path(params.merge(stage: 'stage_4', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "4. Design package and start producing").count if @data.where(status: "4. Design package and start producing").count > 0 %></span> <%= t('.package')%></a>
+          <a href="<%= projects_path(params.merge(stage: 'stage_4', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "4. Design package and start producing").count %></span> <%= t('.package')%></a>
         </li> 
         <li class="<%='active' if @projects_5.present? %>",id="5">
-          <a href="<%= projects_path(params.merge(stage: 'stage_5', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "5. In production").count if @data.where(status: "5. In production").count > 0 %></span> <%= t('.production')%></a>
+          <a href="<%= projects_path(params.merge(stage: 'stage_5', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "5. In production").count %></span> <%= t('.production')%></a>
         </li> 
         <li class="<%='active' if @projects_6.present? %>",id="6">
-          <a href="<%= projects_path(params.merge(stage: 'stage_6', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "6. Droped").count if @data.where(status: "6. Droped").count > 0 %></span> <%= t('.droped')%></a>
+          <a href="<%= projects_path(params.merge(stage: 'stage_6', page: 0)) %>"><span class="badge badge-black"><%= @data.where(status: "6. Droped").count %></span> <%= t('.droped')%></a>
         </li>   
          <li class="<%='active' if @projects_all.present? %>", id="7">
           <a href="<%= projects_path(params.merge(stage: 'stage_all')) %>"><span class="badge badge-black"><%= @data.count%></span> <%= t('.all')%></a>
