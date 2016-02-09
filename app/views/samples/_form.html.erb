@@ -19,10 +19,10 @@
 	
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label :receive_date, class: "control-label" %>
+			<%= f.label :date, class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
-			<%= f.date_select :receive_date, order: [:month, :day, :year], class: "form-control"%>
+			<%= f.date_select :date, class: "form-control"%>
 		</div>
 	</div>
 	<div class="row row-form">
@@ -43,10 +43,18 @@
 	</div>	
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label :date, class: "control-label" %>
+			<%= f.label :receive_date,'ETA',  class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
-			<%= f.date_select :date, class: "form-control"%>
+			<%= f.date_select :receive_date, class: "form-control"%>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :received, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.check_box :received%>
 		</div>
 	</div>
 	<div class="row row-form">

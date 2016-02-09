@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209174055) do
+ActiveRecord::Schema.define(version: 20160209200735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 20160209174055) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.datetime "date"
+    t.boolean  "received"
   end
 
   add_index "samples", ["project_id"], name: "index_samples_on_project_id", using: :btree
