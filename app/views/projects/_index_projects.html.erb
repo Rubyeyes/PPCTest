@@ -28,9 +28,9 @@
 											<% end %>		
 										</p>
 										<p>
-											<% if project.samples.present? %>
-												Sample will be received around: 			
-												<b><%= project.samples.last.receive_date.strftime("%b %d. %y") %></b>
+											<% if project.samples.present? %> 			
+												<%= 
+												"Sample will be received around: #{project.samples.order(receive_date: :desc).first.receive_date.strftime("%b %d. %y")}" if project.samples.order(receive_date: :desc).first.received == false %>
 											<% end %>		
 										</p>
 									</div>
