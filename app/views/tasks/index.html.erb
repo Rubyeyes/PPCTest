@@ -10,6 +10,7 @@
 			<th>Executor</th>
 			<th>Task</th>
 			<th>Start at</th>
+			<th>Deadline</th>
 			<th>actions</th>
 		</tr>
 	</thead>
@@ -18,7 +19,8 @@
 			<tr>
 				<td><%= task.executor %></td>
 				<td><%= task.task %></td>
-				<td><%= task.created_at.strftime("%d %b. %Y") %></td>
+				<td><%= task.start_date.strftime("%d %b. %Y") %></td>
+				<td><%= task.deadline.strftime("%d %b. %Y") %></td>
 				<td>
 					<%= link_to 'Edit', edit_task_path(task) %> |
 					<%= link_to 'Delete', task_path(task), method: :delete, data: {confirm: 'Are you sure ?'}  %>

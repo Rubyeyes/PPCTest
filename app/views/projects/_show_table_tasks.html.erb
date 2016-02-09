@@ -9,6 +9,7 @@
 						<th>Executor</th>
 						<th>Task</th>
 						<th>Start at</th>
+						<th>Deadline</th>
 						<th class="text-right"></th>
 					</tr>
 				</thead>
@@ -17,7 +18,8 @@
 						<tr>
 							<td><%= task.executor.fullname if task.executor.present? %></td>
 							<td><%= truncate(task.task, length: 45, seperate: '') %></td>
-							<td><%= task.created_at.strftime("%d %b. %Y") %></td>
+							<td><%= task.start_date.strftime("%d %b. %Y") if task.start_date.present? %></td>
+							<td><%= task.deadline.strftime("%d %b. %Y") %></td>
 							<% if current_user.role == 'admin' %>	
 								<td class="text-right">
 									<%= link_to t('edit_label'), edit_task_url(id: task.id) %>
