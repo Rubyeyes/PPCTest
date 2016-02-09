@@ -14,7 +14,7 @@
 				<td><%= task.executor.fullname %></td>
 				<td><%= task.task %></td>
 				<td><%= task.start_date.strftime("%m-%d-%y") if task.start_date.present? %></td>
-				<td><%= task.deadline.strftime("%m-%d-%y") %></td>
+				<td><%= task.deadline.strftime("%m-%d-%y") if task.deadline.present? %></td>
 				<td>
 					<%= link_to 'Edit', edit_task_path(id: task.id) %> |
 					<%= link_to 'Delete', task_path(id: task.id), method: :delete, data: {confirm: 'Are you sure ?'}  %>
