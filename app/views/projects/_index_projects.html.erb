@@ -22,15 +22,18 @@
 											</p>
 										<% end %>
 										<p>
-											<% if project.tasks.present? %>			
-												<b><%= project.tasks.order(deadline: :asc).last.executor.fullname if project.tasks.order(deadline: :asc).last.executor.present? %></b>
-												<%= project.tasks.order(deadline: :asc).last.task %>
+											<% if project.tasks.present? %>	
+												<% if project.tasks.order(deadline: :asc).last.finish == false %>		
+													<b><%= project.tasks.order(deadline: :asc).last.executor.fullname if project.tasks.order(deadline: :asc).last.executor.present? %></b>
+													<%= project.tasks.order(deadline: :asc).last.task %>
+												<% end %>
 											<% end %>		
 										</p>
 										<p>
-											<% if project.samples.present? %> 			
-												<%= 
-												"Sample will be received around: #{project.samples.order(receive_date: :desc).first.receive_date.strftime("%b %d. %y")}" if project.samples.order(receive_date: :desc).first.received == false %>
+											<% if project.samples.present? %> 
+												<% if project.samples.order(receive_date: :desc).first.received == false  %>			
+													<p>Sample will be received around: <b><%= project.samples.order(receive_date: :desc).first.receive_date.strftime("%b %d. %y") %></b></p>
+												<% end %>		
 											<% end %>		
 										</p>
 									</div>
