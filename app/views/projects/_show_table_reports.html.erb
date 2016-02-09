@@ -17,10 +17,9 @@
 					<% object.reports.order(date: :desc).last(3).each do |report| %>
 						<tr>
 							<td><%= report.date.strftime("%m-%d-%y") if report.date.present?%></td>
-							<td><%= truncate(report.name, length: 60, separate: '') %></td>	
+							<td><%= link_to truncate(report.name, length: 60, separate: ''), report_url(id: report.id), method: :get  %></td>	
 							<td><%= link_to 'Attachment', "https://docs.google.com/viewer?url=#{report.report.url}" if @report.present?%></b> <%= link_to '', report.report.url, class: "glyphicon glyphicon-download-alt" if @report.present?%></td>	
 							<td class="text-right">
-								<%= link_to 'View ', report_url(id: report.id), method: :get %>
 								<% if current_user.role == 'admin' %>
 									<%= link_to t('edit_label'), edit_report_url(id: report.id) %>
 									<%= link_to t('delete_label'), report_url(id: report.id), method: :delete, data: {confirm: "Are you sure?"} %>
