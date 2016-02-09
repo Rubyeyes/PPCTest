@@ -14,7 +14,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% object.tasks.order(deadline: :desc).last(3).each do |task| %>
+					<% object.tasks.order(deadline: :desc).first(3).each do |task| %>
 						<tr>
 							<td><%= task.executor.fullname if task.executor.present? %></td>
 							<td><%= truncate(task.task, length: 45, seperate: '') %></td>
