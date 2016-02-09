@@ -39,7 +39,7 @@
 							<td><%= truncate(cost.description, length: 40, seperate: '') %></td>
 							<% if request.fullpath.include? object.id.to_s %>
 								<% if current_user.role != 'user' %>
-									<td><%= cost.created_at.strftime("%d %b. %y")%></td>
+									<td><%= cost.created_at.strftime("%m-%d-%y")%></td>
 									<td class="text-right">
 									<%= link_to t('edit_label'), edit_cost_url(id: cost.id) %>
 									<%= link_to t('delete_label'), cost_url(id: cost.id), method: :delete, data: {confirm: "Are you sure?"}%>

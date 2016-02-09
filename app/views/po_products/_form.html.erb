@@ -47,7 +47,6 @@
 				<tr>
 					<th>Item Number</th>
 					<th>Quantity</th>
-					<th>Created at</th>
 					<th>Finish around</th>
 					<th>Action</th>
 				</tr>
@@ -57,8 +56,7 @@
 					<tr>
 						<td><%=po_product.product.item_number%></td>
 						<td><%=po_product.quantity%></td>
-						<td><%=po_product.created_at.strftime("%Y-%m-%d")%></td>
-						<td><%=po_product.finish_date.strftime("%Y-%m-%d") if po_product.finish_date.present? %></td>
+						<td><%=po_product.finish_date.strftime("%m-%d-%y") if po_product.finish_date.present? %></td>
 						<td>
 							<%= link_to 'Edit', edit_po_product_path(id: po_product.id, po_id: @po.id) %>
 							<%= link_to 'Delete', po_product_path(id: po_product.id), method: :delete, data: {confirm: "Are you sure?"} %>

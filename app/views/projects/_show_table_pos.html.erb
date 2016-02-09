@@ -15,7 +15,7 @@
 			<% object.pos.order(created_at: :desc).last(3).each do |po| %>
 				<tr>
 					<td><%= po.po_number %></td>
-					<td><%= po.date.strftime("%d-%m-%y") %></td>
+					<td><%= po.date.strftime("%m-%d-%y") %></td>
 					<td class="text-right">
 						<%= link_to t('view_label'), po_url(id: po.id) %> |
 						<%= link_to t('edit_label'), new_po_product_url(po_id: po.id) if current_user.role == 'admin'%> |

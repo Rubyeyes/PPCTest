@@ -54,8 +54,8 @@
 										<tr>
 											<td><%=link_to po_product.po.po_number, po_path(id: po_product.po.id) %></td>
 											<td><%= po_product.quantity %></td>
-											<td><%= po_product.po.date.strftime("%d-%m-%y") %></td>	
-											<td><%= po_product.finish_date.strftime("%d-%m-%y") if po_product.finish_date.present? %></td>	
+											<td><%= po_product.po.date.strftime("%m-%d-%y") %></td>	
+											<td><%= po_product.finish_date.strftime("%m-%d-%y") if po_product.finish_date.present? %></td>	
 										</tr>
 									<% end %>						
 								</tbody>

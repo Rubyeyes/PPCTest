@@ -1,6 +1,6 @@
 <P><%= render "validation_errors", object:  @po%><P>
 
-<%= form_for @po do |f| %>
+<%= smart_form(@po, params[:controller]) do |f| %>
 	<div class="row row-form">
 		<div class="col-sm-2">
 			<%= f.label :po_number, class: "control-label" %>
