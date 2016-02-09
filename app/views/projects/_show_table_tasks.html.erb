@@ -18,7 +18,7 @@
 						<tr>
 							<td><%= task.executor.fullname if task.executor.present? %></td>
 							<td><%= truncate(task.task, length: 45, seperate: '') %></td>
-							<td><%= task.created_at.strftime("%m-%d-%y")%></td>
+							<td><%= task.created_at.strftime("%m-%d-%y") if task.start_date.present? %></td>
 							<td><%= task.deadline.strftime("%m-%d-%y") %></td>
 							<% if current_user.role == 'admin' %>	
 								<td class="text-right">

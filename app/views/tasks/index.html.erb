@@ -19,7 +19,7 @@
 			<tr>
 				<td><%= task.executor %></td>
 				<td><%= task.task %></td>
-				<td><%= task.created_at.strftime("%d %b. %Y") %></td>
+				<td><%= task.start_date.strftime("%d %b. %Y") if task.start_date.present? %></td>
 				<td><%= task.deadline.strftime("%d %b. %Y") %></td>
 				<td>
 					<%= link_to 'Edit', edit_task_path(task) %> |
