@@ -23,8 +23,8 @@
 										<% end %>
 										<p>
 											<% if project.tasks.present? %>			
-												<b><%= project.tasks.order(created_at: :asc).last.executor.fullname if project.tasks.order(created_at: :asc).last.executor.present? %></b>
-												<%= project.tasks.order(created_at: :asc).last.task %>
+												<b><%= project.tasks.order(deadline: :asc).last.executor.fullname if project.tasks.order(deadline: :asc).last.executor.present? %></b>
+												<%= project.tasks.order(deadline: :asc).last.task %>
 											<% end %>		
 										</p>
 										<p>
