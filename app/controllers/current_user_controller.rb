@@ -3,9 +3,9 @@ class CurrentUserController < ApplicationController
   def index
   	@current_user = current_user
     if current_user.role == 'admin'
-      @missions = Task.all.where(finish: false).order(deadline: :asc)
+      @missions = Task.all.where(finish: false).order(deadline: :asc).page(params[:page]).per(20) 
     else
-      @missions = current_user.missions.where(finish: false).order(deadline: :asc)
+      @missions = current_user.missions.where(finish: false).order(deadline: :asc).page(params[:page]).per(20) 
     end
   end
 
