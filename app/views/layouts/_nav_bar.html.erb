@@ -21,7 +21,7 @@
         <div  id="navbar" class="navbar-collapse collapse" aria-expanded="false">
           <ul class="nav navbar-nav navbar-right" >
             <% if params[:controller] != "home"%>
-              <li class="<%= 'active' if params[:controller] == 'projects' %>"><%= link_to Project.model_name.human, projects_path(stage: 'stage_all'), class: "nav-link nav-second-word" %></li>  
+              <li class="<%= 'active' if params[:controller] == 'projects' %>"><%= link_to Project.model_name.human, projects_path(stage: 'stage_0'), class: "nav-link nav-second-word" %></li>  
               <li class="<%= 'active' if params[:controller] == 'products' %>"><%= link_to Product.model_name.human, products_path, class: "nav-link nav-second-word" %></li> 
               <li class="<%= 'active' if params[:controller] == 'costs' %>"><%= link_to Cost.model_name.human, costs_path, class: "nav-link nav-second-word" if current_user.role != 'designer'%></li>
               <li class="<%= 'active' if params[:controller] == 'pos'%>"><%= link_to Po.model_name.human, pos_path, class: "nav-link  nav-second-word" if current_user.role != 'designer'%></li>
