@@ -23,7 +23,7 @@ class Sample < ActiveRecord::Base
 		if sort.present?
 			joins(:project).order("#{sort} #{direction}")
 		else
-			joins(:project).order('created_at DESC, user_id DESC, project_name ASC')
+			joins(:project).order('receive_date DESC, user_id DESC, project_name ASC')
 		end		
 	end
 end
