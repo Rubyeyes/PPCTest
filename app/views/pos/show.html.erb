@@ -3,9 +3,12 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<div class="col-ex-12">
+		<div class="col-ex-9">
 			<h1><%= @po.po_number %></h1>
 			<em><%= @po.date.strftime("%m-%d-%y") %></em>
+		</div>
+		<div class="col-ex-3 text-right">
+			<%= link_to 'Edit', new_po_product_url(po_id: @po.id) if current_user.role == 'admin'%>
 		</div>
 	</div>
 </div>
