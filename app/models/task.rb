@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
 		if sort.present?
 			joins(:project).order("#{sort} #{direction}")
 		else
-			joins(:project).order(' deadline DESC, fullname ASC')
+			joins(:project).order('deadline DESC')
 		end		
 	end
 
