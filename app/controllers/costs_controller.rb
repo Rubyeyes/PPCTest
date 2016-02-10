@@ -48,7 +48,7 @@ class CostsController < ApplicationController
       # @users.each do |user|
       #   Notification.create_notification(@cost, "update the cost of", current_user.id, user.id, params[:controller])
       # end
-      redirect_to costs_path
+      redirect_to :back
       flash[:notice] = "Cost was successfully updated"
     else
       flash[:alert] = "There was a problem updating cost"

@@ -5,7 +5,11 @@
 <!-- Check if link from project -->
 <em><%= link_to @project.project_name, project_path(id: @project.id) if @project.present?%></em> 
 <!-- Only allow factory and admin create cost -->
-<div class="text-right"><%= link_to "New cost", new_cost_path if (current_user.role == 'factory'||'admin') %></div>
+	<% if @project.present? %>
+		<div class="text-right"><%= link_to "New cost", new_cost_path(project_id_param: @project.id) if (current_user.role == 'factory'||'admin') %></div>
+	<% else %>
+		<div class="text-right"><%= link_to "New cost", new_cost_path if (current_user.role == 'factory'||'admin') %></div>
+	<% end %>
 <hr class="hr-table">
 <!-- Cost list -->
 <%= render "index_table"%>
