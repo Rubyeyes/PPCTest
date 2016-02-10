@@ -8,7 +8,7 @@ class CostsController < ApplicationController
     @costs = @data.text_sort(params[:sort], params[:direction]).page(params[:page]).per(20)
     if params[:project_id_param].present?
       @project = Project.find(params[:project_id_param])
-      @costs = @project.costs 
+      @costs = @project.costs.text_sort(params[:sort], params[:direction]).page(params[:page]).per(20)  
     end
   end
 
