@@ -10,7 +10,7 @@
 						<th>ETA</th>
 						<th>QTY</th>
 						<th>Description</th>
-						<% if current_user.role != 'user' %>
+						<% if current_user.role == ('admin' || 'factory') %>
 							<th class="text-right"></th>
 						<% end %>
 					</tr>
@@ -21,7 +21,7 @@
 							<td><%= sample.receive_date.strftime("%m-%d-%y") %></td>
 							<td><%= sample.quantity %></td>
 							<td><%= truncate(sample.description, length: 45, seperate: '' ) %></td>
-							<% if current_user.role != 'user' %>	
+							<% if current_user.role == ('admin' || 'factory') %>	
 								<td class="text-right">
 									<%= link_to t('edit_label'), edit_sample_url(id: sample.id) %>
 									<%= link_to t('delete_label'), sample_url(id: sample.id), method: :delete, data: {confirm: "Are you sure?"} %>

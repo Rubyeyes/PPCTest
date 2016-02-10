@@ -46,7 +46,7 @@
               </li>
             <%end%>
             <li class="<%= 'active' if params[:controller] == 'notificatons'%>" style="width:70px">
-              <a class="nav-link " href="/notifications" style="text-align:center">
+              <a class="nav-link " href="<%= notifications_path%>" style="text-align:center">
               <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
               <span class="badge badge-color" style="margin-top:-5px"><%=@notifications.where(read: false).count if @notifications.where(read: false).count > 0 %></span>
               </a>

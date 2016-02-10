@@ -1,5 +1,5 @@
-<div class="container">
-	<div class="panel panel-default panel-top-margin"></div>
+<div class="container container-user">
+	<div class="panel panel-default"></div>
 	<% if @notification.notifiable_type == 'Project'%>
 		<%= render "notification_project", object: @notification %>
 	<% elsif @notification.notifiable_type == 'Product'%>
