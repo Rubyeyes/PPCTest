@@ -1,0 +1,31 @@
+<div class="table-responsive">
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Problem</th>
+				<th><%= "Factory" if current_user.role != "factory" %></th>
+				<th><%= sortable "created_at", "Created At" %></th>
+				<th>Project Name</th>
+				<th><%= "Action" if current_user.role == 'admin'%></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% if @reports.present? %>
+				<% @reports.each do |report| %>
+					<tr>
+						<td><%= link_to report.name, report_path(id: report.id), method: :get%></td>
+						<td><%= report.project.user.fullname if current_user.role != "factory"%></td>
+						<td><%= report.date.strftime("%b %d. %y") if report.date.present? %></td>
+						<td><%= link_to report.project.project_name, controller: 'projects', action: 'show', id: report.project.id %></td>
+						<td>
+							<%= link_to 'Edit', edit_report_path(id: report.id) if current_user.role == 'admin'%> 
+							<%= link_to 'Delete', report_path(id: report.id), method: :delete, data: {confirm: "Are you sure?"} if current_user.role == 'admin'%>
+						</td>
+					</tr>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<%= paginate @reports, window: 3, outer_window: 1%>
