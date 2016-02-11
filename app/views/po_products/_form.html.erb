@@ -14,7 +14,7 @@
 					<%= f.label :product_id, class: "control-label" %>
 				</div>
 				<div class="col-sm-10">
-					<%= f.select :product_id, Product.all.collect {|t| [t.item_number, t.id]}, {prompt: :select} , class: "form-control" %>
+					<%= f.select :product_id, Product.all.order(item_number: :asc).collect {|t| [t.item_number, t.id]}, {prompt: :select} , class: "form-control" %>
 				</div>
 			</div>
 			<div class="row row-form">
