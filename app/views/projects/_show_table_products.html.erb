@@ -12,27 +12,27 @@
 				<div class="table-responsive">
 					<table class="table table-condensed " >
 						<tr>
-							<th>Unit Cost: </th>
-							<td><%= number_to_currency(product.cost.unitUSD) if product.cost.present? %></td>
+							<th><%= Product.human_attribute_name(:unit_cost) if current_user.role != 'designer' %></th>
+							<td><%= smart_unit_cost(product) %></td>
 						</tr>
 						<tr>
-							<th>Tooling Fee: </th>
-							<td><%= number_to_currency(product.cost.toolingUSD) if product.cost.present? %></td>
+							<th><%= Product.human_attribute_name(:tooling_fee) if current_user.role != 'designer' %></th>
+							<td><%= smart_tooling_fee(product) %></td>
 						</tr>
 						<tr>
-							<th>Package: </th>
-							<td><%= simple_format(product.Package) %></td>
+							<th><%= Product.human_attribute_name(:Package)%> </th>
+							<td><%= simple_format(product.Package)%></td>
 						</tr>
 						<tr>
-							<th>Mark: </th>
+							<th><%= Product.human_attribute_name(:Mark)%></th>
 							<td><%= simple_format(product.Mark) %></td>
 						</tr>
 						<tr>
-							<th>Instruction: </th>
+							<th><%= Product.human_attribute_name(:Instruction)%> </th>
 							<td><%= simple_format(product.Instruction) %></td>
 						</tr>
 						<tr>
-							<th>Reminder: </th>
+							<th><%= Product.human_attribute_name(:reminder)%> </th>
 							<td><%= simple_format(product.reminder) %></td>
 						</tr>
 					</table><br />
@@ -43,10 +43,10 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>PO number</th>
-										<th>Quantity</th>
-										<th>Created at</th>
-										<th>Finish around</th>
+										<th><%= Po.human_attribute_name(:po_number)%> </th>
+										<th><%= Po.human_attribute_name(:quantity)%> </th>
+										<th><%= Po.human_attribute_name(:date)%> </th>
+										<th><%= Po.human_attribute_name(:finish)%> </th>
 									</tr>
 								</thead>
 								<tbody>

@@ -8,7 +8,7 @@
 			<em><%= @po.date.strftime("%m-%d-%y") %></em>
 		</div>
 		<div class="col-ex-3 text-right">
-			<%= link_to 'Edit', new_po_product_url(po_id: @po.id) if current_user.role == 'admin'%>
+			<%= link_to t('edit_label'), new_po_product_url(po_id: @po.id) if current_user.role == 'admin'%>
 		</div>
 	</div>
 </div>
@@ -25,15 +25,15 @@
 					<div class="col-ex-12 col-md-3">
 						<table class="table table-condensed">
 							<tr>
-								<th>Quantity: </th>
+								<th><%= Po.human_attribute_name(:quantity)%></th>
 								<td><%=po_product.quantity%></td>
 							</tr>
 							<tr>
-								<th>Unit Cost: </th>
+								<th><%= Product.human_attribute_name(:unit_cost)%></th>
 								<td><%= number_to_currency(po_product.product.cost.unitUSD) if po_product.product.cost.present? %></td>
 							</tr>
 							<tr>
-								<th>Tooling Fee: </th>
+								<th><%= Product.human_attribute_name(:tooling_fee)%></th>
 								<td><%= number_to_currency(po_product.product.cost.toolingUSD) if po_product.product.cost.present? %></td>
 							</tr>
 						</table>
@@ -41,19 +41,19 @@
 					<div class="col-ex-12 col-md-9">
 						<table class="table table-condensed">
 							<tr>
-								<th>Instruction: </th>
+								<th><%= Product.human_attribute_name(:Instruction)%></th>
 								<td><%=po_product.product.Instruction%></td>
 							</tr>
 							<tr>
-								<th>Package: </th>
+								<th><%= Product.human_attribute_name(:Package)%></th>
 								<td><%=po_product.product.Package%></td>
 							</tr>
 							<tr>
-								<th>Mark: </th>
+								<th><%= Product.human_attribute_name(:Mark)%></th>
 								<td><%=po_product.product.Mark%></td>
 							</tr>
 							<tr>
-								<th>Reminder: </th>
+								<th><%= Product.human_attribute_name(:reminder)%></th>
 								<td><%=po_product.product.reminder%></td>
 							</tr>
 						</table>

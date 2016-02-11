@@ -59,5 +59,26 @@ module ApplicationHelper
 			end
 		end
 	end
+	
+	
+	def smart_unit_cost product
+		if product.cost.present?
+			if current_user.role == 'factory'
+				number_to_currency(product.cost.unitRMB)
+			elsif current_user.role == 'admin' || current_user.role == 'user'
+				number_to_currency(product.cost.unitUSD)
+			end
+		end
+	end	
+
+	def smart_tooling_fee product
+		if product.cost.present?
+			if current_user.role == 'factory'
+				number_to_currency(product.cost.toolingRMB)
+			elsif current_user.role == 'admin' || current_user.role == 'user'
+				number_to_currency(product.cost.toolingUSD)
+			end
+		end
+	end
 
 end

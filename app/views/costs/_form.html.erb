@@ -9,10 +9,10 @@
 		<% else %>
 			<div class="row row-form">
 				<div class="col-sm-2">
-					<%= f.label :project_id, "Project Name", class: "control-label" %>
+					<%= f.label :project_id, class: "control-label" %>
 				</div>
 				<div class="col-sm-10">
-					<%= f.select :project_id, project_select(current_user), {prompt: "Select Project"}, class: "form-control" %>
+					<%= f.select :project_id, project_select(current_user), {prompt: :select}, class: "form-control" %>
 				</div>
 			</div>
 		<% end %>
@@ -22,7 +22,7 @@
 	<% if current_user.role == "admin" || "user" %>
 		<div class="row row-form">
 			<div class="col-sm-2">
-				<%= f.label :ratio, "Currency Ratio", class: "control-label" %>
+				<%= f.label :ratio, class: "control-label" %>
 			</div>
 			<div class="col-sm-10">
 				<%= f.number_field :ratio, class: "form-control", id: "ratio_input", value: 6.15%>
@@ -30,7 +30,7 @@
 		</div>
 		<div class="row row-form" >
 			<div class="col-sm-2">
-				<%= f.label :unitUSD, "Unit USD", class: "control-label" %>
+				<%= f.label :unitUSD, class: "control-label" %>
 			</div>
 			<div class="col-sm-10">
 				<%= f.number_field :unitUSD, :step => 0.01, class: "form-control", id: "unit_usd_output", placeholder: " $ 0.00" %>
@@ -38,7 +38,7 @@
 		</div>
 		<div class="row row-form">
 			<div class="col-sm-2">
-				<%= f.label :toolingUSD, "Tooling USD", class: "control-label" %>
+				<%= f.label :toolingUSD, class: "control-label" %>
 			</div>
 			<div class="col-sm-10">
 				<%= f.number_field :toolingUSD, :step => 0.01, class: "form-control", id: "tooling_usd_output", placeholder: " $ 0.00" %>
@@ -49,7 +49,7 @@
 	<!-- Show RMB cost -->
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label :unitRMB, "Unit RMB", class: "control-label" %>
+			<%= f.label :unitRMB, class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
 			<%= f.number_field :unitRMB, :step => 0.01, class: "form-control", id: "unit_rmb_input", placeholder: "￥0.00" %>
@@ -57,7 +57,7 @@
 	</div>
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label :toolingRMB, "Tooling RMB", class: "control-label" %>
+			<%= f.label :toolingRMB, class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
 			<%= f.number_field :toolingRMB, :step => 0.01, class: "form-control", id: "tooling_rmb_input", placeholder: "￥0.00" %>
@@ -84,7 +84,7 @@
 
 	<div class="row row-form">
 		<div class="col-sm-offset-2 col-sm-10">
-			<%= f.submit :Submit, class: "btn btn-default" %>
+			<%= f.submit class: "btn btn-default" %>
 		</div>
 	</div>
 

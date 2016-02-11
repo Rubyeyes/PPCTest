@@ -38,6 +38,19 @@ zh-CN:
       my_account: '我的账户'
       admin_setting: '管理员设置'
 
+  current_user:
+    index_table_info:
+      edit_info: '编辑信息'
+      new_project: '新项目'
+      new_product: '新产品'
+      new_cost: '新报价'
+      new_po: '新订单'
+      new_report: '新报告'
+      new_sample: '新样品'
+      sign_out: '注销'
+    index_table_tasks:
+      finish: '完成'
+
   projects:
     index:
       issue: '问题项目'
@@ -50,6 +63,56 @@ zh-CN:
       all: '所有项目'
     show:
       upload_instruction: '上传说明书'
+
+  products:
+    new:
+      title: '新产品'
+    edit:
+      title: '编辑产品'
+    show:
+      belong_to: '属于项目'
+
+  costs:
+    new:
+      title: '新报价'
+    edit:
+      title: '编辑报价'
+    show:
+      belong_to: '属于项目'
+
+  samples:
+    new:
+      title: '新样品'
+    edit:
+      title: '编辑样品'
+    index_table:
+      factory: '工厂'
+
+  pos:
+    new:
+      title: '新订单'
+    edit:
+      title: '订单'
+
+  reports:
+    new:
+      title: '新报告'
+    edit:
+      title: '修改报告'
+    index_table:
+      factory: '工厂'
+
+  po_products:
+    form:
+      add: '添加'
+      finish: '完成'
+      edit_po_number: '修改订单号'
+
+  tasks:
+    new:
+      title: '新任务'
+    edit:
+      title: '编辑任务'
 
   activerecord:
     errors:
@@ -76,6 +139,59 @@ zh-CN:
         description: '描述'
         date: '日期'
         action: '操作'
+        project_id: '项目名'
+        ratio: '汇率'
+      sample:
+        project_id: '项目'
+        date: '创建日期'
+        description: '说明'
+        received: '是否收到'
+        receive_date: '到达时间'
+        quantity: '数量'
+        description: '说明'
+      task:
+        executor: '执行人'
+        task: '任务'
+        start_date: '开始于'
+        deadline: '截止日期'
+        finish: '完成'
+        project_id: '项目'
+      product:
+        product_name: '产品名称'
+        item_number: '产品号'
+        unit_cost: '单价'
+        tooling_fee: '模具费'
+        Package: '包装'
+        Mark: '刻字'
+        Instruction: '说明书'
+        reminder: '提醒'
+        description: '说明'
+        created_at: '创建日期'
+        logo_image: '商标位置图片'
+        remote_logo_image_url: '商标图片链接'
+        patent_image: '专利位置图片'
+        remote_patent_image_url: '专利图片链接'
+        made_image: '中国制造位置图片'
+        remote_made_image_url: '中国制造图片链接'
+        project_id: '项目名'
+        cost_id: '价格'
+      po:
+        po_number: '订单号'
+        quantity: '数量'
+        date: '创建日期'
+        finish: '预估完成日期'
+      po_product:
+        product_id: '产品'
+        quantity: '数量'
+        finish_date: '预估完成日期'
+      project:
+        project_name: '项目名'
+      report:
+        project_id: '项目'
+        name: '标题'
+        content: '内容'
+        report: '附件'
+        date: '日期'
 
   date:
     abbr_day_names:

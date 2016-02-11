@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h2>Edit Product: <%= "#{@product.project.project_name} " %></h2>
+		<h2><%= t('.title')%> <%= @product.project.project_name %></h2>
 	</div>
 	<div class="panel-body">
 		<%= render 'form' %>

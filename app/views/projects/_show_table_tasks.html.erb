@@ -6,10 +6,10 @@
 			<table class="table table-condensed">
 				<thead>
 					<tr>
-						<th>Executor</th>
-						<th>Task</th>
-						<th>Start at</th>
-						<th>Deadline</th>
+						<th><%= Task.human_attribute_name(:executor) %></th>
+						<th><%= Task.human_attribute_name(:task) %></th>
+						<th><%= Task.human_attribute_name(:start_date) %></th>
+						<th><%= Task.human_attribute_name(:deadline) %></th>
 						<th class="text-right"></th>
 					</tr>
 				</thead>

@@ -7,9 +7,9 @@
 			<table class="table table-condensed">
 				<thead>
 					<tr>
-						<th>ETA</th>
-						<th>QTY</th>
-						<th>Description</th>
+						<th><%= Sample.human_attribute_name(:receive_date) %></th>
+						<th><%= Sample.human_attribute_name(:quantity) %></th>
+						<th><%= Sample.human_attribute_name(:description) %></th>
 						<% if current_user.role == ('admin' || 'factory') %>
 							<th class="text-right"></th>
 						<% end %>

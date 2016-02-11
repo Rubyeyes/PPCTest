@@ -3,13 +3,13 @@
 		<thead>
 			<tr>
 				<% if @project.nil? %>
-					<th><%= "Project Name"%></th>
+					<th><%= Project.human_attribute_name(:project_name)%></th>
 				<% end %>
-				<th class = 'text-center'>Quantity</th>
-				<th class = 'text-center'><%= sortable "receive_date", "ETA" %></th>
-				<th>Description</th>
-				<th><%= "Factory" if current_user.role != "factory" %></th>
-				<th><%= "Action" if current_user.role == "admin"%></th>
+				<th class = 'text-center'><%= Sample.human_attribute_name(:quantity)%></th>
+				<th class = 'text-center'><%= sortable "receive_date", "#{Sample.human_attribute_name(:receive_date)}" %></th>
+				<th><%= Sample.human_attribute_name(:description)%></th>
+				<th><%= t('.factory') if current_user.role != "factory" %></th>
+				<th><%= "" if current_user.role == "admin"%></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,8 +24,8 @@
 					<td><%= sample.project.user.fullname if current_user.role != "factory"%></td>	
 					<td>
 						<% if current_user.role == "admin"%>
-							<%= link_to 'Edit', edit_sample_url(id: sample.id) %>
-							<%= link_to 'Delete', sample_url(id: sample.id), method: :delete, data: {confirm: "Are you sure?"} %>
+							<%= link_to t('edit_label'), edit_sample_url(id: sample.id) %>
+							<%= link_to t('delete_label'), sample_url(id: sample.id), method: :delete, data: {confirm: "Are you sure?"} %>
 						<% end %>
 					</td>			
 				</tr>

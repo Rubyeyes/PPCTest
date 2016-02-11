@@ -8,10 +8,10 @@
 		<% else %>
 			<div class="row row-form">
 				<div class="col-sm-2">
-					<%= f.label :project_id, "Project Name", class: "control-label" %>
+					<%= f.label :project_id,  class: "control-label" %>
 				</div>
 				<div class="col-sm-10">		
-					<%= f.select :project_id, Project.where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"}, class: "form-control"%>
+					<%= f.select :project_id, Project.where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: :select}, class: "form-control"%>
 				</div>
 			</div>
 		<% end %>
@@ -37,7 +37,7 @@
 
 	<div class="row row-form">
 		<div class="col-sm-2">
-		<%= f.label :Package, "Package Requirement", class: "control-label" %>
+		<%= f.label :Package, class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
 		<%= f.text_area :Package, size: "40X20", class: "form-control" %>
@@ -46,7 +46,7 @@
 
 	<div class="row row-form">
 		<div class="col-sm-2">
-		<%= f.label :Mark, "Mark Requirement", class: "control-label" %>
+		<%= f.label :Mark, class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
 		<%= f.text_area :Mark, size: "40X20", class: "form-control" %>
@@ -55,7 +55,7 @@
 
 	<div class="row row-form">
 		<div class="col-sm-2">
-		<%= f.label :Instruction, "Instruction Requirement", class: "control-label" %>
+		<%= f.label :Instruction, class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
 		<%= f.text_area :Instruction, size: "40X20", class: "form-control" %>
@@ -73,16 +73,16 @@
 
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label 'Cost' , class: "control-label"%>
+			<%= f.label :cost_id, class: "control-label"%>
 		</div>
 		<div class="col-sm-10">
-			<%= f.select :cost_id, Cost.where(project_id: @product.project_id).collect {|t| [number_to_currency(t.unitUSD), t.id]}, {prompt: "Select Cost"} , class: "form-control"%>
+			<%= f.select :cost_id, Cost.where(project_id: @product.project_id).collect {|t| [number_to_currency(t.unitUSD), t.id]}, {prompt: :select} , class: "form-control"%>
 		</div>
 	</div>
 
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label "Logo Image", class: "control-label" %>
+			<%= f.label :logo_image, class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
 			<%= f.file_field :logo_image, class: "btn" %>
@@ -91,7 +91,7 @@
 
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label "Or image url",class: "control-label"   %>
+			<%= f.label :remote_logo_image_url,class: "control-label"   %>
 		</div>
 		<div class="col-sm-10">
 			<%= f.text_field :remote_logo_image_url, class: "form-control" %>
@@ -100,7 +100,7 @@
 
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label "Patent Image", class: "control-label" %>
+			<%= f.label :patent_image, class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
 			<%= f.file_field :patent_image, class: "btn" %>
@@ -109,7 +109,7 @@
 
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label "Or image url",class: "control-label"   %>
+			<%= f.label :remote_patent_image_url,class: "control-label"   %>
 		</div>
 		<div class="col-sm-10">
 			<%= f.text_field :remote_patent_image_url, class: "form-control" %>
@@ -118,7 +118,7 @@
 
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label "MIC Image", class: "control-label" %>
+			<%= f.label :made_image, class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
 			<%= f.file_field :made_image, class: "btn" %>
@@ -127,7 +127,7 @@
 
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label "Or image url",class: "control-label"   %>
+			<%= f.label :remote_made_image_url,class: "control-label"   %>
 		</div>
 		<div class="col-sm-10">
 			<%= f.text_field :remote_made_image_url, class: "form-control" %>
@@ -136,7 +136,7 @@
 
 	<div class="row row-form">
 		<div class="col-sm-offset-2 col-sm-10">
-			<%= f.submit :Submit, class: "btn btn-default" %>
+			<%= f.submit class: "btn btn-default"%>
 		</div>
 	</div>
 

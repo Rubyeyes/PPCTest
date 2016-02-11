@@ -8,10 +8,10 @@
 		<% else %>
 			<div class="row row-form">
 				<div class="col-sm-2">
-					<%= f.label :project_id, "Project Name", class: "control-label" %>
+					<%= f.label :project_id, class: "control-label" %>
 				</div>
 				<div class="col-sm-10">
-					<%= f.select :project_id, Project.where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: "Select Project"}, class: "form-control" %>
+					<%= f.select :project_id, Project.where(user_id: current_user.id).collect {|t| [t.project_name, t.id]}, {prompt: :select}, class: "form-control" %>
 				</div>
 			</div>
 		<% end %>
@@ -43,7 +43,7 @@
 	</div>	
 	<div class="row row-form">
 		<div class="col-sm-2">
-			<%= f.label :receive_date,'ETA',  class: "control-label" %>
+			<%= f.label :receive_date,  class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
 			<%= f.date_select :receive_date, class: "form-control"%>
@@ -59,7 +59,7 @@
 	</div>
 	<div class="row row-form">
 		<div class="col-sm-offset-2 col-sm-10">
-			<%= f.submit :Submit, class: "btn btn-default" %>
+			<%= f.submit class: "btn btn-default" %>
 		</div>
 	</div>
 <% end %>

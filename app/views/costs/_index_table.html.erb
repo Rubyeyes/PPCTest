@@ -4,14 +4,14 @@
 		<thead>
 			<tr>
 				<%if @project.nil?%> <!-- Check if table is accessed from project -->
-					<th><%= sortable "project_name", "Project Name" %></th>
+					<th><%= sortable "project_name", "#{Project.human_attribute_name(:project_name)}" %></th>
 				<%end%>
-				<th>Unit RMB</th>
-				<th>Tooling RMB</th>
-				<th><%= "Unit USD" if current_user.role != 'factory'%></th> <!-- Don't show USD to factory -->
-				<th><%= "Tooling USD" if current_user.role != 'factory'%></th> <!-- Don't show USD to factory -->
-				<th>Description</th>
-				<th><%= sortable "created_at", "Created At"%></th>
+				<th><%= "#{Cost.human_attribute_name(:unitRMB)}" %></th>
+				<th><%= "#{Cost.human_attribute_name(:toolingRMB)}" %></th>
+				<th><%= "#{Cost.human_attribute_name(:unitUSD)}" if current_user.role != 'factory'%></th> <!-- Don't show USD to factory -->
+				<th><%= "#{Cost.human_attribute_name(:toolingUSD)}" if current_user.role != 'factory'%></th> <!-- Don't show USD to factory -->
+				<th><%= "#{Cost.human_attribute_name(:description)}" %></th>
+				<th><%= sortable "created_at", "#{Cost.human_attribute_name(:date)}"%></th>
 				<th><%- "Action" if current_user.role == 'admin'%></th> <!-- Only admin can edit and delete the cost -->
 			</tr>
 		</thead>
@@ -29,8 +29,8 @@
 					<td><%= cost.date.strftime("%m-%d-%y") if cost.date.present? %></td>
 					<td>
 						<% if current_user.role == 'admin'%> <!-- Only admin can edit and delete cost -->
-							<%= link_to 'Edit', edit_cost_url(id: cost.id)%>
-							<%= link_to 'Delete', cost_url(id: cost.id), method: :delete, data: {confirm: "Are you sure?"}%>
+							<%= link_to t('edit_label'), edit_cost_url(id: cost.id)%>
+							<%= link_to t('delete_label'), cost_url(id: cost.id), method: :delete, data: {confirm: "Are you sure?"}%>
 						<%end%>
 					</td>	
 				</tr>

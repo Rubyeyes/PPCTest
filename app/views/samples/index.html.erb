@@ -1,11 +1,11 @@
 <div class="container container-user ">
-<h1>Samples</h1>
+<h1><%= Sample.model_name.human %></h1>
 <h3><%= link_to @project.project_name, project_path(id: @project.id) if @project.present? %> </h3><br/>
 <%= render "search"%><br/>
 <div class="text-right">
-	<%= link_to "New Sample", new_sample_path if current_user.role != 'user'%>
+	<%= link_to t('new_label') , new_sample_path if current_user.role != 'user'%>
 </div>
 <hr class="hr-table">
-<%= render "samples_index_table"%>	
+<%= render "index_table"%>	
 <%= paginate @samples, window: 3, outer_window: 1%>
 </div>

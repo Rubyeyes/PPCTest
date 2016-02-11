@@ -37,6 +37,19 @@ en:
       my_account: 'My Account'
       admin_setting: 'Admin Setting'
 
+  current_user:
+    index_table_info:
+      edit_info: 'Edit information'
+      new_project: 'New project'
+      new_product: 'New product'
+      new_cost: 'New cost'
+      new_po: 'New Po'
+      new_report: 'New report'
+      new_sample: 'New sample'
+      sign_out: 'Sign out'
+    index_table_tasks:
+      finish: 'Finish'
+
   projects:
     index:
       issue: 'Issues'
@@ -50,15 +63,66 @@ en:
     show:
       upload_instruction: 'Upload Instruction'
 
+
+  products:
+    new:
+      title: 'New Product'
+    edit:
+      title: 'Edit Product'
+    show:
+      belong_to: 'Belong to'
+
+  costs:
+    new:
+      title: 'New Cost'
+    edit:
+      title: 'Edit Cost'
+    show:
+      belong_to: 'Belong to'
+
+  samples:
+    new:
+      title: 'New Sample'
+    edit:
+      title: 'Edit Sample'
+    index_table:
+      factory: 'Factory'
+
+  pos:
+    new:
+      title: 'New Po'
+    edit:
+      title: 'Edit Po'
+
+  reports:
+    new:
+      title: 'New Report'
+    edit:
+      title: 'Edit Report'
+    index_table:
+      factory: 'factory'
+
+  po_products:
+    form:
+      add: 'Add'
+      finish: 'Finish'
+      edit_po_number: 'Edit Po No.'
+
+  tasks:
+    new:
+      title: 'New Task'
+    edit:
+      title: 'Edit Task'
+
   activerecord:
     models:
-      project: 'PROJECTS'
-      sample: 'SAMPLES'
-      product: 'PRODUCTS'
-      report: 'REPORTS'
-      po: 'PO'
-      cost: 'COSTS'
-      task: 'TASKS'
+      project: 'Project'
+      sample: 'Sample'
+      product: 'Product'
+      report: 'Report'
+      po: 'Po'
+      cost: 'Cost'
+      task: 'Task'
     attributes:
       cost:
         unitUSD: 'U USD'
@@ -68,3 +132,56 @@ en:
         description: 'Description'
         date: 'Date'
         action: 'Action'
+        project_id: 'Project'
+        ratio: 'Currency Ratio'
+      sample:
+        project_id: 'Project'
+        date: 'Created Date'
+        description: 'Description'
+        received: 'Received'
+        receive_date: 'ETA'
+        quantity: 'QTY'
+        description: 'Description'
+      task:
+        executor: 'Executor'
+        task: 'Mission'
+        start_date: 'Start at'
+        deadline: 'Deadline'
+        finish: 'Finish'
+        project_id: 'Project'
+      product:
+        product_name: 'Product Name'
+        item_number: 'Item NO.'
+        unit_cost: 'Unit Cost'
+        tooling_fee: 'Tooling Fee'
+        Package: 'Package'
+        Mark: 'Mark'
+        Instruction: 'Instruction'
+        reminder: 'Reminder'
+        description: 'Description'
+        created_at: 'Created at'
+        logo_image: 'Logo Image'
+        remote_logo_image_url: 'Remote Logo Image Url'
+        patent_image: 'Patent Image'
+        remote_patent_image_url: 'Patent Image Url'
+        made_image: 'Made in China Image'
+        remote_made_image_url: 'Made in China Url'
+        project_id: 'Project'
+        cost_id: 'Cost'
+      po:
+        po_number: 'PO No.'
+        quantity: 'QTY'
+        date: 'Create Date'
+        finish: 'Estimated Finish Date'
+      po_product:
+        product_id: 'Product'
+        quantity: 'QTY'
+        finish_date: 'Estimated Finish Date'
+      project:
+        project_name: 'Project Name'
+      report:
+        project_id: 'Project'
+        name: 'Title'
+        content: 'Content'
+        report: 'Attachment'
+        date: 'Date'
