@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
 
 	def self.text_sort sort, direction
 		if sort.present?
-			joins(:project).order("#{sort} #{direction}")
+			joins(:executor).order("#{sort} #{direction}")
 		else
 			joins(:project).order('deadline DESC')
 		end		
