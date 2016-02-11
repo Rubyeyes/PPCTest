@@ -1,0 +1,16 @@
+<p>Dear <%= @user.fullname%></p>
+
+<p>
+  <%= User.find(@notification.sender_id).fullname%> <%= @notification.content%>
+	<% if @notification.notifiable_type == "Project"%>
+		<%= @notification.notifiable.project_name if  @notification.notifiable.present?%>
+	<% elsif @notification.notifiable_type == "PoProduct"%>
+		<%= @notification.notifiable.po.po_number if  @notification.notifiable.present? %>
+	<% else %>
+		<%= @notification.notifiable.project.project_name if  @notification.notifiable.present?%>
+	<% end %>
+</p>
+
+<p>
+	<%= link_to 'detail', "https://limitless-wildwood-4680.herokuapp.com#{notification_path(id: @notification.id, locale: @user.locale)}", method: :put   %>
+</p>

@@ -114,6 +114,15 @@ zh-CN:
     edit:
       title: '编辑任务'
 
+  views:
+    pagination: 
+      first: '第一页'
+      last: '最末页'
+      previous: '前一页'
+      next: '下一页'
+
+# Activerecord
+
   activerecord:
     errors:
       messages:

@@ -114,6 +114,15 @@ en:
     edit:
       title: 'Edit Task'
 
+  views:
+    pagination: 
+      first: 'First'
+      last: 'Last'
+      previous: 'Prev'
+      next: 'Next'
+
+# Activerecord
+
   activerecord:
     models:
       project: 'Project'

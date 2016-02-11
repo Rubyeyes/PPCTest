@@ -37,7 +37,7 @@ class TasksController < ApplicationController
     if params[:finish_value].present?
       @task.update(finish: mission_params[:finish_value])
       @users.each do |user|
-        Notification.create_notification(@task, "finish the task of", current_user.id, user.id, params[:controller])
+        Notification.create_notification(@task, "finish the task of", current_user.id, user.id, params[:controller], user)
       end
       redirect_to :back
       flash[:notice] = "Good Job"
