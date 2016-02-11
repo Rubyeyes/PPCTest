@@ -16,7 +16,7 @@
 			<% @samples.each do |sample| %>	
 				<tr>
 					<%if @project.nil?%>
-						<td><%= sample.project.project_name %></td>
+						<td><%= link_to sample.project.project_name, project_path(id: sample.project.id) %></td>
 					<%end%>
 					<td align = 'center'><%= sample.quantity %></td>
 					<td align = 'center'><%= sample.receive_date.strftime("%b %d. %Y") %></td>

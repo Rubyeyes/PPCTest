@@ -26,10 +26,10 @@
 			<% @products.each do |product| %>
 				<tr>
 					<td><%= link_to product.item_number,  product_path(id: product.id), method: :get%></td>
-					<% if product.cost.nil? && current_user.role != 'designer' %>
+					<% if product.cost.nil? && current_user.role != 'designer'%>
 						<td></td>
 						<td></td>
-					<% elsif current_user.role == ('admin' || 'user') &&  %>
+					<% elsif current_user.role == 'user' || current_user.role == 'admin'%>
 						<td><%= number_to_currency(product.cost.unitUSD)%></td>
 						<td><%= number_to_currency(product.cost.toolingUSD)%></td>
 					<% elsif current_user.role == 'factory' %>
