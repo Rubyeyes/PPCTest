@@ -54,10 +54,10 @@
 					</div>
 
 					<div class="col-xs-12 col-md-8">
-						<%= render "costs_table", object: @project, :number => 3 if current_user.role != 'designer'%>
-						<%= render "show_table_samples", object: @project %>
-						<%= render "show_table_tasks", object: @project %><br>
-						<%= render "show_table_reports", object: @project if current_user.role != 'designer' %><br>
+						<%= render "costs_table", object: @project, :number => 3 if current_user.role != 'designer'%><br/>
+						<%= render "show_table_samples", object: @project %><br/>
+						<%= render "show_table_tasks", object: @project %><br/>
+						<%= render "show_table_reports", object: @project if current_user.role != 'designer' %><br/>
 						<%= render "show_table_products", object: @project %>
 					</div>
 				</div><!-- row -->
