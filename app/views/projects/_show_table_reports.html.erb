@@ -14,7 +14,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% object.reports.order(date: :desc).last(3).each do |report| %>
+					<% object.reports.order(date: :desc).first(3).each do |report| %>
 						<tr>
 							<td><%= report.date.strftime("%m-%d-%y") if report.date.present?%></td>
 							<td><%= link_to truncate(report.name, length: 60, separate: ''), report_url(id: report.id), method: :get  %></td>	
