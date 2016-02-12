@@ -25,6 +25,10 @@
 	}
 }
 
+html.turbolinks-progress-bar::before {
+  background-color: rgba(51,122,183,1) !important;
+  height: 3px !important;
+}
 
 .affix {
   top:75px;
