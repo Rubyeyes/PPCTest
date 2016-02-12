@@ -94,16 +94,23 @@
       $('#left-arrow').show();
     });
 
-    //Navlist dropdown menu
-    $(window).resize(function () {
-      if(($(this).width()<1020) && ($(this).width()>880)) {
+    // Optimalisation: Store the references outside the event handler:
+    var $window = $(window);
+
+    function checkWidth() {
+      var windowsize = $window.width(); 
+      if((windowsize<1020) && (windowsize>880)) {
         $('#dropdown_list').show();
         $('#dropdown_list').prevAll().hide();
       } else {
         $('#dropdown_list').hide();
         $('#dropdown_list').prevAll().show();
-      } 
-    });
+      }; 
+    }
+    // Execute on load
+    checkWidth();
+    // Bind event listener
+    $(window).resize(checkWidth);
 
   });
 
