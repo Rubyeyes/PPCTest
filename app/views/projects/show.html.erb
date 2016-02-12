@@ -5,7 +5,7 @@
 	<div class="show-project-background">
 		<div id="info_top"  class="container container-content">
 				<div class="row">
-					<div class="col-xs-12 col-md-4">
+					<div id="panel_grid" class="col-xs-12 col-md-4">
 						<div id="project_info_panel">
 							<div class="panel panel-default panel-project-title">
 								<div class="panel-heading">
@@ -69,16 +69,27 @@
 	$(document).ready(function() {
 		// Change navbar when scroll down
 	  	$(window).scroll(function () {
+	  		var divWidth = $('#panel_grid').width(); 
 				var infoTop = document.getElementById("info_top").offsetTop;
 		    var top = $(this).scrollTop();
-		    if ($(window).width() > 960) {
-		  		if(top>infoTop) {
-			      $("#project_info_panel").addClass("panel-fixed-top col-xs-12");
-			    } else {
-			      $("#project_info_panel").removeClass("panel-fixed-top col-xs-12");
-			    }
-  			}
-	  	})
+		    if (($(window).width() > 1000) && (top>infoTop)) {
+		      $("#project_info_panel").addClass("panel-fixed-top");
+		      $("#project_info_panel").width(divWidth);
+		    } else {
+		      $("#project_info_panel").removeClass("panel-fixed-top");
+		      $("#project_info_panel").width(divWidth);
+		    }
+	  	});
+	  	$(window).resize(function() {
+	  		var divWidth = $('#panel_grid').width(); 
+	  		if ($(window).width() > 1000) {
+		      $("#project_info_panel").addClass("panel-fixed-top");
+		    	$("#project_info_panel").width(divWidth);
+		    } else {
+		      $("#project_info_panel").removeClass("panel-fixed-top");
+		      $("#project_info_panel").width(divWidth);
+	  		}
+			});
 		    
 	})	
 </script>
