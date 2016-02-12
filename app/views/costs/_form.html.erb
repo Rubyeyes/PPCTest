@@ -19,7 +19,7 @@
 	<% end %>
 
 	<!-- Only show US Dollars to Admin and Users -->
-	<% if current_user.role == "admin" || "user" %>
+	<% if current_user.role == 'admin' || current_user.role == 'user2'%>
 		<div class="row row-form">
 			<div class="col-sm-2">
 				<%= f.label :ratio, class: "control-label" %>

@@ -7,6 +7,13 @@ class Ability
     # Define User abilities
     if user.role == "admin"
       can :manage, :all
+    elsif user.role == "user2"
+      can :read, :all
+      can :manage, Task
+      can :manage, Instruction
+      can :manage, Po
+      can :manage, Cost
+      can [:read, :edit, :mamage, :update, :destroy], Notification
     elsif user.role == "user"
       can :read, :all
       can :manage, Task
@@ -14,7 +21,6 @@ class Ability
       can [:read, :edit, :mamage, :update, :destroy], Notification
     elsif user.role == "factory"
       can :manage, Sample
-      can :manage, Cost
       can :manage, Task
       can :manage, Instruction
       can [:read], Project

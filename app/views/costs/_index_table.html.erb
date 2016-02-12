@@ -28,7 +28,7 @@
 					<td><%= cost.description %></td>
 					<td><%= cost.date.strftime("%m-%d-%y") if cost.date.present? %></td>
 					<td>
-						<% if current_user.role == 'admin'%> <!-- Only admin can edit and delete cost -->
+						<% if current_user.role == 'admin' || current_user.role == 'user2'%> <!-- Only admin can edit and delete cost -->
 							<%= link_to t('edit_label'), edit_cost_url(id: cost.id)%>
 							<%= link_to t('delete_label'), cost_url(id: cost.id), method: :delete, data: {confirm: "Are you sure?"}%>
 						<%end%>

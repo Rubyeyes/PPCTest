@@ -1,7 +1,7 @@
 <div class="panel panel-default panel-show">
 
 
-	<%= render "show_table_heading", name: Cost.model_name.human, path: new_cost_path(project_id_param: @project.id), role: (current_user.role == ('admin' || 'factory')) && action_name == 'show'%>
+	<%= render "show_table_heading", name: Cost.model_name.human, path: new_cost_path(project_id_param: @project.id), role: (current_user.role == ('admin' || 'user2')) && action_name == 'show'%>
 
 	<div class="panel-body panel-home-show">
 		<% if object.costs.present? %>
@@ -18,7 +18,7 @@
 						<% end %>
 						<th><%= Cost.human_attribute_name(:description) %></th>
 						<% if request.fullpath.include? object.id.to_s %>
-							<% if current_user.role != 'user' %>
+							<% if current_user.role == 'admin' || current_user.role == 'user2' %>
 								<th><%= Cost.human_attribute_name(:date) %></th>
 								<th class="text-right"></th>
 							<% end %>
@@ -38,7 +38,7 @@
 							<% end %>
 							<td><%= truncate(cost.description, length: 40, seperate: '') %></td>
 							<% if request.fullpath.include? object.id.to_s %>
-								<% if current_user.role != 'user' %>
+								<% if current_user.role == 'admin' || current_user.role == 'user2'%>
 									<td><%= cost.date.strftime("%m-%d-%y") if cost.date.present?%></td>
 									<td class="text-right">
 									<%= link_to t('edit_label'), edit_cost_url(id: cost.id) %>

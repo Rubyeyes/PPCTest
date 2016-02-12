@@ -6,9 +6,9 @@
 <em><%= link_to @project.project_name, project_path(id: @project.id) if @project.present?%></em> 
 <!-- Only allow factory and admin create cost -->
 	<% if @project.present? %>
-		<div class="text-right"><%= link_to t('new_label'), new_cost_path(project_id_param: @project.id) if (current_user.role == 'factory'||'admin') %></div>
+		<div class="text-right"><%= link_to t('new_label'), new_cost_path(project_id_param: @project.id) if current_user.role == 'admin' || current_user.role == 'user2' %></div>
 	<% else %>
-		<div class="text-right"><%= link_to t('new_label'), new_cost_path if (current_user.role == 'factory'||'admin') %></div>
+		<div class="text-right"><%= link_to t('new_label'), new_cost_path if current_user.role == 'admin' || current_user.role == 'user2' %></div>
 	<% end %>
 <hr class="hr-table">
 <!-- Cost list -->

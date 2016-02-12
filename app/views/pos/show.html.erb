@@ -8,7 +8,7 @@
 			<em><%= @po.date.strftime("%m-%d-%y") %></em>
 		</div>
 		<div class="col-ex-3 text-right">
-			<%= link_to t('edit_label'), new_po_product_url(po_id: @po.id) if current_user.role == 'admin'%>
+			<%= link_to t('edit_label'), new_po_product_url(po_id: @po.id) if current_user.role == 'admin' || current_user.role == 'user2'%>
 		</div>
 	</div>
 </div>

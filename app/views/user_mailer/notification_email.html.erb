@@ -11,6 +11,9 @@
 	<% end %>
 </p>
 
+<p>Task: </p>
+<p><%= simple_format(@notification.notifiable.task) %></p>
+
 <p>
 	<%= link_to 'detail', "https://limitless-wildwood-4680.herokuapp.com#{notification_path(id: @notification.id, locale: "en")}", method: :put   %>
 </p>
