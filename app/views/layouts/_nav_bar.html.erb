@@ -19,14 +19,16 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <% if current_user %>
         <div  id="navbar" class="navbar-collapse collapse" aria-expanded="false">
-          <ul class="nav navbar-nav navbar-right" >
+          <ul id="navbar_right" class="nav navbar-nav navbar-right" >
             <% if params[:controller] != "home"%>
-              <li class="<%= 'active' if params[:controller] == 'projects' %>"><%= link_to Project.model_name.human, projects_path(stage: 'stage_0'), class: "nav-link nav-second-word" %></li>  
-              <li class="<%= 'active' if params[:controller] == 'products' %>"><%= link_to Product.model_name.human, products_path, class: "nav-link nav-second-word" %></li> 
-              <li class="<%= 'active' if params[:controller] == 'costs' %>"><%= link_to Cost.model_name.human, costs_path, class: "nav-link nav-second-word" if current_user.role != 'designer'%></li>
-              <li class="<%= 'active' if params[:controller] == 'pos'%>"><%= link_to Po.model_name.human, pos_path, class: "nav-link  nav-second-word" if current_user.role != 'designer'%></li>
-              <li class="<%= 'active' if params[:controller] == 'reports'%>"><%= link_to Report.model_name.human, reports_path, class: "nav-link nav-second-word" if current_user.role != 'designer'%></li>
-              <li class="<%= 'active' if params[:controller] == 'samples'%>"><%= link_to Sample.model_name.human, samples_path, class: "nav-link nav-second-word" %></li>
+              <%= render "layouts/nav_list"%>
+              <li style="display:none" id="dropdown_list" class="dropdown">
+                <a href="#" class="dropdown-toggle navbar-toggle-width" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More<span class="caret"></span></a>
+                <ul class="dropdown-menu dropdown-menu-inverse">
+                  <%= render "layouts/nav_list"%>
+                </ul>
+              </li>
+              
               <li >
                 <form hidden id="nav-search" action="<%= projects_path(params.merge(stage: 'stage_all')) %>" class="navbar-form " role="search">
                   <div class="input-group">

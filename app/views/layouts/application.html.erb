@@ -94,6 +94,17 @@
       $('#left-arrow').show();
     });
 
+    //Navlist dropdown menu
+    $(window).resize(function () {
+      if(($(this).width()<1020) && ($(this).width()>880)) {
+        $('#dropdown_list').show();
+        $('#dropdown_list').prevAll().hide();
+      } else {
+        $('#dropdown_list').hide();
+        $('#dropdown_list').prevAll().show();
+      } 
+    });
+
   });
 
 </script>
