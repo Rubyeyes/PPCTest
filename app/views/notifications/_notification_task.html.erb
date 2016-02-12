@@ -7,7 +7,7 @@
 		<p>
 			<%= User.find(object.sender_id).fullname%> 
 			<%= object.content%>
-			<%= link_to object.notifiable.project.project_name, controller: "projects", action: "show", id: object.notifiable.id   if  object.notifiable.present?%>
+			<%= link_to object.notifiable.project.project_name, controller: "projects", action: "show", id: object.notifiable.project.id   if  object.notifiable.present?%>
 		</p>
 		<p><%= simple_format(object.notifiable.task) %></p>
 	</div>
