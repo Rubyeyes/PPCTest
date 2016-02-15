@@ -52,31 +52,38 @@
 
 
 <script>
-$(document).ready(function(){
+  $(document).ready(function(){
 
-  $(".show-project-detail .up-arrow").click(function() {
-    $(this).parent("div").removeClass("show-project-detail", 1000);
-    $(this).hide();
-    $(this).next("div").show();
-  });
-    $(".show-project-detail .down-arrow").click(function() {
-    $(this).parent("div").addClass("show-project-detail", 1000);
-    $(this).hide();
-    $(this).prev("div").show();
-  });
+    $(".show-project-detail .up-arrow").click(function() {
+      $(this).parent("div").removeClass("show-project-detail", 1000);
+      $(this).hide();
+      $(this).next("div").show();
+    });
+      $(".show-project-detail .down-arrow").click(function() {
+      $(this).parent("div").addClass("show-project-detail", 1000);
+      $(this).hide();
+      $(this).prev("div").show();
+    });
 
-  // Change navbar when scroll down
-  $(window).scroll(function () {
-    var top = $(this).scrollTop();
-    if(top>400) {
-      $("#project-navbar").removeClass("navbar-nav navbar-static-top");
-      $("#project-navbar").addClass("navbar-nav navbar-fixed-top");
-    }
-    if(top<=400) {
-      $("#project-navbar").addClass("navbar-nav navbar-static-top");
-      $("#project-navbar").removeClass("navbar-nav navbar-fixed-top");
-    }
+    // Change navbar when scroll down
+    $(window).scroll(function () {
+      var top = $(this).scrollTop();
+      if(top>400) {
+        $("#project-navbar").removeClass("navbar-nav navbar-static-top");
+        $("#project-navbar").addClass("navbar-nav navbar-fixed-top");
+      }
+      if(top<=400) {
+        $("#project-navbar").addClass("navbar-nav navbar-static-top");
+        $("#project-navbar").removeClass("navbar-nav navbar-fixed-top");
+      }
+    })
   })
-})
+
+  // Change brightness when mouse on
+  $( ".panel-body-cost a" ).hover( function() {
+      $(this).children("img").css("opacity","0.7"); 
+    }, function() {
+      $(this).children("img").css("opacity","1"); 
+  });
 	
 </script>

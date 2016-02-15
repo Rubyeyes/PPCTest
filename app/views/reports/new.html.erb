@@ -1,7 +1,8 @@
 <div class="container container-user ">
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h2><%= t('.title') %><%= "#{@project.project_name if @project.present?} " %></h2>
+		<h2><%= t('.title') %></h2>
+		<em><%= "#{@project.project_name if @project.present?} " %></em>
 	</div>
 	<div class="panel-body">
 		<%= render 'form' %>
