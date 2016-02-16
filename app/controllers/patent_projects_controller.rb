@@ -1,6 +1,4 @@
 class PatentProjectsController < ApplicationController
-  def index
-  end
 
   def new
     @patent_project = PatentProject.new
@@ -21,15 +19,6 @@ class PatentProjectsController < ApplicationController
       flash[:alert] = "There was a problem creating patent"
       render :new
     end
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def show
   end
 
   def destroy

@@ -6,6 +6,11 @@ class ProductsController < ApplicationController
     # advance search filter
     filter(Product)
     @products = @data.text_sort(params[:sort], params[:direction]).page(params[:page]).per(20)
+    respond_to do |format|
+      format.html
+      format.csv { render text: @data.to_csv}
+      format.xls #{ render text: @products.to_csv(col_sep: "\t")}
+    end
   end
 
   def new

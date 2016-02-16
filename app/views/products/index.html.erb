@@ -3,6 +3,14 @@
 <h1><%= Product.model_name.human%> </h1><br/>
 <%= render "search"%>
 
+<% if current_user.role == 'admin' || 'user' || 'user2' %>
+	<p>
+		Download:
+		<%= link_to "CSV", products_path(format: "csv") %> |
+		<%= link_to "XLS", products_path(format: "xls") %>
+	</p>
+<% end %>
+
 <div class="text-right">
 	<%= link_to t('new_label'), new_product_path if current_user.role == 'admin'%>
 </div>

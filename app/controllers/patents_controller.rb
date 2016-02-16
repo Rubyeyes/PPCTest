@@ -61,9 +61,6 @@ class PatentsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def destroy
     @patent = Patent.find(params[:id])
     @patent.destroy
