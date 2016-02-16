@@ -8,7 +8,7 @@ module ApplicationHelper
 	def project_select current_user
 		if current_user.role == "factory"
 			Project.where(user_id: current_user.id).order(project_name: :asc).collect {|t| [t.project_name, t.id]}
-		elsif current_user.role == "admin" || "user"
+		elsif current_user.role == "admin" || "user" || "user2"
 			Project.all.order(project_name: :asc).collect {|t| [t.project_name, t.id]}
 		end
 	end
@@ -59,7 +59,7 @@ module ApplicationHelper
 			end
 		end
 	end
-	
+
 	
 	def smart_unit_cost product
 		if product.cost.present?
@@ -79,6 +79,15 @@ module ApplicationHelper
 				number_to_currency(product.cost.toolingUSD)
 			end
 		end
+	end
+	
+
+	def smart_patent_number patent_project	
+		if patent_project.patent.status.to_s == "Patent Pending"
+			patent_project.patent.status.to_s 
+		else 
+			patent_project.patent.patent_number.to_s
+		end 
 	end
 
 end

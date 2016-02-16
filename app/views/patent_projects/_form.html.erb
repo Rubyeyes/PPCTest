@@ -1,0 +1,55 @@
+<%= smart_form(@patent_project, params[:controller]) do |f| %>
+
+	<%= f.hidden_field :patent_id, :value => @patent.id %>
+
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :project_id, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.select :project_id, project_select(current_user), {prompt: :select}, class: "form-control" %>
+		</div>
+	</div>
+
+
+	<div class="row row-form">
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit "Add Project", class: "btn btn-default" %>
+		</div>
+	</div>
+<% end %>
+
+<% if @patent_projects.present? %>
+	<ul class="list-group list-inline">
+		<% @patent_projects.each do |pp| %>
+			<li class="list-group-item"><%= pp.project.project_name %> <%= link_to "",patent_project_url(id: pp.id), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove"%></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<div class="table-responsive">
+	<table class="table table-striped table-hover" style="margin-bottom:100px">
+		<thead>
+			<tr>
+				<th><%= "#{Patent.human_attribute_name(:patent_type)}" %></th>
+				<th><%= "#{Patent.human_attribute_name(:docket_number)}" if current_user.role != 'factory'%></th> <!-- Don't show USD to factory -->
+				<th><%= "#{Patent.human_attribute_name(:status)}" if current_user.role != 'factory'%></th> <!-- Don't show USD to factory -->
+				<th><%= "#{Patent.human_attribute_name(:patent_number)}" %></th>
+				<th><%= "#{Patent.human_attribute_name(:issue_date)}"%></th>
+				<th><%= "#{Patent.human_attribute_name(:filling_date)}"%></th><!-- Only admin can edit and delete the Patent -->
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= @patent.patent_type.to_s %></td>
+				<td><%= @patent.docket_number.to_s %></td> <!-- Don't show USD to factory -->
+				<td><%= @patent.status.to_s 	%></td> <!-- Don't show USD to factory -->
+				<td><%= @patent.patent_number.to_s %></td>
+				<td><%= @patent.issue_date.strftime("%m-%d-%y") if @patent.issue_date.present? %></td>
+				<td><%= @patent.filling_date.strftime("%m-%d-%y") if @patent.filling_date.present? %></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="text-right"><%= link_to 'Finish', patents_path, method: :get, class: "btn btn-default" %></div>

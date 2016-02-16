@@ -1,0 +1,83 @@
+<P><%= render "validation_errors", object:  @patent%><P>
+
+<%= smart_form(@patent, params[:controller]) do |f| %>
+
+	<!-- patent -->
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :name, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :name, class: "form-control"%>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :patent_type, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.select :patent_type, options_for_select(["Design Patent", "Utility Patent"]), class: "form-control"%>
+		</div>
+	</div>
+
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :docket_number, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :docket_number, class: "form-control"%>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :status, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.select :status, options_for_select(["Patent Pending","Patented"]), class: "form-control"%>
+		</div>
+	</div>
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :patent_number, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :patent_number, class: "form-control"%>
+		</div>
+	</div>
+	
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :issue_date, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.date_select :issue_date, include_blank: true, class: "form-control"%>
+		</div>
+	</div>
+
+	
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :filling_date, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.date_select :filling_date, include_blank: true, class: "form-control"%>
+		</div>
+	</div>
+
+	<div class="row row-form">
+		<div class="col-sm-2">
+			<%= f.label :certificate, class: "control-label" %>
+		</div>
+		<div class="col-sm-10">
+			<%= f.file_field :certificate %>
+		</div>
+	</div>
+
+	<div class="row row-form">
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit class: "btn btn-default" %>
+		</div>
+	</div>
+
+
+<% end %>

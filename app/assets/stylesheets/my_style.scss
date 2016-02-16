@@ -30,6 +30,37 @@ html.turbolinks-progress-bar::before {
   height: 3px !important;
 }
 
+.patent-triangle-font {
+  position: absolute;
+  color: white;
+  z-index: 999;
+  left: 20%;
+  top: 10%;
+  font-size: large;
+  font-weight: bold;
+}
+
+/*Up-left pointing*/
+.patent-triangle {
+    width: 0;
+    height: 0;
+    padding-bottom: 20%;
+    padding-left: 20%;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.patent-triangle:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    margin-left: -500px;
+    border-bottom: 500px solid transparent;
+    border-left: 500px solid rgba(51,122,183,1);
+}
+
 .affix {
   top:75px;
   width:28%;

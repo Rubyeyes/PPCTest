@@ -74,6 +74,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @patent_projects = PatentProject.where(project_id: @project.id).joins(:patent).order("docket_number DESC")
     @products = Product.all
     @tasks = Task.all.order(created_at: :desc)
     if current_user.role == "factory" && @project.user.fullname != current_user.fullname

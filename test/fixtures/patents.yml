@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  docket_number: MyString
+  certificate: MyString
+  status: MyString
+  patent_number: MyString
+  issue_date: 2016-02-15 10:29:52
+  filling_date: 2016-02-15 10:29:52
+
+two:
+  name: MyString
+  type: 
+  docket_number: MyString
+  certificate: MyString
+  status: MyString
+  patent_number: MyString
+  issue_date: 2016-02-15 10:29:52
+  filling_date: 2016-02-15 10:29:52

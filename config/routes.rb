@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :instructions
     resources :logos
     resources :notifications, only:[:index, :update, :show, :destroy]
+    resources :patents
+    resources :patent_projects
     resources :projects
     resources :products
     resources :pos

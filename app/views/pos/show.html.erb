@@ -36,6 +36,10 @@
 								<th><%= Product.human_attribute_name(:tooling_fee)%></th>
 								<td><%= number_to_currency(po_product.product.cost.toolingUSD) if po_product.product.cost.present? %></td>
 							</tr>
+							<tr>
+								<th><%= PoProduct.human_attribute_name(:finish_date)%></th>
+								<td><%= po_product.finish_date.strftime("%m-%d-%y") if po_product.finish_date.present? %></td>
+							</tr>
 						</table>
 					</div>
 					<div class="col-ex-12 col-md-9">

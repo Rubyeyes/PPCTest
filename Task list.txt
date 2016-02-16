@@ -1,4 +1,4 @@
-1. Instructions and templates
+1. Some of the po is not for the same factories
 2. Input all data
 
 heroku pg:push PPCTest2_development DATABASE_URL --app limitless-wildwood-4680

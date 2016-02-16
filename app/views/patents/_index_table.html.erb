@@ -1,0 +1,43 @@
+<!-- Patent table in index -->
+<div class="table-responsive">
+	<table class="table table-striped table-hover" style="margin-bottom:100px">
+		<thead>
+			<tr>
+				<th><%= "#{Patent.human_attribute_name(:name)}" %></th>
+				<th><%= "#{Patent.human_attribute_name(:patent_type)}" %></th>
+				<th><%= "#{Patent.human_attribute_name(:docket_number)}"%></th> 
+				<th><%= "#{Patent.human_attribute_name(:status)}"%></th>
+				<th><%= "#{Patent.human_attribute_name(:patent_number)}" %></th>
+				<th><%= sortable "created_at", "#{Patent.human_attribute_name(:issue_date)}"%></th>
+				<th><%= sortable "created_at", "#{Patent.human_attribute_name(:filling_date)}"%></th>
+				<th><% "" if current_user.role == 'admin'%></th> <!-- Only admin can edit and delete the Patent -->
+			</tr>
+		</thead>
+		<tbody>
+			<% @patents.order(docket_number: :desc).each do |patent| %>
+				<tr>
+					<td class="dropdown">
+						<a href="#" class="dropdown-toggle navbar-toggle-width" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= patent.name.to_s %><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+		                  <% patent.patent_projects.each do |pp|%>
+		                  	<li><%= link_to pp.project.project_name, project_path(id: pp.project.id) %></li>
+		                  <% end %>
+		                </ul>
+					</td>
+					<td><%= patent.patent_type.to_s %></td>
+					<td><%= patent.docket_number.to_s %></td>
+					<td><%= patent.status.to_s 	%></td>
+					<td><%= patent.patent_number.to_s %></td>
+					<td><%= patent.issue_date.strftime("%m-%d-%y") if patent.issue_date.present? %></td>
+					<td><%= patent.filling_date.strftime("%m-%d-%y") if patent.filling_date.present? %></td>
+					<td>
+						<% if current_user.role == 'admin'%> <!-- Only admin can edit and delete patent -->
+							<%= link_to t('edit_label'), edit_patent_url(id: patent.id)%>
+							<%= link_to t('delete_label'), patent_url(id: patent.id), method: :delete, data: {confirm: "Are you sure?"}%>
+						<%end%>
+					</td>	
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

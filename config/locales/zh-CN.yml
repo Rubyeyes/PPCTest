@@ -102,6 +102,12 @@ zh-CN:
     index_table:
       factory: '工厂'
 
+  patents:
+    new:
+      title: '新专利'
+    edit:
+      title: '修改专利'
+
   po_products:
     form:
       add: '添加'
@@ -139,6 +145,7 @@ zh-CN:
       po: '订单'
       cost: '报价'
       task: '任务'
+      patent: '专利'
     attributes:
       cost:
         unitUSD: '美金单价'
@@ -201,6 +208,18 @@ zh-CN:
         content: '内容'
         report: '附件'
         date: '日期'
+      patent:
+        name: '标题'
+        patent_type: '类型'
+        docket_number: '参考号'
+        certificate: '证书'
+        status: '状态'
+        patent_number: '专利号'
+        issue_date: '通过日期'
+        filling_date: '存档日期'
+      patent_project:
+        project_id: '项目'
+
 
   date:
     abbr_day_names:

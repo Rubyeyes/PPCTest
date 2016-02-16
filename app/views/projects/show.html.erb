@@ -14,9 +14,23 @@
 								</div>
 								<div class="panel-body">
 									<p><%= @project.description %></p>
-									
-									<% if @project.patent_number.present?%>
-											<p>Patent Number: <b><%= @project.patent_number %></b></p>
+									<% if @patent_projects.present?%>
+										<table class="table table-striped table-hover">
+											<tbody>
+												<% @patent_projects.each do |patent_project| %>
+												  <tr>
+														<td><%= patent_project.patent.patent_type.to_s %></td>
+														<td><%= patent_project.patent.docket_number.to_s %></td>
+														<td><%= smart_patent_number patent_project %></td>
+														<% if current_user.role == "admin" %>
+															<td>
+																<%= link_to "", edit_patent_path(id: patent_project.patent.id), class: "glyphicon glyphicon-edit" %>
+															</td>
+														<% end %>
+													</tr>
+												<% end %>
+											</tbody>
+										</table>
 									<%end%>
 								</div>
 								<% if current_user.role == 'admin' %>

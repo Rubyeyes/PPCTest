@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209200735) do
+ActiveRecord::Schema.define(version: 20160215215840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,29 @@ ActiveRecord::Schema.define(version: 20160209200735) do
   end
 
   add_index "notifications", ["notifiable_id", "notifiable_type"], name: "index_notifications_on_notifiable_id_and_notifiable_type", using: :btree
+
+  create_table "patent_projects", force: :cascade do |t|
+    t.integer  "patent_id"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "patent_projects", ["patent_id"], name: "index_patent_projects_on_patent_id", using: :btree
+  add_index "patent_projects", ["project_id"], name: "index_patent_projects_on_project_id", using: :btree
+
+  create_table "patents", force: :cascade do |t|
+    t.string   "name"
+    t.string   "patent_type"
+    t.string   "docket_number"
+    t.string   "certificate"
+    t.string   "status"
+    t.string   "patent_number"
+    t.datetime "issue_date"
+    t.datetime "filling_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
@@ -210,6 +233,8 @@ ActiveRecord::Schema.define(version: 20160209200735) do
 
   add_foreign_key "costs", "projects"
   add_foreign_key "instructions", "projects"
+  add_foreign_key "patent_projects", "patents"
+  add_foreign_key "patent_projects", "projects"
   add_foreign_key "po_products", "pos"
   add_foreign_key "po_products", "products"
   add_foreign_key "products", "costs"

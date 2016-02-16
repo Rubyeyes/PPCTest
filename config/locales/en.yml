@@ -102,6 +102,12 @@ en:
     index_table:
       factory: 'factory'
 
+  patents:
+    new:
+      title: 'New Patent'
+    edit:
+      title: 'Edit Patent'
+
   po_products:
     form:
       add: 'Add'
@@ -132,6 +138,7 @@ en:
       po: 'Po'
       cost: 'Cost'
       task: 'Task'
+      patent: 'Patent'
     attributes:
       cost:
         unitUSD: 'U USD'
@@ -168,7 +175,7 @@ en:
         Instruction: 'Instruction'
         reminder: 'Reminder'
         description: 'Description'
-        created_at: 'Created at'
+        created_at: 'Date'
         logo_image: 'Logo Image'
         remote_logo_image_url: 'Remote Logo Image Url'
         patent_image: 'Patent Image'
@@ -181,11 +188,11 @@ en:
         po_number: 'PO No.'
         quantity: 'QTY'
         date: 'Create Date'
-        finish: 'Estimated Finish Date'
+        finish: 'ETA'
       po_product:
         product_id: 'Product'
         quantity: 'QTY'
-        finish_date: 'Estimated Finish Date'
+        finish_date: 'ETA'
       project:
         project_name: 'Project Name'
       report:
@@ -194,3 +201,14 @@ en:
         content: 'Content'
         report: 'Attachment'
         date: 'Date'
+      patent:
+        name: 'Name'
+        patent_type: 'Type'
+        docket_number: 'Docket No.'
+        certificate: 'Certificate'
+        status: 'Status'
+        patent_number: 'Patent No.'
+        issue_date: 'Issue Date'
+        filling_date: 'Filing Date'
+      patent_project:
+        project_id: 'Project'

@@ -7,7 +7,9 @@ class Project < ActiveRecord::Base
 	belongs_to :user
 	has_many :notifications, as: :notifiable, dependent: :delete_all
 	has_many :pos, through: :products
-	has_many :instructions
+	has_many :instructions	
+	has_many :patent_projects
+	has_many :patents, through: :patent_projects
 
 	validates :project_name, presence: true
 

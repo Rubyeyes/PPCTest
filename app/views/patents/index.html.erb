@@ -1,0 +1,19 @@
+<div class="container container-user ">
+
+<h1><%= Patent.model_name.human %></h1><br/>
+<%= render "search"%>
+<!-- Check if link from project -->
+<em><%= link_to @project.project_name, project_path(id: @project.id) if @project.present?%></em> 
+<!-- Only allow user2 and admin create patent -->
+<% if @project.present? %>
+	<div class="text-right"><%= link_to t('new_label'), new_patent_path(project_id_param: @project.id) if current_user.role == 'admin'%></div>
+<% else %>
+	<div class="text-right"><%= link_to t('new_label'), new_patent_path if current_user.role == 'admin' %></div>
+<% end %>
+<hr class="hr-table">
+<!-- patent list -->
+<%= render "index_table"%>
+
+<%= paginate @patents, window: 3, outer_window: 1%>
+
+</div>
