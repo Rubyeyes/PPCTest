@@ -191,6 +191,7 @@ zh-CN:
         remote_made_image_url: '中国制造图片链接'
         project_id: '项目名'
         cost_id: '价格'
+        inventory: '库存'
       po:
         po_number: '订单号'
         quantity: '数量'

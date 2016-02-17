@@ -49,8 +49,16 @@ class Product < ActiveRecord::Base
 		header = spreadsheet.row(1)
 		(2..spreadsheet.last_row).each do |i|
 			row = Hash[[header, spreadsheet.row(i)].transpose]
-			product = find_by_id(row["id"]) || new
-			product.attributes = row.to_hash
+			if Product.find_by(item_number: row["item_number"]).present?
+				product = Product.find_by(item_number: row["item_number"])
+				product.inventory = row["inventory"]
+			else
+				product = Product.new								
+				product.inventory = row["inventory"]
+				product.item_number = row["item_number"]
+				product.id = Product.last.id + 1
+			end
+			byebug
 			product.save!
 		end
 	end

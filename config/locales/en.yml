@@ -184,6 +184,7 @@ en:
         remote_made_image_url: 'Made in China Url'
         project_id: 'Project'
         cost_id: 'Cost'
+        inventory: 'Inventory'
       po:
         po_number: 'PO No.'
         quantity: 'QTY'
