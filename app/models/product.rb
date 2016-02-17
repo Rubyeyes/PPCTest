@@ -27,32 +27,11 @@ class Product < ActiveRecord::Base
 			}
 
 
-	def self.text_filter filter
-		if filter.present?
-			joins(:project).where("user_id = ?", filter)
-		else
-			all
-		end
-	end
-	def self.text_search query
-		if query.present?
-			search(query)
-		else
-			all
-		end
-	end
-	def self.user_filter current_user
-		if current_user.role == "factory"
-			joins(:project).where("user_id = ?", current_user.id)
-		else
-			all
-		end
-	end
 	def self.text_sort sort, direction
 		if sort.present?
-			joins(:project).order("#{sort} #{direction}")
+			order("#{sort} #{direction}")
 		else
-			joins(:project).order('created_at DESC, item_number ASC')
+			order('item_number ASC')
 		end		
 	end
 
