@@ -72,7 +72,6 @@ class Product < ActiveRecord::Base
 			row = Hash[[header, spreadsheet.row(i)].transpose]
 			product = find_by_id(row["id"]) || new
 			product.attributes = row.to_hash
-			byebug
 			product.save!
 		end
 	end
