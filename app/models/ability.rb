@@ -18,6 +18,7 @@ class Ability
       can :read, :all
       can :manage, Task
       can :manage, Instruction
+      can :manage, Product
       can [:read, :edit, :mamage, :update, :destroy], Notification
     elsif user.role == "factory"
       can :manage, Sample
