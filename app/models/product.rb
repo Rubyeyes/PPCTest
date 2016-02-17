@@ -52,6 +52,7 @@ class Product < ActiveRecord::Base
 			if Product.find_by(item_number: row["item_number"]).present?
 				product = Product.find_by(item_number: row["item_number"])
 				product.inventory = row["inventory"].to_i
+				product.id = product.id.to_s
 			else
 				product = Product.new								
 				product.inventory = row["inventory"].to_i
