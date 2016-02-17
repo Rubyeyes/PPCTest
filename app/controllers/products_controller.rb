@@ -72,6 +72,12 @@ class ProductsController < ApplicationController
     redirect_to :back, notice: "Product was successfully deleted"
   end
 
+  def import
+    Product.import(params[:file])
+    redirect_to products_path
+    flash[:notice] = "Products imported"
+  end
+
   private
 
   def product_params

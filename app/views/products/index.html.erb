@@ -4,11 +4,9 @@
 <%= render "search"%>
 
 <% if current_user.role == 'admin' || 'user' || 'user2' %>
-	<p>
-		Download:
-		<%= link_to "CSV", products_path(format: "csv") %> |
-		<%= link_to "XLS", products_path(format: "xls") %>
-	</p>
+			Download:
+			<%= link_to "CSV", products_path(format: "csv") %> |
+			<%= link_to "Excel", products_path(format: "xls")%>
 <% end %>
 
 <div class="text-right">

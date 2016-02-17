@@ -16,7 +16,11 @@ Rails.application.routes.draw do
     resources :patents, exept:[:show]
     resources :patent_projects, only:[:new, :create, :destroy]
     resources :projects
-    resources :products
+    resources :products do
+      collection do
+        post :import
+      end
+    end
     resources :pos
     resources :po_products
     resources :reports

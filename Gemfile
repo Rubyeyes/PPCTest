@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+# Import CSV and Excel file
+gem 'roo'
+gem 'roo-xls'
 # Paginator
 gem 'kaminari', '~> 0.16.3'
 #Authorization

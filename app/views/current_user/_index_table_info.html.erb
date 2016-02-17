@@ -14,6 +14,21 @@
 			<li class="list-item"><%= link_to t('.new_sample'), new_sample_path if current_user.role == ('admin' || 'factory')%></li>
 		</ul>
 	</div>
+	<%if current_user.role == 'admin'%>
+		<div class="panel-body" style="border-top:1px solid black">
+			<ul class="list-unstyled">
+				<li class="list-item">
+					<%= form_tag import_products_path, multipart: true do  %>
+						Import Products:
+						<button type="submit" name="commit" style="background-color:transparent;border-width:0px;float:left">
+							<span class="glyphicon glyphicon-upload" style="color:rgba(51,122,183,1)"></span>
+						</button>
+						<%= file_field_tag :file %>
+					<% end %>
+				</li>
+			</ul>
+		</div>
+	<% end %>
 	<div class="panel-footer">
 		<%= link_to t('.sign_out'), destroy_user_session_path, method: :delete %>
 	</div>

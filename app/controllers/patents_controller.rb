@@ -8,6 +8,11 @@ class PatentsController < ApplicationController
       @project = Project.find(params[:project_id_param])
       @patents = @project.patents.text_sort(params[:sort], params[:direction]).page(params[:page]).per(20)  
     end
+    respond_to do |format|
+      format.html
+      format.csv { render text: @data.to_csv}
+      format.xls #{ render text: @products.to_csv(col_sep: "\t")}
+    end
   end
 
   def new
