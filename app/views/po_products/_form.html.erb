@@ -52,7 +52,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @po_products.each do |po_product| %>
+				<% @po_products.joins(:product).order("item_number ASC").each do |po_product| %>
 					<tr>
 						<td><%=po_product.product.item_number%></td>
 						<td><%=po_product.quantity%></td>
