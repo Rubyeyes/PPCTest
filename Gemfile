@@ -63,5 +63,5 @@ group :development do
 end
 
 #declare a ruby version
-ruby '2.0.0'
+ruby '2.2.4'
 
