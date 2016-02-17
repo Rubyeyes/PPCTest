@@ -51,12 +51,12 @@ class Product < ActiveRecord::Base
 			row = Hash[[header, spreadsheet.row(i)].transpose]
 			if Product.find_by(item_number: row["item_number"]).present?
 				product = Product.find_by(item_number: row["item_number"])
-				product.inventory = row["inventory"]
+				product.inventory = row["inventory"].to_i
 			else
 				product = Product.new								
-				product.inventory = row["inventory"]
+				product.inventory = row["inventory"].to_i
 				product.item_number = row["item_number"]
-				product.id = Product.last.id + 1
+				product.id = (Product.last.id + 1).to_s
 			end
 			product.save!
 		end

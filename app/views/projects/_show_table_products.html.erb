@@ -13,7 +13,7 @@
 					<table class="table table-condensed " >
 						<tr>
 							<th><%= Product.human_attribute_name(:inventory)%> </th>
-							<td><%= simple_format(product.inventory)%></td>
+							<td><%= product.inventory%></td>
 						</tr>
 						<tr>
 							<th><%= Product.human_attribute_name(:unit_cost) if current_user.role != 'designer' %></th>
