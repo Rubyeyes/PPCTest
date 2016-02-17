@@ -22,7 +22,9 @@
 					<th><%= Product.human_attribute_name(:unit_cost)%></th>
 					<th><%= Product.human_attribute_name(:tooling_fee)%></th>
 				<% end %>
-				<th><%= Product.human_attribute_name(:inventory)%></th>
+				<% if current_user.role == 'admin' || current_user.role == 'user' || current_user.role == 'user2'%>
+					<th><%= Product.human_attribute_name(:inventory)%></th>
+				<% end %>
 				<th><%= Product.human_attribute_name(:description)%></th>
 				<th><%= Project.human_attribute_name(:project_name)%></th>
 				<th><%= "" if current_user.role =="admin"%></th>
@@ -42,7 +44,9 @@
 						<td><%= number_to_currency(product.cost.unitRMB)%></td>
 						<td><%= number_to_currency(product.cost.toolingRMB)%></td>
 					<% end %>
-					<td><%= product.inventory if product.inventory.present?%></td>
+					<% if current_user.role == 'admin' || current_user.role == 'user' || current_user.role == 'user2'%>
+						<td><%= product.inventory if product.inventory.present?%></td>
+					<% end %>
 					<td><%= product.product_name %></td>
 					<td><%= link_to product.project.project_name, controller: "projects", action: "show", id: product.project_id if product.project.present?%></td>
 					<td>
