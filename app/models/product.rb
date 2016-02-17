@@ -58,7 +58,6 @@ class Product < ActiveRecord::Base
 				product.item_number = row["item_number"]
 				product.id = Product.last.id + 1
 			end
-			byebug
 			product.save!
 		end
 	end
