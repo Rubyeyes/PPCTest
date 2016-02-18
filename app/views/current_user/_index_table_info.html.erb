@@ -14,7 +14,7 @@
 			<li class="list-item"><%= link_to t('.new_sample'), new_sample_path if current_user.role == ('admin' || 'factory')%></li>
 		</ul>
 	</div>
-	<%if current_user.role == 'admin' || current_user.role == 'user'%>
+	<%if current_user.role == 'admin' || current_user.role == 'accounting'%>
 		<div class="panel-body" style="border-top:1px solid black">
 			<ul class="list-unstyled">
 				<li class="list-item list-item-user-info">
