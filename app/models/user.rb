@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   # end  
 
   def self.notification_recipients object, current_user, controller_name
-    if current_user.role == "factory" || "user" || "designer"
+    if current_user.role == "factory" || "user" || "user2"
       where.not(role: ["factory", "accounting", "droped"] )
     elsif current_user.role == "admin"
       if controller_name == "projects"
@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
       else  
         where("role LIKE ?  or fullname LIKE ?", "user", "%#{object.project.user.fullname}%")
       end
+    elsif current_user.role == "designer"
+      where(role: ["user", "admin"])
     end
   end
 
