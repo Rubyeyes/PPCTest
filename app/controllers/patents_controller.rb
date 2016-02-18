@@ -3,7 +3,7 @@ class PatentsController < ApplicationController
     @user = current_user
     # advance search filter
     filter(Patent)
-    @patents = @data.uniq.text_sort(params[:sort], params[:direction]).page(params[:page]).per(20)
+    @patents = @data.text_sort(params[:sort], params[:direction]).page(params[:page]).per(20)
     if params[:project_id_param].present?
       @project = Project.find(params[:project_id_param])
       @patents = @project.patents.text_sort(params[:sort], params[:direction]).page(params[:page]).per(20)  

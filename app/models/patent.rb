@@ -8,11 +8,10 @@ class Patent < ActiveRecord::Base
   mount_uploader :certificate, CertificateUploader
 
   include PgSearch
-		pg_search_scope :search, against: [:name, :type, :docket_number, :status, :patent_number, :issue_date, :filling_date],
+		pg_search_scope :search, against: [:name, :patent_type, :docket_number, :status, :patent_number, :issue_date, :filling_date],
 		associated_against: {
-			project: [:project_name],
+			projects: [:project_name],
 			products: [:product_name, :item_number, :reminder, :Mark, :Package, :Instruction],
-			user: :fullname
 		},
 		using: {
 			tsearch: {

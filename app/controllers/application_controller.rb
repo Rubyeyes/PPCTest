@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 			@data = @data.where(id: params[:project]) if params[:project].present?
 			@data = @data.search(params[:query].to_s) if params[:query].present?
 			@data = @data.where("user_id = ?", current_user.id) if current_user.role == "factory"
-	 	elsif params[:controller] == 'pos'
+	 	elsif params[:controller] == 'pos' || params[:controller] =='patents'
 			@data = @data.joins(:projects).where("user_id = ?", params[:factory]) if params[:factory].present?
 			@data = @data.joins(:projects).where("project_id = ?", params[:project]) if params[:project].present?
 			@data = @data.search(params[:query].to_s) if params[:query].present?

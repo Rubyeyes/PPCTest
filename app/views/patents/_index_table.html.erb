@@ -14,7 +14,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @patents.order(docket_number: :desc).each do |patent| %>
+			<% @patents.each do |patent| %>
 				<tr>
 					<td class="dropdown">
 						<a href="#" class="dropdown-toggle navbar-toggle-width" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= patent.name.to_s %><span class="caret"></span></a>
