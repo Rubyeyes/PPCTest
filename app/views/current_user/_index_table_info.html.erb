@@ -35,6 +35,8 @@
 						<%= file_field_tag :file, class: "form-control"%>
 					<% end %>
 				</li>
+			<% end %>
+			<%if current_user.role == 'admin' %>
 				<li class="list-item list-item-user-info">
 					<div style="float:left">Import Patents:</div>
 					<%= form_tag import_patents_path, multipart: true do  %>

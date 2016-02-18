@@ -28,6 +28,10 @@ class Po < ActiveRecord::Base
 	end
 
 	def self.import(file)
+		pos = Po.all
+		pos.each do |p|
+			p.destroy
+		end
 		spreadsheet = open_spreadsheet(file)
 		header = spreadsheet.row(1)
 		(2..spreadsheet.last_row).each do |i|
@@ -54,7 +58,11 @@ class Po < ActiveRecord::Base
 					po.date = row["date"]
 					po.save!							
 					po_product = PoProduct.new
-					po_product.id = (PoProduct.last.id+1).to_s
+					if PoProduct.last.present?
+						po_product.id = (PoProduct.last.id+1).to_s
+					else
+						po_product.id = 1.to_s
+					end
 					po_product.po_id = po.id
 					po_product.product_id = product_id
 					po_product.quantity = row["quantity"]

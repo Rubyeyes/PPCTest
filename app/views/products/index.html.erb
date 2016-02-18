@@ -22,7 +22,7 @@
 					<th><%= Product.human_attribute_name(:unit_cost)%></th>
 					<th><%= Product.human_attribute_name(:tooling_fee)%></th>
 				<% end %>
-				<% if current_user.role == 'admin' || current_user.role == 'user' || current_user.role == 'user2'%>
+				<% if current_user.role == 'admin' || current_user.role == 'user' || current_user.role == 'user2' || current_user.role == 'accounting'%>
 					<th><%= Product.human_attribute_name(:inventory)%></th>
 				<% end %>
 				<th><%= Product.human_attribute_name(:description)%></th>
@@ -37,14 +37,14 @@
 					<% if product.cost.nil? && current_user.role != 'designer'%>
 						<td></td>
 						<td></td>
-					<% elsif current_user.role == 'user' || current_user.role == 'admin'%>
+					<% elsif current_user.role == 'user' || current_user.role == 'admin' || current_user.role == 'accounting'%>
 						<td><%= number_to_currency(product.cost.unitUSD)%></td>
 						<td><%= number_to_currency(product.cost.toolingUSD)%></td>
 					<% elsif current_user.role == 'factory' %>
 						<td><%= number_to_currency(product.cost.unitRMB)%></td>
 						<td><%= number_to_currency(product.cost.toolingRMB)%></td>
 					<% end %>
-					<% if current_user.role == 'admin' || current_user.role == 'user' || current_user.role == 'user2'%>
+					<% if current_user.role == 'admin' || current_user.role == 'user' || current_user.role == 'user2' || current_user.role == 'accounting'%>
 						<td><%= product.inventory if product.inventory.present?%></td>
 					<% end %>
 					<td><%= product.product_name %></td>
