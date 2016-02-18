@@ -63,6 +63,12 @@ class PosController < ApplicationController
     redirect_to :back, notice: "PO was successfully deleted"
   end
 
+  def import
+    Po.import(params[:file])
+    redirect_to pos_path
+    flash[:notice] = "Pos imported"
+  end
+
   private
 
   def po_params

@@ -21,7 +21,11 @@ Rails.application.routes.draw do
         post :import
       end
     end
-    resources :pos
+    resources :pos do
+      collection do
+        post :import
+      end
+    end
     resources :po_products
     resources :reports
     resources :role_options
