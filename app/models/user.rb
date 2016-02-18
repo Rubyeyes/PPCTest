@@ -21,14 +21,14 @@ class User < ActiveRecord::Base
 
   def self.notification_recipients object, current_user, controller_name
     if current_user.role == "factory" || "user" || "designer"
-      where.not(role: "factory")
+      where.not(role: ["factory", "accounting", "droped"] )
     elsif current_user.role == "admin"
       if controller_name == "projects"
         where("role LIKE ?  or fullname LIKE ?", "user", "%#{object.user.fullname}%")
       elsif controller_name == "po_products"  
         where("role LIKE ?  or fullname LIKE ?", "user", "%#{object.product.project.user.fullname}%")
       elsif controller_name == "tasks"
-        where.not(role: "factory")
+        where.not(role: ["factory", "accounting", "droped"])
       else  
         where("role LIKE ?  or fullname LIKE ?", "user", "%#{object.project.user.fullname}%")
       end
