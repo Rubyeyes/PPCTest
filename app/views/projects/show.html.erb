@@ -1,6 +1,12 @@
 
 <div class="container-project-show">
-		<div class="image-project-frame" style="padding:0px"><%= image_tag @project.image.url(:detail).to_s, class: "img-responsive" %></div>
+		<div class="image-project-frame" style="padding:0px">
+			<% if @project.image.present? %>
+				<%= image_tag @project.image.url(:detail).to_s, class: "img-responsive" %>
+			<% else %>		
+				<%= image_tag @logo_black.image.url(:detail).to_s, class: "img-responsive" %>
+			<% end %>
+		</div>
 
 	<div class="show-project-background">
 		<div id="info_top"  class="container container-content">

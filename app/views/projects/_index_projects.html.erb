@@ -11,7 +11,11 @@
 										<a class="patent-triangle-font">P</a>
 								</div>
 							<% end %>
-							<%= link_to image_tag(project.image.url(:detail).to_s, class: "img-responsive img-thumbnail project-image"), project_path(id: project.id) %>
+							<% if project.image.present? %>
+								<%= link_to image_tag(project.image.url(:detail).to_s, class: "img-responsive img-thumbnail project-image"), project_path(id: project.id) %>
+							<% else %>
+								<%= link_to image_tag(@logo_black.image.url(:detail).to_s, class: "img-responsive img-thumbnail project-image"), project_path(id: project.id) %>
+							<% end %>
 
 							<div class="panel panel-project-heading show-project-detail">
 								<div class="up-arrow"><span class="glyphicon glyphicon-chevron-up" style="float:right"></span></div>

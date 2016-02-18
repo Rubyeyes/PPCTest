@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
     @products = Product.all.order(item_number: :asc)
     @tasks = Task.all.order(deadline: :desc)
     @costs = Cost.all.order(date: :desc)
+    @logo_black = Logo.find_by(name: "NcSTAR Image Logo Black")
   end
 
   def new
@@ -73,6 +74,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @logo_black = Logo.find_by(name: "NcSTAR Image Logo Black")
     @project = Project.find(params[:id])
     @patent_projects = PatentProject.where(project_id: @project.id).joins(:patent).order("docket_number DESC")
     @products = Product.all
