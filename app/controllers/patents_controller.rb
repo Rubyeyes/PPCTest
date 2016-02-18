@@ -72,10 +72,16 @@ class PatentsController < ApplicationController
     redirect_to patents_path, notice: "Patent was successfully deleted"
   end
 
+  def import
+    Patent.import(params[:file])
+    redirect_to patents_path
+    flash[:notice] = "Patents imported"
+  end
+
   private
 
   def patent_params
-    params.require(:patent).permit(:id, :name, :patent_type, :docket_number, :certificate, :status, :patent_number, :patent_number, :issue_date, :filling_date)
+    params.require(:patent).permit(:id, :name, :patent_type, :docket_number, :certificate, :status, :patent_number, :issue_date, :filling_date)
   end
 
 end
