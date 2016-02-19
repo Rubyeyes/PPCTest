@@ -19,7 +19,12 @@ Rails.application.routes.draw do
       end
     end
     resources :patent_projects, only:[:new, :create, :destroy]
-    resources :projects
+    resources :projects do
+      collection do
+        post :new_category
+        post :new_idea
+      end
+    end
     resources :products do
       collection do
         post :import

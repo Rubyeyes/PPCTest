@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
 	 	@logo_black = Logo.find_by(name: "NcSTAR Image Logo Black")
 	 	@user = current_user
 	 	@notifications = Notification.where(recipient_id: current_user.id) if current_user.present?
+	 	@idea_categories = IdeaCategory.all
 	 end
 
 	 def filter model

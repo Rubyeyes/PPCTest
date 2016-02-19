@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217182641) do
+ActiveRecord::Schema.define(version: 20160219173020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,21 @@ ActiveRecord::Schema.define(version: 20160217182641) do
   end
 
   add_index "costs", ["project_id"], name: "index_costs_on_project_id", using: :btree
+
+  create_table "idea_categories", force: :cascade do |t|
+    t.string   "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ideas", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "idea_category_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "ideas", ["idea_category_id"], name: "index_ideas_on_idea_category_id", using: :btree
 
   create_table "instructions", force: :cascade do |t|
     t.string   "instruction"
@@ -233,6 +248,7 @@ ActiveRecord::Schema.define(version: 20160217182641) do
   end
 
   add_foreign_key "costs", "projects"
+  add_foreign_key "ideas", "idea_categories"
   add_foreign_key "instructions", "projects"
   add_foreign_key "patent_projects", "patents"
   add_foreign_key "patent_projects", "projects"

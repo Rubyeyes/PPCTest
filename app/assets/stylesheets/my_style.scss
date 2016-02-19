@@ -30,6 +30,34 @@ html.turbolinks-progress-bar::before {
   height: 3px !important;
 }
 
+.list-idea {
+  border: 0px;
+  list-style: decimal inside;
+  display: list-item;
+}
+
+.container-project {
+  min-height:1000px;
+  min-height: 1000px;
+  position: relative;
+  top: -34px;
+}
+
+
+#new_idea_button {
+  position: relative;
+  left: 50%;
+  top: -34px;
+  background-color: rgba(51,122,183,0.7);
+  border-color: transparent;
+}
+
+#new_idea_panel {  
+  position: relative;
+  top: -34px;
+  margin-bottom: 0px;
+}
+
 .list-item-user-info {
   margin-bottom: 5px;
 }

@@ -92,6 +92,20 @@ class ProjectsController < ApplicationController
     redirect_to projects_path, notice: "Project was successfully deleted"
   end
 
+  def new_category
+    idea_category = IdeaCategory.new(category: params[:category])
+    if idea_category.save
+      redirect_to :back, notice: "Category was successfully added"
+    end
+  end
+
+  def new_idea
+    idea = Idea.new(title: params[:title], idea_category_id: params[:idea_category_id])
+    if idea.save
+      redirect_to :back, notice: "Idea was successfully added"
+    end
+  end
+
   
   private
 

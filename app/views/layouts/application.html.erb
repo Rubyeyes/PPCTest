@@ -112,6 +112,18 @@
     // Bind event listener
     $(window).resize(checkWidth);
 
+    //New idea panel
+    $("#new_idea_button").click(function(){
+      $("#new_idea_panel").slideToggle();
+    });
+
+    //Add Category and idea
+    $("#button_add_category").click(function (){
+      $("#form_add_category").toggle(500); 
+    });
+    $(".button-add-idea").click(function (){
+      $(this).next(".form-add-idea").toggle(500); 
+    });
   });
 
 </script>
