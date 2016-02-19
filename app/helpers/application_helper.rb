@@ -67,6 +67,10 @@ module ApplicationHelper
 				number_to_currency(product.cost.unitRMB)
 			elsif current_user.role == 'admin' || current_user.role == 'user'
 				number_to_currency(product.cost.unitUSD)
+			elsif current_user.role == 'user2'			
+				"#{number_to_currency(product.cost.unitUSD)}; #{number_to_currency(product.cost.unitRMB, unit: '￥')}"
+			else
+				""
 			end
 		end
 	end	
@@ -77,10 +81,14 @@ module ApplicationHelper
 				number_to_currency(product.cost.toolingRMB)
 			elsif current_user.role == 'admin' || current_user.role == 'user'
 				number_to_currency(product.cost.toolingUSD)
+			elsif current_user.role == 'user2'			
+				"#{number_to_currency(product.cost.toolingUSD)}; #{number_to_currency(product.cost.toolingRMB, unit: '￥')}"
+			else
+				""
 			end
 		end
 	end
-	
+
 
 	def smart_patent_number patent_project	
 		if patent_project.patent.status.to_s == "Patent Pending"

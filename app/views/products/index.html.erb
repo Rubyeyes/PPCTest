@@ -34,16 +34,8 @@
 			<% @products.each do |product| %>
 				<tr>
 					<td><%= link_to product.item_number,  product_path(id: product.id), method: :get%></td>
-					<% if product.cost.nil? && current_user.role != 'designer'%>
-						<td></td>
-						<td></td>
-					<% elsif current_user.role == 'user' || current_user.role == 'admin' || current_user.role == 'accounting'%>
-						<td><%= number_to_currency(product.cost.unitUSD)%></td>
-						<td><%= number_to_currency(product.cost.toolingUSD)%></td>
-					<% elsif current_user.role == 'factory' %>
-						<td><%= number_to_currency(product.cost.unitRMB)%></td>
-						<td><%= number_to_currency(product.cost.toolingRMB)%></td>
-					<% end %>
+					<td><%= smart_unit_cost(product) %></td>
+					<td><%= smart_tooling_fee(product) %></td>
 					<% if current_user.role == 'admin' || current_user.role == 'user' || current_user.role == 'user2' || current_user.role == 'accounting'%>
 						<td><%= product.inventory if product.inventory.present?%></td>
 					<% end %>

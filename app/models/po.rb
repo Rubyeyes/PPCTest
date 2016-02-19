@@ -45,7 +45,7 @@ class Po < ActiveRecord::Base
 					if po.po_products.find_by(product_id: product_id).present?
 						po_product = po.po_products.find_by(product_id: product_id)
 						po_product.quantity = row["quantity"]
-					else
+					else 
 						po_product = PoProduct.new
 						po_product.id = (PoProduct.last.id+1).to_s
 						po_product.po_id = po.id
