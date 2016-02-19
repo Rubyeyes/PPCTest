@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'ideas/destroyc'
+
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
 
     devise_for :users, :controllers => { :registrations => :registrations }
@@ -23,6 +25,12 @@ Rails.application.routes.draw do
       collection do
         post :new_category
         post :new_idea
+      end
+      member do
+        delete :destroy_category
+        put :edit_category
+        delete :destroy_idea
+        put :edit_idea
       end
     end
     resources :products do

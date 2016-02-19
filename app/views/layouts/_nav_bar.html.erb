@@ -104,30 +104,38 @@
       <% if current_user.role != 'factory' %>
         <button id="new_idea_button" class="btn btn-default">New idea</button>
         <div hidden id="new_idea_panel" class="panel panel-default">
-          <div class="panel-heading">
-            <button id="button_add_category" class="btn btn-default btn-add-category"><span class="glyphicon glyphicon-plus"><b>Category</b></span></button>
-            <div hidden id="form_add_category"><%= form_tag new_category_projects_path do %>
-              <%= text_field_tag :category, nil, placeholder: 'Category Name', class: "form-control", style: "width:50%;float:left"%>
-              <%= submit_tag "Add", class: "btn btn-default" %>
-            <% end %></div>
-          </div>
+          <% if current_user.role == 'admin' %>
+            <div class="panel-heading">
+              <button id="button_add_category" class="btn btn-default btn-add-category"><span class="glyphicon glyphicon-plus"><b>Category</b></span></button>
+              <div hidden id="form_add_category"><%= form_tag new_category_projects_path do %>
+                <%= text_field_tag :category, nil, placeholder: 'Category Name', class: "form-control", style: "width:50%;float:left"%>
+                <%= submit_tag "Add", class: "btn btn-default" %>
+              <% end %></div>
+            </div>
+          <% end %>
           <div class="panel-body">
             <% @idea_categories.each_slice(4) do |group| %>
               <div class="row">
                 <% group.each do |idea_category| %>
                   <div class="col-xs-12 col-md-6 col-lg-3">
                     <%= idea_category.category %> 
-                    <a class="button-add-idea"><span class="glyphicon glyphicon-plus "></span></a>
-                    <div hidden class="form-add-idea">
-                      <%= form_tag new_idea_projects_path do %>
-                        <%= text_field_tag :title, nil, placeholder: 'Input idea', class: "form-control", style: "width:50%;float:left"%>
-                        <%= hidden_field_tag :idea_category_id, "#{idea_category.id}" %>
-                        <%= submit_tag "Add", class: "btn btn-default" %>
-                      <% end %>
-                    </div>         
+                    <% if current_user.role == 'admin' %>
+                      <a class="button-add-idea"><span class="glyphicon glyphicon-plus"></span></a>
+                      <%= link_to '', destroy_category_project_path(id: idea_category.id), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove "%>
+                      <div hidden class="form-add-idea">
+                        <%= form_tag new_idea_projects_path do %>
+                          <%= text_field_tag :title, nil, placeholder: 'Input idea', class: "form-control", style: "width:50%;float:left"%>
+                          <%= hidden_field_tag :idea_category_id, "#{idea_category.id}" %>
+                          <%= submit_tag "Add", class: "btn btn-default" %>
+                        <% end %>
+                      </div> 
+                    <% end %>        
                     <ul class="list-group">
                       <% idea_category.ideas.each do |idea| %>
-                        <li class="list-group-item list-idea"><b><%= idea.title %></b></li>
+                        <li class="list-group-item list-idea">
+                          <b><%= idea.title %></b>
+                          <%= link_to '', destroy_idea_project_path(id: idea.id), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove "%>
+                        </li>
                       <% end %>
                     </ul>
                   </div>

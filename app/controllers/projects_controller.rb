@@ -106,7 +106,18 @@ class ProjectsController < ApplicationController
     end
   end
 
-  
+  def destroy_category
+    @idea_category = IdeaCategory.find(params[:id])
+    @idea_category.destroy
+    redirect_to projects_path, notice: "Category was successfully deleted"
+  end
+
+  def destroy_idea
+    @idea = Idea.find(params[:id])
+    @idea.destroy
+    redirect_to projects_path, notice: "Idea was successfully deleted"
+  end
+
   private
 
   def project_params
