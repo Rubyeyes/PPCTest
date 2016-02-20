@@ -12,6 +12,7 @@ class Ability
       can :manage, Task
       can :manage, Product
       can :manage, Po
+      can [:read, :edit, :mamage, :update, :destroy], Notification
     elsif user.role == "user2"
       can :read, :all
       can :manage, Task
