@@ -27,7 +27,7 @@
 					<td><%= patent.patent_type.to_s %></td>
 					<td><%= patent.docket_number.to_s %></td>
 					<td><%= patent.status.to_s 	%></td>
-					<td><%= patent.patent_number.to_s %></td>
+					<td><%= link_to patent.patent_number.to_s, "https://docs.google.com/viewer?url=#{patent.certificate.url}" %></td>
 					<td><%= patent.issue_date.strftime("%m-%d-%y") if patent.issue_date.present? %></td>
 					<td><%= patent.filling_date.strftime("%m-%d-%y") if patent.filling_date.present? %></td>
 					<td>
