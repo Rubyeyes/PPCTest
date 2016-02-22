@@ -52,7 +52,6 @@ class PatentsController < ApplicationController
   end
 
   def update
-    byebug
     @patent = Patent.find(params[:id])
     @users = User.notification_recipients(@patent, current_user, params[:controller])        
     if @patent.update(patent_params)
