@@ -52,6 +52,7 @@ class PatentsController < ApplicationController
   end
 
   def update
+    byebug
     @patent = Patent.find(params[:id])
     @users = User.notification_recipients(@patent, current_user, params[:controller])        
     if @patent.update(patent_params)
@@ -81,7 +82,7 @@ class PatentsController < ApplicationController
   private
 
   def patent_params
-    params.require(:patent).permit(:id, :name, :patent_type, :docket_number, :certificate, :status, :patent_number, :issue_date, :filling_date)
+    params.require(:patent).permit(:id, :name, :patent_type, :docket_number, :certificate, :status, :patent_number, :issue_date, :filling_date, :image)
   end
 
 end

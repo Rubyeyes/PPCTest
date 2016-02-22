@@ -16,14 +16,7 @@
 		<tbody>
 			<% @patents.each do |patent| %>
 				<tr>
-					<td class="dropdown">
-						<a href="#" class="dropdown-toggle navbar-toggle-width" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= patent.name.to_s %><span class="caret"></span></a>
-						<ul class="dropdown-menu">
-		                  <% patent.patent_projects.each do |pp|%>
-		                  	<li><%= link_to pp.project.project_name, project_path(id: pp.project.id) %></li>
-		                  <% end %>
-		                </ul>
-					</td>
+					<td class="button-patent-detail"><a><%= patent.name.to_s %><span class="caret"></span></a></td>
 					<td><%= patent.patent_type.to_s %></td>
 					<td><%= patent.docket_number.to_s %></td>
 					<td><%= patent.status.to_s 	%></td>
@@ -37,7 +30,32 @@
 						<%end%>
 					</td>	
 				</tr>
+				<tr hidden class="row-patent-detail">
+					<td colspan="8">
+						<div class="row">
+							<div class="col-xs-4">
+								<ul class="list-unstyled">
+									Related Project:
+	                <% patent.patent_projects.each do |pp|%>
+	                	<li class="list-item"><%= link_to pp.project.project_name, project_path(id: pp.project.id) %></li>
+	                <% end %>
+		            </ul>
+	            </div>
+	            <div class="col-xs-8">
+								<%= image_tag(patent.image.url(:detail).to_s, class: "img-responsive img-thumbnail project-image")%>
+	            </div>
+	          </div>
+	        </td>
+	      </tr>
 			<% end %>
 		</tbody>
 	</table>
 </div>
+
+<script>
+	$(document).ready(function() {
+	    $(".button-patent-detail").click(function (){
+	      $(this).parents().next().toggle(500); 
+	    });
+	})
+</script>

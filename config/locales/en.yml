@@ -205,10 +205,10 @@ en:
       patent:
         name: 'Name'
         patent_type: 'Type'
-        docket_number: 'Docket No.'
+        docket_number: 'Docket #'
         certificate: 'Certificate'
         status: 'Status'
-        patent_number: 'Patent No.'
+        patent_number: 'Patent #'
         issue_date: 'Issue Date'
         filling_date: 'Filing Date'
       patent_project:

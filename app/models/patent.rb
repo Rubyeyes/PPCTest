@@ -5,6 +5,7 @@ class Patent < ActiveRecord::Base
   accepts_nested_attributes_for :patent_projects, allow_destroy: true
 
 
+  mount_uploader :image, ImageUploader
   mount_uploader :certificate, CertificateUploader
 
   include PgSearch
