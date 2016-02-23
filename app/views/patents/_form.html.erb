@@ -50,7 +50,7 @@
 			<%= f.label :issue_date, class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
-			<%= f.date_select :issue_date, include_blank: true, class: "form-control"%>
+			<%= f.date_select :issue_date, include_blank: true, prompt: true, start_year: 1990,class: "form-control"%>
 		</div>
 	</div>
 
@@ -60,7 +60,7 @@
 			<%= f.label :filling_date, class: "control-label" %>
 		</div>
 		<div class="col-sm-10">
-			<%= f.date_select :filling_date, include_blank: true, class: "form-control"%>
+			<%= f.date_select :filling_date, include_blank: true, prompt: true, start_year: 1990, class: "form-control"%>
 		</div>
 	</div>
 
