@@ -1,4 +1,5 @@
 jQuery ->
+
 	$('#import_pos').fileupload
 		add: (e, data) ->
 			data.context = $(tmpl("bar_po_upload", data.files[0]))
