@@ -19,24 +19,30 @@
 			<ul class="list-unstyled">
 				<li class="list-item list-item-user-info">
 					<div style="float:left">Import Products:</div>
-					<%= form_tag import_products_path, multipart: true do  %>
-						<button type="submit" name="commit" style="background-color:transparent;border-width:0px;float:left">
-							<span class="glyphicon glyphicon-upload" style="color:rgba(51,122,183,1)"></span>
-						</button>
+					<%= form_tag import_products_path, id: 'import_products',multipart: true do  %>
 						<%= file_field_tag :file, class: "form-control"%>
 					<% end %>
+					<script id='bar_product_upload' type="text/x-tmpl">
+						<div class='upload'>
+							{%=o.name%}
+							<div class='progress'><div class='bar' style="width:0%;height: inherit;"></div></div>
+						</div>
+					</script>
 				</li>
 				<li class="list-item list-item-user-info">
 					<div style="float:left">Import Pos:</div>
-					<%= form_tag import_pos_path, multipart: true do  %>
-						<button type="submit" name="commit" style="background-color:transparent;border-width:0px;float:left">
-							<span class="glyphicon glyphicon-upload" style="color:rgba(51,122,183,1)"></span>
-						</button>
+					<%= form_tag import_pos_path, id: 'import_pos', multipart: true do  %>
 						<%= file_field_tag :file, class: "form-control"%>
 					<% end %>
+					<script id='bar_po_upload' type="text/x-tmpl">
+						<div class='upload'>
+							{%=o.name%}
+							<div class='progress'><div class='bar' style="width:0%;height: inherit;"></div></div>
+						</div>
+					</script>
 				</li>
 			<% end %>
-			<%if current_user.role == 'admin' %>
+			<!--<%if current_user.role == 'admin' %>
 				<li class="list-item list-item-user-info">
 					<div style="float:left">Import Patents:</div>
 					<%= form_tag import_patents_path, multipart: true do  %>
@@ -45,7 +51,7 @@
 						</button>
 						<%= file_field_tag :file, class: "form-control"%>
 					<% end %>
-				</li>
+				</li>-->
 			</ul>
 		</div>
 	<% end %>

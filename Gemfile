@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# Jquery uploader
+gem 'jquery-fileupload-rails'
 # Import CSV and Excel file
 gem 'roo'
 gem 'roo-xls'

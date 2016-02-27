@@ -30,6 +30,10 @@ html.turbolinks-progress-bar::before {
   height: 3px !important;
 }
 
+.bar {
+  background-color: rgba(51,122,183,1);
+}
+
 .list-idea {
   border: 0px;
   list-style: decimal inside;
