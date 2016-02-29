@@ -30,8 +30,8 @@ class Ability
       can :manage, Task
       can :manage, Instruction
       can [:read], Project
+      can [:read], Cost
       can [:read], Product
-      can [:read], Po
       can [:read], Report
       can [:read], Patent
       can [:read, :edit, :mamage, :update, :destroy], Notification
