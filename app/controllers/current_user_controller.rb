@@ -5,7 +5,7 @@ class CurrentUserController < ApplicationController
     if current_user.role == 'admin'
       @missions = Task.all.where(finish: false).text_sort(params[:sort], params[:direction]).page(params[:page]).per(20) 
     else
-      @missions = @current_user.missions.where(finish: false).text_sort(params[:sort], params[:direction]).page(params[:page]).per(20) 
+      @missions = current_user.missions.where(finish: false).text_sort(params[:sort], params[:direction]).page(params[:page]).per(20) 
     end
   end
 
