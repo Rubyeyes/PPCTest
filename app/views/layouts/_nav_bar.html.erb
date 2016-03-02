@@ -134,7 +134,7 @@
                       <% idea_category.ideas.each do |idea| %>
                         <li class="list-group-item list-idea">
                           <b><%= idea.title %></b>
-                          <%= link_to '', destroy_idea_project_path(id: idea.id), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove "%>
+                          <%= link_to '', destroy_idea_project_path(id: idea.id), method: :delete, data: {confirm: "Are you sure?"} , class: "glyphicon glyphicon-remove " if current_user.role == 'admin'%>
                         </li>
                       <% end %>
                     </ul>
