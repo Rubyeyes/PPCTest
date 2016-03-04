@@ -14,7 +14,7 @@ class InstructionsController < ApplicationController
       # @users.each do |user|
       #   Notification.create_notification(@instruction, "create instruction of", current_user.id, user.id, params[:controller])
       # end
-      redirect_to project_path(@instruction.project.id)
+      redirect_to project_path(id: @instruction.project.id)
       flash[:notice] = "Instruction was successfully created"
     else
       flash[:alert] = "There was a problem uploading Instruction"
@@ -37,7 +37,7 @@ class InstructionsController < ApplicationController
       # @users.each do |user|
       #   Notification.create_notification(@instruction, "update the instruction of", current_user.id, user.id, params[:controller])
       # end
-      redirect_to project_path(@instruction.project.id)
+      redirect_to project_path(id: @instruction.project.id)
       flash[:notice] = "instruction was successfully updated"
     else
       flash[:alert] = "There was a problem updating instruction"
