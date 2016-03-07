@@ -48,7 +48,7 @@
 									</div>
 								</div>
 								<%= render "index_table_products", object: project %>
-							</div>
+							</div><!-- 
 							<% if project.costs.present? && current_user.role != 'designer'%>
 								<ul class="list-group list-group-cost-index">
 									<li class="list-group-item list-item-project-cost-index">
@@ -60,7 +60,7 @@
 										<%= number_to_currency(project.costs.last.toolingRMB , unit: '￥') if current_user.role == 'factory'%>
 									</li>
 								</ul>
-							<% end %>
+							<% end %> -->
 					</div> <!-- panel-body -->
 				</div> <!-- panel-group -->
 			</div> <!-- col-md-4 -->
