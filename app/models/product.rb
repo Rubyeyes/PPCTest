@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
 	belongs_to :cost
 	has_many :notifications, as: :notifiable, dependent: :delete_all
 	has_many :users, through: :project
-	has_many :patents, through: :projects
+	belongs_to :patent
 
 
 	mount_uploader :logo_image, ImageUploader

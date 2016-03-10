@@ -41,7 +41,7 @@
 						</tr>
 					</table><br />
 					</div>
-					<% if product.project.patent_projects.present? %>
+					<% if product.patent.present? %>
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -51,13 +51,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% product.project.patent_projects.each do |patent_project| %>
 								<tr>
-									<td><%= patent_project.patent.patent_type.to_s %></td>
-									<td><%= patent_project.patent.docket_number.to_s %></td>
-									<td><%= smart_patent_number patent_project	%></td>
-								</tr>
-							<% end %>						
+									<td><%= product.patent.patent_type.to_s %></td>
+									<td><%= product.patent.docket_number.to_s %></td>
+									<td><%= product.patent.patent_number	%></td>
+								</tr>					
 						</tbody>
 					</table>
 					<% end %>

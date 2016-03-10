@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222181627) do
+ActiveRecord::Schema.define(version: 20160310033144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,9 +145,11 @@ ActiveRecord::Schema.define(version: 20160222181627) do
     t.string   "patent_image"
     t.string   "made_image"
     t.integer  "inventory"
+    t.integer  "patent_id"
   end
 
   add_index "products", ["cost_id"], name: "index_products_on_cost_id", using: :btree
+  add_index "products", ["patent_id"], name: "index_products_on_patent_id", using: :btree
   add_index "products", ["project_id"], name: "index_products_on_project_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
@@ -256,6 +258,7 @@ ActiveRecord::Schema.define(version: 20160222181627) do
   add_foreign_key "po_products", "pos"
   add_foreign_key "po_products", "products"
   add_foreign_key "products", "costs"
+  add_foreign_key "products", "patents"
   add_foreign_key "products", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "reports", "projects"
