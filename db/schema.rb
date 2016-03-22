@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310033144) do
+ActiveRecord::Schema.define(version: 20160322180416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,6 +166,16 @@ ActiveRecord::Schema.define(version: 20160310033144) do
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
+  create_table "qcstandards", force: :cascade do |t|
+    t.string   "file"
+    t.integer  "project_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
+  end
+
+  add_index "qcstandards", ["project_id"], name: "index_qcstandards_on_project_id", using: :btree
+
   create_table "reports", force: :cascade do |t|
     t.string   "name"
     t.text     "content"
@@ -261,6 +271,7 @@ ActiveRecord::Schema.define(version: 20160310033144) do
   add_foreign_key "products", "patents"
   add_foreign_key "products", "projects"
   add_foreign_key "projects", "users"
+  add_foreign_key "qcstandards", "projects"
   add_foreign_key "reports", "projects"
   add_foreign_key "samples", "projects"
   add_foreign_key "tasks", "projects"

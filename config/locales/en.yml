@@ -62,6 +62,7 @@ en:
       all: 'All'
     show:
       upload_instruction: 'Upload Instruction'
+      upload_qcstandard: 'Upload QC Standard'
 
 
   products:

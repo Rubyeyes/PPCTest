@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'ideas/destroyc'
-
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
 
     devise_for :users, :controllers => { :registrations => :registrations }
@@ -44,6 +42,7 @@ Rails.application.routes.draw do
       end
     end
     resources :po_products
+    resources :qcstandards
     resources :reports
     resources :role_options
     resources :samples

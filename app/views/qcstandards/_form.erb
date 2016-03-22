@@ -1,0 +1,46 @@
+<P><%= render "validation_errors", object:  @qcstandard%><P>
+
+<%= smart_form(@qcstandard, params[:controller]) do |f| %>
+	
+	<!-- Check if requiring to offer project select -->
+	<% if action_name == "new" %>
+		<% if @project.present? %>
+			<%= f.hidden_field :project_id, :value => @project.id %>
+		<% else %>
+			<div class="row row-form">
+				<div class="col-sm-2">
+					<%= f.label :project_id, "Project Name", class: "control-label" %>
+				</div>
+				<div class="col-sm-10">
+					<%= f.select :project_id, project_select(current_user), {prompt: "Select Project"}, class: "form-control" %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+
+	<!-- Only show US Dollars to Admin and Users -->
+	<% if current_user.role == "admin" || "user" %>
+		<div class="row row-form">
+			<div class="col-sm-2">
+				<%= f.label :file,"Upload QC Standard", class: "control-label" %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.file_field :file%>
+			</div>
+		</div>
+		<div class="row row-form" >
+			<div class="col-sm-2">
+				<%= f.label :description, class: "control-label" %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.text_field :description, class: "form-control"%>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="row row-form">
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit :Submit, class: "btn btn-default" %>
+		</div>
+	</div>
+<% end %>

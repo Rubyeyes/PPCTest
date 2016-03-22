@@ -63,6 +63,7 @@ zh-CN:
       all: '所有项目'
     show:
       upload_instruction: '上传说明书'
+      upload_qcstandard: '上传质量检测标准'
 
   products:
     new:
