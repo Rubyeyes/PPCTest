@@ -1,6 +1,4 @@
 class InstructionsController < ApplicationController
-  def index
-  end
 
   def new
     @instruction = Instruction.new
@@ -43,9 +41,6 @@ class InstructionsController < ApplicationController
       flash[:alert] = "There was a problem updating instruction"
       render :edit
     end
-  end
-
-  def show
   end
 
   def destroy
