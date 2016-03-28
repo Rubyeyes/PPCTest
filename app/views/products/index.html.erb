@@ -24,6 +24,7 @@
 				<% end %>
 				<% if current_user.role == 'admin' || current_user.role == 'user' || current_user.role == 'user2' || current_user.role == 'accounting'%>
 					<th><%= Product.human_attribute_name(:inventory)%></th>
+					<th><%= t('.item_on_po') %></th>
 				<% end %>
 				<th><%= Product.human_attribute_name(:description)%></th>
 				<th><%= Project.human_attribute_name(:project_name)%></th>
@@ -38,6 +39,11 @@
 					<td><%= smart_tooling_fee(product) %></td>
 					<% if current_user.role == 'admin' || current_user.role == 'user' || current_user.role == 'user2' || current_user.role == 'accounting'%>
 						<td><%= product.inventory if product.inventory.present?%></td>
+						<td>
+							<% product.po_products.joins(:po).order("date DESC").each do |po_product| %>
+								<%= po_product.quantity %>
+							<% end %>
+						</td>
 					<% end %>
 					<td><%= product.product_name %></td>
 					<td><%= link_to product.project.project_name, controller: "projects", action: "show", id: product.project_id if product.project.present?%></td>

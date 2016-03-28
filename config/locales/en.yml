@@ -72,6 +72,8 @@ en:
       title: 'Edit Product'
     show:
       belong_to: 'Belong to'
+    index:
+      item_on_po: 'Item on PO'
 
   costs:
     new:

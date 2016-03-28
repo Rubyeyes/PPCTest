@@ -55,7 +55,7 @@
 							<%end%>
 							<div class="panel panel-default">
 								<ul class="list-group">
-									<% if current_user.role != "designer" %>
+									<% if current_user.role != "designer" && current_user.role != "factory"  %>
 										<li class="list-group-item" style="text-align:right"><%= link_to t('.upload_instruction') , new_instruction_path(project_id_param: @project.id)%></li>
 									<% end %>
 									<% if @project.instructions.present? %>
@@ -72,7 +72,7 @@
 							</div>
 							<div class="panel panel-default">
 								<ul class="list-group">
-									<% if current_user.role != "designer" %>
+									<% if current_user.role != "designer" && current_user.role != "factory" %>
 										<li class="list-group-item" style="text-align:right"><%= link_to t('.upload_qcstandard') , new_qcstandard_path(project_id_param: @project.id)%></li>
 									<% end %>
 									<% if @project.qcstandards.present? %>
@@ -103,6 +103,7 @@
 </div>
 
 <script>
+
 	$(document).ready(function() {
 		// Change navbar when scroll down
 	  	$(window).scroll(function () {

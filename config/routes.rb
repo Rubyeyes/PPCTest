@@ -42,7 +42,7 @@ Rails.application.routes.draw do
       end
     end
     resources :po_products
-    resources :qcstandards
+    resources :qcstandards, defaults: { format: 'json' }
     resources :reports
     resources :role_options
     resources :samples

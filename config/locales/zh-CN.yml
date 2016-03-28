@@ -72,6 +72,8 @@ zh-CN:
       title: '编辑产品'
     show:
       belong_to: '属于项目'
+    index:
+      item_on_po: '订单数量'
 
   costs:
     new:

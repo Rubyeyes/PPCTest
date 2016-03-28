@@ -4,6 +4,7 @@
 				<th><%= "#{Product.human_attribute_name(:item_number)}" %></th>
 				<% if current_user.role == 'user' || current_user.role == 'user2' || current_user.role == 'admin'%>
 					<th><%= Product.human_attribute_name(:inventory)%></th>
+					<th><%= t('.item_on_po') %></th>
 				<% end %>
 				<% if current_user.role != 'designer'%>
 					<th><%= Product.human_attribute_name(:unit_cost)%></th>
@@ -20,6 +21,11 @@
 					<td><%= product.item_number%></td>
 					<% if current_user.role == 'user' || current_user.role == 'user2' || current_user.role == 'admin'%>
 						<td><%= product.inventory%></td>
+						<td>
+							<% product.po_products.joins(:po).order("date DESC").each do |po_product| %>
+								<%= po_product.quantity %>
+							<% end %>
+						</td>
 					<% end %>
 					<% if product.cost.nil? && current_user.role != 'designer'%>
 						<td></td>
