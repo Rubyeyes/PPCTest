@@ -14,7 +14,7 @@
 				<% @missions.order(deadline: :asc).each do |task| %>
 					<tr>
 						<td><%= task.executor.fullname if (current_user.role == 'admin' || current_user.role == 'user2') && task.executor.present? %></td>
-						<td><%= task.task %></td>
+						<td><%= link_to task.task, edit_task_url(id: task.id) %></td>
 						<td><%= link_to task.project.project_name, project_path(id: task.project.id) %></td>
 						<td><%= task.deadline.strftime("%m-%d-%y") if task.deadline.present?%></td>
 						<td>
