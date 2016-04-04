@@ -3,7 +3,7 @@
 		<table class="table table-striped table-condensed">
 			<thead>
 				<tr>
-					<th><%= sortable("fullname", "#{Task.human_attribute_name(:executor)}") if current_user.role == 'admin'%></th>
+					<th><%= sortable("fullname", "#{Task.human_attribute_name(:executor)}") if current_user.role == 'admin' || current_user.role == 'user2'%></th>
 					<th><%= Task.human_attribute_name(:task)%></th>
 					<th><%= Project.human_attribute_name(:project_name)%></th>
 					<th><%= sortable("deadline", "#{Task.human_attribute_name(:deadline)}")%></th>
@@ -13,7 +13,7 @@
 			<tbody>
 				<% @missions.order(deadline: :asc).each do |task| %>
 					<tr>
-						<td><%= task.executor.fullname if current_user.role == 'admin' && task.executor.present? %></td>
+						<td><%= task.executor.fullname if (current_user.role == 'admin' || current_user.role == 'user2') && task.executor.present? %></td>
 						<td><%= task.task %></td>
 						<td><%= link_to task.project.project_name, project_path(id: task.project.id) %></td>
 						<td><%= task.deadline.strftime("%m-%d-%y") if task.deadline.present?%></td>

@@ -2,7 +2,7 @@ class CurrentUserController < ApplicationController
 
   def index
   	@current_user = current_user
-    if current_user.role == 'admin'
+    if current_user.role == 'admin' || current_user.role == 'user2'
       @missions = Task.all.where(finish: false).text_sort(params[:sort], params[:direction]).page(params[:page]).per(20) 
     else
       @missions = current_user.missions.where(finish: false).text_sort(params[:sort], params[:direction]).page(params[:page]).per(20) 

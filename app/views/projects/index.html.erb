@@ -81,8 +81,10 @@
 
   // Change brightness when mouse on
   $( ".panel-body-cost a" ).hover( function() {
-      $(this).children("img").css("opacity","0.7"); 
+      $('.panel-body-cost').chidren('img').css("opacity","0.5"); 
+      $(this).children("img").css("opacity","1"); 
     }, function() {
+      $('.panel-body-cost').chidren('img').css("opacity","1");  
       $(this).children("img").css("opacity","1"); 
   });
 	
