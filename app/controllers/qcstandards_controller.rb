@@ -1,15 +1,8 @@
 class QcstandardsController < ApplicationController
 
-  respond_to :json
-
-  def index
-    @qcstandards = Qcstandard.all
-    respond_with @qcstandards
-  end
-
   def new
     @qcstandard = Qcstandard.new
-    respond_with @qcstandard
+    @project = Project.find(params[:project_id_param]) if params[:project_id_param].present?
   end
 
   def create
@@ -19,19 +12,20 @@ class QcstandardsController < ApplicationController
       # @users.each do |user|
       #   Notification.create_notification(@qcstandard, "create qcstandard of", current_user.id, user.id, params[:controller])
       # end
+      redirect_to project_path(id: @qcstandard.project.id)
       flash[:notice] = "qcstandard was successfully created"
     else
       flash[:alert] = "There was a problem uploading qcstandard"
+      render :new
     end
-    respond_with @qcstandard
   end
 
   def edit
     @qcstandard = Qcstandard.find(params[:id])
     if current_user.role == "factory" && @qcstandard.project.user.fullname != current_user.fullname
+      redirect_to root_path
       flash[:alert] = "You have no authorization"
     end
-    respond_with @qcstandard
   end
 
   def update
@@ -41,23 +35,19 @@ class QcstandardsController < ApplicationController
       # @users.each do |user|
       #   Notification.create_notification(@qcstandard, "update the qcstandard of", current_user.id, user.id, params[:controller])
       # end
+      redirect_to project_path(id: @qcstandard.project.id)
       flash[:notice] = "qcstandard was successfully updated"
     else
       flash[:alert] = "There was a problem updating qcstandard"
+      render :edit
     end
-    respond_with @qcstandard
-  end
-
-  def show
-    @qcstandard = Qcstandard.find(params[:id])
-    respond_with @qcstandard
   end
 
   def destroy
     @qcstandard = Qcstandard.find(params[:id])
     @qcstandard.remove_file!
     @qcstandard.destroy
-    respond_with @qcstandard
+    redirect_to :back, notice: "Qcstandard was successfully deleted"
   end
 
   private
