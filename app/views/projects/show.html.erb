@@ -55,6 +55,17 @@
 							<%end%>
 							<div class="panel panel-default">
 								<ul class="list-group">
+									<% if @project.products.present? %>
+										<% @project.products.order(product_name: :asc).each do |product|%>
+											<li class="list-group-item" style="font-weight: bold;">
+												<%= link_to product.item_number, product_path(id: product.id) %>
+											</li>
+										<% end %>
+									</ul>
+								<%end%>
+							</div>
+							<div class="panel panel-default">
+								<ul class="list-group">
 									<% if current_user.role != "designer" && current_user.role != "factory"  %>
 										<li class="list-group-item" style="text-align:right"><%= link_to t('.upload_instruction') , new_instruction_path(project_id_param: @project.id)%></li>
 									<% end %>
