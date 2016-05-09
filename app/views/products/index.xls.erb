@@ -16,7 +16,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @data.each do |product| %>
+			<% @data.order('item_number ASC').each do |product| %>
 				<tr>
 					<td><%= product.item_number%></td>
 					<% if current_user.role == 'user' || current_user.role == 'user2' || current_user.role == 'admin'%>
